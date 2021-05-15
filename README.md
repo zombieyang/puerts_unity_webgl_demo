@@ -1,5 +1,5 @@
 # Puerts WebGL demo
-Unity的Puerts项目可以以webgl模式构建了，puerts的JS代码会运行在浏览器JS引擎里，而不是运行在编译为WASM的JS解释器里。
+本项目包括了一个可以以WebGL模式构建运行Puerts的Unity项目。puerts的JS代码会运行在浏览器JS引擎里，而不是运行在编译为WASM的JS解释器里。
 > You can build a unity puerts project in webgl mode now. Your Javascript code will run in browser Javascript engine instead of a interpreter in WASM.
 
 ## Dependent
