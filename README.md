@@ -12,7 +12,7 @@
 * 运作原理(how this work?)
 
 Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本交互的功能](https://docs.unity3d.com/2018.4/Documentation/Manual/webgl-interactingwithbrowserscripting.html)，对Puerts中使用到的`PuertsDLL.cs`里的API通过JS一一进行实现。关键代码位于`Assets/Plugins/puerts.jslib`。
-> With [this Manual](https://docs.unity3d.com/2018.4/Documentation/Manual/webgl-interactingwithbrowserscripting.html) provided by Unity. We implements a jslib in  `Assets/Plugins/puerts.jslib`. It should provide the API mentioned in `PuertsDLL.cs` which support Puerts to run.
+> With [this Manual](https://docs.unity3d.com/2018.4/Documentation/Manual/webgl-interactingwithbrowserscripting.html) which provided by Unity. We implements a jslib located at `Assets/Plugins/puerts.jslib`. It should provide the API in `PuertsDLL.cs` which support Puerts to run.
 
 * 未来还有以下工作要做(TODO)：
 
