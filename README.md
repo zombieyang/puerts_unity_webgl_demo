@@ -2,6 +2,12 @@
 本项目包括了一个可以以WebGL模式构建运行Puerts的Unity项目。puerts的JS代码会运行在浏览器JS引擎里，而不是运行在编译为WASM的JS解释器里。
 > You can build a unity puerts project in webgl mode now. Your Javascript code will run in browser Javascript engine instead of a interpreter in WASM.
 
+## Progress
+* unity 2019支持 ✔
+* unity 2020支持 ×
+* 简单旋转demo`Assets/Scenes/SampleScene` ✔
+* 篮球小游戏demo`Assets/Scenes/BasketballDemo` ×
+
 ## Dependent
 因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
 > This feature will deeply depend the `WeakRef` and `FinalizationRegistry` API. Which are supported in below environment:

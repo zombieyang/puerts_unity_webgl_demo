@@ -1,1 +1,8 @@
+Library/
+Logs/
+Packages/
+ProjectSettings/
+Temp/
+build/
+node_modules
 .vs*
