@@ -1,3 +1,4 @@
+*.csproj
 Library/
 Logs/
 Packages/
