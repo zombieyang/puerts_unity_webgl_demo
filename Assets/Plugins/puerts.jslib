@@ -115,11 +115,11 @@ var exportDLL = {
         }
 
         function callV8FunctionCallback(functionPtr, selfPtr, infoIntPtr, paramLen, data) {
-            unityInstance.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
-            unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr || 0);
-            unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
-            unityInstance.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
-            unityInstance.SendMessage('__PuertsBridge', 'CallV8FunctionCallback', functionPtr);
+            Module.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
+            Module.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr || 0);
+            Module.SendMessage('__PuertsBridge', 'SetData', data);
+            Module.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
+            Module.SendMessage('__PuertsBridge', 'CallV8FunctionCallback', functionPtr);
         }
         function makeV8FunctionCallbackFunction(functionPtr, data) {
             return function () {
@@ -138,17 +138,17 @@ var exportDLL = {
             }
         }
         function callV8ConstructorCallback(functionPtr, infoIntPtr, paramLen, data) {
-            unityInstance.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
-            unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
-            unityInstance.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
-            unityInstance.SendMessage('__PuertsBridge', 'CallV8ConstructorCallback', functionPtr);
+            Module.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
+            Module.SendMessage('__PuertsBridge', 'SetData', data);
+            Module.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
+            Module.SendMessage('__PuertsBridge', 'CallV8ConstructorCallback', functionPtr);
             return getLastResult();
         }
         function callV8DestructorCallback(functionPtr, selfPtr, data) {
             // 虽然这里看起来像是this指针，但它实际上是CS里对象池的一个id
-            unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr);
-            unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
-            unityInstance.SendMessage('__PuertsBridge', 'callV8DestructorCallback', functionPtr);
+            Module.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr);
+            Module.SendMessage('__PuertsBridge', 'SetData', data);
+            Module.SendMessage('__PuertsBridge', 'callV8DestructorCallback', functionPtr);
         }
         var onFinalize = (function () {
             var destructors = {};
