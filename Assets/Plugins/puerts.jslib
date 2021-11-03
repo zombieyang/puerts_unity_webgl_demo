@@ -218,6 +218,16 @@ var exportDLL = {
                 generalDestructor = _generalDestructor
             },
 
+            ExecuteFile: function(/*IntPtr */isolate, /*string */path) {
+                if (typeof wx != 'undefined') {
+                    lastReturnCSResult = require(path)
+
+                } else {
+                    console.log('ExecuteFile', Pointer_stringify(path));
+                    const result = window.eval(PUERTS_JS_RESOURCES[Pointer_stringify(path)]);
+                    lastReturnCSResult = result;
+                }
+            },
             Eval: function (/*IntPtr */isolate, /*string */code, /*string */path) {
                 code = Pointer_stringify(code);
                 const result = window.eval(code);
@@ -643,6 +653,7 @@ var exportDLL = {
     "GetLastExceptionInfo",
     "LowMemoryNotification",
     "SetGeneralDestructor",
+    "ExecuteFile",
     "Eval",
     "RegisterClass",
     "RegisterStruct",
