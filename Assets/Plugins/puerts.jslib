@@ -86,7 +86,7 @@ var exportDLL = {
                 this.args = [];
                 this.lastExceptionInfo = '';
             }
-            JSFunction.prototype.invoke = function() {
+            JSFunction.prototype.invoke = function () {
                 var args = this.args.slice(0);
                 this.args = [];
                 this._func.apply(this, args);
@@ -99,10 +99,10 @@ var exportDLL = {
                     }
                     return new JSFunction(funcValue);
                 },
-                getJSFunctionById: function(id) {
+                getJSFunctionById: function (id) {
                     jsFuncOrObjectKV[this.id]
                 },
-                removeJSFunctionById: function(id) {
+                removeJSFunctionById: function (id) {
                     delete jsFuncOrObjectKV[this.id]
                 }
             }
@@ -193,6 +193,8 @@ var exportDLL = {
             window.addEventListener("unhandledrejection", callback);
         }
 
+        const executeModuleCache = {};
+
         window.PuertsWebGL = {
             SetLastResult: function (res) {
                 lastCallCSResult = res;
@@ -202,7 +204,10 @@ var exportDLL = {
             },
 
             GetLibVersion: function () {
-                return 11;
+                return 14;
+            },
+            GetLibBackend: function () {
+                return 0;
             },
             SetGlobalFunction: function (/*IntPtr */isolate, /*string */name, /*IntPtr */v8FunctionCallback, /*long */data) {
                 name = Pointer_stringify(name);
@@ -218,14 +223,22 @@ var exportDLL = {
                 generalDestructor = _generalDestructor
             },
 
-            ExecuteFile: function(/*IntPtr */isolate, /*string */path) {
+            ExecuteFile: function (/*IntPtr */isolate, /*string */path) {
                 if (typeof wx != 'undefined') {
-                    lastReturnCSResult = require(path)
+                    lastReturnCSResult = require('puerts_minigame_js_resources/' + path)
 
                 } else {
-                    console.log('ExecuteFile', Pointer_stringify(path));
-                    const result = window.eval(PUERTS_JS_RESOURCES[Pointer_stringify(path)]);
-                    lastReturnCSResult = result;
+                    const result = { exports: {} };
+                    const fileName = Pointer_stringify(path);
+                    if (executeModuleCache[fileName]) {
+                        lastReturnCSResult = executeModuleCache[fileName];
+                        return;
+                    }
+                    if (!PUERTS_JS_RESOURCES[fileName]) {
+                        console.error('file not found' + fileName);
+                    }
+                    PUERTS_JS_RESOURCES[fileName](result.exports, window.require, result)
+                    lastReturnCSResult = executeModuleCache[fileName] = result.exports;
                 }
             },
             Eval: function (/*IntPtr */isolate, /*string */code, /*string */path) {
@@ -237,9 +250,9 @@ var exportDLL = {
             },
 
 
-            RegisterClass: function (/*IntPtr */isolate, /*int */BaseTypeId, /*string */fullName, /*IntPtr */constructor, /*IntPtr */destructor, /*long */data) {
+            _RegisterClass: function (/*IntPtr */isolate, /*int */BaseTypeId, /*string */fullName, /*IntPtr */constructor, /*IntPtr */destructor, /*long */data) {
                 fullName = Pointer_stringify(fullName);
-                
+
                 var id = Object.keys(classes).length
                 classes[id] = function (csObjectID) {
                     // nativeObject的构造函数
@@ -361,7 +374,7 @@ var exportDLL = {
                 if (typeof value == 'function') { return 256 }
                 if (value instanceof Date) { return 512 }
                 if (value instanceof Array) { return 128 }
-                if (nativeObjectMap.getCSObjectIDFromObject(value)) {return 32}
+                if (nativeObjectMap.getCSObjectIDFromObject(value)) { return 32 }
                 return 64;
             },
             GetArgumentValue: function (/*IntPtr */info, /*int */index) {
@@ -393,7 +406,7 @@ var exportDLL = {
                 if (typeof value == 'function') { return 256 }
                 if (value instanceof Date) { return 512 }
                 if (value instanceof Array) { return 128 }
-                if (nativeObjectMap.getCSObjectIDFromObject(value)) {return 32}
+                if (nativeObjectMap.getCSObjectIDFromObject(value)) { return 32 }
                 return 64;
             },
             GetTypeIdFromValue: function (/*IntPtr */isolate, /*IntPtr */value, /*bool */isByRef) {
@@ -459,7 +472,7 @@ var exportDLL = {
                 obj.value = new Date(date);
             },
             SetStringToOutValue: function (/*IntPtr */isolate, /*IntPtr */value, /*string */str) {
-                
+
 
             },
             SetBooleanToOutValue: function (/*IntPtr */isolate, /*IntPtr */value, /*bool */b) {
@@ -544,7 +557,7 @@ var exportDLL = {
                         lastReturnCSResult = func.invoke();
                         return 1024;
 
-                    } catch(err) {
+                    } catch (err) {
                         console.error('InvokeJSFunction error', err);
                         func.lastExceptionInfo = err.message
                     }
@@ -583,7 +596,7 @@ var exportDLL = {
                 if (typeof value == 'function') { return 256 }
                 if (value instanceof Date) { return 512 }
                 if (value instanceof Array) { return 128 }
-                if (nativeObjectMap.getCSObjectIDFromObject(value)) {return 32}
+                if (nativeObjectMap.getCSObjectIDFromObject(value)) { return 32 }
                 return 64;
             },
             GetNumberFromResult: function (/*IntPtr */resultInfo) {
@@ -649,13 +662,14 @@ var exportDLL = {
     "SetLastResult",
     "SetLastResultType",
     "GetLibVersion",
+    "GetLibBackend",
     "SetGlobalFunction",
     "GetLastExceptionInfo",
     "LowMemoryNotification",
     "SetGeneralDestructor",
     "ExecuteFile",
     "Eval",
-    "RegisterClass",
+    "_RegisterClass",
     "RegisterStruct",
     "RegisterFunction",
     "RegisterProperty",
