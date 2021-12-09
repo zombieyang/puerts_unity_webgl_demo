@@ -188,7 +188,7 @@ var exportDLL = {
         var classIDWeakMap = new WeakMap();
         var generalDestructor = null;
 
-        global.__tgjsEvalScript = eval;
+        global.__tgjsEvalScript = typeof eval != 'undefined' ? eval : function() {};
         global.__tgjsSetPromiseRejectCallback = function (callback) {
             window.addEventListener("unhandledrejection", callback);
         }
