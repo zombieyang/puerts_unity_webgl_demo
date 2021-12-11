@@ -1,6 +1,11 @@
 
-declare const lengthBytesUTF8: (str: string) => number;
-declare const _malloc: (size: number) => any
-declare const stringToUTF8: (str: string, buffer: any, size: number) => any
+interface IntPtr {__cannotMockInJS: boolean}
+interface CSString {__cannotMockInJS: boolean}
 declare const Module: any
-declare type IntPtr = number | undefined;
+declare const unityInstance: any
+declare type MockIntPtr = number;
+declare type CSObjectID = number;
+declare type int = number;
+declare type double = number;
+declare type bool = boolean;
+declare const wx: any;

@@ -10,24 +10,72 @@ export class FunctionCallbackInfo {
 
 }
 
+export class Ref<T> {
+    public value: T
+}
+
+export class JSFunction {
+    public _func: (...args: any[]) => any;
+
+    private id: number;
+
+    public args: any[] = [];
+
+    public lastExceptionInfo: string = '';
+
+    constructor(func: (...args: any[]) => any) {
+        this._func = func;
+        this.id = jsFunctionOrObjectFactory.regularID++;
+        jsFunctionOrObjectFactory.idmap.set(func, this.id);
+        jsFunctionOrObjectFactory.jsFuncOrObjectKV[this.id] = this;
+    }
+    public invoke() {
+        var args = this.args.slice(0);
+        this.args = [];
+        this._func.apply(this, args);
+    }
+}
+
+export class jsFunctionOrObjectFactory {
+    public static regularID: number = 1;
+    public static idmap = new WeakMap();
+    public static jsFuncOrObjectKV: { [id: number]: JSFunction } = {};
+
+    public static getOrCreateJSFunction(funcValue: (...args: any[]) => any) {
+        if (jsFunctionOrObjectFactory.idmap.get(funcValue)) {
+            return jsFunctionOrObjectFactory.jsFuncOrObjectKV[
+                jsFunctionOrObjectFactory.idmap.get(funcValue)
+            ];
+        }
+        return new JSFunction(funcValue);
+    }
+    public static getJSFunctionById(id: number): JSFunction {
+        return jsFunctionOrObjectFactory.jsFuncOrObjectKV[id]
+    }
+    public static removeJSFunctionById(id: number) {
+        delete jsFunctionOrObjectFactory.jsFuncOrObjectKV[id]
+    }
+
+}
+
 export class IntPtrManager {
     private infos: FunctionCallbackInfo[] = [new FunctionCallbackInfo([0])] // 这里原本只是个普通的0
 
-    private values: IntPtr[] = [0, void 0]
+    private values: any[] = [0, void 0]
 
-    private valueWeakMap: WeakMap<any, IntPtr> = new WeakMap();
+    private valueWeakMap: WeakMap<any, MockIntPtr> = new WeakMap();
 
     // v8::CallbackInfo
-    GetPointerForCallbackInfo(args: FunctionCallbackInfo): IntPtr {
+    GetMockPointerForCallbackInfo(args: FunctionCallbackInfo): MockIntPtr {
         this.infos.push(args);
         return this.infos.length - 1;
     }
-    GetCallbackInfoForPointer(intptr: IntPtr): FunctionCallbackInfo {
+    GetCallbackInfoForMockPointer(intptr: MockIntPtr): FunctionCallbackInfo {
         return this.infos[intptr];
     }
 
     // v8::Value
-    GetPointerForJSValue(args: any): IntPtr {
+    GetMockPointerForJSValue(args: Function | object | undefined): MockIntPtr {
         if (typeof args == 'undefined') {
             return 1
         }
@@ -44,16 +92,19 @@ export class IntPtrManager {
         }
         return this.values.length - 1;
     }
-    GetJSValueForPointer(intptr: IntPtr) {
-        return this.values[intptr];
+    GetJSValueForMockPointer<T>(intptr: MockIntPtr): T {
+        return this.values[intptr] as T;
     }
 }
 
-export class NativeObjectMap {
-    public classes: { [classID: number]: any };
+export class CSharpObjectMap {
+    public classes: { [classID: number]: any } = {};
 
     private nativeObjectKV: { [objectID: number]: WeakRef<any> } = {};
     private objectIDWeakMap: WeakMap<any, number> = new WeakMap();
+
+    public namesToClassesID: { [name: string]: number } = {};
+    public classIDWeakMap = new WeakMap();
 
     add(csObjectID: number, obj: any) {
         this.nativeObjectKV[csObjectID] = new WeakRef(obj);
@@ -70,5 +121,110 @@ export class NativeObjectMap {
     }
     getCSObjectIDFromObject(obj: any) {
         return this.objectIDWeakMap.get(obj);
+    }
+}
+
+var destructors: { [CSObjectID: number]: (heldValue: any) => any } = {};
+
+var registry: FinalizationRegistry<any> = null;
+function init() {
+    registry = new FinalizationRegistry(function (heldValue: any) {
+        var callback = destructors[heldValue];
+        if (!(heldValue in destructors)) {
+            throw new Error("cannot find destructor for" + heldValue);
+        }
+        delete destructors[heldValue]
+        console.log('onFinalize', heldValue)
+        callback(heldValue);
+    });
+}
+export function OnFinalize(obj: object, heldValue: any, callback: (heldValue: any) => any) {
+    if (!registry) {
+        init();
+    }
+    destructors[heldValue] = callback;
+    registry.register(obj, heldValue);
+}
+declare let global: any;
+global = global || globalThis || window;
+global.global = global;
+export { global };
+
+export namespace PuertsJSEngine {
+    export interface UnityAPI {
+        Pointer_stringify: (strPtr: CSString) => string,
+        _malloc: (size: number) => any,
+        stringToUTF8: (str: string, buffer: any, size: number) => any,
+        lengthBytesUTF8: (str: string) => number
+    }
+}
+
+export class PuertsJSEngine {
+    private _intPtrManager: IntPtrManager;
+    public get intPtrManager() {
+        return this._intPtrManager || (this._intPtrManager = new IntPtrManager());
+    }
+
+    public readonly csharpObjectMap: CSharpObjectMap
+
+    public readonly unityApi: PuertsJSEngine.UnityAPI
+
+    public lastCallCSResult: any = null;
+    public lastCallCSResultType: any = null;
+    public lastReturnCSResult: any = null;
+
+    constructor(unityAPI: PuertsJSEngine.UnityAPI) {
+        this.csharpObjectMap = new CSharpObjectMap();
+        this.unityApi = unityAPI;
+    }
+
+    JSStringToCSString(returnStr: string) {
+        var bufferSize = this.unityApi.lengthBytesUTF8(returnStr) + 1;
+        var buffer = this.unityApi._malloc(bufferSize);
+        this.unityApi.stringToUTF8(returnStr, buffer, bufferSize);
+        return buffer;
+    }
+
+    public generalDestructor: IntPtr
+
+    callV8FunctionCallback(functionPtr: IntPtr, selfPtr: CSObjectID, infoIntPtr: MockIntPtr, paramLen: number, data: number) {
+        unityInstance.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
+        unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr || 0);
+        unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
+        unityInstance.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
+        unityInstance.SendMessage('__PuertsBridge', 'CallV8FunctionCallback', functionPtr);
+    }
+    makeV8FunctionCallbackFunction(functionPtr: IntPtr, data: number) {
+        const engine = this;
+        return function (...args: any[]) {
+            var callbackInfo = new FunctionCallbackInfo(args)
+            engine.callV8FunctionCallback(
+                functionPtr,
+                // getIntPtrManager().GetPointerForJSValue(this),
+                engine.csharpObjectMap.getCSObjectIDFromObject(this),
+                engine.intPtrManager.GetMockPointerForCallbackInfo(callbackInfo),
+                args.length,
+                data
+            )
+
+            return callbackInfo.returnValue;
+        }
+    }
+    callV8ConstructorCallback(functionPtr: IntPtr, infoIntPtr: MockIntPtr, paramLen: number, data: number) {
+        unityInstance.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
+        unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
+        unityInstance.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
+        unityInstance.SendMessage('__PuertsBridge', 'CallV8ConstructorCallback', functionPtr);
+        return this.getLastResult();
+    }
+    callV8DestructorCallback(functionPtr: IntPtr, selfPtr: IntPtr, data: number) {
+        // 虽然这里看起来像是this指针，但它实际上是CS里对象池的一个id
+        unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr);
+        unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
+        unityInstance.SendMessage('__PuertsBridge', 'callV8DestructorCallback', functionPtr);
+    }
+
+    getLastResult() {
+        return this.lastCallCSResult
     }
 }

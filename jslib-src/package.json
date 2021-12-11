@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.json && webpack -c webpack.config.js && rm -rf output && sh copy.sh"
   },
   "author": "",
   "license": "ISC",
