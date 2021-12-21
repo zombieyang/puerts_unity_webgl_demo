@@ -10,20 +10,23 @@ export default function WebGLBackendRegisterAPI(engine: PuertsJSEngine) {
             const fullName = engine.unityApi.Pointer_stringify(fullNameString);
 
             var id = Object.keys(engine.csharpObjectMap.classes).length
+
             engine.csharpObjectMap.classes[id] = function (csObjectID: number) {
                 // nativeObject的构造函数
                 // 这个函数有两个调用的地方：1. js侧new一个它的时候 2. cs侧创建了一个对象要传到js侧时
                 // 第一个情况，cs对象ID是callV8ConstructorCallback返回的。第二个情况，则是cs new完之后一并传给js的
                 var args = Array.prototype.slice.call(arguments, 0);
-                var argsIntPtr = engine.intPtrManager.GetMockPointerForCallbackInfo(args);
+                var FCIPtr = engine.intPtrManager.GetMockPointerForCallbackInfo(args);
 
                 // 虽然puerts内Constructor的返回值叫self，但它其实就是CS对象的一个id而已。
-                csObjectID = csObjectID || engine.callV8ConstructorCallback(constructor, argsIntPtr, args.length, data);
+                csObjectID = csObjectID || engine.callV8ConstructorCallback(constructor, FCIPtr, args.length, data);
                 engine.csharpObjectMap.add(csObjectID, this);
 
                 OnFinalize(this, csObjectID, (csObjectID)=> {
                     engine.callV8DestructorCallback(destructor || engine.generalDestructor, csObjectID, data);
                 })
+
+                engine.intPtrManager.ReleaseCallbackInfoMockPointer(FCIPtr)
             }
             engine.csharpObjectMap.classIDWeakMap.set(engine.csharpObjectMap.classes[id], id);
 

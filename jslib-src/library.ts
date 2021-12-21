@@ -59,19 +59,34 @@ export class jsFunctionOrObjectFactory {
 }
 
 export class IntPtrManager {
+    // FunctionCallbackInfo的列表，以列表的index作为IntPtr的值
     private infos: FunctionCallbackInfo[] = [new FunctionCallbackInfo([0])] // 这里原本只是个普通的0
+    // FunctionCallbackInfo用完后，就可以放入回收列表，以供下次复用
+    private freeInfosIndex: MockIntPtr[] = [];
 
+    // JSValue的列表，以列表index作为IntPtr的值
     private values: any[] = [0, void 0]
 
     private valueWeakMap: WeakMap<any, MockIntPtr> = new WeakMap();
 
     // v8::CallbackInfo
-    GetMockPointerForCallbackInfo(args: FunctionCallbackInfo): MockIntPtr {
-        this.infos.push(args);
-        return this.infos.length - 1;
+    GetMockPointerForCallbackInfo(callbackInfo: FunctionCallbackInfo): MockIntPtr {
+        if (this.freeInfosIndex.length) {
+            const intptr = this.freeInfosIndex.shift();
+            this.infos[intptr] = callbackInfo;
+            return intptr;
+
+        } else {
+            this.infos.push(callbackInfo);
+            return this.infos.length - 1;
+        }
     }
     GetCallbackInfoForMockPointer(intptr: MockIntPtr): FunctionCallbackInfo {
         return this.infos[intptr];
+    }
+    ReleaseCallbackInfoMockPointer(intptr: MockIntPtr) {
+        this.infos[intptr] = void 0;
+        this.freeInfosIndex.push(intptr);
     }
 
     // v8::Value
@@ -197,15 +212,17 @@ export class PuertsJSEngine {
     makeV8FunctionCallbackFunction(functionPtr: IntPtr, data: number) {
         const engine = this;
         return function (...args: any[]) {
-            var callbackInfo = new FunctionCallbackInfo(args)
+            let callbackInfo = new FunctionCallbackInfo(args);
+            let callbackInfoPtr = engine.intPtrManager.GetMockPointerForCallbackInfo(callbackInfo);
             engine.callV8FunctionCallback(
                 functionPtr,
                 // getIntPtrManager().GetPointerForJSValue(this),
                 engine.csharpObjectMap.getCSObjectIDFromObject(this),
-                engine.intPtrManager.GetMockPointerForCallbackInfo(callbackInfo),
+                callbackInfoPtr,
                 args.length,
                 data
             )
+            engine.intPtrManager.ReleaseCallbackInfoMockPointer(callbackInfoPtr);
 
             return callbackInfo.returnValue;
         }
