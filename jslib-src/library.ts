@@ -1,3 +1,70 @@
+/**
+ * 虚拟指针管理器
+ * Intptr在c#侧原意是指针，代表一个内存的地址值。
+ * 在这个PuertsDLL实现一个JS后端里
+ * 必须建立这么一个数字->真正js值的对照表，以模拟这个机制。
+ */
+ export class IntPtrManager {
+    // FunctionCallbackInfo的列表，以列表的index作为IntPtr的值
+    private infos: FunctionCallbackInfo[] = [new FunctionCallbackInfo([0])] // 这里原本只是个普通的0
+    // FunctionCallbackInfo用完后，就可以放入回收列表，以供下次复用
+    private freeInfosIndex: MockIntPtr[] = [];
+
+    // JSValue的列表，以列表index作为IntPtr的值
+    private values: any[] = [0, void 0]
+    // 记录每个JSValue的intptr
+    private valueWeakMap: WeakMap<any, MockIntPtr> = new WeakMap();
+
+    // v8::CallbackInfo
+    GetMockPointerForCallbackInfo(callbackInfo: FunctionCallbackInfo): MockIntPtr {
+        if (this.freeInfosIndex.length) {
+            const index = this.freeInfosIndex.shift();
+            this.infos[index] = callbackInfo;
+            return index << 4;
+
+        } else {
+            this.infos.push(callbackInfo);
+            return (this.infos.length - 1) << 4;
+        }
+    }
+    GetCallbackInfoForMockPointer(intptr: MockIntPtr): FunctionCallbackInfo {
+        return this.infos[intptr >> 4];
+    }
+    ReleaseCallbackInfoMockPointer(intptr: MockIntPtr) {
+        const index = intptr >> 4;
+        this.infos[index] = void 0;
+        this.freeInfosIndex.push(index);
+    }
+
+    GetCallbackInfoArgForMockPointer<T>(ptr: MockIntPtr): T {
+        const callbackInfoPtr = ptr >> 4;
+        const argsIndex = ptr & 15;
+        const info: FunctionCallbackInfo = this.GetCallbackInfoForMockPointer(callbackInfoPtr);
+        return info.args[argsIndex] as T;
+    }
+    // v8::Value
+    GetMockPointerForJSValue(args: Function | object | undefined): MockIntPtr {
+        if (typeof args == 'undefined') {
+            return 1
+        }
+        var isFunctionOrObject = typeof args == 'function' || typeof args == 'object';
+        if (isFunctionOrObject) {
+            var id = this.valueWeakMap.get(args)
+            if (id) {
+                return id;
+            }
+        }
+        this.values.push(args);
+        if (isFunctionOrObject) {
+            this.valueWeakMap.set(args, this.values.length - 1);
+        }
+        return this.values.length - 1;
+    }
+    GetJSValueForMockPointer<T>(intptr: MockIntPtr): T {
+        return this.values[intptr] as T;
+    }
+}
+
 export class FunctionCallbackInfo {
     args: any[]
 
@@ -56,60 +123,6 @@ export class jsFunctionOrObjectFactory {
         delete jsFunctionOrObjectFactory.jsFuncOrObjectKV[id]
     }
 
-}
-
-export class IntPtrManager {
-    // FunctionCallbackInfo的列表，以列表的index作为IntPtr的值
-    private infos: FunctionCallbackInfo[] = [new FunctionCallbackInfo([0])] // 这里原本只是个普通的0
-    // FunctionCallbackInfo用完后，就可以放入回收列表，以供下次复用
-    private freeInfosIndex: MockIntPtr[] = [];
-
-    // JSValue的列表，以列表index作为IntPtr的值
-    private values: any[] = [0, void 0]
-
-    private valueWeakMap: WeakMap<any, MockIntPtr> = new WeakMap();
-
-    // v8::CallbackInfo
-    GetMockPointerForCallbackInfo(callbackInfo: FunctionCallbackInfo): MockIntPtr {
-        if (this.freeInfosIndex.length) {
-            const intptr = this.freeInfosIndex.shift();
-            this.infos[intptr] = callbackInfo;
-            return intptr;
-
-        } else {
-            this.infos.push(callbackInfo);
-            return this.infos.length - 1;
-        }
-    }
-    GetCallbackInfoForMockPointer(intptr: MockIntPtr): FunctionCallbackInfo {
-        return this.infos[intptr];
-    }
-    ReleaseCallbackInfoMockPointer(intptr: MockIntPtr) {
-        this.infos[intptr] = void 0;
-        this.freeInfosIndex.push(intptr);
-    }
-
-    // v8::Value
-    GetMockPointerForJSValue(args: Function | object | undefined): MockIntPtr {
-        if (typeof args == 'undefined') {
-            return 1
-        }
-        var isFunctionOrObject = typeof args == 'function' || typeof args == 'object';
-        if (isFunctionOrObject) {
-            var id = this.valueWeakMap.get(args)
-            if (id) {
-                return id;
-            }
-        }
-        this.values.push(args);
-        if (isFunctionOrObject) {
-            this.valueWeakMap.set(args, this.values.length - 1);
-        }
-        return this.values.length - 1;
-    }
-    GetJSValueForMockPointer<T>(intptr: MockIntPtr): T {
-        return this.values[intptr] as T;
-    }
 }
 
 export class CSharpObjectMap {
