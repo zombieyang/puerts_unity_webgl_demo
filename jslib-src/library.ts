@@ -53,10 +53,10 @@
             if (id) {
                 return id;
             }
-        }
-        this.values.push(args);
-        if (isFunctionOrObject) {
+            this.values.push(args);
             this.valueWeakMap.set(args, this.values.length - 1);
+        } else {
+            throw new Error("does not support to make a mockpointer for primitive value");
         }
         return this.values.length - 1;
     }
