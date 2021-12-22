@@ -37,9 +37,9 @@
     }
 
     GetCallbackInfoArgForMockPointer<T>(ptr: MockIntPtr): T {
-        const callbackInfoPtr = ptr >> 4;
+        const callbackInfoIndex = ptr >> 4;
         const argsIndex = ptr & 15;
-        const info: FunctionCallbackInfo = this.GetCallbackInfoForMockPointer(callbackInfoPtr);
+        const info: FunctionCallbackInfo = this.infos[callbackInfoIndex];
         return info.args[argsIndex] as T;
     }
     // v8::Value

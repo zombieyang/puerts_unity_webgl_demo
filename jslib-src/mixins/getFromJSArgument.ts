@@ -57,7 +57,7 @@ export default function WebGLBackendGetFromJSArgumentAPI(engine: PuertsJSEngine)
         GetArgumentValue/*inCallbackInfo*/: function (infoptr: MockIntPtr, index: int) {
             // var callbackInfo = engine.intPtrManager.GetCallbackInfoForMockPointer(info);
             // return engine.intPtrManager.GetMockPointerForJSValue(callbackInfo.args[index]);
-            return infoptr & index;
+            return infoptr | index;
         },
         GetJsValueType: function (isolate: IntPtr, val: MockIntPtr, isByRef: bool) {
             // public enum JsValueType
@@ -76,7 +76,7 @@ export default function WebGLBackendGetFromJSArgumentAPI(engine: PuertsJSEngine)
             //     Unknow = 2048,
             //     Any = NullOrUndefined | BigInt | Number | String | Boolean | NativeObject | Array | Function | Date | ArrayBuffer,
             // };
-            var value: any = engine.intPtrManager.GetJSValueForMockPointer(val);
+            var value: any = engine.intPtrManager.GetCallbackInfoArgForMockPointer(val);
             if (typeof value == 'undefined') { return 1 }
             if (typeof value == 'number') { return 4 }
             if (typeof value == 'string') { return 8 }
@@ -88,7 +88,7 @@ export default function WebGLBackendGetFromJSArgumentAPI(engine: PuertsJSEngine)
             return 64;
         },
         GetTypeIdFromValue: function (isolate: IntPtr, value: MockIntPtr, isByRef: bool) {
-            var obj = engine.intPtrManager.GetJSValueForMockPointer(value)
+            var obj = engine.intPtrManager.GetCallbackInfoArgForMockPointer(value)
             var typeid = 0;
             if (typeof obj == 'function') {
                 typeid = engine.csharpObjectMap.classIDWeakMap.get(obj);
