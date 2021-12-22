@@ -1,10 +1,10 @@
-import { OnFinalize, PuertsJSEngine, Ref } from "../library";
+import { global, OnFinalize, PuertsJSEngine, Ref } from "../library";
 
 export default function WebGLBackendRegisterAPI(engine: PuertsJSEngine) {
     return {
         SetGlobalFunction: function (isolate: IntPtr, nameString: CSString, v8FunctionCallback: IntPtr, /*long */data: any) {
             const name = engine.unityApi.Pointer_stringify(nameString);
-            (global as any)[name] = engine.makeV8FunctionCallbackFunction(v8FunctionCallback, data);
+            global[name] = engine.makeV8FunctionCallbackFunction(v8FunctionCallback, data);
         },
         _RegisterClass: function (isolate: IntPtr, BaseTypeId: int, fullNameString: CSString, constructor: IntPtr, destructor: IntPtr, /*long */data: number) {
             const fullName = engine.unityApi.Pointer_stringify(fullNameString);

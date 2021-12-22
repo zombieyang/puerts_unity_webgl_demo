@@ -28,6 +28,9 @@ namespace PuertsTest
             var init = jsEnv.ExecuteFile<ModuleInit>(JSFileName);
 
             if (init != null) init(this);
+
+            // 临时防裁剪
+            UnityEngine.Debug.Log(UnityEngine.Vector3.up);
         }
 
         void Start()

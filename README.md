@@ -22,6 +22,6 @@ Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本�
 
 * 未来还有以下工作要做(TODO)：
 
-1. 确认在wkwebview下的支持情况（理论上Safari可以就可以）
-2. 在jslib实现剩余的PuertsDLL.cs的API
-3. 验证包括IntPtr管理、JSFunction在内的各种内存管理机制是否正常
+1. 在jslib实现剩余的PuertsDLL.cs的API
+2. 支持2020 2021
+3. 完成篮球小游戏

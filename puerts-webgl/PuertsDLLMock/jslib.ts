@@ -11,14 +11,14 @@ declare const wxRequire: any;
 
 global.PuertsWebGL = {
     Init({
-        Pointer_stringify, _malloc, stringToUTF8, lengthBytesUTF8
+        Pointer_stringify, _malloc, stringToUTF8, lengthBytesUTF8, unityInstance
     }: PuertsJSEngine.UnityAPI) {
         debugger;
         const engine = new PuertsJSEngine({
-            Pointer_stringify, _malloc, stringToUTF8, lengthBytesUTF8
+            Pointer_stringify, _malloc, stringToUTF8, lengthBytesUTF8, unityInstance
         });
 
-        global.__tgjsEvalScript = eval;
+        global.__tgjsEvalScript = typeof eval == "undefined" ? ()=> {} : eval;
         global.__tgjsSetPromiseRejectCallback = function (callback: (...args: any[]) => any) {
             if (typeof wx != 'undefined') {
                 wx.onUnhandledRejection(callback);
@@ -75,7 +75,7 @@ global.PuertsWebGL = {
                         if (!PUERTS_JS_RESOURCES[fileName]) {
                             console.error('file not found' + fileName);
                         }
-                        PUERTS_JS_RESOURCES[fileName](result.exports, window.require, result)
+                        PUERTS_JS_RESOURCES[fileName](result.exports, global['require'], result)
                         engine.lastReturnCSResult = executeModuleCache[fileName] = result.exports;
                     }
                 },

@@ -1,1 +1,0 @@
-mv ./dist/puerts-runtime.js ../build/newjslib/

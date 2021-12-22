@@ -183,9 +183,11 @@ export namespace PuertsJSEngine {
         Pointer_stringify: (strPtr: CSString) => string,
         _malloc: (size: number) => any,
         stringToUTF8: (str: string, buffer: any, size: number) => any,
-        lengthBytesUTF8: (str: string) => number
+        lengthBytesUTF8: (str: string) => number,
+        unityInstance: any
     }
 }
+
 
 export class PuertsJSEngine {
     private _intPtrManager: IntPtrManager;
@@ -216,11 +218,11 @@ export class PuertsJSEngine {
     public generalDestructor: IntPtr
 
     callV8FunctionCallback(functionPtr: IntPtr, selfPtr: CSObjectID, infoIntPtr: MockIntPtr, paramLen: number, data: number) {
-        unityInstance.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
-        unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr || 0);
-        unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
-        unityInstance.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
-        unityInstance.SendMessage('__PuertsBridge', 'CallV8FunctionCallback', functionPtr);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr || 0);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'CallV8FunctionCallback', functionPtr);
     }
     makeV8FunctionCallbackFunction(functionPtr: IntPtr, data: number) {
         const engine = this;
@@ -241,17 +243,17 @@ export class PuertsJSEngine {
         }
     }
     callV8ConstructorCallback(functionPtr: IntPtr, infoIntPtr: MockIntPtr, paramLen: number, data: number) {
-        unityInstance.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
-        unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
-        unityInstance.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
-        unityInstance.SendMessage('__PuertsBridge', 'CallV8ConstructorCallback', functionPtr);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetInfoPtr', infoIntPtr);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetParamLen', paramLen);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'CallV8ConstructorCallback', functionPtr);
         return this.getLastResult();
     }
     callV8DestructorCallback(functionPtr: IntPtr, selfPtr: IntPtr, data: number) {
         // 虽然这里看起来像是this指针，但它实际上是CS里对象池的一个id
-        unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr);
-        unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
-        unityInstance.SendMessage('__PuertsBridge', 'callV8DestructorCallback', functionPtr);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'callV8DestructorCallback', functionPtr);
     }
 
     getLastResult() {
