@@ -103,7 +103,7 @@ var exportDLL = {
     "SetLogCallback"
 ].forEach(function (methodName) {
 
-    exportDLL[methodName] = new Function("console.log('WebGL DLL:" + methodName + "'); var global = typeof global != 'undefined' ? global : window; return global.PuertsWebGL['" + methodName + "'].apply(this, arguments)");
+    exportDLL[methodName] = new Function("var global = typeof global != 'undefined' ? global : window; global.PuertsWebGL.bridgeLog && console.log('WebGL DLL:" + methodName + "'); return global.PuertsWebGL['" + methodName + "'].apply(this, arguments)");
 })
 
 mergeInto(LibraryManager.library, exportDLL);

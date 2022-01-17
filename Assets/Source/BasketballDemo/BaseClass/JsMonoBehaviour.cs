@@ -25,7 +25,7 @@ public class JsMonoBehaviour : MonoBehaviour
         //         return new jsCls(mono)
         //     });
         // ");
-        Action<JsMonoBehaviour> init = env.ExecuteModule<Action<JsMonoBehaviour>>("behaviours.cjs", JSClassName);
+        Action<JsMonoBehaviour> init = env.ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
         init(this);
         if (JsStart!= null) JsStart();
     }

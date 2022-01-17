@@ -92,10 +92,9 @@ export class jsFunctionOrObjectFactory {
     public static jsFuncOrObjectKV: { [id: number]: JSFunction } = {};
 
     public static getOrCreateJSFunction(funcValue: (...args: any[]) => any) {
-        if (jsFunctionOrObjectFactory.idmap.get(funcValue)) {
-            return jsFunctionOrObjectFactory.jsFuncOrObjectKV[
-                jsFunctionOrObjectFactory.idmap.get(funcValue)
-            ];
+        const id = jsFunctionOrObjectFactory.idmap.get(funcValue)
+        if (id) {
+            return jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
         }
         return new JSFunction(funcValue);
     }
@@ -103,6 +102,7 @@ export class jsFunctionOrObjectFactory {
         return jsFunctionOrObjectFactory.jsFuncOrObjectKV[id]
     }
     public static removeJSFunctionById(id: number) {
+        console.log('this.removeJSFunctionById', id);
         delete jsFunctionOrObjectFactory.jsFuncOrObjectKV[id]
     }
 
@@ -189,6 +189,7 @@ export class PuertsJSEngine {
     public lastCallCSResult: any = null;
     public lastCallCSResultType: any = null;
     public lastReturnCSResult: any = null;
+    public lastExceptionInfo: string = null;
 
     constructor(unityAPI: PuertsJSEngine.UnityAPI) {
         this.csharpObjectMap = new CSharpObjectMap();

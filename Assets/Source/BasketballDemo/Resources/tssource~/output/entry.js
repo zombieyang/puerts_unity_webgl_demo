@@ -1,8 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.JSGameManager = exports.JSBallBehaviour = void 0;
-const JSGameManager_1 = require("./JSGameManager");
-Object.defineProperty(exports, "JSGameManager", { enumerable: true, get: function () { return JSGameManager_1.JSGameManager; } });
-const JSBallBehaviour_1 = require("./JSBallBehaviour");
-Object.defineProperty(exports, "JSBallBehaviour", { enumerable: true, get: function () { return JSBallBehaviour_1.JSBallBehaviour; } });
+import { JSGameManager } from "./JSGameManager";
+import { JSBallBehaviour } from "./JSBallBehaviour";
+function makeFactory(cls) {
+    return function (...args) {
+        return new cls(...args);
+    };
+}
+const JSBallBehaviourFactory = makeFactory(JSBallBehaviour);
+const JSGameManagerFactory = makeFactory(JSGameManager);
+export { JSBallBehaviourFactory as JSBallBehaviour, JSGameManagerFactory as JSGameManager };
 //# sourceMappingURL=entry.js.map

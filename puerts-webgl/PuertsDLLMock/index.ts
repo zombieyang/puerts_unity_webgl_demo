@@ -69,7 +69,7 @@ global.PuertsWebGL = {
                 CreateJSEngineWithExternalEnv: function () { },
                 DestroyJSEngine: function () { },
                 GetLastExceptionInfo: function (isolate: IntPtr,/* out int */strlen: any) {
-
+                    return engine.lastExceptionInfo;
                 },
                 LowMemoryNotification: function (isolate: IntPtr) {
 
@@ -81,28 +81,34 @@ global.PuertsWebGL = {
 
                 },
                 ExecuteModule: function (isolate: IntPtr, pathString: CSString, exportee: CSString) {
-                    if (typeof wx != 'undefined') {
-                        engine.lastReturnCSResult = wxRequire('puerts_minigame_js_resources/' + Pointer_stringify(pathString))
-                        return true
-
-                    } else {
-                        const result: any = { exports: {} };
-                        const fileName = Pointer_stringify(pathString);
-                        if (executeModuleCache[fileName]) {
-                            engine.lastReturnCSResult = executeModuleCache[fileName];
-                            return;
-                        }
-                        if (!PUERTS_JS_RESOURCES[fileName]) {
-                            console.error('file not found' + fileName);
-                        }
-                        PUERTS_JS_RESOURCES[fileName](result.exports, global['require'], result)
-                        executeModuleCache[fileName] = result.exports;
-                        if (exportee) {
-                            engine.lastReturnCSResult = result.exports[engine.unityApi.Pointer_stringify(exportee)]
+                    try {
+                        if (typeof wx != 'undefined') {
+                            engine.lastReturnCSResult = wxRequire('puerts_minigame_js_resources/' + Pointer_stringify(pathString))
+                            return 1024
+    
                         } else {
-                            engine.lastReturnCSResult = result.exports
+                            const result: any = { exports: {} };
+                            const fileName = Pointer_stringify(pathString);
+                            if (executeModuleCache[fileName]) {
+                                result.exports = executeModuleCache[fileName];
+
+                            } else {
+                                if (!PUERTS_JS_RESOURCES[fileName]) {
+                                    console.error('file not found' + fileName);
+                                }
+                                PUERTS_JS_RESOURCES[fileName](result.exports, global['require'], result)
+                                executeModuleCache[fileName] = result.exports;
+                            }
+
+                            if (exportee) {
+                                engine.lastReturnCSResult = result.exports[engine.unityApi.Pointer_stringify(exportee)]
+                            } else {
+                                engine.lastReturnCSResult = result.exports
+                            }
+                            return 1024
                         }
-                        return true
+                    } catch(e) {
+                        engine.lastExceptionInfo = e.message;
                     }
                 },
                 Eval: function (isolate: IntPtr, codeString: CSString, path: string) {

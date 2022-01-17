@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.JsBehaviour = void 0;
 class JsBehaviour {
     constructor(mb) {
         // mono.Js
@@ -19,5 +16,5 @@ class JsBehaviour {
     Update() { }
     OnTriggerEnter(other) { }
 }
-exports.JsBehaviour = JsBehaviour;
+export { JsBehaviour };
 //# sourceMappingURL=base.js.map

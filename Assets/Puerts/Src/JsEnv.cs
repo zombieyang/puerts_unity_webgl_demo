@@ -222,7 +222,6 @@ namespace Puerts
 #if THREAD_SAFE
             }
 #endif
-                return result;
             }
             else
             {
