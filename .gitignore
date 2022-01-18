@@ -14,3 +14,4 @@ Assets/WebGLTemplates*
 Assets/WX-WASM-SDK*
 UserSettings
 Assets/Plugins/*
+.DS_Store
