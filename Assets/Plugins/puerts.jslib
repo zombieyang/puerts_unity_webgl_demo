@@ -1,6 +1,5 @@
 var exportDLL = {
     _Init: function () {
-        debugger;
         var global = typeof global != 'undefined' ? global : window;
         global.PuertsWebGL.Init({
             Pointer_stringify: Pointer_stringify,

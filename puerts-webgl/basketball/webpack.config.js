@@ -4,14 +4,14 @@ module.exports = {
     devtool: 'inline-source-map',
     output: {
         filename: 'behaviours.mjs',
-        path: __dirname + '/../',
+        path: __dirname + '/../../Assets/Source/BasketballDemo/Resources',
         environment: { module: true },
         libraryTarget: 'module'
     },
     externalsType: "module",
     externals: {
-        csharp: 'csharp',
-        puerts: 'puerts',
+        csharp: 'commonjs2 csharp',
+        puerts: 'commonjs2 puerts',
     },
     experiments: {
         outputModule: true

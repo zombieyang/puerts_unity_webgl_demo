@@ -24,7 +24,6 @@ global.PuertsWebGL = {
     Init({
         Pointer_stringify, _malloc, stringToUTF8, lengthBytesUTF8, HEAP8, HEAP32, unityInstance
     }: PuertsJSEngine.UnityAPI) {
-        debugger;
         const engine = new PuertsJSEngine({
             Pointer_stringify, _malloc, stringToUTF8, lengthBytesUTF8, HEAP8, HEAP32, unityInstance
         });

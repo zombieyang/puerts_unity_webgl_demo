@@ -130,7 +130,7 @@ export class CSharpObjectMap {
         if (this.nativeObjectKV[csObjectID] && (ret = this.nativeObjectKV[csObjectID].deref())) {
             return ret;
         }
-        ret = new this.classes[classID](csObjectID);
+        ret = this.classes[classID].createFromCS(csObjectID);
         this.add(csObjectID, ret);
         return ret;
     }

@@ -22,5 +22,3 @@ declare module "puerts" {
     
     function emit(eventType: string, ...args:any[]) : boolean;
 }
-
-declare function require(name: string): any;

@@ -5,9 +5,9 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "typeRoots": [
-      "../../../../Puerts/Typing",
-      "../../../../Gen/Typing",
-      "./node_modules/@types"
+      "../../Assets/Puerts/Typing",
+      "../../Assets/Gen/Typing",
+      "../node_modules/@types"
     ],
     "outDir": "./output",
   },
