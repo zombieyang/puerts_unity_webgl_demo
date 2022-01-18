@@ -49,13 +49,11 @@ global.PuertsWebGL = {
             WebGLBackendSetToJSOutArgumentAPI(engine),
             WebGLBackendRegisterAPI(engine),
             {
-                SetLastResult: function (res: any) {
-                    engine.lastCallCSResult = res;
+                SetCallV8: function(callV8Function: MockIntPtr, callV8Constructor: MockIntPtr, callV8Destructor: MockIntPtr) {
+                    engine.callV8Function = callV8Function;
+                    engine.callV8Constructor = callV8Constructor;
+                    engine.callV8Destructor = callV8Destructor;
                 },
-                SetLastResultType: function (type: any) {
-                    engine.lastCallCSResultType = type;
-                },
-
                 GetLibVersion: function () {
                     return 15;
                 },
