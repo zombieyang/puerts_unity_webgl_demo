@@ -16,8 +16,7 @@ var exportDLL = {
 
 
 [
-    "SetLastResult",
-    "SetLastResultType",
+    "SetCallV8",
     "GetLibVersion",
     "GetLibBackend",
     "CreateJSEngine",
@@ -99,7 +98,7 @@ var exportDLL = {
     "DestroyInspector",
     "InspectorTick",
     "LogicTick",
-    "SetLogCallback"
+    "SetLogCallback",
 ].forEach(function (methodName) {
 
     exportDLL[methodName] = new Function("var global = typeof global != 'undefined' ? global : window; global.PuertsWebGL.bridgeLog && console.log('WebGL DLL:" + methodName + "'); return global.PuertsWebGL['" + methodName + "'].apply(this, arguments)");
