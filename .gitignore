@@ -5,5 +5,12 @@ Packages/
 ProjectSettings/
 Temp/
 build/
+wxbuild
 node_modules
 .vs*
+puerts-webgl/dist
+puerts-webgl/basketball/output
+Assets/WebGLTemplates*
+Assets/WX-WASM-SDK*
+UserSettings
+Assets/Plugins/*

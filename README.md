@@ -6,7 +6,7 @@
 * unity 2019支持 ✔
 * unity 2020支持 ×
 * 简单旋转demo`Assets/Scenes/SampleScene` ✔
-* 篮球小游戏demo`Assets/Scenes/BasketballDemo` ×
+* 篮球小游戏demo`Assets/Scenes/BasketballDemo` ✔
 
 ## Dependent
 因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
@@ -22,6 +22,5 @@ Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本�
 
 * 未来还有以下工作要做(TODO)：
 
-1. 确认在wkwebview下的支持情况（理论上Safari可以就可以）
-2. 在jslib实现剩余的PuertsDLL.cs的API
-3. 验证包括IntPtr管理、JSFunction在内的各种内存管理机制是否正常
+1. 在jslib实现剩余的PuertsDLL.cs的API
+2. 支持2020 2021
