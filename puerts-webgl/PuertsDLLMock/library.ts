@@ -102,8 +102,9 @@ export class jsFunctionOrObjectFactory {
         return jsFunctionOrObjectFactory.jsFuncOrObjectKV[id]
     }
     public static removeJSFunctionById(id: number) {
-        console.log('this.removeJSFunctionById', id);
-        delete jsFunctionOrObjectFactory.jsFuncOrObjectKV[id]
+        const jsFunc = jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
+        jsFunctionOrObjectFactory.idmap.delete(jsFunc._func);
+        delete jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
     }
 
 }
@@ -242,7 +243,7 @@ export class PuertsJSEngine {
         // 虽然这里看起来像是this指针，但它实际上是CS里对象池的一个id
         this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetSelfPtr', selfPtr);
         this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'SetData', data);
-        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'callV8DestructorCallback', functionPtr);
+        this.unityApi.unityInstance.SendMessage('__PuertsBridge', 'CallV8DestructorCallback', functionPtr);
     }
 
     getLastResult() {

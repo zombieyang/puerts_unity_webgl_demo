@@ -6,7 +6,7 @@
 * unity 2019支持 ✔
 * unity 2020支持 ×
 * 简单旋转demo`Assets/Scenes/SampleScene` ✔
-* 篮球小游戏demo`Assets/Scenes/BasketballDemo` ×
+* 篮球小游戏demo`Assets/Scenes/BasketballDemo` ✔
 
 ## Dependent
 因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
