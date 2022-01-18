@@ -81,13 +81,18 @@ global.PuertsWebGL = {
                 },
                 ExecuteModule: function (isolate: IntPtr, pathString: CSString, exportee: CSString) {
                     try {
+                        let fileName = Pointer_stringify(pathString);
                         if (typeof wx != 'undefined') {
-                            engine.lastReturnCSResult = wxRequire('puerts_minigame_js_resources/' + Pointer_stringify(pathString))
+                            const result = wxRequire('puerts_minigame_js_resources/' + fileName);
+                            if (exportee) {
+                                engine.lastReturnCSResult = result[Pointer_stringify(exportee)];
+                            } else {
+                                engine.lastReturnCSResult = result;
+                            }
                             return 1024
     
                         } else {
                             const result: any = { exports: {} };
-                            const fileName = Pointer_stringify(pathString);
                             if (executeModuleCache[fileName]) {
                                 result.exports = executeModuleCache[fileName];
 
@@ -100,9 +105,9 @@ global.PuertsWebGL = {
                             }
 
                             if (exportee) {
-                                engine.lastReturnCSResult = result.exports[engine.unityApi.Pointer_stringify(exportee)]
+                                engine.lastReturnCSResult = result.exports[Pointer_stringify(exportee)];
                             } else {
-                                engine.lastReturnCSResult = result.exports
+                                engine.lastReturnCSResult = result.exports;
                             }
                             return 1024
                         }
