@@ -31,7 +31,7 @@ export class FunctionCallbackInfoPtrMananger {
      */
     static GetMockPointer(callbackInfo: FunctionCallbackInfo): MockIntPtr {
         if (this.freeInfosIndex.length) {
-            const index = this.freeInfosIndex.shift();
+            const index = this.freeInfosIndex.pop();
             this.infos[index] = callbackInfo;
             return index << 4;
 
