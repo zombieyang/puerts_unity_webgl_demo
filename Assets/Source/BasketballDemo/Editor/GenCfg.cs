@@ -28,4 +28,14 @@ public class ExamplesCfg
             };
         }
     }
+
+
+    [Filter]
+    static bool FilterMethods(System.Reflection.MemberInfo mb)
+    {
+        if (mb.Name == "IsJoystickPreconfigured") {
+            return true;
+        }
+        return false;
+    }
 }
