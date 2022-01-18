@@ -16,3 +16,5 @@ UserSettings
 Assets/Plugins/*
 .DS_Store
 .idea
+obj
+*.sln
