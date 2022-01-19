@@ -21,6 +21,9 @@ class JsBehaviour<T extends JsMonoBehaviour> {
         if (this.OnTriggerEnter != JsBehaviour.prototype.OnTriggerEnter) {
             mb.JsOnTriggerEnter = this.OnTriggerEnter.bind(this);
         }
+
+        // test GetObjectFromResult
+        mb.GetCSharpObjectFromJs = () => new UnityEngine.Vector3(1, 2, 3);
     }
 }
 

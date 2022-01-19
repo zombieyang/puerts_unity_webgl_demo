@@ -12,10 +12,12 @@ public class JsMonoBehaviour : MonoBehaviour
 
     // Start is called before the first frame update
     public Action JsStart;
+    public Func<Vector3> GetCSharpObjectFromJs;
     void Start()
     {
         if (env == null) {
             env = new JsEnv();
+            env.UsingFunc<Vector3>();
         }
         // Action<JsMonoBehaviour> init = env.Eval<Action<JsMonoBehaviour>>(@"
         //     global.CS = require('csharp');
@@ -27,7 +29,10 @@ public class JsMonoBehaviour : MonoBehaviour
         // ");
         Action<JsMonoBehaviour> init = env.ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
         init(this);
-        if (JsStart!= null) JsStart();
+        JsStart?.Invoke();
+        
+        // test GetObjectFromResult
+        Debug.Log("GetCSharpFromJs " + GetCSharpObjectFromJs?.Invoke());
     }
 
     // Update is called once per frame
