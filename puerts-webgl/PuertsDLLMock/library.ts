@@ -80,9 +80,9 @@ export class JSFunction {
         jsFunctionOrObjectFactory.jsFuncOrObjectKV[this.id] = this;
     }
     public invoke() {
-        var args = this.args.slice(0);
-        this.args = [];
-        this._func.apply(this, args);
+        var args = [...this.args];
+        this.args.length = 0;
+        return this._func.apply(this, args);
     }
 }
 
