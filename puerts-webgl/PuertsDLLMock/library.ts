@@ -3,16 +3,17 @@
  * 对应v8::FunctionCallbackInfo
  */
 export class FunctionCallbackInfo {
-    args: any[]
-
-    returnValue: any
+    args: any[];
+    returnValue: any;
 
     constructor(args: any[]) {
         this.args = args;
-        this.returnValue = void 0;
     }
 
-    public static infos: FunctionCallbackInfo[];
+    recycle(): void {
+        this.args = null;
+        this.returnValue = void 0;
+    }
 }
 
 /**
@@ -29,23 +30,34 @@ export class FunctionCallbackInfoPtrManager {
      * 
      * 右侧四位就是为了放下参数的序号，用于表示callbackinfo参数的intptr
      */
-    static GetMockPointer(callbackInfo: FunctionCallbackInfo): MockIntPtr {
-        if (this.freeInfosIndex.length) {
-            const index = this.freeInfosIndex.pop();
-            this.infos[index] = callbackInfo;
-            return index << 4;
-
+    static GetMockPointer(args: any[]): MockIntPtr {
+        let index: number;
+        index = this.freeInfosIndex.pop();
+        // index最小为1
+        if (index) {
+            this.infos[index].args = args;
         } else {
-            this.infos.push(callbackInfo);
-            return (this.infos.length - 1) << 4;
+            index = this.infos.push(new FunctionCallbackInfo(args)) - 1;
         }
+        return index << 4;
     }
+
     static GetByMockPointer(intptr: MockIntPtr): FunctionCallbackInfo {
         return this.infos[intptr >> 4];
     }
+
+    static GetReturnValueAndRecycle(intptr: MockIntPtr): any {
+        const index = intptr >> 4;
+        this.freeInfosIndex.push(index);
+        let info = this.infos[index];
+        let ret = info.returnValue;
+        info.recycle();
+        return ret;
+    }
+
     static ReleaseByMockIntPtr(intptr: MockIntPtr) {
         const index = intptr >> 4;
-        this.infos[index] = void 0;
+        this.infos[index].recycle();
         this.freeInfosIndex.push(index);
     }
 
@@ -217,8 +229,7 @@ export class PuertsJSEngine {
         // 不能用箭头函数！返回的函数会放到具体的class上，this有含义。
         const engine = this;
         return function (...args: any[]) {
-            let callbackInfo = new FunctionCallbackInfo(args);
-            let callbackInfoPtr = FunctionCallbackInfoPtrManager.GetMockPointer(callbackInfo);
+            let callbackInfoPtr = FunctionCallbackInfoPtrManager.GetMockPointer(args);
             engine.callV8FunctionCallback(
                 functionPtr,
                 // getIntPtrManager().GetPointerForJSValue(this),
@@ -227,9 +238,7 @@ export class PuertsJSEngine {
                 args.length,
                 data
             )
-            FunctionCallbackInfoPtrManager.ReleaseByMockIntPtr(callbackInfoPtr);
-
-            return callbackInfo.returnValue;
+            return FunctionCallbackInfoPtrManager.GetReturnValueAndRecycle(callbackInfoPtr);
         }
     }
 
