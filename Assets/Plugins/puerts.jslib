@@ -4,6 +4,9 @@ var exportDLL = {
         global.PuertsWebGL.Init({
             Pointer_stringify: Pointer_stringify,
             _malloc: _malloc,
+            _memcpy: _memcpy,
+            _memset: _memset,
+            _free: _free,
             stringToUTF8: stringToUTF8,
             lengthBytesUTF8: lengthBytesUTF8,
             unityInstance: Module,
