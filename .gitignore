@@ -19,3 +19,5 @@ Assets/Plugins/*
 .idea
 obj
 *.sln
+Assets/Gen/*.cs
+Assets/Gen/*.cs.meta 
