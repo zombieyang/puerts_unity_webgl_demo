@@ -14,11 +14,13 @@ export default function WebGLBackendRegisterAPI(engine: PuertsJSEngine) {
         },
         _RegisterClass: function (isolate: IntPtr, BaseTypeId: int, fullNameString: CSString, constructor: IntPtr, destructor: IntPtr, /*long */dataLow: number) {
             const fullName = engine.unityApi.Pointer_stringify(fullNameString);
-
-            const id = Object.keys(engine.csharpObjectMap.classes).length
+            const csharpObjectMap = engine.csharpObjectMap;
+            const id = csharpObjectMap.classes.length;
 
             let tempExternalCSObjectID = 0;
             const ctor = function () {
+                // 设置类型ID
+                this["$cid"] = id;
                 // nativeObject的构造函数
                 // 构造函数有两个调用的地方：1. js侧new一个它的时候 2. cs侧创建了一个对象要传到js侧时
                 // 第一个情况，cs对象ID是callV8ConstructorCallback返回的。
@@ -35,7 +37,7 @@ export default function WebGLBackendRegisterAPI(engine: PuertsJSEngine) {
 
                     FunctionCallbackInfoPtrManager.ReleaseByMockIntPtr(FCIPtr)
                 }
-                engine.csharpObjectMap.add(csObjectID, this);
+                csharpObjectMap.add(csObjectID, this);
 
                 OnFinalize(this, csObjectID, (csObjectID)=> {
                     engine.callV8DestructorCallback(destructor || engine.generalDestructor, csObjectID, dataLow);
@@ -47,19 +49,19 @@ export default function WebGLBackendRegisterAPI(engine: PuertsJSEngine) {
                 return new (ctor as any)() 
             };
             Object.defineProperty(ctor, "name", { value: fullName + "Constructor" });
-            engine.csharpObjectMap.classes[id] = ctor;
-
-            engine.csharpObjectMap.classIDWeakMap.set(engine.csharpObjectMap.classes[id], id);
+            Object.defineProperty(ctor, "$cid", { value: id });
+            csharpObjectMap.classes.push(ctor);
+            csharpObjectMap.classIDWeakMap.set(ctor, id);
 
             if (BaseTypeId > 0) {
-                ctor.prototype.__proto__ = engine.csharpObjectMap.classes[BaseTypeId].prototype
+                ctor.prototype.__proto__ = csharpObjectMap.classes[BaseTypeId].prototype
             }
-            engine.csharpObjectMap.namesToClassesID[fullName] = id;
+            csharpObjectMap.namesToClassesID[fullName] = id;
 
             return id;
         },
-        RegisterStruct: function (isolate: IntPtr, BaseTypeId: int, fullName: string, constructor: IntPtr, destructor: IntPtr, /*long */data: number, size: int) {
-            return returnee._RegisterClass.apply(this, arguments);
+        RegisterStruct: function (isolate: IntPtr, BaseTypeId: int, fullNameString: CSString, constructor: IntPtr, destructor: IntPtr, /*long */dataLow: number, size: int) {
+            return returnee._RegisterClass(isolate, BaseTypeId, fullNameString, constructor, destructor, dataLow);
         },
         RegisterFunction: function (isolate: IntPtr, classID: int, nameString: CSString, isStatic: bool, callback: IntPtr, /*long */data: number) {
             var cls = engine.csharpObjectMap.classes[classID]
@@ -71,7 +73,6 @@ export default function WebGLBackendRegisterAPI(engine: PuertsJSEngine) {
             var fn = engine.makeV8FunctionCallbackFunction(callback, data)
             if (isStatic) {
                 cls[name] = fn
-
             } else {
                 cls.prototype[name] = fn
             }
@@ -106,7 +107,6 @@ export default function WebGLBackendRegisterAPI(engine: PuertsJSEngine) {
 
             if (isStatic) {
                 Object.defineProperty(cls, name, attr)
-
             } else {
                 Object.defineProperty(cls.prototype, name, attr)
             }

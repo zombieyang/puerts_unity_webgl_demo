@@ -76,7 +76,7 @@ export class JSFunction {
     constructor(func: (...args: any[]) => any) {
         this._func = func;
         this.id = jsFunctionOrObjectFactory.regularID++;
-        jsFunctionOrObjectFactory.idmap.set(func, this.id);
+        jsFunctionOrObjectFactory.idMap.set(func, this.id);
         jsFunctionOrObjectFactory.jsFuncOrObjectKV[this.id] = this;
     }
     public invoke() {
@@ -88,25 +88,26 @@ export class JSFunction {
 
 export class jsFunctionOrObjectFactory {
     public static regularID: number = 1;
-    public static idmap = new WeakMap();
+    public static idMap = new WeakMap<Function, number>();
     public static jsFuncOrObjectKV: { [id: number]: JSFunction } = {};
 
     public static getOrCreateJSFunction(funcValue: (...args: any[]) => any) {
-        const id = jsFunctionOrObjectFactory.idmap.get(funcValue)
+        const id = jsFunctionOrObjectFactory.idMap.get(funcValue);
         if (id) {
             return jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
         }
         return new JSFunction(funcValue);
     }
+
     public static getJSFunctionById(id: number): JSFunction {
-        return jsFunctionOrObjectFactory.jsFuncOrObjectKV[id]
-    }
-    public static removeJSFunctionById(id: number) {
-        const jsFunc = jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
-        jsFunctionOrObjectFactory.idmap.delete(jsFunc._func);
-        delete jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
+        return jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
     }
 
+    public static removeJSFunctionById(id: number) {
+        const jsFunc = jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
+        jsFunctionOrObjectFactory.idMap.delete(jsFunc._func);
+        delete jsFunctionOrObjectFactory.jsFuncOrObjectKV[id];
+    }
 }
 
 /**
@@ -114,7 +115,11 @@ export class jsFunctionOrObjectFactory {
  * 和puerts.dll所做的一样
  */
 export class CSharpObjectMap {
-    public classes: { [classID: number]: any } = {};
+    public classes: {
+        (): void;
+        createFromCS(csObjectID: number): any;
+        [key: string]: any;
+    }[] = [null];
 
     private nativeObjectKV: { [objectID: number]: WeakRef<any> } = {};
     private objectIDWeakMap: WeakMap<any, number> = new WeakMap();
@@ -181,7 +186,6 @@ export namespace PuertsJSEngine {
     }
 }
 
-
 export class PuertsJSEngine {
     public readonly csharpObjectMap: CSharpObjectMap
 
@@ -199,6 +203,9 @@ export class PuertsJSEngine {
     }
 
     JSStringToCSString(returnStr: string) {
+        if (returnStr === null || returnStr === undefined) {
+            return 0;
+        }
         var bufferSize = this.unityApi.lengthBytesUTF8(returnStr) + 1;
         var buffer = this.unityApi._malloc(bufferSize);
         this.unityApi.stringToUTF8(returnStr, buffer, bufferSize);
@@ -233,15 +240,14 @@ export class PuertsJSEngine {
     callV8ConstructorCallback(functionPtr: IntPtr, infoIntPtr: MockIntPtr, paramLen: number, data: number) {
         return this.unityApi.unityInstance.dynCall_iiiii(this.callV8Constructor, functionPtr, infoIntPtr, paramLen, data);
     }
-    
+
     callV8DestructorCallback(functionPtr: IntPtr, selfPtr: IntPtr, data: number) {
         this.unityApi.unityInstance.dynCall_viii(this.callV8Destructor, functionPtr, selfPtr, data);
     }
 }
 
-
 export function GetType(engine: PuertsJSEngine, value: any): number {
-    if (typeof value == 'undefined') { return 1 }
+    if (value === null || value === undefined) { return 1 }
     if (typeof value == 'number') { return 4 }
     if (typeof value == 'string') { return 8 }
     if (typeof value == 'boolean') { return 16 }
@@ -255,9 +261,11 @@ export function GetType(engine: PuertsJSEngine, value: any): number {
 export function makeBigInt(low: number, high: number) {
     return (BigInt(high >>> 0) << BigInt(32)) + BigInt(low >>> 0)
 }
+
 export function setOutValue32(engine: PuertsJSEngine, valuePtr: number, value: any) {
     engine.unityApi.HEAP32[valuePtr >> 2] = value;
 }
+
 export function setOutValue8(engine: PuertsJSEngine, valuePtr: number, value: any) {
     engine.unityApi.HEAP8[valuePtr] = value;
 }
