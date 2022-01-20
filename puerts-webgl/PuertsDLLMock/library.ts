@@ -166,8 +166,8 @@ var registry: FinalizationRegistry<any> = null;
 function init() {
     registry = new FinalizationRegistry(function (heldValue: any) {
         var callback = destructors[heldValue];
-        if (!(heldValue in destructors)) {
-            throw new Error("cannot find destructor for" + heldValue);
+        if (!callback) {
+            throw new Error("cannot find destructor for " + heldValue);
         }
         delete destructors[heldValue]
         console.log('onFinalize', heldValue)
@@ -189,7 +189,10 @@ export { global };
 export namespace PuertsJSEngine {
     export interface UnityAPI {
         Pointer_stringify: (strPtr: CSString) => string,
-        _malloc: (size: number) => any,
+        _malloc: (size: number) => number,
+        _memset: (ptr: number, ch: number, size: number) => number,
+        _memcpy: (dst: number, src: number, size: number) => number,
+        _free: (ptr: number) => void,
         stringToUTF8: (str: string, buffer: any, size: number) => any,
         lengthBytesUTF8: (str: string) => number,
         unityInstance: any,
