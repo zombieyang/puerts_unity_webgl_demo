@@ -133,30 +133,23 @@ export class CSharpObjectMap {
         [key: string]: any;
     }[] = [null];
 
-    private nativeObjectKV: { [objectID: CSIdentifer]: WeakRef<any> } = {};
-    private csIDWeakMap: WeakMap<any, CSIdentifer> = new WeakMap();
+    private nativeObjectKV: { [objectID: CSIdentifier]: WeakRef<any> } = {};
+    private csIDWeakMap: WeakMap<any, CSIdentifier> = new WeakMap();
 
     public namesToClassesID: { [name: string]: number } = {};
     public classIDWeakMap = new WeakMap();
 
-    add(csID: CSIdentifer, obj: any) {
+    add(csID: CSIdentifier, obj: any) {
         this.nativeObjectKV[csID] = new WeakRef(obj);
         this.csIDWeakMap.set(obj, csID);
     }
-    remove(csID: CSIdentifer) {
+    remove(csID: CSIdentifier) {
         delete this.nativeObjectKV[csID];
     }
-    findOrAddObject(csID: CSIdentifer, classID: number) {
+    findOrAddObject(csID: CSIdentifier, classID: number) {
         var ret;
-        if (this.nativeObjectKV[csID]) {
-            if (ret = this.nativeObjectKV[csID].deref()) {
-                return ret;
-
-            } else if (destructors[csID]) {
-                // weakref内容释放时机可能比finalizationRegistry的触发更早，但finalizationRegistry最终又肯定会触发。
-                // 如果遇到这个情况，需要给destructor加计数
-                destructors[csID].count++;
-            }
+        if (this.nativeObjectKV[csID] && (ret = this.nativeObjectKV[csID].deref())) {
+            return ret;
         }
         ret = this.classes[classID].createFromCS(csID);
         // this.add(csID, ret); 构造函数里负责调用
@@ -168,35 +161,41 @@ export class CSharpObjectMap {
 }
 
 interface Destructor {
-    (heldValue: CSIdentifer): any,
+    (heldValue: CSIdentifier): any,
     count: number
 };
-var destructors: { [csIdentifer: CSIdentifer]: Destructor } = {};
+var destructors: { [csIdentifier: CSIdentifier]: Destructor } = {};
 
 /**
  * JS对象声明周期监听
  */
 var registry: FinalizationRegistry<any> = null;
 function init() {
-    registry = new FinalizationRegistry(function (heldValue: CSIdentifer) {
+    registry = new FinalizationRegistry(function (heldValue: CSIdentifier) {
         var callback = destructors[heldValue];
         if (!callback) {
             throw new Error("cannot find destructor for " + heldValue);
         }
-        if (destructors[heldValue].count == 0) {
+        if (--callback.count == 0) {
             delete destructors[heldValue]
             callback(heldValue);
-        } else {
-            destructors[heldValue].count--;
         }
     });
 }
-export function OnFinalize(obj: object, heldValue: any, callback: (heldValue: CSIdentifer) => any) {
+export function OnFinalize(obj: object, heldValue: any, callback: (heldValue: CSIdentifier) => any) {
     if (!registry) {
         init();
     }
-    (callback as Destructor).count = 0;
-    destructors[heldValue] = (callback as Destructor);
+    if (destructors[heldValue]) {
+        // weakref内容释放时机可能比finalizationRegistry的触发更早，前面如果发现weakRef为空会重新创建对象
+        // 但之前对象的finalizationRegistry最终又肯定会触发。
+        // 所以如果遇到这个情况，需要给destructor加计数
+        destructors[heldValue].count++
+
+    } else {
+        (callback as Destructor).count = 1;
+        destructors[heldValue] = (callback as Destructor);
+    }
     registry.register(obj, heldValue);
 }
 declare let global: any;
@@ -266,7 +265,7 @@ export class PuertsJSEngine {
         }
     }
 
-    callV8FunctionCallback(functionPtr: IntPtr, selfPtr: CSIdentifer, infoIntPtr: MockIntPtr, paramLen: number, data: number) {
+    callV8FunctionCallback(functionPtr: IntPtr, selfPtr: CSIdentifier, infoIntPtr: MockIntPtr, paramLen: number, data: number) {
         this.unityApi.unityInstance.dynCall_viiiii(this.callV8Function, functionPtr, infoIntPtr, selfPtr, paramLen, data);
     }
 
@@ -274,7 +273,7 @@ export class PuertsJSEngine {
         return this.unityApi.unityInstance.dynCall_iiiii(this.callV8Constructor, functionPtr, infoIntPtr, paramLen, data);
     }
 
-    callV8DestructorCallback(functionPtr: IntPtr, selfPtr: CSIdentifer, data: number) {
+    callV8DestructorCallback(functionPtr: IntPtr, selfPtr: CSIdentifier, data: number) {
         this.unityApi.unityInstance.dynCall_viii(this.callV8Destructor, functionPtr, selfPtr, data);
     }
 }
