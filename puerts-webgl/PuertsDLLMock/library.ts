@@ -208,7 +208,7 @@ export namespace PuertsJSEngine {
         UTF8ToString: (strPtr: CSString) => string,
         _malloc: (size: number) => number,
         _memset: (ptr: number, ch: number, size: number) => number,
-        _memcpy: (dst: number, src: number, size: number) => number,
+        _memcpy: (dst: number, src: number, size: number) => void,
         _free: (ptr: number) => void,
         stringToUTF8: (str: string, buffer: any, size: number) => any,
         lengthBytesUTF8: (str: string) => number,
