@@ -2,9 +2,9 @@ var exportDLL = {
     _Init: function () {
         var global = typeof global != 'undefined' ? global : window;
         global.PuertsWebGL.Init({
-            Pointer_stringify: Pointer_stringify,
+            UTF8ToString: UTF8ToString,
             _malloc: _malloc,
-            _memcpy: _memcpy,
+            _memcpy: _emscripten_memcpy_big,
             _memset: _memset,
             _free: _free,
             stringToUTF8: stringToUTF8,
@@ -74,6 +74,7 @@ var exportDLL = {
     "PushDateForJSFunction",
     "PushBooleanForJSFunction",
     "PushBigIntForJSFunction",
+    "PushStringForJSFunction",
     "__PushStringForJSFunction",
     "PushNumberForJSFunction",
     "PushObjectForJSFunction",
