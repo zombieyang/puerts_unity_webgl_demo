@@ -9,9 +9,8 @@ var exportDLL = {
             _free: _free,
             stringToUTF8: stringToUTF8,
             lengthBytesUTF8: lengthBytesUTF8,
+            
             unityInstance: Module,
-            HEAP8: HEAP8,
-            HEAP32: HEAP32
         });
 
     }

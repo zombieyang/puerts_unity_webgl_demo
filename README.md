@@ -1,26 +1,22 @@
 # Puerts WebGL demo
 本项目包括了一个可以以WebGL模式构建运行Puerts的Unity项目。puerts的JS代码会运行在浏览器JS引擎里，而不是运行在编译为WASM的JS解释器里。
-> You can build a unity puerts project in webgl mode now. Your Javascript code will run in browser Javascript engine instead of a interpreter in WASM.
 
-## Progress
-* unity 2019支持 ✔
-* unity 2020支持 ×
+支持Unity 2019+
+
+## Demos
 * 简单旋转demo`Assets/Scenes/SampleScene` ✔
 * 篮球小游戏demo`Assets/Scenes/BasketballDemo` ✔
 
 ## Dependent
 因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
-> This feature will deeply depend the `WeakRef` and `FinalizationRegistry` API. Which are supported in below environment:
-1. V8 8.4+ (eg. Chrome 84+)
+1. V8 8.4+ (eg. Chrome 84+) 或是打开`--harmony-weak-refs`的v8 7.4+
 2. iOS Safari 14.5+/OSX Safari 14.1+
 
 ## How to contrib
 * 运作原理(how this work?)
 
-Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本交互的功能](https://docs.unity3d.com/2018.4/Documentation/Manual/webgl-interactingwithbrowserscripting.html)，对Puerts中使用到的`PuertsDLL.cs`里的API通过JS一一进行实现。关键代码位于`Assets/Plugins/puerts.jslib`。
-> With [this Manual](https://docs.unity3d.com/2018.4/Documentation/Manual/webgl-interactingwithbrowserscripting.html) which provided by Unity. We implements a jslib located at `Assets/Plugins/puerts.jslib`. It should provide the API in `PuertsDLL.cs` which support Puerts to run.
+Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本交互的功能](https://docs.unity3d.com/2018.4/Documentation/Manual/webgl-interactingwithbrowserscripting.html)，对Puerts中使用到的`PuertsDLL.cs`里的API通过JS一一进行实现。关键代码位于`Assets/Plugins/puerts.jslib`以及`puerts-webgl/PuertsDLLMock`。
 
 * 未来还有以下工作要做(TODO)：
 
-1. 在jslib实现剩余的PuertsDLL.cs的API
-2. 支持2020 2021
+1. 在jslib实现out系列API以及JSObject
