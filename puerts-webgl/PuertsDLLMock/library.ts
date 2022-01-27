@@ -275,12 +275,10 @@ export class PuertsJSEngine {
         if (returnStr === null || returnStr === undefined) {
             return 0;
         }
-        if (length) {
-            setOutValue32(this, length, returnStr.length);
-        }
-        var bufferSize = this.unityApi.lengthBytesUTF8(returnStr) + 1;
-        var buffer = this.unityApi._malloc(bufferSize);
-        this.unityApi.stringToUTF8(returnStr, buffer, bufferSize);
+        var bufferSize = this.unityApi.lengthBytesUTF8(returnStr);
+        setOutValue32(this, length, bufferSize);
+        var buffer = this.unityApi._malloc(bufferSize + 1);
+        this.unityApi.stringToUTF8(returnStr, buffer, bufferSize + 1);
         return buffer;
     }
 
