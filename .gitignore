@@ -21,3 +21,5 @@ obj
 *.sln
 Assets/Gen/*.cs
 Assets/Gen/*.cs.meta 
+Assets/XLua/Gen/*.cs
+Assets/XLua/Gen/*.cs.meta 
