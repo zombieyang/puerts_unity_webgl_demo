@@ -7,6 +7,13 @@
 * 简单旋转demo`Assets/Scenes/SampleScene` ✔
 * 篮球小游戏demo`Assets/Scenes/BasketballDemo` ✔
 
+## Performance
+因为在这套架构下，JS是运行在宿主JS环境下的，有JIT的支持，因此相比Lua脚本方案，在*执行性能*上有碾压性的性能优势。
+|       | 10万次 fibonacci(12) |
+| ---  |    ---    |
+|xLua WebGL   |    6200ms    |
+|本Puerts WebGL方案 |   165ms     |
+
 ## Dependent
 因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
 1. V8 8.4+ (eg. Chrome 84+) 或是打开`--harmony-weak-refs`的v8 7.4+
