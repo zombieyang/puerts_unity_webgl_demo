@@ -26,10 +26,6 @@
 1. V8 8.4+ (eg. Chrome 84+) 或是打开`--harmony-weak-refs`的v8 7.4+
 2. iOS Safari 14.5+/OSX Safari 14.1+
 
-想在微信里使用的朋友，在iOS需要打开高性能模式，安卓需要稍晚一点。
-
-关于微信环境如果需要协助，请在官方qq群内找到我与我联系。
-
 ## How to contrib
 * 运作原理(how this work?)
 
