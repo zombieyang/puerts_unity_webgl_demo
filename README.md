@@ -7,6 +7,13 @@
 * 简单旋转demo`Assets/Scenes/SampleScene` ✔
 * 篮球小游戏demo`Assets/Scenes/BasketballDemo` ✔
 
+#### 浏览器环境运行方式：
+1. 执行WebGL Build
+2. 根据命令行提示，使用puerts提供的editor菜单生成为浏览器环境所用的js。
+3. 如果是浏览器环境，修改生成好的html，在<head>中添加<script>，将刚刚生成的两个js加上去
+#### 微信小游戏环境运行方式：
+还有一些问题没解决，暂不写文档。有需要请在issue留言或qq群里联系我。
+
 ## Performance
 因为在这套架构下，JS是运行在宿主JS环境下的，有JIT的支持，因此相比Lua脚本方案，在*执行性能*上有碾压性的性能优势。
 |       | 10万次 fibonacci(12) |
