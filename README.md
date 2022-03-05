@@ -8,9 +8,10 @@
 * 篮球小游戏demo`Assets/Scenes/BasketballDemo` ✔
 
 #### 浏览器环境运行方式：
-1. 执行WebGL Build
-2. 根据命令行提示，使用puerts提供的editor菜单生成为浏览器环境所用的js。
-3. 如果是浏览器环境，修改生成好的html，在<head>中添加<script>，将刚刚生成的两个js加上去
+1. 前往puerts-webgl目录，执行`npm install`。（只有首次运行需要）
+2. 执行Unity的WebGL Build
+3. 根据命令行提示，使用puerts提供的editor菜单生成为浏览器环境所用的js。
+4. 如果是浏览器环境，修改生成好的html，在<head>中添加<script>，将刚刚生成的两个js加上去
 ```
   <script src="./puerts-runtime.js"></script>
   <script src="./puerts_browser_js_resources.js"></script>
