@@ -46,13 +46,14 @@ namespace PuertsTest
 #if UNITY_WEBGL && !UNITY_EDITOR
                 UnityEngine.Debug.LogError($"TestCase {name} failed!");
 #else
-                UnityEngine.Debug.LogError($"<color=red>TestCase {name} failed!</color>");
+                UnityEngine.Debug.LogError($"<color=magenta>TestCase {name} failed!</color>");
 #endif
             }
         }
 
         public TestHelper(JsEnv env)
         {
+            env.UsingFunc<int>();
             env.UsingFunc<int, int>();
             env.UsingFunc<DateTime, DateTime>();
             env.UsingFunc<string, string>();
@@ -63,11 +64,10 @@ namespace PuertsTest
         /**
         * 保证初始值返回3.后续每次交互用的都是同一个初始值
         */
-        public Func<int> JSFunctionTestPipeLine(Func<int> initialValue, out Func<int> outArg, Func<Func<int>, Func<int>> JSValueHandler) 
+        public Func<int> JSFunctionTestPipeLine(Func<int> initialValue, Func<Func<int>, Func<int>> JSValueHandler) 
         {
             AssertAndPrint("CSGetFunctionArgFromJS", initialValue() == 3);
             AssertAndPrint("CSGetFunctionReturnFromJS", JSValueHandler(initialValue) == initialValue);
-            outArg = initialValue;
             return initialValue;
         }
         /**
@@ -83,9 +83,9 @@ namespace PuertsTest
         /**
         * 判断引用即可
         */
-        public int DateTestPipeLine(DateTime initialValue, out DateTime outArg, Func<DateTime, DateTime> JSValueHandler) 
+        public DateTime DateTestPipeLine(DateTime initialValue, out DateTime outArg, Func<DateTime, DateTime> JSValueHandler) 
         {
-            AssertAndPrint("CSGetDateArgFromJS", initialValue.ToString() == "11/11/1998 12:00:00 AM");
+            AssertAndPrint("CSGetDateArgFromJS", initialValue.ToString() == "1998/11/11 0:00:00");
             AssertAndPrint("CSGetDateReturnFromJS", JSValueHandler(initialValue) == initialValue);
             outArg = initialValue;
             return initialValue;
@@ -94,17 +94,17 @@ namespace PuertsTest
         * 初始值 'abc'
         * 后续每次交互往后多加一个字母
         */
-        public int StringTestPipeLine(string initialValue, out string outArg, Func<string, string> JSValueHandler) 
+        public string StringTestPipeLine(string initialValue, out string outArg, Func<string, string> JSValueHandler) 
         {
             AssertAndPrint("CSGetStringArgFromJS", initialValue == "abc");
-            AssertAndPrint("CSGetStringReturnFromJS", JSValueHandler(initialValue + "d") == "abcdef");
-            outArg = "abcdefg";
-            return "abcdefgh";
+            AssertAndPrint("CSGetStringReturnFromJS", JSValueHandler(initialValue + "d") == "abcde");
+            outArg = "abcdef";
+            return "abcdefg";
         }
         /**
         * js到cs都是true，cs到js都是false
         */
-        public int BoolTestPipeLine(bool initialValue, out bool outArg, Func<bool, bool> JSValueHandler) 
+        public bool BoolTestPipeLine(bool initialValue, out bool outArg, Func<bool, bool> JSValueHandler) 
         {
             AssertAndPrint("CSGetBoolArgFromJS", initialValue);
             AssertAndPrint("CSGetBoolReturnFromJS", JSValueHandler(false));
@@ -131,7 +131,7 @@ namespace PuertsTest
             AssertAndPrint("CSGetArrayBufferArgFromJS", initialValue.Bytes.Length == 1 && initialValue.Bytes[0] == 1);
             initialValue.Bytes[0] = 2;
             AssertAndPrint("CSGetArrayBufferReturnFromJS", JSValueHandler(initialValue).Bytes[0] == 3);
-            initialValue.Bytes[0] == 4;
+            initialValue.Bytes[0] = 4;
             outArg = initialValue;
             byte[] bytes = new byte[1] { 5 };
             return new Puerts.ArrayBuffer(bytes);
@@ -139,7 +139,7 @@ namespace PuertsTest
         /**
         * 判断引用即可
         */
-        public long NativeObjectTestPipeLine(TestObject initialValue, out TestObject outArg, Func<TestObject, TestObject> JSValueHandler) 
+        public TestObject NativeObjectTestPipeLine(TestObject initialValue, out TestObject outArg, Func<TestObject, TestObject> JSValueHandler) 
         {
             AssertAndPrint("CSGetNativeObjectArgFromJS", initialValue != null && initialValue.value == 1);
             AssertAndPrint("CSGetNativeObjectReturnFromJS", JSValueHandler(initialValue) == initialValue);
@@ -149,11 +149,10 @@ namespace PuertsTest
         /**
         * CS侧暂无法处理，判断引用即可
         */
-        public JSObject JSObjectTestPipeLine(JSObject initialValue, out JSObject outArg, Func<JSObject, JSObject> JSValueHandler) 
+        public JSObject JSObjectTestPipeLine(JSObject initialValue, Func<JSObject, JSObject> JSValueHandler) 
         {
             AssertAndPrint("CSGetJSObjectArgFromJS", initialValue != null);
             AssertAndPrint("CSGetJSObjectReturnFromJS", JSValueHandler(initialValue) == initialValue);
-            outArg = initialValue;
             return initialValue;
         }
     }
@@ -167,8 +166,10 @@ namespace PuertsTest
         void Start()
         {
             var jsEnv = new Puerts.JsEnv();
+            // var jsEnv = new Puerts.JsEnv(new DefaultLoader(), 8080);
+            // jsEnv.WaitDebugger();
             var helper = new TestHelper(jsEnv);
-            Action<TestHelper> doTest = jsEnv.ExecuteModule<Action<TestHelper>>("unittest.mjs", "init");
+            Action<TestHelper> doTest = jsEnv.ExecuteModule<Action<TestHelper>>("datatype-test.mjs", "init");
             doTest(helper);
             jsEnv.Dispose();
         }
