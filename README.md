@@ -44,4 +44,4 @@ Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本�
 ## 已上线游戏
 | 作者 | 码 |
 | --- | --- |
-| [zgz682000](https://github.com/zgz682000) | ![Game1](./doc/pic/game1.jpg) |
+| [zgz682000](https://github.com/zgz682000) | <img src="./doc/pic/game1.jpg" alt="Game1" width="100" height="100"/> |
