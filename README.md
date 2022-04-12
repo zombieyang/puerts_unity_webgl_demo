@@ -30,6 +30,7 @@
 因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
 1. V8 8.4+ (eg. Chrome 84+) 或是打开`--harmony-weak-refs`的v8 7.4+
 2. iOS Safari 14.5+/OSX Safari 14.1+
+3. 微信小游戏环境（iOS下需要申请高性能模式）
 
 ## How to contrib
 * 运作原理(how this work?)
