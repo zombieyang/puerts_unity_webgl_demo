@@ -39,3 +39,8 @@ Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本�
 * 未来还有以下工作要做(TODO)：
 
 1. 测试2021下bigint表现
+
+## 已上线游戏
+| 作者 | 码 |
+| --- | --- |
+| [zgz682000](https://github.com/zgz682000) | ![Game1](./doc/pic/game1.jpg) |
