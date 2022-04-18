@@ -26,8 +26,6 @@ function getModuleBySID(id) {
 
 let buildinModule = Object.create(null);
 function executeModule(fullPath, script, debugPath, sid) {
-    console.log(fullPath);
-    console.log(script);
     sid = (typeof sid == 'undefined') ? 0 : sid;
     let fullPathInJs = fullPath.replace(/\\/g, '\\\\');
     let fullDirInJs = (fullPath.indexOf('/') != -1) ? fullPath.substring(0, fullPath.lastIndexOf("/")) : fullPath.substring(0, fullPath.lastIndexOf("\\")).replace(/\\/g, '\\\\');

@@ -130,6 +130,9 @@ global.setTimeout = (fn, time, ...arg) => {
     });
     return next;
 };
+global.setImmediate = function(fn) {
+    setTimeout(fn, 0);
+}
 
 global.setInterval = (fn, time, ...arg) => {
     if (typeof fn !== 'function') {
