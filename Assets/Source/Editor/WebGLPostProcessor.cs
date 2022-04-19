@@ -37,14 +37,9 @@ public class WebGLPuertsPostProcessor {
                 const mkdirp = nodeModuleRequire('mkdirp');
                 const csharp = puertsRequire('csharp');
 
-                try {
-                    const build = require('" + PuertsWebglJSRoot + @"/build.js');
-                    build('" + lastBuiltPath + @"');
-                    nodeModuleRequire('./glob-js/index.js')." + runEntry + @"('" + lastBuiltPath + @"');
-                } catch(e) {
-                    console.log(e.stack);
-                    return;
-                }
+                const build = nodeModuleRequire('" + PuertsWebglJSRoot + @"/build.js');
+                build('" + lastBuiltPath + @"');
+                nodeModuleRequire('./glob-js/index.js')." + runEntry + @"('" + lastBuiltPath + @"');
             })
         ");
         
