@@ -11,6 +11,7 @@
   "dependencies": {
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
+    "@puerts/build-util": "^1.0.0",
     "concurrently": "^6.3.0",
     "glob": "^7.2.0",
     "iconv-lite": "^0.6.3",
