@@ -23,16 +23,13 @@ namespace PuertsTest
             PreventStripping();
             
             if (jsEnv == null) {
-                jsEnv = new JsEnv();
+                jsEnv = Puerts.WebGL.CreateWebGLJsEnv();
             }
 
-            // var init = jsEnv.Eval<ModuleInit>("const m = require('" + ModuleName + "'); m.init;");
             var init = jsEnv.ExecuteModule<ModuleInit>(JSFileName, "init");
             
             if (init != null) init(this);
 
-            // 临时防裁剪
-            UnityEngine.Debug.Log(UnityEngine.Vector3.up);
         }
 
         void Start()
@@ -60,6 +57,8 @@ namespace PuertsTest
             // Vector3 vector = new Vector3();
             // vector = Vector2
             transform.Rotate(new Vector3(0, 0, 0));
+            
+            UnityEngine.Debug.Log(UnityEngine.Vector3.up);
         }
     }
 }
