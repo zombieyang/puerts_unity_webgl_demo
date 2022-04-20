@@ -4,10 +4,17 @@ using UnityEditor.Callbacks;
 using Puerts;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 public class WebGLPuertsPostProcessor {
 
-
+    public static List<string> fileGlobbers = new List<string> 
+    {
+        Application.dataPath + "/**/Resources/**/*.mjs",
+        Application.dataPath + "/**/Resources/**/*.cjs",
+        Path.GetFullPath("Packages/com.tencent.puerts.core/") + "/**/Resources/**/*.mjs",
+        Path.GetFullPath("Packages/com.tencent.puerts.webgl/") + "/**/Resources/**/*.mjs",
+    };
 
     private static void run(string runEntry, string lastBuiltPath) 
     {
@@ -21,18 +28,22 @@ public class WebGLPuertsPostProcessor {
         }
         JsEnv jsenv = new JsEnv();
 
-        Action<string, string> postProcess = jsenv.Eval<Action<string, string>>(@"
-            (function(rPath, targetPath) {
+        Action<string, string[], string> postProcess = jsenv.Eval<Action<string, string[], string>>(@"
+            (function(rPath, csFileGlobbers, targetPath) {
+                const fileGlobbers = [];
+                for (let i = 0; i < csFileGlobbers.Length; i++) {
+                    fileGlobbers.push(csFileGlobbers.get_Item(i));
+                }
                 const tscAndWebpack = require(rPath + 'build.js');
                 const globAllJS = require(rPath + 'glob-js/index.js');
 
                 tscAndWebpack(targetPath);
-                globAllJS." + runEntry + @"(targetPath);
+                globAllJS." + runEntry + @"(fileGlobbers, targetPath);
             });
         ");
         
         try {
-            postProcess(PuertsWebglJSRoot, lastBuiltPath);
+            postProcess(PuertsWebglJSRoot, fileGlobbers.ToArray(), lastBuiltPath);
         } 
         catch(Exception e) 
         {

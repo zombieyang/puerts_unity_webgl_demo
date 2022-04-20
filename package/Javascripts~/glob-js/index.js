@@ -4,33 +4,13 @@
  * 为browser构建时，将它们全数合并到一个js文件里，由HTML加载。
  */
 const fs = require("fs");
-const glob = require("glob");
 const path = require("path");
+const glob = require('glob');
 const mkdirp = require("mkdirp");
 const babel = require('@babel/core');
-const csharp = puertsRequire('csharp')
+const csharp = puertsRequire('csharp');
 
-const UAssetsPath = csharp.UnityEngine.Application.dataPath
-
-const allJSFile = glob.sync(path.join(UAssetsPath, '/../**/Resources/**/*.mjs'))
-    .concat(glob.sync(path.join(UAssetsPath, '/../**/Resources/**/*.cjs')))
-    .concat(glob.sync(path.join(UAssetsPath, '/../../../package/**/Resources/**/*.mjs')))
-    
-    .filter(jsfile => {
-        return jsfile.indexOf('Editor') == -1 && jsfile.indexOf('node_modules') == -1
-    })
-    .map(jsfile => {
-        let resourceNameMatcher = jsfile.split('Resources/');
-        let resourceName = resourceNameMatcher[resourceNameMatcher.length - 1];
-        resourceName = resourceName.replace(/\.txt$/, '');
-
-        return {
-            resourceName,
-            jsfile
-        }
-    })
-
-function buildForBrowser(outputpath) {
+function buildForBrowser(allJSFile, outputpath) {
     const puerts_js_file = {};
     allJSFile.forEach(({ resourceName, jsfile }) => {
         const code = fs.readFileSync(jsfile, 'utf-8');
@@ -52,7 +32,7 @@ function buildForBrowser(outputpath) {
         }};
     `);
 }
-function buildForMinigame(outputpath) {
+function buildForMinigame(allJSFile, outputpath) {
     const outputdir = path.join(outputpath, 'puerts_minigame_js_resources');
     mkdirp.sync(outputdir);
 
@@ -105,10 +85,35 @@ function buildHTML(outputpath) {
     `)
 }
 
-exports.buildForMinigame = function (outputpath) {
-    buildForMinigame(outputpath);
+function getAllJSFile (fileGlobbers) {
+    const allJSFile = fileGlobbers
+        .reduce((retArr, globber)=> {
+            return retArr.concat(
+                glob.sync(path.normalize(globber))
+            )
+        }, [])
+        .filter(jsfile => {
+            return jsfile.indexOf('Editor') == -1 && jsfile.indexOf('node_modules') == -1
+        })
+        .map(jsfile => {
+            let resourceNameMatcher = jsfile.split('Resources/');
+            let resourceName = resourceNameMatcher[resourceNameMatcher.length - 1];
+            resourceName = resourceName.replace(/\.txt$/, '');
+
+            return {
+                resourceName,
+                jsfile
+            }
+        })
+
+    return allJSFile;
 }
-exports.buildForBrowser = function (outputpath) {
-    buildForBrowser(outputpath);
-    // buildHTML(outputpath);
+
+exports.buildForMinigame = function (fileGlobbers, outputpath) {
+
+    buildForMinigame(getAllJSFile(fileGlobbers), outputpath);
+}
+exports.buildForBrowser = function (fileGlobbers, outputpath) {
+
+    buildForBrowser(getAllJSFile(fileGlobbers), outputpath);
 }

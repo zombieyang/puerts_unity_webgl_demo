@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "1_Rotate",
+"productVersion": "1.0",
+"dataUrl": "1_Rotate.data.unityweb",
+"wasmCodeUrl": "1_Rotate.wasm.code.unityweb",
+"wasmFrameworkUrl": "1_Rotate.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.34f1c1"
+}

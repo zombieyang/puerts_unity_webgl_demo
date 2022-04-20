@@ -4,7 +4,7 @@ Logs/
 Packages/
 ProjectSettings/
 Temp/
-build/
+# build/
 wxbuild
 node_modules
 .vs*
