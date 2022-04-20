@@ -8,9 +8,14 @@ const glob = require("glob");
 const path = require("path");
 const mkdirp = require("mkdirp");
 const babel = require('@babel/core');
+const csharp = puertsRequire('csharp')
 
-const allJSFile = glob.sync(csharp.UnityEngine.Application.dataPath + '/**/Resources/**/*.mjs')
-    .concat(glob.sync(csharp.UnityEngine.Application.dataPath + '/**/Resources/**/*.cjs'))
+const UAssetsPath = csharp.UnityEngine.Application.dataPath
+
+const allJSFile = glob.sync(path.join(UAssetsPath, '/../**/Resources/**/*.mjs'))
+    .concat(glob.sync(path.join(UAssetsPath, '/../**/Resources/**/*.cjs')))
+    .concat(glob.sync(path.join(UAssetsPath, '/../../../package/**/Resources/**/*.mjs')))
+    
     .filter(jsfile => {
         return jsfile.indexOf('Editor') == -1 && jsfile.indexOf('node_modules') == -1
     })
@@ -29,7 +34,6 @@ function buildForBrowser(outputpath) {
     const puerts_js_file = {};
     allJSFile.forEach(({ resourceName, jsfile }) => {
         const code = fs.readFileSync(jsfile, 'utf-8');
-        console.log("正在转换：" + jsfile);
         puerts_js_file[resourceName] = `(function(exports, require, module, __filename, __dirname) {
             ${babel.transformSync(code, {
             cwd: __dirname,
@@ -43,8 +47,8 @@ function buildForBrowser(outputpath) {
     mkdirp.sync(path.dirname(targetPath));
     fs.writeFileSync(targetPath, `
         window.PUERTS_JS_RESOURCES = {${Object.keys(puerts_js_file).map(resourceName => {
-        return `"${resourceName}": ${puerts_js_file[resourceName]}`
-    }).join(',')
+            return `"${resourceName}": ${puerts_js_file[resourceName]}`
+        }).join(',')
         }};
     `);
 }

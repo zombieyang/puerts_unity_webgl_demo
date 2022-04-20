@@ -88,6 +88,7 @@ var exportDLL = {
     "PushJSFunctionForJSFunction",
     "PushJSObjectForJSFunction",
     "PushArrayBufferForJSFunction",
+    "SetPushJSFunctionArgumentsCallback",
     "InvokeJSFunction",
     "GetFunctionLastExceptionInfo",
     "ReleaseJSFunction",
@@ -112,7 +113,7 @@ var exportDLL = {
     "SetLogCallback",
 ].forEach(function (methodName) {
 
-    exportDLL[methodName] = new Function("var global = typeof global != 'undefined' ? global : window; global.PuertsWebGL.debug && console.log('WebGL DLL:" + methodName + "'); return global.PuertsWebGL['" + methodName + "'].apply(this, arguments)");
+    exportDLL[methodName] = new Function("var global = typeof global != 'undefined' ? global : window; if (!global.PuertsWebGL.inited) { throw new Error('please use Puerts.WebGL.CreateWebGLJsEnv() to create JsEnv'); }  global.PuertsWebGL.debug && console.log('WebGL DLL:" + methodName + "'); return global.PuertsWebGL['" + methodName + "'].apply(this, arguments)");
 })
 
 mergeInto(LibraryManager.library, exportDLL);
