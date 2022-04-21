@@ -11,7 +11,7 @@
 * 和 xLua WebGL 进行fibonacci 性能对比测试demo
 
 #### 如何跑起来
-在build目录启动一个httpserver，通过网页访问即可看到4个demo的效果。build目录中的产物是通过Unity2019编译产生的。
+在build目录启动一个httpserver，通过网页访问即可看到4个demo的效果，它们是Unity2019编译产生的。
 
 * 我想自己重新构建？
 1. 打开Unity，在`puerts-webgl`菜单下点击install执行npm依赖的安装
