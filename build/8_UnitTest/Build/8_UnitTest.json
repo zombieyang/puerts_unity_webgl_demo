@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "8_UnitTest",
+"productVersion": "1.0",
+"dataUrl": "8_UnitTest.data.unityweb",
+"wasmCodeUrl": "8_UnitTest.wasm.code.unityweb",
+"wasmFrameworkUrl": "8_UnitTest.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.34f1c1"
+}

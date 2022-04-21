@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "9_vsLua",
+"productVersion": "1.0",
+"dataUrl": "9_vsLua.data.unityweb",
+"wasmCodeUrl": "9_vsLua.wasm.code.unityweb",
+"wasmFrameworkUrl": "9_vsLua.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.34f1c1"
+}
