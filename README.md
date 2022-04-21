@@ -4,21 +4,29 @@
 支持Unity 2019+
 
 ## Demos
-* 简单旋转demo`Assets/Scenes/SampleScene` ✔
-* 篮球小游戏demo`Assets/Scenes/BasketballDemo` ✔
+* 简单旋转demo
+* 篮球小游戏demo
+* 和 xLua WebGL 进行fibonacci 性能对比测试demo
 
-#### 浏览器环境运行方式：
-1. 前往puerts-webgl目录，执行`npm install`。（只有首次运行需要）
+#### 如何跑起来
+在build目录启动一个httpserver，通过网页访问即可看到4个demo的效果。build目录中的产物是通过Unity2019编译产生的。
+
+* 我想自己重新构建？
+1. 打开Unity，在`puerts-webgl`菜单下点击install执行npm依赖的安装
 2. 执行Unity的WebGL Build
-3. 根据命令行提示，使用puerts提供的editor菜单生成为浏览器环境所用的js。
+3. 根据命令行提示，使用`puerts-webgl`里的构建功能生成为浏览器环境所用的js。
 4. 如果是浏览器环境，修改生成好的html，在<head>中添加<script>，将刚刚生成的两个js加上去
 ```
   <script src="./puerts-runtime.js"></script>
   <script src="./puerts_browser_js_resources.js"></script>
 ```
-#### 微信小游戏环境运行方式：
-  暂不写文档。有需要请在issue留言或qq群里联系我。
-
+  
+* 怎么上微信小游戏？
+1. 通过[微信提供的webgl转化项目](https://github.com/wechat-miniprogram/minigame-unity-webgl-transform)进行WebGL Build
+2. 使用`puerts-webgl`里的构建功能生成为微信环境所用的js。
+3. 在构建出来的小游戏`game.js`中，添加require('puerts-runtime.js')
+4. iOS预览时请跟随[该指引](https://github.com/wechat-miniprogram/minigame-unity-webgl-transform/blob/main/Design/iOSOptimization.md)申请高性能模式
+  
 ## Performance
 因为在这套架构下，JS是运行在宿主JS环境下的，有JIT的支持，因此相比Lua脚本方案，在*执行性能*上有碾压性的性能优势。
 |       | 10万次 fibonacci(12) |
