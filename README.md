@@ -1,5 +1,5 @@
 # Puerts WebGL demo
-![puerts_webgl](https://img.shields.io/badge/v1.0.0_preview.svg)
+![puerts_webgl](https://img.shields.io/badge/preview-v1.0.0-blue.svg)
 本项目包括了一个可以以WebGL模式构建运行Puerts的Unity项目。puerts的JS代码会运行在浏览器JS引擎里，而不是运行在编译为WASM的JS解释器里。
 
 支持Unity 2019+
