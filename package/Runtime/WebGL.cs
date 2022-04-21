@@ -6,17 +6,17 @@ namespace Puerts
 {
     public static class WebGL
     {
-        private static bool jsEngineCreated = false;
-        public static JsEnv CreateWebGLJsEnv()
+        private static JsEnv jsEnvSingleton;
+        public static JsEnv GetBrowserEnv()
         {
-            return CreateWebGLJsEnv(new DefaultLoader());
+            return GetBrowserEnv(new DefaultLoader());
         }
         
-        public static JsEnv CreateWebGLJsEnv(ILoader loader, int debugPort = -1)
+        public static JsEnv GetBrowserEnv(ILoader loader, int debugPort = -1)
         {
-            if (jsEngineCreated) 
+            if (jsEnvSingleton != null) 
             {
-                throw new Exception("only one jsEngine is allowed in webgl mode");
+                return jsEnvSingleton;
             }
 
         #if !UNITY_EDITOR
@@ -33,10 +33,9 @@ namespace Puerts
                     CallGetJSArgumentsCallback
                 );    
             #endif
-                JsEnv env = new JsEnv(loader, debugPort);
-                jsEngineCreated = true;
-                env.ExecuteModule("puerts/webgl.mjs");
-                return env;
+                jsEnvSingleton = new JsEnv(loader, debugPort);
+                jsEnvSingleton.ExecuteModule("puerts/webgl.mjs");
+                return jsEnvSingleton;
             }
             catch(Exception e)
             {

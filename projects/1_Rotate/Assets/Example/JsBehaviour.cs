@@ -23,7 +23,7 @@ namespace PuertsTest
             PreventStripping();
             
             if (jsEnv == null) {
-                jsEnv = Puerts.WebGL.CreateWebGLJsEnv();
+                jsEnv = Puerts.WebGL.GetBrowserEnv();
             }
 
             var init = jsEnv.ExecuteModule<ModuleInit>(JSFileName, "init");

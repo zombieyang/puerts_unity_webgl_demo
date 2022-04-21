@@ -15,7 +15,7 @@ public class JsMonoBehaviour : MonoBehaviour
     void Start()
     {
         if (env == null) {
-            env = Puerts.WebGL.CreateWebGLJsEnv();
+            env = Puerts.WebGL.GetBrowserEnv();
         }
         // Action<JsMonoBehaviour> init = env.Eval<Action<JsMonoBehaviour>>(@"
         //     global.CS = require('csharp');

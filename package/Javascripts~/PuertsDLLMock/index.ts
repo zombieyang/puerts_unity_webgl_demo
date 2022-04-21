@@ -47,6 +47,7 @@ global.PuertsWebGL = {
 
         // PuertsDLL的所有接口实现
         global.PuertsWebGL = Object.assign(
+            global.PuertsWebGL,
             WebGLBackendGetFromJSArgumentAPI(engine),
             WebGLBackendGetFromJSReturnAPI(engine),
             WebGLBackendSetToInvokeJSArgumentApi(engine),
@@ -94,6 +95,9 @@ global.PuertsWebGL = {
                 ExecuteModule: function (isolate: IntPtr, pathString: CSString, exportee: CSString) {
                     try {
                         let fileName = UTF8ToString(pathString);
+                        if (fileName.indexOf('log.mjs') != -1) {
+                            return 1024;
+                        }
                         if (typeof wx != 'undefined') {
                             const result = wxRequire('puerts_minigame_js_resources/' + fileName.replace('.mjs', '.js').replace('.cjs', '.js'));
                             if (exportee) {

@@ -41,11 +41,11 @@ public class Performance : MonoBehaviour
         PerformanceHelper.LuaVector = LuaVector;
         PerformanceHelper.LuaFibonacci = LuaFibonacci;
 
-        Puerts.JsEnv JsEnv = new Puerts.JsEnv();
+        Puerts.JsEnv JsEnv = Puerts.WebGL.GetBrowserEnv();
         JsEnv.ExecuteModule("performance.mjs");
         
-        // XLua.LuaEnv env = new XLua.LuaEnv();
-        // env.DoString(Resources.Load<TextAsset>("performance.lua").text);
+        XLua.LuaEnv env = new XLua.LuaEnv();
+        env.DoString(Resources.Load<TextAsset>("performance.lua").text);
     }
 
     // Update is called once per frame

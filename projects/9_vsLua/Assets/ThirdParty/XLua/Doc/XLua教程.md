@@ -101,7 +101,7 @@
 
     1. 访问lua全局数据，特别是table以及function，代价比较大，建议尽量少做，比如在初始化时把要调用的lua function获取一次（映射到delegate）后，保存下来，后续直接调用该delegate即可。table也类似。
 
-    2. 如果lua测的实现的部分都以delegate和interface的方式提供，使用方可以完全和xLua解耦：由一个专门的模块负责xlua的初始化以及delegate、interface的映射，然后把这些delegate和interface设置到要用到它们的地方。
+    2. 如果lua侧的实现的部分都以delegate和interface的方式提供，使用方可以完全和xLua解耦：由一个专门的模块负责xlua的初始化以及delegate、interface的映射，然后把这些delegate和interface设置到要用到它们的地方。
 
 ### Lua调用C#
 
@@ -167,9 +167,9 @@ xlua支持（通过派生类）访问基类的静态属性，静态方法，（�
 
 ##### 参数的输入输出属性（out，ref）
 
-Lua调用测的参数处理规则：C#的普通参数算一个输入形参，ref修饰的算一个输入形参，out不算，然后从左往右对应lua 调用测的实参列表；
+Lua调用侧的参数处理规则：C#的普通参数算一个输入形参，ref修饰的算一个输入形参，out不算，然后从左往右对应lua 调用侧的实参列表；
 
-Lua调用测的返回值处理规则：C#函数的返回值（如果有的话）算一个返回值，out算一个返回值，ref算一个返回值，然后从左往右对应lua的多返回值。
+Lua调用侧的返回值处理规则：C#函数的返回值（如果有的话）算一个返回值，out算一个返回值，ref算一个返回值，然后从左往右对应lua的多返回值。
 
 ##### 重载方法
 直接通过不同的参数类型进行重载函数的访问，例如：
@@ -212,8 +212,9 @@ Lua调用测的返回值处理规则：C#函数的返回值（如果有的话）
 
     testobj:EnumTestFunc(CS.Tutorial.TestEnum.E1)
 
-上面的EnumTestFunc函数参数是Tutorial.TestEnum类型的
-另外，如果枚举类加入到生成代码的话，枚举类将支持__CastFrom方法，可以实现从一个整数或者字符串到枚举值的转换，例如：
+上面的EnumTestFunc函数参数是Tutorial.TestEnum类型的。
+
+枚举类支持__CastFrom方法，可以实现从一个整数或者字符串到枚举值的转换，例如：
 
     CS.Tutorial.TestEnum.__CastFrom(1)
     CS.Tutorial.TestEnum.__CastFrom('E1')
@@ -242,7 +243,7 @@ C#的delegate调用：和调用普通lua函数一样
 
 ##### 64位整数支持
 
-    Lua53版本64位整数（long，ulong）映射到原生的64未整数，而luaji版本t，相当于lua5.1的标准，本身不支持64位，xlua做了个64位支持的扩展库，C#的long和ulong都将映射到userdata：
+    Lua53版本64位整数（long，ulong）映射到原生的64位整数，而luajit版本，相当于lua5.1的标准，本身不支持64位，xlua做了个64位支持的扩展库，C#的long和ulong都将映射到userdata：
     
     支持在lua里头进行64位的运算，比较，打印
     

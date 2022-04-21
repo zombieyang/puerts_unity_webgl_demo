@@ -1,3 +1,5 @@
+const cs = require('csharp');
+
 cs.PerformanceHelper.ReturnNumber(3);
 const start = Date.now();
 for (let i = 0; i < 1000000; i++) 

@@ -165,7 +165,7 @@ namespace PuertsTest
 
         void Start()
         {
-            var jsEnv = new Puerts.JsEnv();
+            var jsEnv = Puerts.WebGL.GetBrowserEnv();
             // var jsEnv = new Puerts.JsEnv(new DefaultLoader(), 8080);
             // jsEnv.WaitDebugger();
             var helper = new TestHelper(jsEnv);

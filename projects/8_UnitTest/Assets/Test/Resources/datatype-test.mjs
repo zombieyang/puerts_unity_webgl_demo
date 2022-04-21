@@ -1,3 +1,4 @@
+const cs = require('csharp')
 const assertAndPrint = cs.PuertsTest.TestHelper.AssertAndPrint.bind(cs.PuertsTest.TestHelper);
 
 var init = function (testHelper) {
