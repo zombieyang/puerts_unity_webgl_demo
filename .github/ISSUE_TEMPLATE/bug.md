@@ -1,6 +1,6 @@
 ---
-name: "\U0001F41B bug issue"
-title: "[unity/UE] description"
+name: "\U0001F41B Unity Bug Issue"
+title: "[unity] description"
 about: submit a bug report +_+
 ---
 
