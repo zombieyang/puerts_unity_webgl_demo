@@ -1,4 +1,7 @@
 ## 如何开始
+开发阶段，请跟随项目首页的指引进行。上小游戏仅仅只有构建阶段工作不同。
+
+如何构建：
 1. 通过[微信提供的webgl转化项目](https://github.com/wechat-miniprogram/minigame-unity-webgl-transform)进行WebGL Build
 2. 使用`puerts-webgl`里的构建功能生成为微信环境所用的js。
 3. 在构建出来的小游戏`game.js`中，添加require('puerts-runtime.js')
