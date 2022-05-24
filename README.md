@@ -41,18 +41,19 @@
   <script src="./puerts_browser_js_resources.js"></script>
 ```
   
-#### 怎么上微信小游戏？
-1. 通过[微信提供的webgl转化项目](https://github.com/wechat-miniprogram/minigame-unity-webgl-transform)进行WebGL Build
-2. 使用`puerts-webgl`里的构建功能生成为微信环境所用的js。
-3. 在构建出来的小游戏`game.js`中，添加require('puerts-runtime.js')
-4. iOS预览时请跟随[该指引](https://github.com/wechat-miniprogram/minigame-unity-webgl-transform/blob/main/Design/iOSOptimization.md)申请高性能模式
+#### About WeChat minigame | 关于微信小游戏？
+[点我](./minigame.md)
   
 
+----------------------------------------------
+
 ## Dependent | 依赖
-因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
-1. V8 8.4+ (eg. Chrome 84+) 或是打开`--harmony-weak-refs`的v8 7.4+
+* because of the dependent with `WeakRef` and `FinalizationRegistry`. this project is available in the environment below.
+* 因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
+
+1. `V8 8.4+(Chrome 84+)` OR `v8 7.4+(Chrome 84+) with --harmony-weak-refs`
 2. iOS Safari 14.5+/OSX Safari 14.1+
-3. 微信小游戏环境（iOS下需要申请高性能模式）
+3. WeChat Minigame | 微信小游戏
 
 ## How to contrib
 * 运作原理(how this work?)
@@ -62,9 +63,3 @@ Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本�
 * 未来还有以下工作要做(TODO)：
 
 1. 测试2021下bigint表现
-
-## 已上线微信小游戏
-| 作者 | 码 |
-| --- | --- |
-| [zgz682000](https://github.com/zgz682000) | <img src="./doc/pic/game1.jpg" alt="Game1" width="100" height="100"/> |
-| [ctxdegithub](https://github.com/ctxdegithub) | <img src="./doc/pic/game2.jpg" alt="Game2" width="100" height="100"/> |
