@@ -1,10 +1,11 @@
 # Puerts WebGL Unity
 ![puerts_webgl](https://img.shields.io/badge/release-v1.0.0_preview-blue.svg)
+![minigame](https://img.shields.io/badge/-minigame-grey.svg?logo=wechat)
 
 ## introduction | 简介
 
 * With this project. Unity Puer's JS Code will run in the v8 of browser instead of v8/quickjs in WebAssembly.
-* 通过该项目的支持，Unity puer的JS代码会运行在浏览器JS引擎里，而不是运行在编译为WASM的JS解释器里。
+* 通过该项目的支持，Unity puer的JS代码会运行在宿主JS引擎里，而不是运行在编译为WASM的JS解释器里。
 
 ## Advantage | 优势
 
