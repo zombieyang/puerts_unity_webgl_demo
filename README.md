@@ -1,13 +1,17 @@
-# Puerts WebGL
+# Puerts WebGL Unity
 ![puerts_webgl](https://img.shields.io/badge/release-v1.0.0_preview-blue.svg)
 
 ## introduction | 简介
 
-* With this project. Puer's JS Code will run in the v8 of browser instead of v8/quickjs in WebAssembly.
-* 通过该项目的支持，puer的JS代码会运行在浏览器JS引擎里，而不是运行在编译为WASM的JS解释器里。
+* With this project. Unity Puer's JS Code will run in the v8 of browser instead of v8/quickjs in WebAssembly.
+* 通过该项目的支持，Unity puer的JS代码会运行在浏览器JS引擎里，而不是运行在编译为WASM的JS解释器里。
 
 ## Advantage | 优势
 
+* High Efficiency | 开发很快
+  * all the JS file can run in browser directly. you dont have to rebuild the unity project after JS script is modified.
+  * 所有JS逻辑文件都可以直接在宿主JS环境跑，因此你不需要在每次改完脚本代码后重新构建unity项目了。
+  * 
 * Fast | 执行很快
   * with the JIT in browser's v8. Puer Webgl has a huge *execute performance* advantage.
   * 因为在这套架构下，JS是运行在宿主JS环境下的，有JIT的支持，因此相比Lua脚本方案，在*执行性能*上有碾压性的性能优势。
@@ -16,10 +20,6 @@
 | ---  |    ---    |
 |xLua WebGL   |    6200ms    |
 |Puerts WebGL |   165ms     |
-
-* High Efficiency | 开发很快
-  * all the JS file can run in browser directly. you dont have to rebuild the unity project after JS code is modified.
-  * 所有JS逻辑文件都可以直接在宿主JS环境跑，因此你不需要在每次改完代码后重新构建unity项目了。
 
 ## QuickStart | 开始
 
