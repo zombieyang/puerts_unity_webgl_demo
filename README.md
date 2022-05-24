@@ -16,10 +16,10 @@
   * with the JIT in browser's v8. Puer Webgl has a huge *execute performance* advantage.
   * 因为在这套架构下，JS是运行在宿主JS环境下的，有JIT的支持，因此相比Lua脚本方案，在*执行性能*上有碾压性的性能优势。
 
-|       | 100k fibonacci(12) |
-| ---  |    ---    |
-|xLua WebGL   |    6200ms    |
-|Puerts WebGL |   165ms     |
+      |       | 100k fibonacci(12) |
+      | ---  |    ---    |
+      |xLua WebGL   |    6200ms    |
+      |Puerts WebGL |   165ms     |
 
 ## QuickStart | 开始
 
@@ -46,31 +46,27 @@
 
 #### install in your own project | 在你自己的项目中安装
 
-* [Install puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) first
-* 首先[安装puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md)
+* [Install puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) first. then:
+* 首先[安装puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md)。随后：
 
-<details>
-<summary>Add from OpenUPM | available in 2018+</summary>
+    <details>
+    <summary>Add from OpenUPM | available in 2018+</summary>
 
-PuerTS WebGL 现已上传 OpenUPM: https://openupm.com/packages/com.tencent.puerts.webgl/
+    你可按照[OpenUPM](https://openupm.com/)所支持的方式安装该包：https://openupm.com/packages/com.tencent.puerts.webgl/
 
-你可按照[OpenUPM](https://openupm.com/)所支持的方式安装
+    </details>
 
-</details>
+    <details>
+    <summary>Add from GitHub | available in 2019.4+</summary>
 
------------------------------------------------------
+    You can add it directly from GitHub on Unity 2019.4+. Note that you won't be able to receive updates through Package Manager this way, you'll have to update manually.
 
-<details>
-<summary>Add from GitHub | available in 2019.4+</summary>
-
-You can add it directly from GitHub on Unity 2019.4+. Note that you won't be able to receive updates through Package Manager this way, you'll have to update manually.
-
-- open Package Manager
-- click <kbd>+</kbd>
-- select <kbd>Add from Git URL</kbd>
-- paste `https://github.com/zombieyang/puerts_unity_webgl_demo.git?path=/package`
-- click <kbd>Add</kbd>
-</details>
+    - open Package Manager
+    - click <kbd>+</kbd>
+    - select <kbd>Add from Git URL</kbd>
+    - paste `https://github.com/zombieyang/puerts_unity_webgl_demo.git?path=/package`
+    - click <kbd>Add</kbd>
+    </details>
 
 
 #### About WeChat minigame | 关于微信小游戏？
