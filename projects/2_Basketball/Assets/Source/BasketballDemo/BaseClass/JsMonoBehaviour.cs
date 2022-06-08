@@ -14,8 +14,18 @@ public class JsMonoBehaviour : MonoBehaviour
     public Action JsStart;
     void Start()
     {
-        if (env == null) {
-            env = Puerts.WebGL.GetBrowserEnv();
+        try {
+            if (env == null) {
+#if UNITY_WEBGL
+                env = Puerts.WebGL.GetBrowserEnv();
+#else 
+                env = new JsEnv();
+#endif 
+            }
+        } 
+        catch (Exception e) 
+        {
+            UnityEngine.Debug.Log(e.StackTrace);
         }
         // Action<JsMonoBehaviour> init = env.Eval<Action<JsMonoBehaviour>>(@"
         //     global.CS = require('csharp');
