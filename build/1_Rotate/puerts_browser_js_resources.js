@@ -160,19 +160,36 @@ function csTypeToClass(csType) {
       if (currentCls === Object || currentCls === Function || currentCls.__static_inherit__) break;
     }
 
-    for (var key in cls) {
-      let desc = Object.getOwnPropertyDescriptor(cls, key);
+    let readonlyStaticMembers;
 
-      if (desc && desc.configurable && typeof desc.get == 'function' && typeof desc.value == 'undefined') {
-        let val = cls[key];
-        Object.defineProperty(cls, key, {
-          value: val,
-          writable: false,
-          configurable: false
-        });
+    if (readonlyStaticMembers = cls.__puertsMetadata.get('readonlyStaticMembers')) {
+      for (var key in cls) {
+        let desc = Object.getOwnPropertyDescriptor(cls, key);
 
-        if (cls.__p_isEnum && typeof val == 'number') {
-          cls[val] = key;
+        if (readonlyStaticMembers.has(key) && desc && typeof desc.get == 'function' && typeof desc.value == 'undefined') {
+          let getter = desc.get;
+          let value;
+          let valueGetted = false;
+          Object.defineProperty(cls, key, Object.assign(desc, {
+            get() {
+              if (!valueGetted) {
+                value = getter();
+                valueGetted = true;
+              }
+
+              return value;
+            },
+
+            configurable: false
+          }));
+
+          if (cls.__p_isEnum) {
+            const val = cls[key];
+
+            if (typeof val == 'number') {
+              cls[val] = key;
+            }
+          }
         }
       }
     }
@@ -192,6 +209,8 @@ function csTypeToClass(csType) {
 
 function Namespace() {}
 
+puerts.__$NamespaceType = Namespace;
+
 function createTypeProxy(namespace) {
   return new Proxy(new Namespace(), {
     get: function (cache, name) {
@@ -199,9 +218,8 @@ function createTypeProxy(namespace) {
         let fullName = namespace ? namespace + '.' + name : name;
 
         if (/\$\d+$/.test(name)) {
-          let genericTypeInfo = new Map();
+          let genericTypeInfo = cache[name] = new Map();
           genericTypeInfo.set('$name', fullName.replace('$', '`'));
-          cache[name] = genericTypeInfo;
         } else {
           let cls = csTypeToClass(fullName);
 
@@ -266,18 +284,26 @@ function makeGeneric(genericTypeInfo, ...genericArgs) {
   for (var i = 0; i < genericArgs.length; i++) {
     let genericArg = genericArgs[i];
 
-    if (!p.get(genericArg)) {
+    if (!p.has(genericArg)) {
       p.set(genericArg, new Map());
     }
 
     p = p.get(genericArg);
   }
 
-  if (!p.get('$type')) {
+  if (!p.has('$type')) {
     p.set('$type', puerts.loadType(genericTypeInfo.get('$name'), ...genericArgs));
   }
 
   return p.get('$type');
+}
+
+function makeGenericMethod(cls, methodName, ...genericArgs) {
+  if (cls && typeof methodName == 'string' && genericArgs && genericArgs.length > 0) {
+    return puerts.getGenericMethod(puerts.$typeof(cls), methodName, ...genericArgs);
+  } else {
+    throw new Error("invalid arguments for makeGenericMethod");
+  }
 }
 
 function getType(cls) {
@@ -326,6 +352,7 @@ puerts.$unref = unref;
 puerts.$set = setref;
 puerts.$promise = taskToPromise;
 puerts.$generic = makeGeneric;
+puerts.$genericMethod = makeGenericMethod;
 puerts.$typeof = getType;
 
 puerts.$extension = (cls, extension) => {
@@ -334,6 +361,69 @@ puerts.$extension = (cls, extension) => {
 };
 
 puerts.$reflectExtension = doExtension;
+        }),"puerts/dispose.mjs": (function(exports, require, module, __filename, __dirname) {
+            "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = resetAllFunctionWhenDisposed;
+
+var global = global || globalThis || function () {
+  return this;
+}();
+
+function resetAllFunctionWhenDisposed() {
+  global.puerts.disposed = true;
+
+  const PuerIsDisposed = function () {
+    throw new Error('puerts has disposed');
+  };
+
+  puerts.loadType = PuerIsDisposed;
+  puerts.getNestedTypes = PuerIsDisposed;
+
+  try {
+    setToGoodbyeFuncRecursive(require('csharp'));
+  } catch (e) {}
+
+  function setToGoodbyeFuncRecursive(obj) {
+    Object.keys(obj).forEach(key => {
+      if (obj[key] == obj) {
+        return; // a member named default is the obj itself which is in the root
+      }
+
+      setToGoodbyeFuncRecursive(obj[key]);
+
+      if (typeof obj[key] == 'function' && obj[key].prototype) {
+        const prototype = obj[key].prototype;
+        Object.keys(prototype).forEach(pkey => {
+          if (Object.getOwnPropertyDescriptor(prototype, pkey).configurable) {
+            Object.defineProperty(prototype, pkey, {
+              get: PuerIsDisposed,
+              set: PuerIsDisposed
+            });
+          }
+        });
+        Object.keys(obj[key]).forEach(skey => {
+          if (Object.getOwnPropertyDescriptor(obj[key], skey).configurable) {
+            Object.defineProperty(obj[key], skey, {
+              get: PuerIsDisposed,
+              set: PuerIsDisposed
+            });
+          }
+        });
+      }
+
+      if (obj[key] instanceof puerts.__$NamespaceType) {
+        Object.defineProperty(obj, key, {
+          get: PuerIsDisposed,
+          set: PuerIsDisposed
+        });
+      }
+    });
+  }
+}
         }),"puerts/events.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -450,12 +540,16 @@ puerts.loadType = global.__tgjsLoadType;
 delete global.__tgjsLoadType;
 puerts.getNestedTypes = global.__tgjsGetNestedTypes;
 delete global.__tgjsGetNestedTypes;
+puerts.getGenericMethod = global.__tgjsGetGenericMethod;
+delete global.__tgjsGetGenericMethod;
 
 puerts.evalScript = global.__tgjsEvalScript || function (script, debugPath) {
   return eval(script);
 };
 
 delete global.__tgjsEvalScript;
+puerts.getLastException = global.__puertsGetLastException;
+delete global.__puertsGetLastException;
         }),"puerts/log.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -485,6 +579,16 @@ if (UnityEngine_Debug) {
     }).join(',');
   }
 
+  function getStack(error) {
+    let stack = error.stack; // get js stack
+
+    stack = stack.substring(stack.indexOf("\n") + 1); // remove first line ("Error")
+
+    stack = stack.replace(/^ {4}/gm, ""); // remove indentation
+
+    return stack;
+  }
+
   console.log = function () {
     if (console_org) console_org.log.apply(null, Array.prototype.slice.call(arguments));
     UnityEngine_Debug.Log(toString(arguments));
@@ -507,13 +611,13 @@ if (UnityEngine_Debug) {
 
   console.trace = function () {
     if (console_org) console_org.trace.apply(null, Array.prototype.slice.call(arguments));
-    let stack = new Error().stack; // get js stack
+    UnityEngine_Debug.Log(toString(arguments) + "\n" + getStack(new Error()) + "\n");
+  };
 
-    stack = stack.substring(stack.indexOf("\n") + 1); // remove first line ("Error")
-
-    stack = stack.replace(/^ {4}/gm, ""); // remove indentation
-
-    UnityEngine_Debug.Log(toString(arguments) + "\n" + stack + "\n");
+  console.assert = function (condition) {
+    if (console_org) console_org.assert.apply(null, Array.prototype.slice.call(arguments));
+    if (condition) return;
+    if (arguments.length > 1) UnityEngine_Debug.Assert(false, "Assertion failed: " + toString(Array.prototype.slice.call(arguments, 1)) + "\n" + getStack(new Error()) + "\n");else UnityEngine_Debug.Assert(false, "Assertion failed: console.assert\n" + getStack(new Error()) + "\n");
   };
 
   global.console = console;
@@ -970,7 +1074,11 @@ global.clearTimeout = global.clearInterval;
         }),"puerts/webgl.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
-globalThis.csharp = require('csharp');
-globalThis.puerts = require('puerts');
+var global = global || globalThis || function () {
+  return this;
+}();
+
+global.csharp = (typeof puertsRequire == 'undefined' ? require : puertsRequire)('csharp');
+global.puerts = (typeof puertsRequire == 'undefined' ? require : puertsRequire)('puerts');
         })};
     
