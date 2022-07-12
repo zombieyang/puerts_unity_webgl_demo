@@ -19,7 +19,8 @@ function buildForBrowser(allJSFile, outputpath) {
             cwd: __dirname,
             "presets": [
                 ["@babel/preset-env", { targets: { chrome: "84", esmodules: false } }]
-            ]
+            ],
+            compact: false,
         }).code}
         })`;
     })
