@@ -28,6 +28,10 @@ namespace PuertsTest
     public struct TestStruct
     {
         public int value;
+        public TestStruct(int val)
+        {
+            value = val;
+        }
     }
     public class TestHelper
     {
@@ -59,6 +63,7 @@ namespace PuertsTest
             env.UsingFunc<string, string>();
             env.UsingFunc<bool, bool>();
             env.UsingFunc<long, long>();
+            env.UsingFunc<TestStruct, TestStruct>();
         }
 
         /**
@@ -143,6 +148,16 @@ namespace PuertsTest
         {
             AssertAndPrint("CSGetNativeObjectArgFromJS", initialValue != null && initialValue.value == 1);
             AssertAndPrint("CSGetNativeObjectReturnFromJS", JSValueHandler(initialValue) == initialValue);
+            outArg = initialValue;
+            return initialValue;
+        }
+        /**
+        * 结构体，判断值相等
+        */
+        public TestStruct NativeObjectStructTestPipeLine(TestStruct initialValue, out TestStruct outArg, Func<TestStruct, TestStruct> JSValueHandler) 
+        {
+            AssertAndPrint("CSGetNativeObjectStructArgFromJS", initialValue.value == 1);
+            AssertAndPrint("CSGetNativeObjectStructReturnFromJS", JSValueHandler(initialValue).value == initialValue.value);
             outArg = initialValue;
             return initialValue;
         }

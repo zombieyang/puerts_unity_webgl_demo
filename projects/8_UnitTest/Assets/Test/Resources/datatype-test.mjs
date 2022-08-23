@@ -2,6 +2,7 @@ const cs = require('csharp')
 const assertAndPrint = cs.PuertsTest.TestHelper.AssertAndPrint.bind(cs.PuertsTest.TestHelper);
 
 var init = function (testHelper) {
+    debugger;
     const outRef = puerts.$ref(null);
 
     // JSFunction
@@ -64,6 +65,15 @@ var init = function (testHelper) {
     });
     assertAndPrint("JSGetArrayBufferOutArgFromCS", new Uint8Array(puerts.$unref(outRef)) == 4);
     assertAndPrint("JSGetArrayBufferReturnFromCS", new Uint8Array(rAB) == 5);
+
+    // NativeObjectStruct
+    const oNativeObjectStruct = new cs.PuertsTest.TestStruct(1);
+    const rNativeObjectStruct = testHelper.NativeObjectStructTestPipeLine(oNativeObjectStruct, outRef, function(obj) {
+        assertAndPrint("JSGetNativeObjectStructArgFromCS", obj.value == oNativeObjectStruct.value);
+        return oNativeObjectStruct
+    });
+    assertAndPrint("JSGetNativeObjectStructOutArgFromCS", puerts.$unref(outRef).value == oNativeObjectStruct.value);
+    assertAndPrint("JSGetNativeObjectStructReturnFromCS", rNativeObjectStruct.value == oNativeObjectStruct.value);
 
     // NativeObject
     const oNativeObject = new cs.PuertsTest.TestObject(1);
