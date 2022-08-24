@@ -8,14 +8,6 @@ using System.Collections.Generic;
 
 public class WebGLPuertsPostProcessor {
 
-    public static List<string> fileGlobbers = new List<string> 
-    {
-        Application.dataPath + "/**/Resources/**/*.mjs",
-        Application.dataPath + "/**/Resources/**/*.cjs",
-        Path.GetFullPath("Packages/com.tencent.puerts.core/") + "/**/Resources/**/*.mjs",
-        Path.GetFullPath("Packages/com.tencent.puerts.webgl/") + "/**/Resources/**/*.mjs",
-    };
-
     private static void run(string runEntry, string lastBuiltPath) 
     {
         string PuertsWebglJSRoot = Path.GetFullPath("Packages/com.tencent.puerts.webgl/Javascripts~/");
@@ -28,22 +20,13 @@ public class WebGLPuertsPostProcessor {
         }
         JsEnv jsenv = new JsEnv();
 
-        Action<string, string[], string> postProcess = jsenv.Eval<Action<string, string[], string>>(@"
-            (function(rPath, csFileGlobbers, targetPath) {
-                const fileGlobbers = [];
-                for (let i = 0; i < csFileGlobbers.Length; i++) {
-                    fileGlobbers.push(csFileGlobbers.get_Item(i));
-                }
-                const tscAndWebpack = require(rPath + 'build.js');
-                const globAllJS = require(rPath + 'glob-js/index.js');
-
-                tscAndWebpack(targetPath);
-                globAllJS." + runEntry + @"(fileGlobbers, targetPath);
-            });
-        ");
-        
+        Puerts.Editor.NodeRunner runner = new Puerts.Editor.NodeRunner(PuertsWebglJSRoot);
+            
         try {
-            postProcess(PuertsWebglJSRoot, fileGlobbers.ToArray(), lastBuiltPath);
+            runner.Run(String.Format(@"
+                await require('./node-scripts/build-dll.js')('{1}');
+                require('./node-scripts/glob-js/index.js')('{0}', '{1}');
+            ", runEntry, lastBuiltPath));
         } 
         catch(Exception e) 
         {
@@ -54,52 +37,24 @@ public class WebGLPuertsPostProcessor {
 
     [MenuItem("puerts-webgl/build puerts-js for minigame", false, 11)]
     static void minigame() 
-    {
-        run("buildForMinigame", _lastBuiltPath != null ? _lastBuiltPath + "/../minigame" : null);
+    {  
+        string lastBuiltPath = EditorPrefs.GetString("puerts_webglLastBuiltPath");
+        run("minigame", lastBuiltPath != null ? lastBuiltPath + "/../minigame" : null);
     }
 
     [MenuItem("puerts-webgl/build puerts-js for browser", false, 11)]
     static void browser() 
     {
-        run("buildForBrowser", _lastBuiltPath);
+        string lastBuiltPath = EditorPrefs.GetString("puerts_webglLastBuiltPath");
+        run("browser", lastBuiltPath);
     }
-
-    [MenuItem("puerts-webgl/install", false, 0)]
-    static void npmInstall() 
-    {
-        JsEnv jsenv = new Puerts.JsEnv();
-        jsenv.UsingAction<string>();
-        Action<string> npmInstaller = jsenv.Eval<Action<string>>(@"
-            (function(cwd) {
-                require('child_process').execSync('npm i', { cwd })
-            });
-        ");
-        npmInstaller(Path.GetFullPath("Packages/com.tencent.puerts.webgl/Javascripts~"));
-    }
-
-
-
-    [MenuItem("puerts-webgl/build puerts-js for minigame", true)]
-    [MenuItem("puerts-webgl/build puerts-js for browser", true)]
-    static bool NodeModulesInstalled() 
-    {
-        return Directory.Exists(Path.GetFullPath("Packages/com.tencent.puerts.webgl/Javascripts~/node_modules"));
-    }
-    [MenuItem("puerts-webgl/install", true)]
-    static bool NodeModulesNotInstalled() 
-    {
-        return !NodeModulesInstalled();
-    }
-
-
     
-    protected static string _lastBuiltPath = null;
     [PostProcessBuildAttribute(1)]
     public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) 
     {
         if (target == BuildTarget.WebGL) 
         {
-            _lastBuiltPath = pathToBuiltProject;
+            EditorPrefs.SetString("puerts_webglLastBuiltPath", pathToBuiltProject);
             UnityEngine.Debug.Log("构建成功，请用puerts-webgl/build js构建js资源");
         }
     }
