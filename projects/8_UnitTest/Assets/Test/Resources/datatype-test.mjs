@@ -93,6 +93,11 @@ var init = function (testHelper) {
     // assertAndPrint("JSGetJSObjectOutArgFromCS", puerts.$unref(outRef) == oJSObject);
     assertAndPrint("JSGetJSObjectReturnFromCS", rJSObject == oJSObject);
 
+    testHelper.ReturnAnyTestFunc = ()=>{
+        return new cs.PuertsTest.TestStruct(2);
+    }
+    testHelper.InvokeReturnAnyTestFunc(new cs.PuertsTest.TestStruct(2));
+
     debugger;
 };
 
