@@ -170,6 +170,13 @@ namespace PuertsTest
             AssertAndPrint("CSGetJSObjectReturnFromJS", JSValueHandler(initialValue) == initialValue);
             return initialValue;
         }
+
+        public Func<object> ReturnAnyTestFunc;
+
+        public void InvokeReturnAnyTestFunc(TestStruct srcValue){
+            var ret = (TestStruct)ReturnAnyTestFunc.Invoke();
+            AssertAndPrint("InvokeReturnNativeObjectStructTestFunc", srcValue.value == ret.value);
+        }
     }
 
     public class PuertsTest : MonoBehaviour
