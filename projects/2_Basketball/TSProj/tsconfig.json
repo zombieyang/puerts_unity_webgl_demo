@@ -5,8 +5,8 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "typeRoots": [
-      "../../Assets/ThirdParty/Puerts/Typing",
-      "../../Assets/Gen/Typing",
+      "../Assets/ThirdParty/Puerts/Typing",
+      "../Assets/Gen/Typing",
       "../node_modules/@types"
     ],
     "outDir": "./output",

@@ -19,6 +19,10 @@ public class JsMonoBehaviour : MonoBehaviour
             env = Puerts.WebGL.GetBrowserEnv();
 #else 
             env = new JsEnv();
+            env.Eval(@"
+                global.csharp = require('csharp')
+                global.puerts = require('puerts')
+            ");
 #endif 
         }
         // Action<JsMonoBehaviour> init = env.Eval<Action<JsMonoBehaviour>>(@"
