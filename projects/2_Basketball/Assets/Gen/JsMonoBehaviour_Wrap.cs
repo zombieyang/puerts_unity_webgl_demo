@@ -1,35 +1,53 @@
 ﻿
 using System;
+using Puerts;
 
 namespace PuertsStaticWrap
 {
-    public static class JsMonoBehaviour_Wrap
+    public static class JsMonoBehaviour_Wrap 
     {
-
+    
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
         private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
 
-                {
+    
             
+                {
+                
+                
+                    
+
                     {
-                
+                    
                         var result = new JsMonoBehaviour();
-                
+
+                    
+
+                    
                         return Puerts.Utils.GetObjectPtr((int)data, typeof(JsMonoBehaviour), result);
                     
                     }
-                
+                    
                 }
-            
-    
+        
+
+
             } catch (Exception e) {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
             return IntPtr.Zero;
         }
+    // ==================== constructor end ====================
+
+    // ==================== methods start ====================
+
+    // ==================== methods end ====================
+
+    // ==================== properties start ====================
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void G_JSClassName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
@@ -52,8 +70,10 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as JsMonoBehaviour;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.JSClassName = argHelper.GetString(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                obj.JSClassName = arg0;
                 
             }
             catch (Exception e)
@@ -83,8 +103,10 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as JsMonoBehaviour;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.JsStart = argHelper.Get<System.Action>(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Action>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Action arg0 = (System.Action)argobj0;
+                obj.JsStart = arg0;
                 
             }
             catch (Exception e)
@@ -114,8 +136,10 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as JsMonoBehaviour;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.JsUpdate = argHelper.Get<System.Action>(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Action>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Action arg0 = (System.Action)argobj0;
+                obj.JsUpdate = arg0;
                 
             }
             catch (Exception e)
@@ -145,8 +169,10 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as JsMonoBehaviour;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.JsOnTriggerEnter = argHelper.Get<System.Action<UnityEngine.Collider>>(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Action<UnityEngine.Collider>>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Action<UnityEngine.Collider> arg0 = (System.Action<UnityEngine.Collider>)argobj0;
+                obj.JsOnTriggerEnter = arg0;
                 
             }
             catch (Exception e)
@@ -154,7 +180,19 @@ namespace PuertsStaticWrap
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-                
+            
+    // ==================== properties end ====================
+    // ==================== array item get/set start ====================
+    
+    
+    // ==================== array item get/set end ====================
+    // ==================== operator start ====================
+    
+    // ==================== operator end ====================
+    // ==================== events start ====================
+    
+    // ==================== events end ====================
+
         public static Puerts.TypeRegisterInfo GetRegisterInfo()
         {
             return new Puerts.TypeRegisterInfo()

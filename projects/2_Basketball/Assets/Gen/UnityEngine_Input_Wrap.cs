@@ -1,36 +1,50 @@
 ﻿
 using System;
+using Puerts;
 
 namespace PuertsStaticWrap
 {
-    public static class UnityEngine_Input_Wrap
+    public static class UnityEngine_Input_Wrap 
     {
-
+    
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
         private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
 
-                {
+    
             
+                {
+                
+                
+                    
+
                     {
-                
+                    
                         var result = new UnityEngine.Input();
-                
+
+                    
+
+                    
                         return Puerts.Utils.GetObjectPtr((int)data, typeof(UnityEngine.Input), result);
                     
                     }
-                
+                    
                 }
-            
-    
+        
+
+
             } catch (Exception e) {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
             return IntPtr.Zero;
         }
-    
+    // ==================== constructor end ====================
+
+    // ==================== methods start ====================
+
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetAxis(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -38,16 +52,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetString(false);
+                
                     
-                        var result = UnityEngine.Input.GetAxis(Arg0);
-                
+                    {
+                    
+                        string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetAxis (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnNumber(isolate, info, result);
                         
                         
@@ -55,13 +79,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetAxisRaw(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -69,16 +94,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetString(false);
+                
                     
-                        var result = UnityEngine.Input.GetAxisRaw(Arg0);
-                
+                    {
+                    
+                        string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetAxisRaw (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnNumber(isolate, info, result);
                         
                         
@@ -86,13 +121,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetButton(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -100,16 +136,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetString(false);
+                
                     
-                        var result = UnityEngine.Input.GetButton(Arg0);
-                
+                    {
+                    
+                        string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetButton (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         
@@ -117,13 +163,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetButtonDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -131,16 +178,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetString(false);
+                
                     
-                        var result = UnityEngine.Input.GetButtonDown(Arg0);
-                
+                    {
+                    
+                        string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetButtonDown (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         
@@ -148,13 +205,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetButtonUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -162,16 +220,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetString(false);
+                
                     
-                        var result = UnityEngine.Input.GetButtonUp(Arg0);
-                
+                    {
+                    
+                        string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetButtonUp (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         
@@ -179,13 +247,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetMouseButton(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -193,16 +262,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetInt32(false);
+                
                     
-                        var result = UnityEngine.Input.GetMouseButton(Arg0);
-                
+                    {
+                    
+                        int arg0 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetMouseButton (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         
@@ -210,13 +289,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetMouseButtonDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -224,16 +304,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetInt32(false);
+                
                     
-                        var result = UnityEngine.Input.GetMouseButtonDown(Arg0);
-                
+                    {
+                    
+                        int arg0 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetMouseButtonDown (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         
@@ -241,13 +331,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetMouseButtonUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -255,16 +346,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetInt32(false);
+                
                     
-                        var result = UnityEngine.Input.GetMouseButtonUp(Arg0);
-                
+                    {
+                    
+                        int arg0 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetMouseButtonUp (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         
@@ -272,13 +373,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_ResetInputAxes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -286,12 +388,18 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
+                
+                
+                    
                     {
-                
-                        UnityEngine.Input.ResetInputAxes();
-                
+                    
+
+                        UnityEngine.Input.ResetInputAxes ();
+
+                    
                         
                         
                         
@@ -299,13 +407,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetJoystickNames(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -313,12 +422,18 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
+                
+                
+                    
                     {
-                
-                        var result = UnityEngine.Input.GetJoystickNames();
-                
+                    
+
+                        var result = UnityEngine.Input.GetJoystickNames ();
+
+                    
                         Puerts.ResultHelper.Set((int)data, isolate, info, result);
                         
                         
@@ -326,13 +441,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetTouch(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -340,16 +456,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetInt32(false);
+                
                     
-                        var result = UnityEngine.Input.GetTouch(Arg0);
-                
+                    {
+                    
+                        int arg0 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetTouch (arg0);
+
+                    
+                        
+                    
                         Puerts.ResultHelper.Set((int)data, isolate, info, result);
                         
                         
@@ -357,13 +483,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetAccelerationEvent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -371,16 +498,26 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    {
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                        var Arg0 = argHelper0.GetInt32(false);
+                
                     
-                        var result = UnityEngine.Input.GetAccelerationEvent(Arg0);
-                
+                    {
+                    
+                        int arg0 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetAccelerationEvent (arg0);
+
+                    
+                        
+                    
                         Puerts.ResultHelper.Set((int)data, isolate, info, result);
                         
                         
@@ -388,13 +525,14 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
             }
             catch (Exception e)
             {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetKey(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -402,33 +540,48 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 if (paramLen == 1)
             
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    if (argHelper0.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                    {
                 
-                        var Arg0 = (UnityEngine.KeyCode)argHelper0.GetInt32(false);
                     
-                        var result = UnityEngine.Input.GetKey(Arg0);
-                
+                    if (ArgHelper.IsMatch((int)data, isolate, Puerts.JsValueType.Number, typeof(UnityEngine.KeyCode), false, false, v8Value0, ref argobj0, ref argType0))
+                    
+                    {
+                    
+                        UnityEngine.KeyCode arg0 = (UnityEngine.KeyCode)StaticTranslate<int>.Get((int)data, isolate, Puerts.NativeValueApi.GetValueFromArgument, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetKey (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         return;
                     }
                 
-                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false))
-                
-                    {
-                
-                        var Arg0 = argHelper0.GetString(false);
                     
-                        var result = UnityEngine.Input.GetKey(Arg0);
-                
+                    if (ArgHelper.IsMatch((int)data, isolate, Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, typeof(string), false, false, v8Value0, ref argobj0, ref argType0))
+                    
+                    {
+                    
+                        string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetKey (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         return;
@@ -436,6 +589,7 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
                 Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to GetKey");
         
             }
@@ -444,7 +598,7 @@ namespace PuertsStaticWrap
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetKeyUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -452,33 +606,48 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 if (paramLen == 1)
             
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    if (argHelper0.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                    {
                 
-                        var Arg0 = (UnityEngine.KeyCode)argHelper0.GetInt32(false);
                     
-                        var result = UnityEngine.Input.GetKeyUp(Arg0);
-                
+                    if (ArgHelper.IsMatch((int)data, isolate, Puerts.JsValueType.Number, typeof(UnityEngine.KeyCode), false, false, v8Value0, ref argobj0, ref argType0))
+                    
+                    {
+                    
+                        UnityEngine.KeyCode arg0 = (UnityEngine.KeyCode)StaticTranslate<int>.Get((int)data, isolate, Puerts.NativeValueApi.GetValueFromArgument, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetKeyUp (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         return;
                     }
                 
-                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false))
-                
-                    {
-                
-                        var Arg0 = argHelper0.GetString(false);
                     
-                        var result = UnityEngine.Input.GetKeyUp(Arg0);
-                
+                    if (ArgHelper.IsMatch((int)data, isolate, Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, typeof(string), false, false, v8Value0, ref argobj0, ref argType0))
+                    
+                    {
+                    
+                        string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetKeyUp (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         return;
@@ -486,6 +655,7 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
                 Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to GetKeyUp");
         
             }
@@ -494,7 +664,7 @@ namespace PuertsStaticWrap
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void F_GetKeyDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -502,33 +672,48 @@ namespace PuertsStaticWrap
             {
                 
         
+        
                 if (paramLen == 1)
             
                 {
             
-                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
                 
-                    if (argHelper0.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                    IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                    object argobj0 = null;
+                    JsValueType argType0 = JsValueType.Invalid;
                 
-                    {
                 
-                        var Arg0 = (UnityEngine.KeyCode)argHelper0.GetInt32(false);
                     
-                        var result = UnityEngine.Input.GetKeyDown(Arg0);
-                
+                    if (ArgHelper.IsMatch((int)data, isolate, Puerts.JsValueType.Number, typeof(UnityEngine.KeyCode), false, false, v8Value0, ref argobj0, ref argType0))
+                    
+                    {
+                    
+                        UnityEngine.KeyCode arg0 = (UnityEngine.KeyCode)StaticTranslate<int>.Get((int)data, isolate, Puerts.NativeValueApi.GetValueFromArgument, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetKeyDown (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         return;
                     }
                 
-                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false))
-                
-                    {
-                
-                        var Arg0 = argHelper0.GetString(false);
                     
-                        var result = UnityEngine.Input.GetKeyDown(Arg0);
-                
+                    if (ArgHelper.IsMatch((int)data, isolate, Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, typeof(string), false, false, v8Value0, ref argobj0, ref argType0))
+                    
+                    {
+                    
+                        string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
+                    
+
+                        var result = UnityEngine.Input.GetKeyDown (arg0);
+
+                    
+                        
+                    
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
                         
                         return;
@@ -536,6 +721,7 @@ namespace PuertsStaticWrap
                 
                 }
             
+        
                 Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to GetKeyDown");
         
             }
@@ -544,7 +730,11 @@ namespace PuertsStaticWrap
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-        
+    
+    // ==================== methods end ====================
+
+    // ==================== properties start ====================
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void G_simulateMouseWithTouches(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -566,8 +756,10 @@ namespace PuertsStaticWrap
             try
             {
                 
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                UnityEngine.Input.simulateMouseWithTouches = argHelper.GetBoolean(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                bool arg0 = (bool)PuertsDLL.GetBooleanFromValue(isolate, v8Value0, false);
+                UnityEngine.Input.simulateMouseWithTouches = arg0;
                 
             }
             catch (Exception e)
@@ -672,8 +864,10 @@ namespace PuertsStaticWrap
             try
             {
                 
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                UnityEngine.Input.imeCompositionMode = (UnityEngine.IMECompositionMode)argHelper.GetInt32(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                UnityEngine.IMECompositionMode arg0 = (UnityEngine.IMECompositionMode)StaticTranslate<int>.Get((int)data, isolate, Puerts.NativeValueApi.GetValueFromArgument, v8Value0, false);
+                UnityEngine.Input.imeCompositionMode = arg0;
                 
             }
             catch (Exception e)
@@ -733,8 +927,10 @@ namespace PuertsStaticWrap
             try
             {
                 
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                UnityEngine.Input.compositionCursorPos = argHelper.Get<UnityEngine.Vector2>(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                argobj0 = argobj0 != null ? argobj0 : StaticTranslate<UnityEngine.Vector2>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); UnityEngine.Vector2 arg0 = (UnityEngine.Vector2)argobj0;
+                UnityEngine.Input.compositionCursorPos = arg0;
                 
             }
             catch (Exception e)
@@ -839,8 +1035,10 @@ namespace PuertsStaticWrap
             try
             {
                 
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                UnityEngine.Input.multiTouchEnabled = argHelper.GetBoolean(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                bool arg0 = (bool)PuertsDLL.GetBooleanFromValue(isolate, v8Value0, false);
+                UnityEngine.Input.multiTouchEnabled = arg0;
                 
             }
             catch (Exception e)
@@ -900,8 +1098,10 @@ namespace PuertsStaticWrap
             try
             {
                 
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                UnityEngine.Input.compensateSensors = argHelper.GetBoolean(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                bool arg0 = (bool)PuertsDLL.GetBooleanFromValue(isolate, v8Value0, false);
+                UnityEngine.Input.compensateSensors = arg0;
                 
             }
             catch (Exception e)
@@ -946,8 +1146,10 @@ namespace PuertsStaticWrap
             try
             {
                 
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                UnityEngine.Input.backButtonLeavesApp = argHelper.GetBoolean(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                bool arg0 = (bool)PuertsDLL.GetBooleanFromValue(isolate, v8Value0, false);
+                UnityEngine.Input.backButtonLeavesApp = arg0;
                 
             }
             catch (Exception e)
@@ -1030,7 +1232,19 @@ namespace PuertsStaticWrap
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-                
+            
+    // ==================== properties end ====================
+    // ==================== array item get/set start ====================
+    
+    
+    // ==================== array item get/set end ====================
+    // ==================== operator start ====================
+    
+    // ==================== operator end ====================
+    // ==================== events start ====================
+    
+    // ==================== events end ====================
+
         public static Puerts.TypeRegisterInfo GetRegisterInfo()
         {
             return new Puerts.TypeRegisterInfo()

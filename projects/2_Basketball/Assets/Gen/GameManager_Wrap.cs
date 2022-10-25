@@ -1,35 +1,53 @@
 ﻿
 using System;
+using Puerts;
 
 namespace PuertsStaticWrap
 {
-    public static class GameManager_Wrap
+    public static class GameManager_Wrap 
     {
-
+    
+    
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
         private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
 
-                {
+    
             
+                {
+                
+                
+                    
+
                     {
-                
+                    
                         var result = new GameManager();
-                
+
+                    
+
+                    
                         return Puerts.Utils.GetObjectPtr((int)data, typeof(GameManager), result);
                     
                     }
-                
+                    
                 }
-            
-    
+        
+
+
             } catch (Exception e) {
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
             return IntPtr.Zero;
         }
+    // ==================== constructor end ====================
+
+    // ==================== methods start ====================
+
+    // ==================== methods end ====================
+
+    // ==================== properties start ====================
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void G_BallSpawnPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
@@ -52,8 +70,10 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as GameManager;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.BallSpawnPoint = argHelper.Get<UnityEngine.GameObject>(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                argobj0 = argobj0 != null ? argobj0 : StaticTranslate<UnityEngine.GameObject>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); UnityEngine.GameObject arg0 = (UnityEngine.GameObject)argobj0;
+                obj.BallSpawnPoint = arg0;
                 
             }
             catch (Exception e)
@@ -83,8 +103,10 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as GameManager;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.BallPrefab = argHelper.Get<UnityEngine.GameObject>(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                argobj0 = argobj0 != null ? argobj0 : StaticTranslate<UnityEngine.GameObject>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); UnityEngine.GameObject arg0 = (UnityEngine.GameObject)argobj0;
+                obj.BallPrefab = arg0;
                 
             }
             catch (Exception e)
@@ -114,8 +136,10 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as GameManager;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.PrescoreTrigger = argHelper.Get<UnityEngine.Collider>(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                argobj0 = argobj0 != null ? argobj0 : StaticTranslate<UnityEngine.Collider>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); UnityEngine.Collider arg0 = (UnityEngine.Collider)argobj0;
+                obj.PrescoreTrigger = arg0;
                 
             }
             catch (Exception e)
@@ -145,8 +169,10 @@ namespace PuertsStaticWrap
             try
             {
                 var obj = Puerts.Utils.GetSelf((int)data, self) as GameManager;
-                var argHelper = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
-                obj.ScoredTrigger = argHelper.Get<UnityEngine.Collider>(false);
+                IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
+                object argobj0 = null;
+                argobj0 = argobj0 != null ? argobj0 : StaticTranslate<UnityEngine.Collider>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); UnityEngine.Collider arg0 = (UnityEngine.Collider)argobj0;
+                obj.ScoredTrigger = arg0;
                 
             }
             catch (Exception e)
@@ -154,7 +180,19 @@ namespace PuertsStaticWrap
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
-                
+            
+    // ==================== properties end ====================
+    // ==================== array item get/set start ====================
+    
+    
+    // ==================== array item get/set end ====================
+    // ==================== operator start ====================
+    
+    // ==================== operator end ====================
+    // ==================== events start ====================
+    
+    // ==================== events end ====================
+
         public static Puerts.TypeRegisterInfo GetRegisterInfo()
         {
             return new Puerts.TypeRegisterInfo()

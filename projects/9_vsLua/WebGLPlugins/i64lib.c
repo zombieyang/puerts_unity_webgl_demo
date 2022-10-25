@@ -406,7 +406,7 @@ static int uint64_tostring(lua_State* L) {
 #if ( defined (_WIN32) ||  defined (_WIN64) ) && !defined (__MINGW32__) && !defined (__MINGW64__)
 	sprintf_s(temp, sizeof(temp), "%"PRIu64, n);
 #else
-	snprintf(temp, sizeof(temp), "%"PRIu64, n);
+	snprintf(temp, sizeof(temp), "%" PRIu64, n);
 #endif
 	
 	lua_pushstring(L, temp);

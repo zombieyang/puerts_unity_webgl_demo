@@ -1,5 +1,4 @@
-import { GameManager, JsMonoBehaviour, UnityEngine } from 'csharp'
-import { $typeof } from 'puerts';
+import { JsMonoBehaviour, UnityEngine } from 'csharp'
 import { JsBehaviour } from './Base/base'
 import { JSGameManager } from './JSGameManager';
 

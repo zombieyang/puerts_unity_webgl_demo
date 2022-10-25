@@ -1,5 +1,4 @@
 const speed = 10;
-const CS = global.csharp;
 
 class Rotate {
     constructor(bindTo) {

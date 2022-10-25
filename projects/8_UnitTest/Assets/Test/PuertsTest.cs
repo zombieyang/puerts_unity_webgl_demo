@@ -88,9 +88,9 @@ namespace PuertsTest
         /**
         * 判断引用即可
         */
-        public DateTime DateTestPipeLine(DateTime initialValue, out DateTime outArg, Func<DateTime, DateTime> JSValueHandler) 
+        public DateTime DateTestPipeLine(DateTime initialValue, out DateTime outArg, Func<DateTime, DateTime> JSValueHandler)
         {
-            AssertAndPrint("CSGetDateArgFromJS", initialValue.ToString() == "1998/11/11 0:00:00");
+            AssertAndPrint("CSGetDateArgFromJS", new DateTimeOffset(initialValue).ToUnixTimeMilliseconds() == 910713600000);
             AssertAndPrint("CSGetDateReturnFromJS", JSValueHandler(initialValue) == initialValue);
             outArg = initialValue;
             return initialValue;

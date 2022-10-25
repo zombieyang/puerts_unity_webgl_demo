@@ -7,7 +7,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.init = void 0;
 const speed = 10;
-const CS = global.csharp;
 
 class Rotate {
   constructor(bindTo) {
@@ -46,10 +45,6 @@ var global = global || globalThis || function () {
   return this;
 }();
 
-let loader = global.__tgjsGetLoader();
-
-delete global.__tgjsGetLoader;
-
 function pathNormalize(path) {
   let reversePathFrags = path.split('/').reverse();
   let newPathFrags = [];
@@ -72,13 +67,13 @@ function pathNormalize(path) {
 function searchModuleInDirWithExt(dir, requiredModule) {
   var searchPath = pathNormalize(dir + '/' + requiredModule);
 
-  if (loader.FileExists(searchPath)) {
+  if (puer.fileExists(searchPath)) {
     return searchPath;
   }
 
   searchPath = pathNormalize(dir + '/node_modules/' + requiredModule);
 
-  if (loader.FileExists(searchPath)) {
+  if (puer.fileExists(searchPath)) {
     return searchPath;
   }
 }
@@ -120,17 +115,7 @@ function searchModule(dir, requiredModule) {
   }
 }
 
-function loadFile(path) {
-  let debugPath = {};
-  var context = loader.ReadFile(path, debugPath);
-  return {
-    context: context,
-    debugPath: debugPath.value
-  };
-}
-
 puerts.searchModule = searchModule;
-puerts.loadFile = loadFile;
         }),"puerts/csharp.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -145,7 +130,7 @@ var global = global || globalThis || function () {
 }();
 
 function csTypeToClass(csType) {
-  let cls = puerts.loadType(csType);
+  let cls = puer.loadType(csType);
 
   if (cls) {
     let currentCls = cls,
@@ -194,12 +179,22 @@ function csTypeToClass(csType) {
       }
     }
 
-    let nestedTypes = puerts.getNestedTypes(csType);
+    let nestedTypes = puer.getNestedTypes(csType);
 
     if (nestedTypes) {
       for (var i = 0; i < nestedTypes.Length; i++) {
         let ntype = nestedTypes.get_Item(i);
-        cls[ntype.Name] = csTypeToClass(ntype);
+
+        if (ntype.IsGenericType) {
+          let name = ntype.Name.split('`')[0] + '$' + ntype.GetGenericArguments().Length;
+          let fullName = ntype.FullName.split('`')[0]
+          /**.replace(/\+/g, '.') */
+          + '$' + ntype.GetGenericArguments().Length;
+          let genericTypeInfo = cls[name] = new Map();
+          genericTypeInfo.set('$name', fullName.replace('$', '`'));
+        } else {
+          cls[ntype.Name] = csTypeToClass(ntype);
+        }
       }
     }
   }
@@ -209,7 +204,7 @@ function csTypeToClass(csType) {
 
 function Namespace() {}
 
-puerts.__$NamespaceType = Namespace;
+puer.__$NamespaceType = Namespace;
 
 function createTypeProxy(namespace) {
   return new Proxy(new Namespace(), {
@@ -238,7 +233,7 @@ function createTypeProxy(namespace) {
 
 let csharpModule = createTypeProxy(undefined);
 csharpModule.default = csharpModule;
-puerts.registerBuildinModule('csharp', csharpModule);
+global.CS = csharpModule;
 csharpModule.System.Object.prototype.toString = csharpModule.System.Object.prototype.ToString;
 
 function ref(x) {
@@ -257,7 +252,7 @@ function setref(x, val) {
 
 function taskToPromise(task) {
   return new Promise((resolve, reject) => {
-    task.GetAwaiter().OnCompleted(() => {
+    task.GetAwaiter().UnsafeOnCompleted(() => {
       let t = task;
       task = undefined;
 
@@ -292,7 +287,7 @@ function makeGeneric(genericTypeInfo, ...genericArgs) {
   }
 
   if (!p.has('$type')) {
-    p.set('$type', puerts.loadType(genericTypeInfo.get('$name'), ...genericArgs));
+    p.set('$type', puer.loadType(genericTypeInfo.get('$name'), ...genericArgs));
   }
 
   return p.get('$type');
@@ -300,7 +295,7 @@ function makeGeneric(genericTypeInfo, ...genericArgs) {
 
 function makeGenericMethod(cls, methodName, ...genericArgs) {
   if (cls && typeof methodName == 'string' && genericArgs && genericArgs.length > 0) {
-    return puerts.getGenericMethod(puerts.$typeof(cls), methodName, ...genericArgs);
+    return puer.getGenericMethod(puer.$typeof(cls), methodName, ...genericArgs);
   } else {
     throw new Error("invalid arguments for makeGenericMethod");
   }
@@ -347,20 +342,20 @@ function doExtension(cls, extension) {
   });
 }
 
-puerts.$ref = ref;
-puerts.$unref = unref;
-puerts.$set = setref;
-puerts.$promise = taskToPromise;
-puerts.$generic = makeGeneric;
-puerts.$genericMethod = makeGenericMethod;
-puerts.$typeof = getType;
+puer.$ref = ref;
+puer.$unref = unref;
+puer.$set = setref;
+puer.$promise = taskToPromise;
+puer.$generic = makeGeneric;
+puer.$genericMethod = makeGenericMethod;
+puer.$typeof = getType;
 
-puerts.$extension = (cls, extension) => {
+puer.$extension = (cls, extension) => {
   typeof console != 'undefined' && console.warn(`deprecated! if you already generate static wrap for ${cls} and ${extension}, you are no need to invoke $extension`);
   return doExtension(cls, extension);
 };
 
-puerts.$reflectExtension = doExtension;
+puer.$reflectExtension = doExtension;
         }),"puerts/dispose.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -374,17 +369,17 @@ var global = global || globalThis || function () {
 }();
 
 function resetAllFunctionWhenDisposed() {
-  global.puerts.disposed = true;
+  global.puer.disposed = true;
 
   const PuerIsDisposed = function () {
     throw new Error('puerts has disposed');
   };
 
-  puerts.loadType = PuerIsDisposed;
-  puerts.getNestedTypes = PuerIsDisposed;
+  puer.loadType = PuerIsDisposed;
+  puer.getNestedTypes = PuerIsDisposed;
 
   try {
-    setToGoodbyeFuncRecursive(require('csharp'));
+    setToGoodbyeFuncRecursive(CS);
   } catch (e) {}
 
   function setToGoodbyeFuncRecursive(obj) {
@@ -415,7 +410,7 @@ function resetAllFunctionWhenDisposed() {
         });
       }
 
-      if (obj[key] instanceof puerts.__$NamespaceType) {
+      if (obj[key] instanceof puer.__$NamespaceType) {
         Object.defineProperty(obj, key, {
           get: PuerIsDisposed,
           set: PuerIsDisposed
@@ -517,9 +512,9 @@ function spliceOne(list, index) {
   list.pop();
 }
 
-puerts.on = on;
-puerts.off = off;
-puerts.emit = emit;
+puer.on = on;
+puer.off = off;
+puer.emit = emit;
         }),"puerts/init.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -535,21 +530,37 @@ var global = global || globalThis || function () {
 
 
 global.global = global;
-let puerts = global.puerts = global.puerts || {};
-puerts.loadType = global.__tgjsLoadType;
+let puer = global.puer = global.puerts = global.puer || global.puerts || {};
+puer.loadType = global.__tgjsLoadType;
 delete global.__tgjsLoadType;
-puerts.getNestedTypes = global.__tgjsGetNestedTypes;
+puer.getNestedTypes = global.__tgjsGetNestedTypes;
 delete global.__tgjsGetNestedTypes;
-puerts.getGenericMethod = global.__tgjsGetGenericMethod;
+puer.getGenericMethod = global.__tgjsGetGenericMethod;
 delete global.__tgjsGetGenericMethod;
 
-puerts.evalScript = global.__tgjsEvalScript || function (script, debugPath) {
+puer.evalScript = global.__tgjsEvalScript || function (script, debugPath) {
   return eval(script);
 };
 
 delete global.__tgjsEvalScript;
-puerts.getLastException = global.__puertsGetLastException;
+puer.getLastException = global.__puertsGetLastException;
 delete global.__puertsGetLastException;
+
+let loader = global.__tgjsGetLoader();
+
+delete global.__tgjsGetLoader;
+
+function loadFile(path) {
+  let debugPath = {};
+  var content = loader.ReadFile(path, debugPath);
+  return {
+    content: content,
+    debugPath: debugPath.value
+  };
+}
+
+puer.loadFile = loadFile;
+puer.fileExists = loader.FileExists.bind(loader);
         }),"puerts/log.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -563,7 +574,7 @@ var global = global || globalThis || function () {
   return this;
 }();
 
-let UnityEngine_Debug = puerts.loadType('UnityEngine.Debug');
+let UnityEngine_Debug = puer.loadType('UnityEngine.Debug');
 
 if (UnityEngine_Debug) {
   const console_org = global.console;
@@ -572,7 +583,7 @@ if (UnityEngine_Debug) {
   function toString(args) {
     return Array.prototype.map.call(args, x => {
       try {
-        return x + '';
+        return x instanceof Error ? x.stack : x + '';
       } catch (err) {
         return err;
       }
@@ -621,7 +632,7 @@ if (UnityEngine_Debug) {
   };
 
   global.console = console;
-  puerts.console = console;
+  puer.console = console;
 }
         }),"puerts/modular.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
@@ -672,6 +683,12 @@ function executeModule(fullPath, script, debugPath, sid) {
 }
 
 function genRequire(requiringDir) {
+  if (requiringDir.indexOf(":") != -1) {
+    if (requiringDir.startsWith("puer:")) requiringDir = requiringDir.substr(5);else {
+      throw new Error("puer's genRequire can only support prefix with puer:");
+    }
+  }
+
   let localModuleCache = Object.create(null);
 
   function require(moduleName) {
@@ -696,10 +713,10 @@ function genRequire(requiringDir) {
     }
 
     let {
-      context,
+      content,
       debugPath
     } = puerts.loadFile(fullPath);
-    const script = context;
+    const script = content;
     let m = {
       "exports": {}
     };
@@ -741,17 +758,17 @@ function registerBuildinModule(name, module) {
 }
 
 registerBuildinModule("puerts", puerts);
+registerBuildinModule('csharp', CS);
 puerts.genRequire = genRequire;
 puerts.getModuleBySID = getModuleBySID;
 puerts.registerBuildinModule = registerBuildinModule;
 let nodeRequire = global.require;
 
 if (nodeRequire) {
-  global.require = global.puertsRequire = genRequire("");
   global.nodeRequire = nodeRequire;
-} else {
-  global.require = genRequire("");
 }
+
+global.require = puerts.require = genRequire("");
 
 function clearModuleCache() {
   tmpModuleStorage = [];
@@ -782,7 +799,8 @@ process.kill = function () {
   console.log('`process.kill` is not allowed in puerts');
 };
 
-const customPromisify = nodeRequire('util').promisify.custom;
+const customPromisify = require('util').promisify.custom;
+
 Object.defineProperty(setTimeout, customPromisify, {
   enumerable: true,
 
@@ -849,7 +867,8 @@ function promiseRejectHandler(type, promise, reason) {
         reason
       }); //maybe unhandledRejection
 
-      Promise.resolve().then(_ => unhandledRejection(promise, reason));
+      Promise.resolve().then(() => Promise.resolve()) // run after all microtasks
+      .then(_ => unhandledRejection(promise, reason));
       break;
 
     case kPromiseHandlerAddedAfterReject:
@@ -873,7 +892,7 @@ function unhandledRejection(promise, reason) {
     return;
   }
 
-  if (!puerts.emit('unhandledRejection', promiseInfo.reason, promise)) {
+  if (!puer.emit('unhandledRejection', promiseInfo.reason, promise)) {
     unhandledRejectionWarning(reason);
   }
 }
@@ -1071,14 +1090,5 @@ global.clearInterval = id => {
 };
 
 global.clearTimeout = global.clearInterval;
-        }),"puerts/webgl.mjs": (function(exports, require, module, __filename, __dirname) {
-            "use strict";
-
-var global = global || globalThis || function () {
-  return this;
-}();
-
-global.csharp = (typeof puertsRequire == 'undefined' ? require : puertsRequire)('csharp');
-global.puerts = (typeof puertsRequire == 'undefined' ? require : puertsRequire)('puerts');
         })};
     

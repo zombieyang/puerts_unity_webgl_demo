@@ -35,6 +35,9 @@ public class ExamplesCfg
         if (mb.Name == "IsJoystickPreconfigured") {
             return true;
         }
+        if (mb.Name == "MakeGenericSignatureType" || mb.Name == "IsCollectible") {
+            return true;
+        }
         return false;
-    }
+    } 
 }

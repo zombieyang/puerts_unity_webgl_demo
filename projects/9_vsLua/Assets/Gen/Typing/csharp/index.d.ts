@@ -1,9 +1,7 @@
-﻿   
-declare module 'csharp' {
-    import * as CSharp from 'csharp';
-    export default CSharp;
-}
-declare module 'csharp' {
+﻿
+    declare namespace CS {
+    //keep type incompatibility / 此属性保持类型不兼容
+    const __keep_incompatibility: unique symbol;
     interface $Ref<T> {
         value: T
     }
@@ -14,26 +12,26 @@ declare module 'csharp' {
         }
     }
     interface $Task<T> {}
-        class PerformanceHelper extends System.Object
-        {
-            public static JSNumber : UnityEngine.UI.Text
-            public static JSVector : UnityEngine.UI.Text
-            public static JSFibonacci : UnityEngine.UI.Text
-            public static LuaNumber : UnityEngine.UI.Text
-            public static LuaVector : UnityEngine.UI.Text
-            public static LuaFibonacci : UnityEngine.UI.Text
-            public static ReturnNumber ($num: number) : number
-            public static ReturnVector ($x: number, $y: number, $z: number) : UnityEngine.Vector3
-            public constructor ()
-        }
-        namespace System {
+    namespace System {
         class Object
         {
-        }
-        class Int32 extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>, System.IFormattable
-        {
+            protected [__keep_incompatibility]: never;
         }
         class ValueType extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Int32 extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IEquatable$1<T>
+        {
+        }
+        interface IFormattable
+        {
+        }
+        interface ISpanFormattable
         {
         }
         interface IComparable
@@ -45,31 +43,76 @@ declare module 'csharp' {
         interface IConvertible
         {
         }
-        interface IEquatable$1<T>
+        class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.Collections.ICollection, System.ICloneable, System.Collections.IEnumerable, System.Collections.IList
         {
-        }
-        interface IFormattable
-        {
-        }
-        class Array extends System.Object implements System.ICloneable, System.Collections.IEnumerable, System.Collections.IList, System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.Collections.ICollection
-        {
+            protected [__keep_incompatibility]: never;
         }
         interface ICloneable
         {
         }
     }
+        class PerformanceHelper extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static JSNumber : UnityEngine.UI.Text
+            public static JSVector : UnityEngine.UI.Text
+            public static JSFibonacci : UnityEngine.UI.Text
+            public static LuaNumber : UnityEngine.UI.Text
+            public static LuaVector : UnityEngine.UI.Text
+            public static LuaFibonacci : UnityEngine.UI.Text
+            public static ReturnNumber ($num: number) : number
+            public static ReturnVector ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            public constructor ()
+        }
+        namespace UnityEngine {
+        /** Base class for all objects Unity can reference.
+        */
+        class Object extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Base class for everything attached to GameObjects.
+        */
+        class Component extends UnityEngine.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Behaviours are Components that can be enabled or disabled.
+        */
+        class Behaviour extends UnityEngine.Component
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** MonoBehaviour is the base class from which every Unity script derives.
+        */
+        class MonoBehaviour extends UnityEngine.Behaviour
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Representation of 3D vectors and points.
+        */
+        class Vector3 extends System.ValueType implements System.IEquatable$1<UnityEngine.Vector3>, System.IFormattable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace UnityEngine.EventSystems {
+        class UIBehaviour extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
     namespace UnityEngine.UI {
-        class Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.UI.IClippable
+        class Graphic extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.UI.ICanvasElement
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface ICanvasElement
         {
         }
         class MaskableGraphic extends UnityEngine.UI.Graphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
         {
-        }
-        class Graphic extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.UI.ICanvasElement
-        {
-        }
-        interface ICanvasElement
-        {
+            protected [__keep_incompatibility]: never;
         }
         interface IMaterialModifier
         {
@@ -80,52 +123,32 @@ declare module 'csharp' {
         interface IClippable
         {
         }
+        class Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.UI.IClippable
+        {
+            protected [__keep_incompatibility]: never;
+        }
         interface ILayoutElement
         {
         }
     }
-    namespace UnityEngine.EventSystems {
-        class UIBehaviour extends UnityEngine.MonoBehaviour
-        {
-        }
-    }
-    namespace UnityEngine {
-        /** MonoBehaviour is the base class from which every Unity script derives. */
-        class MonoBehaviour extends UnityEngine.Behaviour
-        {
-        }
-        /** Behaviours are Components that can be enabled or disabled. */
-        class Behaviour extends UnityEngine.Component
-        {
-        }
-        /** Base class for everything attached to GameObjects. */
-        class Component extends UnityEngine.Object
-        {
-        }
-        /** Base class for all objects Unity can reference. */
-        class Object extends System.Object
-        {
-        }
-        /** Representation of 3D vectors and points. */
-        class Vector3 extends System.ValueType implements System.IEquatable$1<UnityEngine.Vector3>
-        {
-        }
-    }
     namespace System.Collections {
-        interface IEnumerable
-        {
-        }
-        interface IList extends System.Collections.IEnumerable, System.Collections.ICollection
-        {
-        }
-        interface ICollection extends System.Collections.IEnumerable
-        {
-        }
         interface IStructuralComparable
         {
         }
         interface IStructuralEquatable
         {
         }
+        interface ICollection extends System.Collections.IEnumerable
+        {
+        }
+        interface IEnumerable
+        {
+        }
+        interface IList extends System.Collections.ICollection, System.Collections.IEnumerable
+        {
+        }
     }
+}
+declare module 'csharp' {
+export = CS;
 }
