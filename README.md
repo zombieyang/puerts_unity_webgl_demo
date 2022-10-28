@@ -47,8 +47,7 @@
 
 #### install in your own project | 在你自己的项目中安装
 
-* [Install puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) first (by upm). then:
-* 首先[安装puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) (注意要用upm的方式)。随后：
+* [Install puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) first (by upm). then: | 首先[安装puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) (注意要用upm的方式)。随后：
 
     <details>
     <summary>Add from OpenUPM | available in 2018+</summary>
