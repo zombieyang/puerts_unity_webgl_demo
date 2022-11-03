@@ -94,12 +94,12 @@ Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本�
 
 ----------------------------------------------
 ## FAQ
-1. I got this error: | 我遇到了这个错误
+##### 1. I got this error: | 我遇到了这个错误
 > Unable to parse Build/H5.framework.js.gz! This can happen if build compression was enabled but web server hosting the content was misconfigured to not serve the file with HTTP Response Header "Content-Encoding: gzip" present. Check browser Console and Devtools Network tab to debug.
   * set `Player Settings > Publish Settings > Compression Format` to `Disabled`. delete your previous build and rebuild.
   * 将 `Player Settings > Publish Settings > Compression Format` 设为 `Disabled`。删掉你上一次的构建产物，然后重新构建。
 
-2. the memory rise to 2GB+ during the early launching | 游戏一启动内存就暴涨到2GB+
+##### 2. the memory rise to 2GB+ during the early launching | 游戏一启动内存就暴涨到2GB+
   * generally, you can check the resources loading in your game. make sure that you disable the Unity builtin caching.
   * 一般来说，你可以检查一下你游戏的资源加载流程，确认关掉了资源加载的cache。
 
