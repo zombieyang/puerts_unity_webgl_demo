@@ -12,7 +12,7 @@
 * High Efficiency | 开发很快
   * all the JS file can run in browser directly. you dont have to rebuild the unity project after JS script is modified.
   * 所有JS逻辑文件都可以直接在宿主JS环境跑，因此你不需要在每次改完脚本代码后重新构建unity项目了。
-  * 
+
 * Fast | 执行很快
   * with the JIT in browser's v8. Puer Webgl has a huge *execute performance* advantage.
   * 因为在这套架构下，JS是运行在宿主JS环境下的，有JIT的支持，因此相比Lua脚本方案，在*执行性能*上有碾压性的性能优势。
@@ -23,6 +23,13 @@
       |Puerts WebGL |   165ms     |
 
 ## QuickStart | 开始
+
+#### learn puerts | 建议先了解PuerTS本体
+* PuerTS is not only developed for WebGL game development. It allows you to write Typescript in Unity native game too.
+* PuerTS并不是只针对WebGL游戏开发的框架，它本身支持你在原生Unity中编写Typescript
+
+* So. the guidance below is assumed that you already know something about puerts. Or you can learn about it in [Tencent/puerts](https://github.com/Tencent/puerts)
+* 下列指引都是假设你已经有对PuerTS本身足够的了解。您可以先在 [Tencent/puerts](https://github.com/Tencent/puerts) 获得一些知识再往下进行。
 
 #### have a try | 体验一下效果
 
