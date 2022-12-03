@@ -52,7 +52,7 @@
   "scopedRegistries": [
     {
       "name": "package.openupm.com",
-      "url": "https://package.openupm.com",
+      "url": "https://package.openupm.cn",
       "scopes": [
         "com.openupm",
         "com.tencent.puerts.core"

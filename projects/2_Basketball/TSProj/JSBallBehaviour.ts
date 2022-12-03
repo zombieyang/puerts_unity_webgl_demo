@@ -1,11 +1,10 @@
-import { JsMonoBehaviour, UnityEngine } from 'csharp'
 import { JsBehaviour } from './Base/base'
 import { JSGameManager } from './JSGameManager';
 
-class JSBallBehaviour extends JsBehaviour<JsMonoBehaviour>{
+class JSBallBehaviour extends JsBehaviour<CS.JsMonoBehaviour>{
 
     protected prescore: boolean
-    OnTriggerEnter(trigger: UnityEngine.Collider) {
+    OnTriggerEnter(trigger: CS.UnityEngine.Collider) {
         if (trigger == JSGameManager.instance._mb.PrescoreTrigger) {
             this.prescore = true;
         }
