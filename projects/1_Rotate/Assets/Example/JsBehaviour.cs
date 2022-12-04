@@ -22,12 +22,9 @@ namespace PuertsTest
         {   
             PreventStripping();
             
-            if (jsEnv == null) {
-#if UNITY_WEBGL
-                jsEnv = Puerts.WebGL.GetBrowserEnv();
-#else 
-                jsEnv = new JsEnv();
-#endif 
+            if (jsEnv == null) 
+            {
+                jsEnv = Puerts.WebGL.MainEnv.Get();
             }
 
             var init = jsEnv.ExecuteModule<ModuleInit>(JSFileName, "init");

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "typeRoots": [
+      "../Assets/Gen/Typing",
+      "./Typing"
+    ]
+  },
+  "include": [
+    "./**/*.ts"
+  ]
+}
