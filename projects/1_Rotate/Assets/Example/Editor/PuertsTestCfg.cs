@@ -6,13 +6,19 @@ using UnityEngine;
 [Configure]
 public class PuertsTestCfg
 {
-    [Binding]
-    static IEnumerable<Type> Bindings
+    [Typing]
+    static IEnumerable<Type> Typing
     {
         get
         {
             return new List<Type>()
             {
+                typeof(PuertsTest.JsBehaviour),
+                typeof(UnityEngine.Component),
+                typeof(UnityEngine.Behaviour),
+                typeof(UnityEngine.MonoBehaviour),
+                typeof(UnityEngine.Transform),
+                typeof(UnityEngine.Vector3),
             };
         }
     }
