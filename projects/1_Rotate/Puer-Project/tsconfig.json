@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "target": "ES2015",
+    "module": "ES2015",
     "typeRoots": [
       "../Assets/Gen/Typing",
       "./Typing"
-    ]
+    ],
+    "outDir": "../Assets/Example/Resources"
   },
   "include": [
-    "./**/*.ts"
+    "./**/*.mts"
   ]
-}
+} 

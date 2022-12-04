@@ -15,25 +15,10 @@ public class JsMonoBehaviour : MonoBehaviour
     void Start()
     {
         if (env == null) {
-#if UNITY_WEBGL
-            env = Puerts.WebGL.GetBrowserEnv();
-#else 
-            env = new JsEnv();
-            env.Eval(@"
-                global.csharp = require('csharp')
-                global.puerts = require('puerts')
-            ");
-#endif 
+            env = Puerts.WebGL.MainEnv.Get(new Puerts.TSLoader());
         }
-        // Action<JsMonoBehaviour> init = env.Eval<Action<JsMonoBehaviour>>(@"
-        //     global.CS = require('csharp');
-
-        //     var jsCls = require('behaviours.cjs')." + JSClassName + @";
-        //     (function init(mono) {
-        //         return new jsCls(mono)
-        //     });
-        // ");
-        Action<JsMonoBehaviour> init = env.ExecuteModule<Action<JsMonoBehaviour>>("behaviours.mjs", JSClassName);
+        
+        Action<JsMonoBehaviour> init = env.ExecuteModule<Action<JsMonoBehaviour>>("entry.ts", JSClassName);
         init(this);
         if (JsStart!= null) JsStart();
     }
@@ -42,6 +27,7 @@ public class JsMonoBehaviour : MonoBehaviour
     public Action JsUpdate;
     void Update()
     {
+        if (env == null) return;
         env.Tick();
         if (JsUpdate!= null) JsUpdate();
     }
