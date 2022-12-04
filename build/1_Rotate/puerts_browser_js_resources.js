@@ -1,36 +1,37 @@
 
-        window.PUERTS_JS_RESOURCES = {"rotate.mjs": (function(exports, require, module, __filename, __dirname) {
+        window.PUERTS_JS_RESOURCES = {"config/const.mjs": (function(exports, require, module, __filename, __dirname) {
+            "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.speed = void 0;
+let speed = 10;
+exports.speed = speed;
+        }),"rotate.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.init = void 0;
-const speed = 10;
-
+var _const = require("./config/const.mjs");
 class Rotate {
   constructor(bindTo) {
     this.bindTo = bindTo;
-
     this.bindTo.JsUpdate = () => this.onUpdate();
-
     this.bindTo.JsOnDestroy = () => this.onDestroy();
   }
-
   onUpdate() {
     //js不支持操作符重载所以Vector3的乘这么用
-    let r = CS.UnityEngine.Vector3.op_Multiply(CS.UnityEngine.Vector3.up, 0.016 * speed);
+    let r = CS.UnityEngine.Vector3.op_Multiply(CS.UnityEngine.Vector3.up, 0.016 * _const.speed);
     this.bindTo.transform.Rotate(r);
   }
-
   onDestroy() {}
-
 }
-
 var init = function (bindTo) {
   new Rotate(bindTo);
 };
-
 exports.init = init;
         }),"puerts/cjsload.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
@@ -41,17 +42,15 @@ exports.init = init;
  * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
  * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
  */
+
 var global = global || globalThis || function () {
   return this;
 }();
-
 function pathNormalize(path) {
   let reversePathFrags = path.split('/').reverse();
   let newPathFrags = [];
-
   while (reversePathFrags.length > 0) {
     let el = reversePathFrags.pop();
-
     if (el != "" && el != ".") {
       if (el == ".." && newPathFrags.length > 0 && newPathFrags[newPathFrags.length - 1] != "..") {
         newPathFrags.pop();
@@ -60,33 +59,25 @@ function pathNormalize(path) {
       }
     }
   }
-
   return newPathFrags.join("/");
 }
-
 function searchModuleInDirWithExt(dir, requiredModule) {
   var searchPath = pathNormalize(dir + '/' + requiredModule);
-
   if (puer.fileExists(searchPath)) {
     return searchPath;
   }
-
   searchPath = pathNormalize(dir + '/node_modules/' + requiredModule);
-
   if (puer.fileExists(searchPath)) {
     return searchPath;
   }
 }
-
 function getFileExtension(filepath) {
   let last = filepath.split('/').pop();
   let frags = last.split('.');
-
   if (frags.length > 1) {
     return frags.pop();
   }
 }
-
 function searchModuleInDir(dir, requiredModule) {
   if (getFileExtension(requiredModule)) {
     return searchModuleInDirWithExt(dir, requiredModule) || searchModuleInDirWithExt(dir, requiredModule + "/index.js") || searchModuleInDirWithExt(dir, requiredModule + "/package.json");
@@ -94,27 +85,22 @@ function searchModuleInDir(dir, requiredModule) {
     return searchModuleInDirWithExt(dir, requiredModule + ".js") || searchModuleInDirWithExt(dir, requiredModule + ".cjs") || searchModuleInDirWithExt(dir, requiredModule + "/index.js") || searchModuleInDirWithExt(dir, requiredModule + "/package.json");
   }
 }
-
 function searchModule(dir, requiredModule) {
   var result = searchModuleInDir(dir, requiredModule);
   if (result) return result;
-
   if (dir != "" && !requiredModule.endsWith(".js")) {
     let pathFrags = dir.split('/');
     pathFrags.pop();
     pathFrags.unshift('');
-
     while (pathFrags.length > 0) {
       if (pathFrags[pathFrags.length - 1] != "node_modules") {
         result = searchModuleInDir(pathFrags.join("/"), requiredModule);
         if (result) return result;
       }
-
       pathFrags.pop();
     }
   }
 }
-
 puerts.searchModule = searchModule;
         }),"puerts/csharp.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
@@ -125,32 +111,28 @@ puerts.searchModule = searchModule;
  * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
  * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
  */
+
 var global = global || globalThis || function () {
   return this;
 }();
-
 function csTypeToClass(csType) {
   let cls = puer.loadType(csType);
-
   if (cls) {
     let currentCls = cls,
-        parentPrototype = Object.getPrototypeOf(currentCls.prototype); // 此处parentPrototype如果是一个泛型，会丢失父父的继承信息，必须循环找下去
+      parentPrototype = Object.getPrototypeOf(currentCls.prototype);
 
+    // 此处parentPrototype如果是一个泛型，会丢失父父的继承信息，必须循环找下去
     while (parentPrototype) {
       Object.setPrototypeOf(currentCls, parentPrototype.constructor); //v8 api的inherit并不能把静态属性也继承，通过这种方式修复下
-
       currentCls.__static_inherit__ = true;
       currentCls = parentPrototype.constructor;
       parentPrototype = Object.getPrototypeOf(currentCls.prototype);
       if (currentCls === Object || currentCls === Function || currentCls.__static_inherit__) break;
     }
-
     let readonlyStaticMembers;
-
     if (readonlyStaticMembers = cls.__puertsMetadata.get('readonlyStaticMembers')) {
       for (var key in cls) {
         let desc = Object.getOwnPropertyDescriptor(cls, key);
-
         if (readonlyStaticMembers.has(key) && desc && typeof desc.get == 'function' && typeof desc.value == 'undefined') {
           let getter = desc.get;
           let value;
@@ -161,16 +143,12 @@ function csTypeToClass(csType) {
                 value = getter();
                 valueGetted = true;
               }
-
               return value;
             },
-
             configurable: false
           }));
-
           if (cls.__p_isEnum) {
             const val = cls[key];
-
             if (typeof val == 'number') {
               cls[val] = key;
             }
@@ -178,18 +156,13 @@ function csTypeToClass(csType) {
         }
       }
     }
-
     let nestedTypes = puer.getNestedTypes(csType);
-
     if (nestedTypes) {
       for (var i = 0; i < nestedTypes.Length; i++) {
         let ntype = nestedTypes.get_Item(i);
-
         if (ntype.IsGenericType) {
           let name = ntype.Name.split('`')[0] + '$' + ntype.GetGenericArguments().Length;
-          let fullName = ntype.FullName.split('`')[0]
-          /**.replace(/\+/g, '.') */
-          + '$' + ntype.GetGenericArguments().Length;
+          let fullName = ntype.FullName.split('`')[0] /**.replace(/\+/g, '.') */ + '$' + ntype.GetGenericArguments().Length;
           let genericTypeInfo = cls[name] = new Map();
           genericTypeInfo.set('$name', fullName.replace('$', '`'));
         } else {
@@ -198,30 +171,25 @@ function csTypeToClass(csType) {
       }
     }
   }
-
   return cls;
 }
-
 function Namespace() {}
-
 puer.__$NamespaceType = Namespace;
-
 function createTypeProxy(namespace) {
   return new Proxy(new Namespace(), {
     get: function (cache, name) {
       if (!(name in cache)) {
         let fullName = namespace ? namespace + '.' + name : name;
-
         if (/\$\d+$/.test(name)) {
           let genericTypeInfo = cache[name] = new Map();
           genericTypeInfo.set('$name', fullName.replace('$', '`'));
         } else {
           let cls = csTypeToClass(fullName);
-
           if (cls) {
             cache[name] = cls;
           } else {
-            cache[name] = createTypeProxy(fullName); //console.log(fullName + ' is a namespace');
+            cache[name] = createTypeProxy(fullName);
+            //console.log(fullName + ' is a namespace');
           }
         }
       }
@@ -230,32 +198,26 @@ function createTypeProxy(namespace) {
     }
   });
 }
-
 let csharpModule = createTypeProxy(undefined);
 csharpModule.default = csharpModule;
 global.CS = csharpModule;
 csharpModule.System.Object.prototype.toString = csharpModule.System.Object.prototype.ToString;
-
 function ref(x) {
   return {
     value: x
   };
 }
-
 function unref(r) {
   return r.value;
 }
-
 function setref(x, val) {
   x.value = val;
 }
-
 function taskToPromise(task) {
   return new Promise((resolve, reject) => {
     task.GetAwaiter().UnsafeOnCompleted(() => {
       let t = task;
       task = undefined;
-
       if (t.IsFaulted) {
         if (t.Exception) {
           if (t.Exception.InnerException) {
@@ -272,27 +234,20 @@ function taskToPromise(task) {
     });
   });
 }
-
 function makeGeneric(genericTypeInfo, ...genericArgs) {
   let p = genericTypeInfo;
-
   for (var i = 0; i < genericArgs.length; i++) {
     let genericArg = genericArgs[i];
-
     if (!p.has(genericArg)) {
       p.set(genericArg, new Map());
     }
-
     p = p.get(genericArg);
   }
-
   if (!p.has('$type')) {
     p.set('$type', puer.loadType(genericTypeInfo.get('$name'), ...genericArgs));
   }
-
   return p.get('$type');
 }
-
 function makeGenericMethod(cls, methodName, ...genericArgs) {
   if (cls && typeof methodName == 'string' && genericArgs && genericArgs.length > 0) {
     return puer.getGenericMethod(puer.$typeof(cls), methodName, ...genericArgs);
@@ -300,11 +255,9 @@ function makeGenericMethod(cls, methodName, ...genericArgs) {
     throw new Error("invalid arguments for makeGenericMethod");
   }
 }
-
 function getType(cls) {
   return cls.__p_innerType;
 }
-
 function bindThisToFirstArgument(func, parentFunc) {
   if (parentFunc) {
     return function (...args) {
@@ -313,23 +266,19 @@ function bindThisToFirstArgument(func, parentFunc) {
       } catch {
         return parentFunc.call(this, ...args);
       }
-
       ;
     };
   }
-
   return function (...args) {
     return func.apply(null, [this, ...args]);
   };
 }
-
 function doExtension(cls, extension) {
   // if you already generate static wrap for cls and extension, then you are no need to invoke this function
   // 如果你已经为extension和cls生成静态wrap，则不需要调用这个函数。
   var parentPrototype = Object.getPrototypeOf(cls.prototype);
   Object.keys(extension).forEach(key => {
     var func = extension[key];
-
     if (typeof func == 'function' && key != 'constructor' && !(key in cls.prototype)) {
       var parentFunc = parentPrototype ? parentPrototype[key] : undefined;
       parentFunc = typeof parentFunc === "function" ? parentFunc : undefined;
@@ -341,7 +290,6 @@ function doExtension(cls, extension) {
     }
   });
 }
-
 puer.$ref = ref;
 puer.$unref = unref;
 puer.$set = setref;
@@ -349,12 +297,10 @@ puer.$promise = taskToPromise;
 puer.$generic = makeGeneric;
 puer.$genericMethod = makeGenericMethod;
 puer.$typeof = getType;
-
 puer.$extension = (cls, extension) => {
   typeof console != 'undefined' && console.warn(`deprecated! if you already generate static wrap for ${cls} and ${extension}, you are no need to invoke $extension`);
   return doExtension(cls, extension);
 };
-
 puer.$reflectExtension = doExtension;
         }),"puerts/dispose.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
@@ -363,25 +309,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = resetAllFunctionWhenDisposed;
-
 var global = global || globalThis || function () {
   return this;
 }();
-
 function resetAllFunctionWhenDisposed() {
   global.puer.disposed = true;
-
   const PuerIsDisposed = function () {
     throw new Error('puerts has disposed');
   };
-
   puer.loadType = PuerIsDisposed;
   puer.getNestedTypes = PuerIsDisposed;
-
   try {
     setToGoodbyeFuncRecursive(CS);
   } catch (e) {}
-
   function setToGoodbyeFuncRecursive(obj) {
     Object.keys(obj).forEach(key => {
       if (obj[key] == obj) {
@@ -389,7 +329,6 @@ function resetAllFunctionWhenDisposed() {
       }
 
       setToGoodbyeFuncRecursive(obj[key]);
-
       if (typeof obj[key] == 'function' && obj[key].prototype) {
         const prototype = obj[key].prototype;
         Object.keys(prototype).forEach(pkey => {
@@ -409,7 +348,6 @@ function resetAllFunctionWhenDisposed() {
           }
         });
       }
-
       if (obj[key] instanceof puer.__$NamespaceType) {
         Object.defineProperty(obj, key, {
           get: PuerIsDisposed,
@@ -428,23 +366,20 @@ function resetAllFunctionWhenDisposed() {
 * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
 * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
 */
+
 var global = global || globalThis || function () {
   return this;
 }();
-
 let events = Object.create(null);
 let eventsCount = 0;
-
 function checkListener(listener) {
   if (typeof listener !== 'function') {
     throw new Error('listener expect a function');
   }
 }
-
 function on(type, listener, prepend) {
   checkListener(listener);
   let existing = events[type];
-
   if (existing === undefined) {
     events[type] = listener;
     ++eventsCount;
@@ -458,12 +393,10 @@ function on(type, listener, prepend) {
     }
   }
 }
-
 function off(type, listener) {
   checkListener(listener);
   const list = events[type];
   if (list === undefined) return;
-
   if (list === listener) {
     if (--eventsCount === 0) events = Object.create(null);else {
       delete events[type];
@@ -481,37 +414,27 @@ function off(type, listener) {
     }
   }
 }
-
 function emit(type, ...args) {
   const listener = events[type];
   if (listener === undefined) return false;
-
   if (typeof listener === 'function') {
     Reflect.apply(listener, this, args);
   } else {
     const len = listener.length;
     const listeners = arrayClone(listener, len);
-
     for (var i = 0; i < len; ++i) Reflect.apply(listeners[i], this, args);
   }
-
   return true;
 }
-
 function arrayClone(arr, n) {
   const copy = new Array(n);
-
   for (var i = 0; i < n; ++i) copy[i] = arr[i];
-
   return copy;
 }
-
 function spliceOne(list, index) {
   for (; index + 1 < list.length; index++) list[index] = list[index + 1];
-
   list.pop();
 }
-
 puer.on = on;
 puer.off = off;
 puer.emit = emit;
@@ -524,11 +447,11 @@ puer.emit = emit;
  * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
  * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
  */
+
 var global = global || globalThis || function () {
   return this;
-}(); // polyfill old code after use esm module.
-
-
+}();
+// polyfill old code after use esm module.
 global.global = global;
 let puer = global.puer = global.puerts = global.puer || global.puerts || {};
 puer.loadType = global.__tgjsLoadType;
@@ -537,19 +460,14 @@ puer.getNestedTypes = global.__tgjsGetNestedTypes;
 delete global.__tgjsGetNestedTypes;
 puer.getGenericMethod = global.__tgjsGetGenericMethod;
 delete global.__tgjsGetGenericMethod;
-
 puer.evalScript = global.__tgjsEvalScript || function (script, debugPath) {
   return eval(script);
 };
-
 delete global.__tgjsEvalScript;
 puer.getLastException = global.__puertsGetLastException;
 delete global.__puertsGetLastException;
-
 let loader = global.__tgjsGetLoader();
-
 delete global.__tgjsGetLoader;
-
 function loadFile(path) {
   let debugPath = {};
   var content = loader.ReadFile(path, debugPath);
@@ -558,7 +476,6 @@ function loadFile(path) {
     debugPath: debugPath.value
   };
 }
-
 puer.loadFile = loadFile;
 puer.fileExists = loader.FileExists.bind(loader);
         }),"puerts/log.mjs": (function(exports, require, module, __filename, __dirname) {
@@ -570,16 +487,14 @@ puer.fileExists = loader.FileExists.bind(loader);
  * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
  * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
  */
+
 var global = global || globalThis || function () {
   return this;
 }();
-
 let UnityEngine_Debug = puer.loadType('UnityEngine.Debug');
-
 if (UnityEngine_Debug) {
   const console_org = global.console;
   var console = {};
-
   function toString(args) {
     return Array.prototype.map.call(args, x => {
       try {
@@ -589,48 +504,37 @@ if (UnityEngine_Debug) {
       }
     }).join(',');
   }
-
   function getStack(error) {
     let stack = error.stack; // get js stack
-
     stack = stack.substring(stack.indexOf("\n") + 1); // remove first line ("Error")
-
     stack = stack.replace(/^ {4}/gm, ""); // remove indentation
-
     return stack;
   }
-
   console.log = function () {
     if (console_org) console_org.log.apply(null, Array.prototype.slice.call(arguments));
     UnityEngine_Debug.Log(toString(arguments));
   };
-
   console.info = function () {
     if (console_org) console_org.info.apply(null, Array.prototype.slice.call(arguments));
     UnityEngine_Debug.Log(toString(arguments));
   };
-
   console.warn = function () {
     if (console_org) console_org.warn.apply(null, Array.prototype.slice.call(arguments));
     UnityEngine_Debug.LogWarning(toString(arguments));
   };
-
   console.error = function () {
     if (console_org) console_org.error.apply(null, Array.prototype.slice.call(arguments));
     UnityEngine_Debug.LogError(toString(arguments));
   };
-
   console.trace = function () {
     if (console_org) console_org.trace.apply(null, Array.prototype.slice.call(arguments));
     UnityEngine_Debug.Log(toString(arguments) + "\n" + getStack(new Error()) + "\n");
   };
-
   console.assert = function (condition) {
     if (console_org) console_org.assert.apply(null, Array.prototype.slice.call(arguments));
     if (condition) return;
     if (arguments.length > 1) UnityEngine_Debug.Assert(false, "Assertion failed: " + toString(Array.prototype.slice.call(arguments, 1)) + "\n" + getStack(new Error()) + "\n");else UnityEngine_Debug.Assert(false, "Assertion failed: console.assert\n" + getStack(new Error()) + "\n");
   };
-
   global.console = console;
   puer.console = console;
 }
@@ -643,12 +547,11 @@ if (UnityEngine_Debug) {
  * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
  * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
  */
+
 var global = global || globalThis || function () {
   return this;
 }();
-
 let moduleCache = Object.create(null); // key to sid
-
 let tmpModuleStorage = []; // sid to module
 
 function addModule(m) {
@@ -658,16 +561,12 @@ function addModule(m) {
       return i;
     }
   }
-
   return tmpModuleStorage.push(m) - 1;
 }
-
 function getModuleBySID(id) {
   return tmpModuleStorage[id];
 }
-
 let buildinModule = Object.create(null);
-
 function executeModule(fullPath, script, debugPath, sid) {
   sid = typeof sid == 'undefined' ? 0 : sid;
   let fullPathInJs = fullPath.replace(/\\/g, '\\\\');
@@ -675,28 +574,25 @@ function executeModule(fullPath, script, debugPath, sid) {
   let exports = {};
   let module = puerts.getModuleBySID(sid);
   module.exports = exports;
-  let wrapped = puerts.evalScript( // Wrap the script in the same way NodeJS does it. It is important since IDEs (VSCode) will use this wrapper pattern
+  let wrapped = puerts.evalScript(
+  // Wrap the script in the same way NodeJS does it. It is important since IDEs (VSCode) will use this wrapper pattern
   // to enable stepping through original source in-place.
   "(function (exports, require, module, __filename, __dirname) { " + script + "\n});", debugPath);
   wrapped(exports, puerts.genRequire(fullDirInJs), module, fullPathInJs, fullDirInJs);
   return module.exports;
 }
-
 function genRequire(requiringDir) {
   if (requiringDir.indexOf(":") != -1) {
     if (requiringDir.startsWith("puer:")) requiringDir = requiringDir.substr(5);else {
       throw new Error("puer's genRequire can only support prefix with puer:");
     }
   }
-
   let localModuleCache = Object.create(null);
-
   function require(moduleName) {
     moduleName = moduleName.startsWith('./') ? moduleName.substr(2) : moduleName;
     if (moduleName in localModuleCache) return localModuleCache[moduleName].exports;
     if (moduleName in buildinModule) return buildinModule[moduleName];
     let fullPath = puerts.searchModule(requiringDir, moduleName);
-
     if (!fullPath) {
       try {
         return nodeRequire(moduleName);
@@ -704,14 +600,11 @@ function genRequire(requiringDir) {
         throw new Error("can not find " + moduleName);
       }
     }
-
     let key = fullPath;
-
     if (key in moduleCache) {
       localModuleCache[moduleName] = moduleCache[key];
       return localModuleCache[moduleName].exports;
     }
-
     let {
       content,
       debugPath
@@ -723,10 +616,8 @@ function genRequire(requiringDir) {
     localModuleCache[moduleName] = m;
     moduleCache[key] = m;
     let sid = addModule(m);
-
     if (fullPath.endsWith(".json")) {
       let packageConfigure = JSON.parse(script);
-
       if (fullPath.endsWith("package.json") && packageConfigure.main) {
         let fullDirInJs = fullPath.indexOf('/') != -1 ? fullPath.substring(0, fullPath.lastIndexOf("/")) : fullPath.substring(0, fullPath.lastIndexOf("\\")).replace(/\\/g, '\\\\');
         let tmpRequire = genRequire(fullDirInJs);
@@ -745,38 +636,29 @@ function genRequire(requiringDir) {
       return m.exports;
     }
   }
-
   require.clearModuleCache = () => {
     localModuleCache = Object.create(null);
   };
-
   return require;
 }
-
 function registerBuildinModule(name, module) {
   buildinModule[name] = module;
 }
-
 registerBuildinModule("puerts", puerts);
 registerBuildinModule('csharp', CS);
 puerts.genRequire = genRequire;
 puerts.getModuleBySID = getModuleBySID;
 puerts.registerBuildinModule = registerBuildinModule;
 let nodeRequire = global.require;
-
 if (nodeRequire) {
   global.nodeRequire = nodeRequire;
 }
-
 global.require = puerts.require = genRequire("");
-
 function clearModuleCache() {
   tmpModuleStorage = [];
   moduleCache = Object.create(null);
-
   global.require.clearModuleCache();
 }
-
 global.clearModuleCache = clearModuleCache;
         }),"puerts/nodepatch.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
@@ -787,35 +669,28 @@ global.clearModuleCache = clearModuleCache;
 * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms.
 * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
 */
+
 process.on('uncaughtException', e => {
   console.error(e);
 });
-
 process.exit = function () {
   console.log('`process.exit` is not allowed in puerts');
 };
-
 process.kill = function () {
   console.log('`process.kill` is not allowed in puerts');
 };
-
 const customPromisify = require('util').promisify.custom;
-
 Object.defineProperty(setTimeout, customPromisify, {
   enumerable: true,
-
   get() {
     return function (delay) {
       return new Promise(resolve => setTimeout(resolve, delay));
     };
   }
-
 });
-
 globalThis.setImmediate = function (fn) {
   return setTimeout(fn, 0);
 };
-
 globalThis.clearImmediate = function (fn) {
   clearTimeout(fn);
 };
@@ -828,10 +703,10 @@ globalThis.clearImmediate = function (fn) {
 * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms.
 * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
 */
+
 var global = global || globalThis || function () {
   return this;
 }();
-
 global.process = {
   env: {
     NODE_ENV: 'development'
@@ -846,57 +721,46 @@ global.process = {
  * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
  * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
  */
+
 var global = global || globalThis || function () {
   return this;
 }();
-
 const kPromiseRejectWithNoHandler = 0;
 const kPromiseHandlerAddedAfterReject = 1;
 const kPromiseRejectAfterResolved = 2;
 const kPromiseResolveAfterResolved = 3;
-
 global.__tgjsSetPromiseRejectCallback(promiseRejectHandler);
-
 delete global.__tgjsSetPromiseRejectCallback;
 const maybeUnhandledRejection = new WeakMap();
-
 function promiseRejectHandler(type, promise, reason) {
   switch (type) {
     case kPromiseRejectWithNoHandler:
       maybeUnhandledRejection.set(promise, {
         reason
       }); //maybe unhandledRejection
-
       Promise.resolve().then(() => Promise.resolve()) // run after all microtasks
       .then(_ => unhandledRejection(promise, reason));
       break;
-
     case kPromiseHandlerAddedAfterReject:
       handlerAddedAfterReject(promise);
       break;
-
     case kPromiseResolveAfterResolved:
       console.error('kPromiseResolveAfterResolved', promise, reason);
       break;
-
     case kPromiseRejectAfterResolved:
       console.error('kPromiseRejectAfterResolved', promise, reason);
       break;
   }
 }
-
 function unhandledRejection(promise, reason) {
   const promiseInfo = maybeUnhandledRejection.get(promise);
-
   if (promiseInfo === undefined) {
     return;
   }
-
   if (!puer.emit('unhandledRejection', promiseInfo.reason, promise)) {
     unhandledRejectionWarning(reason);
   }
 }
-
 function unhandledRejectionWarning(reason) {
   try {
     if (reason instanceof Error) {
@@ -906,10 +770,8 @@ function unhandledRejectionWarning(reason) {
     }
   } catch {}
 }
-
 function handlerAddedAfterReject(promise) {
   const promiseInfo = maybeUnhandledRejection.get(promise);
-
   if (promiseInfo !== undefined) {
     // cancel
     maybeUnhandledRejection.delete(promise);
@@ -924,54 +786,44 @@ function handlerAddedAfterReject(promise) {
 * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
 * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
 */
+
 var global = global || globalThis || function () {
   return this;
 }();
-
 class PriorityQueue {
   constructor(data = [], compare = (a, b) => a - b) {
     this.data = data;
     this.length = this.data.length;
     this.compare = compare;
-
     if (this.length > 0) {
       for (let i = (this.length >> 1) - 1; i >= 0; i--) this._down(i);
     }
   }
-
   push(item) {
     this.data.push(item);
     this.length++;
-
     this._up(this.length - 1);
   }
-
   pop() {
     if (this.length === 0) return undefined;
     const top = this.data[0];
     const bottom = this.data.pop();
     this.length--;
-
     if (this.length > 0) {
       this.data[0] = bottom;
-
       this._down(0);
     }
-
     return top;
   }
-
   peek() {
     return this.data[0];
   }
-
   _up(pos) {
     const {
       data,
       compare
     } = this;
     const item = data[pos];
-
     while (pos > 0) {
       const parent = pos - 1 >> 1;
       const current = data[parent];
@@ -979,10 +831,8 @@ class PriorityQueue {
       data[pos] = current;
       pos = parent;
     }
-
     data[pos] = item;
   }
-
   _down(pos) {
     const {
       data,
@@ -990,52 +840,38 @@ class PriorityQueue {
     } = this;
     const halfLength = this.length >> 1;
     const item = data[pos];
-
     while (pos < halfLength) {
       let left = (pos << 1) + 1;
       let best = data[left];
       const right = left + 1;
-
       if (right < this.length && compare(data[right], best) < 0) {
         left = right;
         best = data[right];
       }
-
       if (compare(best, item) >= 0) break;
       data[pos] = best;
       pos = left;
     }
-
     data[pos] = item;
   }
-
 }
-
 const removing_timers = new Set();
 const timers = new PriorityQueue([], (a, b) => a.next_time - b.next_time);
 let next = 0;
-
 global.__tgjsRegisterTickHandler(timerUpdate);
-
 delete global.__tgjsRegisterTickHandler;
-
 function timerUpdate() {
   let now = null;
-
   while (true) {
     const time = timers.peek();
-
     if (!time) {
       break;
     }
-
     if (!now) {
       now = Date.now();
     }
-
     if (time.next_time <= now) {
       timers.pop();
-
       if (removing_timers.has(time.id)) {
         removing_timers.delete(time.id);
       } else {
@@ -1043,7 +879,6 @@ function timerUpdate() {
           time.next_time = now + time.timeout;
           timers.push(time);
         }
-
         time.handler(...time.args);
       }
     } else {
@@ -1051,12 +886,10 @@ function timerUpdate() {
     }
   }
 }
-
 global.setTimeout = (fn, time, ...arg) => {
   if (typeof fn !== 'function') {
     throw new Error(`Callback must be a function. Received ${typeof fn}`);
   }
-
   let t = 0;
   if (time > 0) t = time;
   timers.push({
@@ -1067,12 +900,10 @@ global.setTimeout = (fn, time, ...arg) => {
   });
   return next;
 };
-
 global.setInterval = (fn, time, ...arg) => {
   if (typeof fn !== 'function') {
     throw new Error(`Callback must be a function. Received ${typeof fn}`);
   }
-
   let t = 10;
   if (time != null && time > 10) t = time;
   timers.push({
@@ -1084,11 +915,9 @@ global.setInterval = (fn, time, ...arg) => {
   });
   return next;
 };
-
 global.clearInterval = id => {
   removing_timers.add(id);
 };
-
 global.clearTimeout = global.clearInterval;
         })};
     

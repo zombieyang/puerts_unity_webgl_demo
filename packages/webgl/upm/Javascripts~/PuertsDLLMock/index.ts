@@ -102,22 +102,46 @@ global.PuertsWebGL = {
                             return 1024
     
                         } else {
-                            const result: any = { exports: {} };
-                            if (executeModuleCache[fileName]) {
-                                result.exports = executeModuleCache[fileName];
-
-                            } else {
-                                if (!PUERTS_JS_RESOURCES[fileName]) {
-                                    console.error('file not found' + fileName);
+                            function normalize(name: string, to: string) {
+                                if ('./' === to.substring(0, 2)) {
+                                    to = to.substring(2);
                                 }
-                                PUERTS_JS_RESOURCES[fileName](result.exports, global['require'], result)
-                                executeModuleCache[fileName] = result.exports;
+                                name = (name.endsWith('/') ? name : name.substring(0, name.lastIndexOf('/') + 1)) + to
+                                const pathSegs = name.replaceAll('//', '/').split('/');
+                                const retPath = [];
+                                for (let i = 0; i < pathSegs.length; i++) {
+                                    if (pathSegs[i] == '..')
+                                        retPath.pop();
+                                    else 
+                                        retPath.push(pathSegs[i]);
+
+                                }
+                                return retPath.join('/');
+                            }
+                            function mockRequire(specifier: string) {
+                                const result: any = { exports: {} };
+                                if (executeModuleCache[specifier]) {
+                                    result.exports = executeModuleCache[specifier];
+    
+                                } else {
+                                    if (!PUERTS_JS_RESOURCES[specifier]) {
+                                        console.error('file not found' + specifier);
+                                    }
+                                    PUERTS_JS_RESOURCES[specifier](result.exports, (specifierTo: string)=> {
+                                        return mockRequire(normalize(specifier, specifierTo));
+                                    }, result)
+                                    executeModuleCache[specifier] = result.exports;
+                                }
+
+                                return result.exports;
                             }
 
+                            const requireRet = mockRequire(fileName)
+
                             if (exportee) {
-                                engine.lastReturnCSResult = result.exports[UTF8ToString(exportee)];
+                                engine.lastReturnCSResult = requireRet[UTF8ToString(exportee)];
                             } else {
-                                engine.lastReturnCSResult = result.exports;
+                                engine.lastReturnCSResult = requireRet;
                             }
                             return 1024
                         }

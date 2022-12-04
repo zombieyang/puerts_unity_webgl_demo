@@ -1,0 +1,16 @@
+{
+  "name": "@puerts/webgl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && webpack -c webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.4.4",
+    "webpack": "^5.63.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
