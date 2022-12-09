@@ -15,5 +15,6 @@
 | [ctxdegithub](https://github.com/ctxdegithub) | <img src="./doc/pic/game2.jpg" alt="Game2" width="100" height="100"/> |
 
 ## FAQ
-* 我的JS太多了，做微信小游戏的话，在开发者工具里运行时提示代码过大，应该如何处理？
+#### * 我的JS太多了，做微信小游戏的话，在开发者工具里运行时提示代码过大，应该如何处理？
+
 参见微信平台的[代码分包](https://developers.weixin.qq.com/minigame/dev/guide/base-ability/subPackage/useSubPackage.html)文档，将JS目录下的部分JS拆分成子包。
