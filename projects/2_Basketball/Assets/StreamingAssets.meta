@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 78c8a11bc47a0ad42bcf9ba68c7fe97c
+=======
+guid: 3ddbbc13cb9ad634593d25f0034d8316
+>>>>>>> 48d39bd (basketball demo ts-loader)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
