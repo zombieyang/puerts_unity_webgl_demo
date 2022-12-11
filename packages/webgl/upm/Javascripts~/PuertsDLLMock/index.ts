@@ -120,13 +120,17 @@ global.PuertsWebGL = {
                             }
                             function mockRequire(specifier: string) {
                                 const result: any = { exports: {} };
-                                if (executeModuleCache[specifier]) {
-                                    result.exports = executeModuleCache[specifier];
+                                const foundCacheSpecifier = tryFindAndGetFindedSpecifier(specifier, executeModuleCache);
+                                if (foundCacheSpecifier) {
+                                    result.exports = executeModuleCache[foundCacheSpecifier];
     
                                 } else {
-                                    if (!PUERTS_JS_RESOURCES[specifier]) {
-                                        console.error('file not found' + specifier);
+                                    const foundSpecifier = tryFindAndGetFindedSpecifier(specifier, PUERTS_JS_RESOURCES);
+                                    if (!foundSpecifier) {
+                                        console.error('file not found: ' + specifier);
                                     }
+                                    specifier = foundSpecifier;
+
                                     PUERTS_JS_RESOURCES[specifier](result.exports, (specifierTo: string)=> {
                                         return mockRequire(normalize(specifier, specifierTo));
                                     }, result)
@@ -134,6 +138,21 @@ global.PuertsWebGL = {
                                 }
 
                                 return result.exports;
+                                function tryFindAndGetFindedSpecifier(specifier: string, obj: any) {
+                                    let tryfind = [specifier];
+                                    if (specifier.indexOf('.') == -1) tryfind = tryfind.concat([specifier + '.js', specifier + '.ts', specifier + '.mjs', specifier + '.mts'])
+
+                                    let finded = -1;
+                                    tryfind.forEach((s, index)=> { 
+                                        finded = finded != -1 ? finded: (!!obj[s] ? index : -1); 
+                                    });
+
+                                    if (finded == -1) {
+                                        return null;
+                                    } else {
+                                        return tryfind[finded];
+                                    }
+                                }
                             }
 
                             const requireRet = mockRequire(fileName)

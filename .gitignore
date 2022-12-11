@@ -23,3 +23,4 @@ Assets/Gen/*.cs.meta
 Assets/XLua/Gen/*.cs
 Assets/XLua/Gen/*.cs.meta 
 packages-lock.json
+packages/webgl/upm/Javascripts~/PuertsDLLMock/output/
