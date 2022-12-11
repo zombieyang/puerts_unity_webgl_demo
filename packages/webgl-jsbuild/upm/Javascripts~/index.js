@@ -84,11 +84,11 @@ function buildHTML(outputpath) {
     `)
 }
 
-function getAllJSFile (fileGlobbers) {
+function globAllJSFile (fileGlobbers) {
     const allJSFile = fileGlobbers
         .reduce((retArr, globber)=> {
             return retArr.concat(
-                glob.sync(path.normalize(globber))
+                glob.sync(path.normalize(globber).replace(/\\/g, '/'))
             )
         }, [])
         .filter(jsfile => {
@@ -110,9 +110,8 @@ function getAllJSFile (fileGlobbers) {
 
 exports.buildForMinigame = function (fileGlobbers, outputpath) {
 
-    buildForMinigame(getAllJSFile(fileGlobbers), outputpath);
+    buildForMinigame(globAllJSFile(fileGlobbers), outputpath);
 }
 exports.buildForBrowser = function (fileGlobbers, outputpath) {
-
-    buildForBrowser(getAllJSFile(fileGlobbers), outputpath);
+    buildForBrowser(globAllJSFile(fileGlobbers), outputpath);
 }
