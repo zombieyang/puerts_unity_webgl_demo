@@ -18,3 +18,7 @@
 #### * 我的JS太多了，做微信小游戏的话，在开发者工具里运行时提示代码过大，应该如何处理？
 
 参见微信平台的[代码分包](https://developers.weixin.qq.com/minigame/dev/guide/base-ability/subPackage/useSubPackage.html)文档，将JS目录下的部分JS拆分成子包。
+
+#### * 为什么Loader不工作？
+
+参见 https://github.com/zombieyang/puerts_unity_webgl_demo/blob/master/package/Editor/WebGLPostProcessor.cs
