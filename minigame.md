@@ -21,4 +21,4 @@
 
 #### * 为什么Loader不工作？
 
-参见 https://github.com/zombieyang/puerts_unity_webgl_demo/blob/master/package/Editor/WebGLPostProcessor.cs
+在WebGL下，尤其是微信小游戏下，受限于平台策略，普洱无法使用Loader的形式加载代码文本并执行。参见 https://github.com/zombieyang/puerts_unity_webgl_demo/blob/master/package/Editor/WebGLPostProcessor.cs
