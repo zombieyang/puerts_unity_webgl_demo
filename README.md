@@ -1,5 +1,5 @@
 # Puerts WebGL Unity
-![puerts_webgl](https://img.shields.io/badge/release-v1.0.0_rc-blue.svg)
+![puerts_webgl](https://img.shields.io/badge/release-v1.0.0-blue.svg)
 ![minigame](https://img.shields.io/badge/-minigame-grey.svg?logo=wechat)
 
 ## introduction | 简介
