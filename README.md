@@ -82,14 +82,6 @@
 
 ----------------------------------------------
 
-## Dependent | 依赖
-* because of the dependent with `WeakRef` and `FinalizationRegistry`. this project is available in the environment below.
-* 因为大量使用到了`WeakRef`和`FinalizationRegistry`API。该功能在以下环境下可用：
-
-1. `V8 8.4+(Chrome 84+)` OR `v8 7.4+(Chrome 84+) with --harmony-weak-refs`
-2. iOS Safari 14.5+/OSX Safari 14.1+
-3. WeChat Minigame | 微信小游戏
-
 ## How to contrib
 * 运作原理(how this work?)
 
