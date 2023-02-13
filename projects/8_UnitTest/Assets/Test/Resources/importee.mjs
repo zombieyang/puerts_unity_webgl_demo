@@ -1,0 +1,1 @@
+export default 'just for test';

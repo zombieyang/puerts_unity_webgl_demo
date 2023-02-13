@@ -1,23 +1,21 @@
-const cs = require('csharp');
-
-cs.PerformanceHelper.ReturnNumber(3);
+CS.PerformanceHelper.ReturnNumber(3);
 const start = Date.now();
 for (let i = 0; i < 1000000; i++) 
 {
-    cs.PerformanceHelper.ReturnNumber(3);
+    CS.PerformanceHelper.ReturnNumber(3);
 }
-// cs.UnityEngine.Debug.Log('Puerts Number:');
-cs.PerformanceHelper.JSNumber.text = 'Puerts Number:' + (Date.now() - start) + 'ms'
+// CS.UnityEngine.Debug.Log('Puerts Number:');
+CS.PerformanceHelper.JSNumber.text = 'Puerts Number:' + (Date.now() - start) + 'ms'
 
-cs.PerformanceHelper.ReturnVector(1, 2, 3)
+CS.PerformanceHelper.ReturnVector(1, 2, 3)
 const start2 = Date.now();
 for (let i = 0; i < 1000000; i++) 
 {
-    cs.PerformanceHelper.ReturnVector(1, 2, 3);
+    CS.PerformanceHelper.ReturnVector(1, 2, 3);
 }
-// cs.UnityEngine.Debug.Log('Puerts Vector:');
-// cs.UnityEngine.Debug.Log((Date.now() - start2));
-cs.PerformanceHelper.JSVector.text = 'Puerts Vector:' + (Date.now() - start2) + 'ms'
+// CS.UnityEngine.Debug.Log('Puerts Vector:');
+// CS.UnityEngine.Debug.Log((Date.now() - start2));
+CS.PerformanceHelper.JSVector.text = 'Puerts Vector:' + (Date.now() - start2) + 'ms'
 
 // const fibcache = [0, 1]
 function fibonacci(level) {
@@ -30,6 +28,6 @@ const start3 = Date.now();
 for (let i = 0; i < 100000; i++) {
     fibonacci(12)
 }
-// cs.UnityEngine.Debug.Log('Puerts fibonacci:');
-// cs.UnityEngine.Debug.Log((Date.now() - start3));
-cs.PerformanceHelper.JSFibonacci.text = 'Puerts fibonacci:' + (Date.now() - start3) + 'ms'
+// CS.UnityEngine.Debug.Log('Puerts fibonacci:');
+// CS.UnityEngine.Debug.Log((Date.now() - start3));
+CS.PerformanceHelper.JSFibonacci.text = 'Puerts fibonacci:' + (Date.now() - start3) + 'ms'

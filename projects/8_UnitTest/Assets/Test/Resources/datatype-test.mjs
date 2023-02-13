@@ -1,8 +1,10 @@
-const cs = require('csharp')
-const assertAndPrint = cs.PuertsTest.TestHelper.AssertAndPrint.bind(cs.PuertsTest.TestHelper);
+import str from './importee.mjs';
+const assertAndPrint = CS.PuertsTest.TestHelper.AssertAndPrint.bind(CS.PuertsTest.TestHelper);
 
 var init = function (testHelper) {
     debugger;
+    assertAndPrint("Import mjs from mjs", str == 'just for test');
+
     const outRef = puerts.$ref(null);
 
     // JSFunction
@@ -67,7 +69,7 @@ var init = function (testHelper) {
     assertAndPrint("JSGetArrayBufferReturnFromCS", new Uint8Array(rAB) == 5);
 
     // NativeObjectStruct
-    const oNativeObjectStruct = new cs.PuertsTest.TestStruct(1);
+    const oNativeObjectStruct = new CS.PuertsTest.TestStruct(1);
     const rNativeObjectStruct = testHelper.NativeObjectStructTestPipeLine(oNativeObjectStruct, outRef, function(obj) {
         assertAndPrint("JSGetNativeObjectStructArgFromCS", obj.value == oNativeObjectStruct.value);
         return oNativeObjectStruct
@@ -76,7 +78,7 @@ var init = function (testHelper) {
     assertAndPrint("JSGetNativeObjectStructReturnFromCS", rNativeObjectStruct.value == oNativeObjectStruct.value);
 
     // NativeObject
-    const oNativeObject = new cs.PuertsTest.TestObject(1);
+    const oNativeObject = new CS.PuertsTest.TestObject(1);
     const rNativeObject = testHelper.NativeObjectTestPipeLine(oNativeObject, outRef, function(obj) {
         assertAndPrint("JSGetNativeObjectArgFromCS", obj == oNativeObject);
         return oNativeObject
@@ -94,9 +96,9 @@ var init = function (testHelper) {
     assertAndPrint("JSGetJSObjectReturnFromCS", rJSObject == oJSObject);
 
     testHelper.ReturnAnyTestFunc = ()=>{
-        return new cs.PuertsTest.TestStruct(2);
+        return new CS.PuertsTest.TestStruct(2);
     }
-    testHelper.InvokeReturnAnyTestFunc(new cs.PuertsTest.TestStruct(2));
+    testHelper.InvokeReturnAnyTestFunc(new CS.PuertsTest.TestStruct(2));
 
     debugger;
 };
