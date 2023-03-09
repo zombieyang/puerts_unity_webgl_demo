@@ -24,7 +24,7 @@ namespace PuertsTest
             
             if (jsEnv == null) 
             {
-                jsEnv = Puerts.WebGL.MainEnv.Get();
+                jsEnv = Puerts.WebGL.MainEnv.Get(new Puerts.TSLoader());
             }
 
             var init = jsEnv.ExecuteModule<ModuleInit>(JSFileName, "init");

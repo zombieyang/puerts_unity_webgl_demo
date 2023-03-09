@@ -187,19 +187,12 @@ namespace PuertsTest
 
         void Start()
         {
-#if UNITY_WEBGL
-            var jsEnv = Puerts.WebGL.GetBrowserEnv();
-#else 
-            var jsEnv = new JsEnv();
-            jsEnv.Eval(@"
-                global.csharp = require('csharp')
-                global.puerts = require('puerts')
-            ");
-#endif 
+            var jsEnv = Puerts.WebGL.MainEnv.Get(new Puerts.TSLoader());
+
             // var jsEnv = new Puerts.JsEnv(new DefaultLoader(), 8080);
             // jsEnv.WaitDebugger();
             var helper = new TestHelper(jsEnv);
-            Action<TestHelper> doTest = jsEnv.ExecuteModule<Action<TestHelper>>("datatype-test.mjs", "init");
+            Action<TestHelper> doTest = jsEnv.ExecuteModule<Action<TestHelper>>("datatype-test.mts", "init");
             doTest(helper);
             jsEnv.Dispose();
         }

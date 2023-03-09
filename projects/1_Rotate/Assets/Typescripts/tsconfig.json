@@ -1,0 +1,18 @@
+
+{
+    "compilerOptions": { 
+        "target": "esnext",
+        "jsx": "react",
+        "inlineSourceMap": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "typeRoots": [
+            "../Gen/Typing"
+        ],
+
+        "module": "ES2015",
+        "composite": true,
+        "outDir": "./Resources"
+    }
+}

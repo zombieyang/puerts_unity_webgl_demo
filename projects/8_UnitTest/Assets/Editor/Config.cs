@@ -23,6 +23,7 @@ public class ExamplesCfg
             return new List<Type>()
             {
                 typeof(PuertsTest.TestStruct),
+                typeof(PuertsTest.TestObject),
                 typeof(PuertsTest.TestHelper),
             };
         }

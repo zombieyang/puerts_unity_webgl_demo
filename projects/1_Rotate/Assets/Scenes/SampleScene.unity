@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ebdfbbf1277f04e91a8b6a61440f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JSFileName: rotate.mjs
+  JSFileName: rotate.mts
 --- !u!65 &1464987490
 BoxCollider:
   m_ObjectHideFlags: 0
