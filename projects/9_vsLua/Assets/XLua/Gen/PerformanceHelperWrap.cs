@@ -64,15 +64,15 @@ namespace XLua.CSObjectWrap
 				if(LuaAPI.lua_gettop(L) == 1)
 				{
 					
-					PerformanceHelper __cl_gen_ret = new PerformanceHelper();
-					translator.Push(L, __cl_gen_ret);
+					var gen_ret = new PerformanceHelper();
+					translator.Push(L, gen_ret);
                     
 					return 1;
 				}
 				
 			}
-			catch(System.Exception __gen_e) {
-				return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+			catch(System.Exception gen_e) {
+				return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
 			}
             return LuaAPI.luaL_error(L, "invalid arguments to PerformanceHelper constructor!");
             
@@ -94,18 +94,18 @@ namespace XLua.CSObjectWrap
             
                 
                 {
-                    int num = LuaAPI.xlua_tointeger(L, 1);
+                    int _num = LuaAPI.xlua_tointeger(L, 1);
                     
-                        int __cl_gen_ret = PerformanceHelper.ReturnNumber( num );
-                        LuaAPI.xlua_pushinteger(L, __cl_gen_ret);
+                        var gen_ret = PerformanceHelper.ReturnNumber( _num );
+                        LuaAPI.xlua_pushinteger(L, gen_ret);
                     
                     
                     
                     return 1;
                 }
                 
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             
         }
@@ -121,20 +121,20 @@ namespace XLua.CSObjectWrap
             
                 
                 {
-                    int x = LuaAPI.xlua_tointeger(L, 1);
-                    int y = LuaAPI.xlua_tointeger(L, 2);
-                    int z = LuaAPI.xlua_tointeger(L, 3);
+                    int _x = LuaAPI.xlua_tointeger(L, 1);
+                    int _y = LuaAPI.xlua_tointeger(L, 2);
+                    int _z = LuaAPI.xlua_tointeger(L, 3);
                     
-                        UnityEngine.Vector3 __cl_gen_ret = PerformanceHelper.ReturnVector( x, y, z );
-                        translator.PushUnityEngineVector3(L, __cl_gen_ret);
+                        var gen_ret = PerformanceHelper.ReturnVector( _x, _y, _z );
+                        translator.PushUnityEngineVector3(L, gen_ret);
                     
                     
                     
                     return 1;
                 }
                 
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             
         }
@@ -148,8 +148,8 @@ namespace XLua.CSObjectWrap
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    translator.Push(L, PerformanceHelper.JSNumber);
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 1;
         }
@@ -160,8 +160,8 @@ namespace XLua.CSObjectWrap
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    translator.Push(L, PerformanceHelper.JSVector);
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 1;
         }
@@ -172,8 +172,8 @@ namespace XLua.CSObjectWrap
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    translator.Push(L, PerformanceHelper.JSFibonacci);
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 1;
         }
@@ -184,8 +184,8 @@ namespace XLua.CSObjectWrap
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    translator.Push(L, PerformanceHelper.LuaNumber);
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 1;
         }
@@ -196,8 +196,8 @@ namespace XLua.CSObjectWrap
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    translator.Push(L, PerformanceHelper.LuaVector);
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 1;
         }
@@ -208,8 +208,8 @@ namespace XLua.CSObjectWrap
 		    try {
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    translator.Push(L, PerformanceHelper.LuaFibonacci);
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 1;
         }
@@ -223,8 +223,8 @@ namespace XLua.CSObjectWrap
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    PerformanceHelper.JSNumber = (UnityEngine.UI.Text)translator.GetObject(L, 1, typeof(UnityEngine.UI.Text));
             
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 0;
         }
@@ -236,8 +236,8 @@ namespace XLua.CSObjectWrap
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    PerformanceHelper.JSVector = (UnityEngine.UI.Text)translator.GetObject(L, 1, typeof(UnityEngine.UI.Text));
             
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 0;
         }
@@ -249,8 +249,8 @@ namespace XLua.CSObjectWrap
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    PerformanceHelper.JSFibonacci = (UnityEngine.UI.Text)translator.GetObject(L, 1, typeof(UnityEngine.UI.Text));
             
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 0;
         }
@@ -262,8 +262,8 @@ namespace XLua.CSObjectWrap
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    PerformanceHelper.LuaNumber = (UnityEngine.UI.Text)translator.GetObject(L, 1, typeof(UnityEngine.UI.Text));
             
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 0;
         }
@@ -275,8 +275,8 @@ namespace XLua.CSObjectWrap
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    PerformanceHelper.LuaVector = (UnityEngine.UI.Text)translator.GetObject(L, 1, typeof(UnityEngine.UI.Text));
             
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 0;
         }
@@ -288,8 +288,8 @@ namespace XLua.CSObjectWrap
                 ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			    PerformanceHelper.LuaFibonacci = (UnityEngine.UI.Text)translator.GetObject(L, 1, typeof(UnityEngine.UI.Text));
             
-            } catch(System.Exception __gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + __gen_e);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
             }
             return 0;
         }

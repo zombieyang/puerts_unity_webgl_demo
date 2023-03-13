@@ -812,19 +812,24 @@
         }
         interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
         {
+        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
+        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
         {
+        [Symbol.iterator]() : IterableIterator<T>
         }
         interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
+        [Symbol.iterator]() : IterableIterator<T>
         }
         class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
         {
             protected [__keep_incompatibility]: never;
+            public [Symbol.iterator]() : IterableIterator<T>
         }
     }
     namespace System.Collections {

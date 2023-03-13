@@ -1,12 +1,12 @@
 
-        window.PUERTS_JS_RESOURCES = {"config/const.mjs": (function(exports, require, module, __filename, __dirname) {
+        window.PUERTS_JS_RESOURCES = {"lib/const.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.speed = void 0;
-let speed = 10;
+const speed = 10;
 exports.speed = speed;
         }),"rotate.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.init = void 0;
-var _const = require("./config/const.mjs");
+var _const = require("./lib/const.mjs");
 class Rotate {
   constructor(bindTo) {
     this.bindTo = bindTo;
@@ -33,75 +33,6 @@ var init = function (bindTo) {
   new Rotate(bindTo);
 };
 exports.init = init;
-        }),"puerts/cjsload.mjs": (function(exports, require, module, __filename, __dirname) {
-            "use strict";
-
-/*
- * Tencent is pleased to support the open source community by making Puerts available.
- * Copyright (C) 2020 THL A29 Limited, a Tencent company.  All rights reserved.
- * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
- * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
- */
-
-var global = global || globalThis || function () {
-  return this;
-}();
-function pathNormalize(path) {
-  let reversePathFrags = path.split('/').reverse();
-  let newPathFrags = [];
-  while (reversePathFrags.length > 0) {
-    let el = reversePathFrags.pop();
-    if (el != "" && el != ".") {
-      if (el == ".." && newPathFrags.length > 0 && newPathFrags[newPathFrags.length - 1] != "..") {
-        newPathFrags.pop();
-      } else {
-        newPathFrags.push(el);
-      }
-    }
-  }
-  return newPathFrags.join("/");
-}
-function searchModuleInDirWithExt(dir, requiredModule) {
-  var searchPath = pathNormalize(dir + '/' + requiredModule);
-  if (puer.fileExists(searchPath)) {
-    return searchPath;
-  }
-  searchPath = pathNormalize(dir + '/node_modules/' + requiredModule);
-  if (puer.fileExists(searchPath)) {
-    return searchPath;
-  }
-}
-function getFileExtension(filepath) {
-  let last = filepath.split('/').pop();
-  let frags = last.split('.');
-  if (frags.length > 1) {
-    return frags.pop();
-  }
-}
-function searchModuleInDir(dir, requiredModule) {
-  if (getFileExtension(requiredModule)) {
-    return searchModuleInDirWithExt(dir, requiredModule) || searchModuleInDirWithExt(dir, requiredModule + "/index.js") || searchModuleInDirWithExt(dir, requiredModule + "/package.json");
-  } else {
-    return searchModuleInDirWithExt(dir, requiredModule + ".js") || searchModuleInDirWithExt(dir, requiredModule + ".cjs") || searchModuleInDirWithExt(dir, requiredModule + "/index.js") || searchModuleInDirWithExt(dir, requiredModule + "/package.json");
-  }
-}
-function searchModule(dir, requiredModule) {
-  var result = searchModuleInDir(dir, requiredModule);
-  if (result) return result;
-  if (dir != "" && !requiredModule.endsWith(".js")) {
-    let pathFrags = dir.split('/');
-    pathFrags.pop();
-    pathFrags.unshift('');
-    while (pathFrags.length > 0) {
-      if (pathFrags[pathFrags.length - 1] != "node_modules") {
-        result = searchModuleInDir(pathFrags.join("/"), requiredModule);
-        if (result) return result;
-      }
-      pathFrags.pop();
-    }
-  }
-}
-puerts.searchModule = searchModule;
         }),"puerts/csharp.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -203,15 +134,13 @@ csharpModule.default = csharpModule;
 global.CS = csharpModule;
 csharpModule.System.Object.prototype.toString = csharpModule.System.Object.prototype.ToString;
 function ref(x) {
-  return {
-    value: x
-  };
+  return [x];
 }
 function unref(r) {
-  return r.value;
+  return r[0];
 }
 function setref(x, val) {
-  x.value = val;
+  x[0] = val;
 }
 function taskToPromise(task) {
   return new Promise((resolve, reject) => {
@@ -234,6 +163,24 @@ function taskToPromise(task) {
     });
   });
 }
+function genIterator(obj) {
+  let it = obj.GetEnumerator();
+  return {
+    next() {
+      if (it.MoveNext()) {
+        return {
+          value: it.Current,
+          done: false
+        };
+      }
+      it.Dispose();
+      return {
+        value: null,
+        done: true
+      };
+    }
+  };
+}
 function makeGeneric(genericTypeInfo, ...genericArgs) {
   let p = genericTypeInfo;
   for (var i = 0; i < genericArgs.length; i++) {
@@ -244,7 +191,14 @@ function makeGeneric(genericTypeInfo, ...genericArgs) {
     p = p.get(genericArg);
   }
   if (!p.has('$type')) {
-    p.set('$type', puer.loadType(genericTypeInfo.get('$name'), ...genericArgs));
+    let typName = genericTypeInfo.get('$name');
+    let typ = puer.loadType(typName, ...genericArgs);
+    if (getType(csharpModule.System.Collections.IEnumerable).IsAssignableFrom(getType(typ))) {
+      typ.prototype[Symbol.iterator] = function () {
+        return genIterator(this);
+      };
+    }
+    p.set('$type', typ);
   }
   return p.get('$type');
 }
@@ -301,7 +255,6 @@ puer.$extension = (cls, extension) => {
   typeof console != 'undefined' && console.warn(`deprecated! if you already generate static wrap for ${cls} and ${extension}, you are no need to invoke $extension`);
   return doExtension(cls, extension);
 };
-puer.$reflectExtension = doExtension;
         }),"puerts/dispose.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -438,6 +391,209 @@ function spliceOne(list, index) {
 puer.on = on;
 puer.off = off;
 puer.emit = emit;
+        }),"puerts/init_il2cpp.mjs": (function(exports, require, module, __filename, __dirname) {
+            "use strict";
+
+/*
+ * Tencent is pleased to support the open source community by making Puerts available.
+ * Copyright (C) 2020 THL A29 Limited, a Tencent company.  All rights reserved.
+ * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
+ * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
+ */
+
+var global = global || globalThis || function () {
+  return this;
+}();
+// polyfill old code after use esm module.
+global.global = global;
+let puer = global.puer = global.puerts = global.puer || global.puerts || {};
+puer.loadType = function (nameOrCSType, ...genericArgs) {
+  let csType = nameOrCSType;
+  if (typeof nameOrCSType == "string") {
+    // convert string to csType
+    csType = jsEnv.GetTypeByString(nameOrCSType);
+  }
+  if (csType) {
+    if (genericArgs && csType.IsGenericTypeDefinition) {
+      genericArgs = genericArgs.map(g => puer.$typeof(g));
+      csType = csType.MakeGenericType(...genericArgs);
+    }
+    let cls = loadType(csType);
+    cls.__p_innerType = csType;
+    // todo
+    cls.__puertsMetadata = cls.__puertsMetadata || new Map();
+    return cls;
+  }
+};
+let BindingFlags = puer.loadType("System.Reflection.BindingFlags");
+let GET_MEMBER_FLAGS = BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public;
+puer.getNestedTypes = function (nameOrCSType) {
+  let csType = nameOrCSType;
+  if (typeof nameOrCSType == "string") {
+    csType = jsEnv.GetTypeByString(nameOrCSType);
+  }
+  if (csType) {
+    return csType.GetNestedTypes(GET_MEMBER_FLAGS);
+  }
+};
+function jsArrToCsArr(jsarr, type) {
+  type = type || puer.$typeof(CS.System.Object);
+  let arr = CS.System.Array.CreateInstance(type, jsarr.length);
+  for (let i = 0; i < arr.Length; i++) {
+    arr.SetValue(jsarr[i], i);
+  }
+  return arr;
+}
+let MemberTypes = puer.loadType("System.Reflection.MemberTypes");
+let MemberTypes_Method = MemberTypes.Method;
+let GENERIC_INVOKE_ERR_ARG_CHECK_FAILED = {};
+let ARG_FLAG_OUT = 0x01;
+let ARG_FLAG_REF = 0x02;
+puer.getGenericMethod = function (csType, methodName, ...genericArgs) {
+  if (typeof csType.GetMember != 'function') {
+    throw new Error('the class must be a constructor');
+  }
+  let members = csType.GetMember(methodName, MemberTypes_Method, GET_MEMBER_FLAGS);
+  let overloadFunctions = [];
+  for (let i = 0; i < members.Length; i++) {
+    let method = members.GetValue(i);
+    if (method.IsGenericMethodDefinition && method.GetGenericArguments().Length == genericArgs.length) {
+      let methodImpl = method.MakeGenericMethod(...genericArgs.map((x, index) => {
+        const ret = puer.$typeof(x);
+        if (!ret) {
+          throw new Error("invalid Type for generic arguments " + index);
+        }
+        return ret;
+      }));
+      overloadFunctions.push(methodImpl);
+    }
+  }
+  let overloadCount = overloadFunctions.length;
+  if (overloadCount == 0) {
+    console.error("puer.getGenericMethod not found", csType.Name, methodName, genericArgs.map(x => puer.$typeof(x).Name).join(","));
+    return null;
+  }
+  let createOverloadFunctionWrap = function (method) {
+    let typeof_System_Object = puer.$typeof(CS.System.Object);
+    let paramDefs = method.GetParameters();
+    let needArgCount = paramDefs.Length;
+    let argFlags = needArgCount > 0 ? [] : null;
+    let needArgTypeCode = needArgCount > 0 ? [] : null;
+    for (let i = 0; i < paramDefs.Length; i++) {
+      let paramDef = paramDefs.GetValue(i);
+      let paramType = paramDef.ParameterType;
+      if (paramDef.IsOut) argFlags[i] = (argFlags[i] ?? 0) | ARG_FLAG_OUT;
+      if (paramType.IsByRef) {
+        argFlags[i] = (argFlags[i] ?? 0) | ARG_FLAG_REF;
+        needArgTypeCode[i] = CS.System.Type.GetTypeCode(paramType.GetElementType());
+      } else {
+        needArgTypeCode[i] = CS.System.Type.GetTypeCode(paramType);
+      }
+    }
+    let argsCsArr;
+    let checkArgs = function (...args) {
+      if (needArgCount != (args ? args.length : 0)) return GENERIC_INVOKE_ERR_ARG_CHECK_FAILED;
+      if (needArgCount == 0) return null;
+      argsCsArr = argsCsArr ?? CS.System.Array.CreateInstance(typeof_System_Object, needArgCount);
+      // set args to c# array
+      for (let i = 0; i < needArgCount; i++) {
+        let val = argFlags[i] & ARG_FLAG_REF ? argFlags[i] & ARG_FLAG_OUT ? null : puer.$unref(args[i]) : args[i];
+        let jsValType = typeof val;
+        if (jsValType === "number" || jsValType == 'bigint') {
+          argsCsArr.set_Item(i, createTypedValueByTypeCode(val, needArgTypeCode[i]));
+        } else {
+          argsCsArr.set_Item(i, val);
+        }
+      }
+      return argsCsArr;
+    };
+    let invoke = function (...args) {
+      let argscs = checkArgs(...args);
+      if (argscs === GENERIC_INVOKE_ERR_ARG_CHECK_FAILED) return overloadCount == 1 ? undefined : GENERIC_INVOKE_ERR_ARG_CHECK_FAILED;
+      let ret = method.Invoke(this, 0, null, argscs, null);
+      // set args to js array for ref type
+      if (argFlags) {
+        for (let i = 0; i < argFlags.length; i++) {
+          if (argFlags[i] & ARG_FLAG_REF) args[i][0] = argscs.GetValue(i);
+        }
+      }
+      return ret;
+    };
+    return invoke;
+  };
+  let invokes = overloadFunctions.map(x => createOverloadFunctionWrap(x));
+  if (overloadCount == 1) {
+    return invokes[0];
+  } else {
+    return function (...args) {
+      for (let i = 0; i < invokes.length; i++) {
+        let ret = invokes[i].call(this, ...args);
+        if (ret === GENERIC_INVOKE_ERR_ARG_CHECK_FAILED) continue;
+        return ret;
+      }
+      console.error("puer.getGenericMethod.overloadfunctions.invoke no match overload");
+    };
+  }
+};
+puer.getLastException = function () {
+  // todo
+};
+puer.evalScript = eval;
+let loader = jsEnv.GetLoader();
+// function loadFile(path) {
+//     let resolved, content
+//     if (resolved = loader.Resolve(path)) {
+//         let contents = []
+//         loader.ReadFile(resolved, contents);
+//         content = contents[0]
+//     }
+//     return { content: content, debugPath: resolved };
+// }
+// puer.loadFile = loadFile;
+
+// puer.fileExists = loader.Resolve.bind(loader);
+function loadFile(path) {
+  let debugPath = {};
+  var content = loader.ReadFile(path, debugPath);
+  return {
+    content: content,
+    debugPath: debugPath.value
+  };
+}
+puer.loadFile = loadFile;
+puer.fileExists = loader.FileExists.bind(loader);
+global.__tgjsRegisterTickHandler = function (fn) {
+  fn = new CS.System.Action(fn);
+  jsEnv.TickHandler = CS.System.Delegate.Combine(jsEnv.TickHandler, fn);
+};
+function createTypedValueByTypeCode(value, typecode) {
+  switch (typecode) {
+    case CS.System.TypeCode.Char:
+      return new CS.Puerts.CharValue(value);
+    case CS.System.TypeCode.SByte:
+      return new CS.Puerts.SByteValue(value);
+    case CS.System.TypeCode.Byte:
+      return new CS.Puerts.ByteValue(value);
+    case CS.System.TypeCode.Int16:
+      return new CS.Puerts.Int16Value(value);
+    case CS.System.TypeCode.UInt16:
+      return new CS.Puerts.UInt16Value(value);
+    case CS.System.TypeCode.Int32:
+      return new CS.Puerts.Int32Value(value);
+    case CS.System.TypeCode.UInt32:
+      return new CS.Puerts.UInt32Value(value);
+    case CS.System.TypeCode.Int64:
+      return new CS.Puerts.Int64Value(value);
+    case CS.System.TypeCode.UInt64:
+      return new CS.Puerts.UInt64Value(value);
+    case CS.System.TypeCode.Single:
+      return new CS.Puerts.FloatValue(value);
+    case CS.System.TypeCode.Double:
+      return new CS.Puerts.DoubleValue(value);
+    default:
+      return value;
+  }
+}
         }),"puerts/init.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -469,11 +625,11 @@ delete global.__puertsGetLastException;
 let loader = global.__tgjsGetLoader();
 delete global.__tgjsGetLoader;
 function loadFile(path) {
-  let debugPath = {};
+  let debugPath = [];
   var content = loader.ReadFile(path, debugPath);
   return {
     content: content,
-    debugPath: debugPath.value
+    debugPath: debugPath[0]
   };
 }
 puer.loadFile = loadFile;
@@ -535,131 +691,23 @@ if (UnityEngine_Debug) {
     if (condition) return;
     if (arguments.length > 1) UnityEngine_Debug.Assert(false, "Assertion failed: " + toString(Array.prototype.slice.call(arguments, 1)) + "\n" + getStack(new Error()) + "\n");else UnityEngine_Debug.Assert(false, "Assertion failed: console.assert\n" + getStack(new Error()) + "\n");
   };
+  const timeRecorder = new Map();
+  console.time = function (name) {
+    timeRecorder.set(name, +new Date());
+  };
+  console.timeEnd = function (name) {
+    const startTime = timeRecorder.get(name);
+    if (startTime) {
+      console.log(String(name) + ": " + (+new Date() - startTime) + " ms");
+      timeRecorder.delete(name);
+    } else {
+      console.warn("Timer '" + String(name) + "' does not exist");
+    }
+    ;
+  };
   global.console = console;
   puer.console = console;
 }
-        }),"puerts/modular.mjs": (function(exports, require, module, __filename, __dirname) {
-            "use strict";
-
-/*
- * Tencent is pleased to support the open source community by making Puerts available.
- * Copyright (C) 2020 THL A29 Limited, a Tencent company.  All rights reserved.
- * Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
- * This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
- */
-
-var global = global || globalThis || function () {
-  return this;
-}();
-let moduleCache = Object.create(null); // key to sid
-let tmpModuleStorage = []; // sid to module
-
-function addModule(m) {
-  for (var i = 0; i < tmpModuleStorage.length; i++) {
-    if (!tmpModuleStorage[i]) {
-      tmpModuleStorage[i] = m;
-      return i;
-    }
-  }
-  return tmpModuleStorage.push(m) - 1;
-}
-function getModuleBySID(id) {
-  return tmpModuleStorage[id];
-}
-let buildinModule = Object.create(null);
-function executeModule(fullPath, script, debugPath, sid) {
-  sid = typeof sid == 'undefined' ? 0 : sid;
-  let fullPathInJs = fullPath.replace(/\\/g, '\\\\');
-  let fullDirInJs = fullPath.indexOf('/') != -1 ? fullPath.substring(0, fullPath.lastIndexOf("/")) : fullPath.substring(0, fullPath.lastIndexOf("\\")).replace(/\\/g, '\\\\');
-  let exports = {};
-  let module = puerts.getModuleBySID(sid);
-  module.exports = exports;
-  let wrapped = puerts.evalScript(
-  // Wrap the script in the same way NodeJS does it. It is important since IDEs (VSCode) will use this wrapper pattern
-  // to enable stepping through original source in-place.
-  "(function (exports, require, module, __filename, __dirname) { " + script + "\n});", debugPath);
-  wrapped(exports, puerts.genRequire(fullDirInJs), module, fullPathInJs, fullDirInJs);
-  return module.exports;
-}
-function genRequire(requiringDir) {
-  if (requiringDir.indexOf(":") != -1) {
-    if (requiringDir.startsWith("puer:")) requiringDir = requiringDir.substr(5);else {
-      throw new Error("puer's genRequire can only support prefix with puer:");
-    }
-  }
-  let localModuleCache = Object.create(null);
-  function require(moduleName) {
-    moduleName = moduleName.startsWith('./') ? moduleName.substr(2) : moduleName;
-    if (moduleName in localModuleCache) return localModuleCache[moduleName].exports;
-    if (moduleName in buildinModule) return buildinModule[moduleName];
-    let fullPath = puerts.searchModule(requiringDir, moduleName);
-    if (!fullPath) {
-      try {
-        return nodeRequire(moduleName);
-      } catch (e) {
-        throw new Error("can not find " + moduleName);
-      }
-    }
-    let key = fullPath;
-    if (key in moduleCache) {
-      localModuleCache[moduleName] = moduleCache[key];
-      return localModuleCache[moduleName].exports;
-    }
-    let {
-      content,
-      debugPath
-    } = puerts.loadFile(fullPath);
-    const script = content;
-    let m = {
-      "exports": {}
-    };
-    localModuleCache[moduleName] = m;
-    moduleCache[key] = m;
-    let sid = addModule(m);
-    if (fullPath.endsWith(".json")) {
-      let packageConfigure = JSON.parse(script);
-      if (fullPath.endsWith("package.json") && packageConfigure.main) {
-        let fullDirInJs = fullPath.indexOf('/') != -1 ? fullPath.substring(0, fullPath.lastIndexOf("/")) : fullPath.substring(0, fullPath.lastIndexOf("\\")).replace(/\\/g, '\\\\');
-        let tmpRequire = genRequire(fullDirInJs);
-        let r = tmpRequire(packageConfigure.main);
-        tmpModuleStorage[sid] = undefined;
-        m.exports = r;
-        return r;
-      } else {
-        tmpModuleStorage[sid] = undefined;
-        m.exports = packageConfigure;
-        return packageConfigure;
-      }
-    } else {
-      executeModule(fullPath, script, debugPath, sid);
-      tmpModuleStorage[sid] = undefined;
-      return m.exports;
-    }
-  }
-  require.clearModuleCache = () => {
-    localModuleCache = Object.create(null);
-  };
-  return require;
-}
-function registerBuildinModule(name, module) {
-  buildinModule[name] = module;
-}
-registerBuildinModule("puerts", puerts);
-registerBuildinModule('csharp', CS);
-puerts.genRequire = genRequire;
-puerts.getModuleBySID = getModuleBySID;
-puerts.registerBuildinModule = registerBuildinModule;
-let nodeRequire = global.require;
-if (nodeRequire) {
-  global.nodeRequire = nodeRequire;
-}
-global.require = puerts.require = genRequire("");
-function clearModuleCache() {
-  tmpModuleStorage = [];
-  moduleCache = Object.create(null);
-  global.require.clearModuleCache();
-}
-global.clearModuleCache = clearModuleCache;
         }),"puerts/nodepatch.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 

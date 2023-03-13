@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Puerts;
+using Puerts.TSLoader;
 
 public class JsMonoBehaviour : MonoBehaviour
 {
@@ -15,10 +16,10 @@ public class JsMonoBehaviour : MonoBehaviour
     void Start()
     {
         if (env == null) {
-            env = Puerts.WebGL.MainEnv.Get(new Puerts.TSLoader(Application.dataPath + "/../Puer-Project/"));
+            env = Puerts.WebGL.MainEnv.Get(new TSLoader(Application.dataPath + "/../Puer-Project/"));
         }
         
-        Action<JsMonoBehaviour> init = env.ExecuteModule<Action<JsMonoBehaviour>>("entry.ts", JSClassName);
+        Action<JsMonoBehaviour> init = env.ExecuteModule<Action<JsMonoBehaviour>>("entry.mjs", JSClassName);
         init(this);
         if (JsStart!= null) JsStart();
     }

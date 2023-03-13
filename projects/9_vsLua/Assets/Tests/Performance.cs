@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Puerts.TSLoader;
+using Puerts;
 
 [XLua.LuaCallCSharp]
 public class PerformanceHelper
@@ -31,6 +34,10 @@ public class Performance : MonoBehaviour
     public Text LuaNumber;
     public Text LuaVector;
     public Text LuaFibonacci;
+    public Text CSFibonacci;
+
+    public static DateTime ZERO = new DateTime(1970, 1, 1, 0, 0, 0);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,16 +48,29 @@ public class Performance : MonoBehaviour
         PerformanceHelper.LuaVector = LuaVector;
         PerformanceHelper.LuaFibonacci = LuaFibonacci;
 
-        Puerts.JsEnv JsEnv = Puerts.WebGL.GetBrowserEnv();
+        Puerts.JsEnv JsEnv = Puerts.WebGL.MainEnv.Get(new TSLoader());
         JsEnv.ExecuteModule("performance.mjs");
         
         XLua.LuaEnv env = new XLua.LuaEnv();
         env.DoString(Resources.Load<TextAsset>("performance.lua").text);
+
+        var start = (DateTime.Now - ZERO).TotalMilliseconds;
+        for (int i = 0; i < 100000; i++) {
+            fibonacci(12);
+        }
+        double csTime = (DateTime.Now - ZERO).TotalMilliseconds - start;
+        CSFibonacci.text = "CS Fibonacci:" + Math.Round(csTime) + " ms";
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    
+    int fibonacci(int level) {
+        if (level == 0) return 0;
+        if (level == 1) return 1;
+        return fibonacci(level - 1) + fibonacci(level - 2);
     }
 }

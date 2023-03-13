@@ -23,9 +23,18 @@ public class ExamplesCfg
             return new List<Type>()
             {
                 typeof(PuertsTest.TestStruct),
+                typeof(PuertsTest.TestObject),
                 typeof(PuertsTest.TestHelper),
+                typeof(System.Type),
             };
         }
+    }
+
+    [Filter]
+    public static bool F(System.Reflection.MemberInfo mi) 
+    {
+        if (mi.Name == "MakeGenericSignatureType" || mi.Name == "IsCollectible") return true;
+        return false;
     }
 
     [BlittableCopy]

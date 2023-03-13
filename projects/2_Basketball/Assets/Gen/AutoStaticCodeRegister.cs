@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿#if !(EXPERIMENTAL_IL2CPP_PUERTS && ENABLE_IL2CPP)
+using System;
 namespace PuertsStaticWrap
 {
     public static class AutoStaticCodeRegister
@@ -45,3 +45,4 @@ namespace PuertsStaticWrap
         }
     }
 }
+#endif

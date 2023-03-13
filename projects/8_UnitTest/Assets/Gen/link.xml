@@ -1,0 +1,10 @@
+﻿<linker>
+    <assembly fullname="Assembly-CSharp">
+        <type fullname="PuertsTest.TestStruct" preserve="all"/>
+        <type fullname="PuertsTest.TestObject" preserve="all"/>
+        <type fullname="PuertsTest.TestHelper" preserve="all"/>
+    </assembly>
+    <assembly fullname="mscorlib">
+        <type fullname="System.Type" preserve="all"/>
+    </assembly>
+</linker>

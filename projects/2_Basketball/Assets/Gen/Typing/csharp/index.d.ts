@@ -17,23 +17,12 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        class String extends System.Object implements System.IEquatable$1<string>, System.ICloneable, System.Collections.Generic.IEnumerable$1<number>, System.IComparable, System.IComparable$1<string>, System.Collections.IEnumerable, System.IConvertible
+        class String extends System.Object implements System.ICloneable, System.IComparable, System.IComparable$1<string>, System.IConvertible, System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable, System.IEquatable$1<string>
         {
             protected [__keep_incompatibility]: never;
-        }
-        interface IEquatable$1<T>
-        {
         }
         interface ICloneable
         {
-        }
-        class ValueType extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Char extends System.ValueType implements System.IEquatable$1<number>, System.IComparable, System.IComparable$1<number>, System.IConvertible
-        {
-            protected [__keep_incompatibility]: never;
         }
         interface IComparable
         {
@@ -44,7 +33,18 @@
         interface IConvertible
         {
         }
-        class Delegate extends System.Object implements System.ICloneable, System.Runtime.Serialization.ISerializable
+        class ValueType extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Char extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IEquatable$1<T>
+        {
+        }
+        class Delegate extends System.Object implements System.Runtime.Serialization.ISerializable, System.ICloneable
         {
             protected [__keep_incompatibility]: never;
         }
@@ -69,7 +69,7 @@
         (obj: T) : void; 
         Invoke?: (obj: T) => void;
         }
-        class Type extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type
+        class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
         {
             protected [__keep_incompatibility]: never;
             public static Delimiter : number
@@ -245,11 +245,11 @@
             public static GetTypeFromCLSID ($clsid: System.Guid, $server: string, $throwOnError: boolean) : System.Type
             public static GetTypeFromProgID ($progID: string, $server: string, $throwOnError: boolean) : System.Type
         }
-        class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.Collections.ICollection, System.ICloneable, System.Collections.IEnumerable, System.Collections.IList
+        class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.ICloneable, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
         {
             protected [__keep_incompatibility]: never;
         }
-        class Boolean extends System.ValueType implements System.IEquatable$1<boolean>, System.IComparable, System.IComparable$1<boolean>, System.IConvertible
+        class Boolean extends System.ValueType implements System.IComparable, System.IComparable$1<boolean>, System.IConvertible, System.IEquatable$1<boolean>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -260,7 +260,7 @@
         interface IFormattable
         {
         }
-        class Int32 extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
+        class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -277,7 +277,7 @@
         }
         enum TypeCode
         { Empty = 0, Object = 1, DBNull = 2, Boolean = 3, Char = 4, SByte = 5, Byte = 6, Int16 = 7, UInt16 = 8, Int32 = 9, UInt32 = 10, Int64 = 11, UInt64 = 12, Single = 13, Double = 14, Decimal = 15, DateTime = 16, String = 18 }
-        class Guid extends System.ValueType implements System.IEquatable$1<System.Guid>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<System.Guid>
+        class Guid extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<System.Guid>, System.IEquatable$1<System.Guid>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -294,15 +294,15 @@
         (arg1: T1, arg2: T2, arg3: T3) : TResult; 
         Invoke?: (arg1: T1, arg2: T2, arg3: T3) => TResult;
         }
-        class Single extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
+        class Single extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
-        class UInt64 extends System.ValueType implements System.IEquatable$1<bigint>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible
+        class UInt64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
         {
             protected [__keep_incompatibility]: never;
         }
-        class Exception extends System.Object implements System.Runtime.InteropServices._Exception, System.Runtime.Serialization.ISerializable
+        class Exception extends System.Object implements System.Runtime.Serialization.ISerializable, System.Runtime.InteropServices._Exception
         {
             protected [__keep_incompatibility]: never;
         }
@@ -401,6 +401,20 @@
             * @returns The array of objects found matching the type specified. 
             */
             public static FindObjectsOfType ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Object>
+            /** Retrieves a list of all loaded objects of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param sortMode Whether and how to sort the returned array. Not sorting the array makes this function run significantly faster.
+            * @returns The array of objects found matching the type specified. 
+            */
+            public static FindObjectsByType ($type: System.Type, $sortMode: UnityEngine.FindObjectsSortMode) : System.Array$1<UnityEngine.Object>
+            /** Retrieves a list of all loaded objects of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param sortMode Whether and how to sort the returned array. Not sorting the array makes this function run significantly faster.
+            * @returns The array of objects found matching the type specified. 
+            */
+            public static FindObjectsByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode) : System.Array$1<UnityEngine.Object>
             /** Do not destroy the target Object when loading a new Scene.
             * @param target An Object not destroyed on Scene change.
             */
@@ -410,16 +424,40 @@
             * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
             */
             public static FindObjectOfType ($type: System.Type) : UnityEngine.Object
+            /** Retrieves the first active loaded object of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @returns Returns the first active loaded object that matches the specified type. If no object matches the specified type, returns null. 
+            */
+            public static FindFirstObjectByType ($type: System.Type) : UnityEngine.Object
+            /** Retrieves any active loaded object of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @returns Returns an arbitrary active loaded object that matches the specified type. If no object matches the specified type, returns null. 
+            */
+            public static FindAnyObjectByType ($type: System.Type) : UnityEngine.Object
             /** Returns the first active loaded object of Type type.
             * @param type The type of object to find.
             * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
             */
             public static FindObjectOfType ($type: System.Type, $includeInactive: boolean) : UnityEngine.Object
+            /** Retrieves the first active loaded object of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @returns Returns the first active loaded object that matches the specified type. If no object matches the specified type, returns null. 
+            */
+            public static FindFirstObjectByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive) : UnityEngine.Object
+            /** Retrieves any active loaded object of Type type.
+            * @param type The type of object to find.
+            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @returns Returns an arbitrary active loaded object that matches the specified type. If no object matches the specified type, returns null. 
+            */
+            public static FindAnyObjectByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive) : UnityEngine.Object
             public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
             public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
             public constructor ()
         }
-        /** Base class for everything attached to GameObjects.
+        /** Base class for everything attached to a GameObject.
         */
         class Component extends UnityEngine.Object
         {
@@ -452,7 +490,7 @@
             /** The articulation body the collider is attached to.
             */
             public get attachedArticulationBody(): UnityEngine.ArticulationBody;
-            /** Is the collider a trigger?
+            /** Specify if this collider is configured as a trigger.
             */
             public get isTrigger(): boolean;
             public set isTrigger(value: boolean);
@@ -661,7 +699,7 @@
         { None = 0, Backspace = 8, Delete = 127, Tab = 9, Clear = 12, Return = 13, Pause = 19, Escape = 27, Space = 32, Keypad0 = 256, Keypad1 = 257, Keypad2 = 258, Keypad3 = 259, Keypad4 = 260, Keypad5 = 261, Keypad6 = 262, Keypad7 = 263, Keypad8 = 264, Keypad9 = 265, KeypadPeriod = 266, KeypadDivide = 267, KeypadMultiply = 268, KeypadMinus = 269, KeypadPlus = 270, KeypadEnter = 271, KeypadEquals = 272, UpArrow = 273, DownArrow = 274, RightArrow = 275, LeftArrow = 276, Insert = 277, Home = 278, End = 279, PageUp = 280, PageDown = 281, F1 = 282, F2 = 283, F3 = 284, F4 = 285, F5 = 286, F6 = 287, F7 = 288, F8 = 289, F9 = 290, F10 = 291, F11 = 292, F12 = 293, F13 = 294, F14 = 295, F15 = 296, Alpha0 = 48, Alpha1 = 49, Alpha2 = 50, Alpha3 = 51, Alpha4 = 52, Alpha5 = 53, Alpha6 = 54, Alpha7 = 55, Alpha8 = 56, Alpha9 = 57, Exclaim = 33, DoubleQuote = 34, Hash = 35, Dollar = 36, Percent = 37, Ampersand = 38, Quote = 39, LeftParen = 40, RightParen = 41, Asterisk = 42, Plus = 43, Comma = 44, Minus = 45, Period = 46, Slash = 47, Colon = 58, Semicolon = 59, Less = 60, Equals = 61, Greater = 62, Question = 63, At = 64, LeftBracket = 91, Backslash = 92, RightBracket = 93, Caret = 94, Underscore = 95, BackQuote = 96, A = 97, B = 98, C = 99, D = 100, E = 101, F = 102, G = 103, H = 104, I = 105, J = 106, K = 107, L = 108, M = 109, N = 110, O = 111, P = 112, Q = 113, R = 114, S = 115, T = 116, U = 117, V = 118, W = 119, X = 120, Y = 121, Z = 122, LeftCurlyBracket = 123, Pipe = 124, RightCurlyBracket = 125, Tilde = 126, Numlock = 300, CapsLock = 301, ScrollLock = 302, RightShift = 303, LeftShift = 304, RightControl = 305, LeftControl = 306, RightAlt = 307, LeftAlt = 308, LeftMeta = 310, LeftCommand = 310, LeftApple = 310, LeftWindows = 311, RightMeta = 309, RightCommand = 309, RightApple = 309, RightWindows = 312, AltGr = 313, Help = 315, Print = 316, SysReq = 317, Break = 318, Menu = 319, Mouse0 = 323, Mouse1 = 324, Mouse2 = 325, Mouse3 = 326, Mouse4 = 327, Mouse5 = 328, Mouse6 = 329, JoystickButton0 = 330, JoystickButton1 = 331, JoystickButton2 = 332, JoystickButton3 = 333, JoystickButton4 = 334, JoystickButton5 = 335, JoystickButton6 = 336, JoystickButton7 = 337, JoystickButton8 = 338, JoystickButton9 = 339, JoystickButton10 = 340, JoystickButton11 = 341, JoystickButton12 = 342, JoystickButton13 = 343, JoystickButton14 = 344, JoystickButton15 = 345, JoystickButton16 = 346, JoystickButton17 = 347, JoystickButton18 = 348, JoystickButton19 = 349, Joystick1Button0 = 350, Joystick1Button1 = 351, Joystick1Button2 = 352, Joystick1Button3 = 353, Joystick1Button4 = 354, Joystick1Button5 = 355, Joystick1Button6 = 356, Joystick1Button7 = 357, Joystick1Button8 = 358, Joystick1Button9 = 359, Joystick1Button10 = 360, Joystick1Button11 = 361, Joystick1Button12 = 362, Joystick1Button13 = 363, Joystick1Button14 = 364, Joystick1Button15 = 365, Joystick1Button16 = 366, Joystick1Button17 = 367, Joystick1Button18 = 368, Joystick1Button19 = 369, Joystick2Button0 = 370, Joystick2Button1 = 371, Joystick2Button2 = 372, Joystick2Button3 = 373, Joystick2Button4 = 374, Joystick2Button5 = 375, Joystick2Button6 = 376, Joystick2Button7 = 377, Joystick2Button8 = 378, Joystick2Button9 = 379, Joystick2Button10 = 380, Joystick2Button11 = 381, Joystick2Button12 = 382, Joystick2Button13 = 383, Joystick2Button14 = 384, Joystick2Button15 = 385, Joystick2Button16 = 386, Joystick2Button17 = 387, Joystick2Button18 = 388, Joystick2Button19 = 389, Joystick3Button0 = 390, Joystick3Button1 = 391, Joystick3Button2 = 392, Joystick3Button3 = 393, Joystick3Button4 = 394, Joystick3Button5 = 395, Joystick3Button6 = 396, Joystick3Button7 = 397, Joystick3Button8 = 398, Joystick3Button9 = 399, Joystick3Button10 = 400, Joystick3Button11 = 401, Joystick3Button12 = 402, Joystick3Button13 = 403, Joystick3Button14 = 404, Joystick3Button15 = 405, Joystick3Button16 = 406, Joystick3Button17 = 407, Joystick3Button18 = 408, Joystick3Button19 = 409, Joystick4Button0 = 410, Joystick4Button1 = 411, Joystick4Button2 = 412, Joystick4Button3 = 413, Joystick4Button4 = 414, Joystick4Button5 = 415, Joystick4Button6 = 416, Joystick4Button7 = 417, Joystick4Button8 = 418, Joystick4Button9 = 419, Joystick4Button10 = 420, Joystick4Button11 = 421, Joystick4Button12 = 422, Joystick4Button13 = 423, Joystick4Button14 = 424, Joystick4Button15 = 425, Joystick4Button16 = 426, Joystick4Button17 = 427, Joystick4Button18 = 428, Joystick4Button19 = 429, Joystick5Button0 = 430, Joystick5Button1 = 431, Joystick5Button2 = 432, Joystick5Button3 = 433, Joystick5Button4 = 434, Joystick5Button5 = 435, Joystick5Button6 = 436, Joystick5Button7 = 437, Joystick5Button8 = 438, Joystick5Button9 = 439, Joystick5Button10 = 440, Joystick5Button11 = 441, Joystick5Button12 = 442, Joystick5Button13 = 443, Joystick5Button14 = 444, Joystick5Button15 = 445, Joystick5Button16 = 446, Joystick5Button17 = 447, Joystick5Button18 = 448, Joystick5Button19 = 449, Joystick6Button0 = 450, Joystick6Button1 = 451, Joystick6Button2 = 452, Joystick6Button3 = 453, Joystick6Button4 = 454, Joystick6Button5 = 455, Joystick6Button6 = 456, Joystick6Button7 = 457, Joystick6Button8 = 458, Joystick6Button9 = 459, Joystick6Button10 = 460, Joystick6Button11 = 461, Joystick6Button12 = 462, Joystick6Button13 = 463, Joystick6Button14 = 464, Joystick6Button15 = 465, Joystick6Button16 = 466, Joystick6Button17 = 467, Joystick6Button18 = 468, Joystick6Button19 = 469, Joystick7Button0 = 470, Joystick7Button1 = 471, Joystick7Button2 = 472, Joystick7Button3 = 473, Joystick7Button4 = 474, Joystick7Button5 = 475, Joystick7Button6 = 476, Joystick7Button7 = 477, Joystick7Button8 = 478, Joystick7Button9 = 479, Joystick7Button10 = 480, Joystick7Button11 = 481, Joystick7Button12 = 482, Joystick7Button13 = 483, Joystick7Button14 = 484, Joystick7Button15 = 485, Joystick7Button16 = 486, Joystick7Button17 = 487, Joystick7Button18 = 488, Joystick7Button19 = 489, Joystick8Button0 = 490, Joystick8Button1 = 491, Joystick8Button2 = 492, Joystick8Button3 = 493, Joystick8Button4 = 494, Joystick8Button5 = 495, Joystick8Button6 = 496, Joystick8Button7 = 497, Joystick8Button8 = 498, Joystick8Button9 = 499, Joystick8Button10 = 500, Joystick8Button11 = 501, Joystick8Button12 = 502, Joystick8Button13 = 503, Joystick8Button14 = 504, Joystick8Button15 = 505, Joystick8Button16 = 506, Joystick8Button17 = 507, Joystick8Button18 = 508, Joystick8Button19 = 509 }
         /** Representation of 3D vectors and points.
         */
-        class Vector3 extends System.ValueType implements System.IEquatable$1<UnityEngine.Vector3>, System.IFormattable
+        class Vector3 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector3>
         {
             protected [__keep_incompatibility]: never;
             public static kEpsilon : number
@@ -714,6 +752,26 @@
             /** Shorthand for writing Vector3(float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity).
             */
             public static get negativeInfinity(): UnityEngine.Vector3;
+            /** Spherically interpolates between two vectors.
+            */
+            public static Slerp ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
+            /** Spherically interpolates between two vectors.
+            */
+            public static SlerpUnclamped ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
+            /** Makes vectors normalized and orthogonal to each other.
+            */
+            public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>) : void
+            /** Makes vectors normalized and orthogonal to each other.
+            */
+            public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>, $binormal: $Ref<UnityEngine.Vector3>) : void
+            /** Rotates a vector current towards target.
+            * @param current The vector being managed.
+            * @param target The vector.
+            * @param maxRadiansDelta The maximum angle in radians allowed for this rotation.
+            * @param maxMagnitudeDelta The maximum allowed change in vector magnitude for this rotation.
+            * @returns The location that RotateTowards generates. 
+            */
+            public static RotateTowards ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $maxRadiansDelta: number, $maxMagnitudeDelta: number) : UnityEngine.Vector3
             /** Linearly interpolates between two points.
             * @param a Start value, returned when t = 0.
             * @param b End value, returned when t = 1.
@@ -841,32 +899,12 @@
             * @param formatProvider An object that specifies culture-specific formatting.
             */
             public ToString ($format: string, $formatProvider: System.IFormatProvider) : string
-            /** Spherically interpolates between two vectors.
-            */
-            public static Slerp ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
-            /** Spherically interpolates between two vectors.
-            */
-            public static SlerpUnclamped ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
-            /** Makes vectors normalized and orthogonal to each other.
-            */
-            public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>) : void
-            /** Makes vectors normalized and orthogonal to each other.
-            */
-            public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>, $binormal: $Ref<UnityEngine.Vector3>) : void
-            /** Rotates a vector current towards target.
-            * @param current The vector being managed.
-            * @param target The vector.
-            * @param maxRadiansDelta The maximum angle in radians allowed for this rotation.
-            * @param maxMagnitudeDelta The maximum allowed change in vector magnitude for this rotation.
-            * @returns The location that RotateTowards generates. 
-            */
-            public static RotateTowards ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $maxRadiansDelta: number, $maxMagnitudeDelta: number) : UnityEngine.Vector3
             public constructor ($x: number, $y: number, $z: number)
             public constructor ($x: number, $y: number)
         }
         /** Representation of 2D vectors and points.
         */
-        class Vector2 extends System.ValueType implements System.IEquatable$1<UnityEngine.Vector2>, System.IFormattable
+        class Vector2 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector2>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -898,7 +936,7 @@
         }
         /** Quaternions are used to represent rotations.
         */
-        class Quaternion extends System.ValueType implements System.IEquatable$1<UnityEngine.Quaternion>, System.IFormattable
+        class Quaternion extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Quaternion>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -990,6 +1028,15 @@
             /** Sets the world space position and rotation of the Transform component.
             */
             public SetPositionAndRotation ($position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : void
+            /** Sets the position and rotation of the Transform component in local space (i.e. relative to its parent transform).
+            */
+            public SetLocalPositionAndRotation ($localPosition: UnityEngine.Vector3, $localRotation: UnityEngine.Quaternion) : void
+            /** Gets the position and rotation of the Transform component in world space.
+            */
+            public GetPositionAndRotation ($position: $Ref<UnityEngine.Vector3>, $rotation: $Ref<UnityEngine.Quaternion>) : void
+            /** Gets the position and rotation of the Transform component in local space (that is, relative to its parent transform).
+            */
+            public GetLocalPositionAndRotation ($localPosition: $Ref<UnityEngine.Vector3>, $localRotation: $Ref<UnityEngine.Quaternion>) : void
             /** Moves the transform in the direction and distance of translation.
             */
             public Translate ($translation: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
@@ -1123,6 +1170,14 @@
             */
             public GetChild ($index: number) : UnityEngine.Transform
         }
+        /** Options to specify if and how to sort objects returned by a function.
+        */
+        enum FindObjectsSortMode
+        { None = 0, InstanceID = 1 }
+        /** Options to control whether object find functions return inactive objects.
+        */
+        enum FindObjectsInactive
+        { Exclude = 0, Include = 1 }
         /** Bit mask that controls object destruction, saving and visibility in inspectors.
         */
         enum HideFlags
@@ -1304,7 +1359,7 @@
         { RequireReceiver = 0, DontRequireReceiver = 1 }
         /** A standard 4x4 transformation matrix.
         */
-        class Matrix4x4 extends System.ValueType implements System.IEquatable$1<UnityEngine.Matrix4x4>, System.IFormattable
+        class Matrix4x4 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Matrix4x4>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -1635,7 +1690,7 @@
         }
         /** Represents an axis aligned bounding box.
         */
-        class Bounds extends System.ValueType implements System.IEquatable$1<UnityEngine.Bounds>, System.IFormattable
+        class Bounds extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Bounds>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -1893,7 +1948,7 @@
         }
         /** Representation of RGBA colors.
         */
-        class Color extends System.ValueType implements System.IEquatable$1<UnityEngine.Color>, System.IFormattable
+        class Color extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Color>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -1930,19 +1985,24 @@
         }
         interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
         {
+        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
+        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
         {
+        [Symbol.iterator]() : IterableIterator<T>
         }
         interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
+        [Symbol.iterator]() : IterableIterator<T>
         }
         class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
         {
             protected [__keep_incompatibility]: never;
+            public [Symbol.iterator]() : IterableIterator<T>
         }
     }
     namespace System.Collections {
@@ -1974,7 +2034,7 @@
         }
     }
     namespace System.Reflection {
-        class MemberInfo extends System.Object implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo
+        class MemberInfo extends System.Object implements System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }
@@ -2000,15 +2060,15 @@
         { Constructor = 1, Event = 2, Field = 4, Method = 8, Property = 16, TypeInfo = 32, Custom = 64, NestedType = 128, All = 191 }
         enum BindingFlags
         { Default = 0, IgnoreCase = 1, DeclaredOnly = 2, Instance = 4, Static = 8, Public = 16, NonPublic = 32, FlattenHierarchy = 64, InvokeMethod = 256, CreateInstance = 512, GetField = 1024, SetField = 2048, GetProperty = 4096, SetProperty = 8192, PutDispProperty = 16384, PutRefDispProperty = 32768, ExactBinding = 65536, SuppressChangeType = 131072, OptionalParamBinding = 262144, IgnoreReturn = 16777216, DoNotWrapExceptions = 33554432 }
-        class Assembly extends System.Object implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._Assembly, System.Security.IEvidenceFactory, System.Runtime.Serialization.ISerializable
+        class Assembly extends System.Object implements System.Runtime.Serialization.ISerializable, System.Reflection.ICustomAttributeProvider, System.Security.IEvidenceFactory, System.Runtime.InteropServices._Assembly
         {
             protected [__keep_incompatibility]: never;
         }
-        class Module extends System.Object implements System.Runtime.InteropServices._Module, System.Reflection.ICustomAttributeProvider, System.Runtime.Serialization.ISerializable
+        class Module extends System.Object implements System.Runtime.Serialization.ISerializable, System.Runtime.InteropServices._Module, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }
-        class MethodBase extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase
+        class MethodBase extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }
@@ -2016,7 +2076,7 @@
         { None = 0, VarianceMask = 3, Covariant = 1, Contravariant = 2, SpecialConstraintMask = 28, ReferenceTypeConstraint = 4, NotNullableValueTypeConstraint = 8, DefaultConstructorConstraint = 16 }
         enum TypeAttributes
         { VisibilityMask = 7, NotPublic = 0, Public = 1, NestedPublic = 2, NestedPrivate = 3, NestedFamily = 4, NestedAssembly = 5, NestedFamANDAssem = 6, NestedFamORAssem = 7, LayoutMask = 24, AutoLayout = 0, SequentialLayout = 8, ExplicitLayout = 16, ClassSemanticsMask = 32, Class = 0, Interface = 32, Abstract = 128, Sealed = 256, SpecialName = 1024, Import = 4096, Serializable = 8192, WindowsRuntime = 16384, StringFormatMask = 196608, AnsiClass = 0, UnicodeClass = 65536, AutoClass = 131072, CustomFormatClass = 196608, CustomFormatMask = 12582912, BeforeFieldInit = 1048576, RTSpecialName = 2048, HasSecurity = 262144, ReservedMask = 264192 }
-        class ConstructorInfo extends System.Reflection.MethodBase implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Runtime.InteropServices._ConstructorInfo
+        class ConstructorInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Runtime.InteropServices._ConstructorInfo, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }
@@ -2030,19 +2090,19 @@
         }
         enum CallingConventions
         { Standard = 1, VarArgs = 2, Any = 3, HasThis = 32, ExplicitThis = 64 }
-        class EventInfo extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._EventInfo, System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo
+        class EventInfo extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._EventInfo, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }
-        class FieldInfo extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._FieldInfo, System.Runtime.InteropServices._MemberInfo
+        class FieldInfo extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._FieldInfo
         {
             protected [__keep_incompatibility]: never;
         }
-        class MethodInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MethodInfo, System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase
+        class MethodInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Runtime.InteropServices._MethodInfo, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }
-        class PropertyInfo extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._PropertyInfo, System.Runtime.InteropServices._MemberInfo
+        class PropertyInfo extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._PropertyInfo, System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }
@@ -2050,7 +2110,7 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        class AssemblyName extends System.Object implements System.ICloneable, System.Runtime.InteropServices._AssemblyName, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable
+        class AssemblyName extends System.Object implements System.Runtime.InteropServices._AssemblyName, System.Runtime.Serialization.IDeserializationCallback, System.Runtime.Serialization.ISerializable, System.ICloneable
         {
             protected [__keep_incompatibility]: never;
         }
@@ -2106,7 +2166,7 @@
         }
     }
     namespace System.Globalization {
-        class CultureInfo extends System.Object implements System.IFormatProvider, System.ICloneable
+        class CultureInfo extends System.Object implements System.ICloneable, System.IFormatProvider
         {
             protected [__keep_incompatibility]: never;
         }
@@ -2119,7 +2179,4 @@
             protected [__keep_incompatibility]: never;
         }
     }
-}
-declare module 'csharp' {
-export = CS;
 }

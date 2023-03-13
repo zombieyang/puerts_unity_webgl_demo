@@ -1,5 +1,6 @@
 using UnityEngine;
 using Puerts;
+using Puerts.TSLoader;
 using System;
 using System.Runtime.InteropServices;
 
@@ -187,15 +188,8 @@ namespace PuertsTest
 
         void Start()
         {
-#if UNITY_WEBGL
-            var jsEnv = Puerts.WebGL.GetBrowserEnv();
-#else 
-            var jsEnv = new JsEnv();
-            jsEnv.Eval(@"
-                global.csharp = require('csharp')
-                global.puerts = require('puerts')
-            ");
-#endif 
+            var jsEnv = Puerts.WebGL.MainEnv.Get(new TSLoader());
+
             // var jsEnv = new Puerts.JsEnv(new DefaultLoader(), 8080);
             // jsEnv.WaitDebugger();
             var helper = new TestHelper(jsEnv);
