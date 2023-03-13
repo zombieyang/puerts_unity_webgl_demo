@@ -34,23 +34,24 @@
 #### have a try | 体验一下效果
 
 * start a http server in `build` directory. you can quickly try these 4 demo which is built by Unity2019.
-* 在build目录启动一个httpserver，通过网页访问即可看到4个demo的效果，它们是Unity2019编译产生的。
+* 在build目录启动一个httpserver，通过网页访问即可看到4个demo的效果，它们是Unity2021.3.19编译产生的。
 
 1. Simple Rotate Demo | 简单旋转demo
 2. Basketball Game Demo | 篮球小游戏demo
 3. UnitTest
-4. Compare with XLua WebGL | 和 xLua WebGL 进行fibonacci 性能对比测试demo
+4. Compare with XLua WebGL | 和 xLua WebGL / C# 进行fibonacci 性能对比测试demo
 
 #### How to rebuild | 如何重新构建？
 1. Open any project in `projects` | 打开`projects`下的任意项目
 2. Click `puerts-webgl/install` in the Menu | 点击`puerts-webgl/install`
 3. Do Unity WebGL Build | 执行Unity的WebGL Build
-4. Click `puerts-webgl/build for browser` following the tips in console | 根据命令行提示，点击`puerts-webgl/build for browser`将JS拷贝到构建目录
-5. append these code befoew `</head>` in index.html built by Unity: | 将下述代码放到index.html的</head>前
+4. Click `puerts-webgl/build for browser` following the tips by step3 in console | 根据第3步出现的命令行提示，点击`puerts-webgl/build for browser`将JS拷贝到构建目录
+5. append these code before `</head>` in index.html built by Unity: | 将下述代码放到index.html的</head>前
 ```
   <script src="./puerts-runtime.js"></script>
   <script src="./puerts_browser_js_resources.js"></script>
 ```
+> 如果使用了[ts-loader](https://github.com/zombieyang/puerts-ts-loader)作为你的JS加载器，比如本demo中的Sample2/8/9，可能需要在第4步前点击`PuerTS-TSLoader-Release TS to Resources`
 
 #### install in your own project | 在你自己的项目中安装
 
