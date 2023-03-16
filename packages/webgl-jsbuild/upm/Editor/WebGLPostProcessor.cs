@@ -112,13 +112,13 @@ public class WebGLPuertsPostProcessor {
 
 
 
-    [MenuItem("puerts-webgl/build puerts-js for minigame", true)]
-    [MenuItem("puerts-webgl/build puerts-js for browser", true)]
+    [MenuItem("PuerTS/WebGL/build puerts-js for minigame", true)]
+    [MenuItem("PuerTS/WebGL/build puerts-js for browser", true)]
     static bool NodeModulesInstalled() 
     {
         return Directory.Exists(Path.GetFullPath("Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~/node_modules"));
     }
-    [MenuItem("puerts-webgl/install", true)]
+    [MenuItem("PuerTS/WebGL/install", true)]
     static bool NodeModulesNotInstalled() 
     {
         return !NodeModulesInstalled();
