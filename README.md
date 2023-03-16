@@ -45,13 +45,14 @@
 1. Open any project in `projects` | 打开`projects`下的任意项目
 2. Click `puerts-webgl/install` in the Menu | 点击`puerts-webgl/install`
 3. Do Unity WebGL Build | 执行Unity的WebGL Build
-4. Click `puerts-webgl/build for browser` following the tips by step3 in console | 根据第3步出现的命令行提示，点击`puerts-webgl/build for browser`将JS拷贝到构建目录
-5. append these code before `</head>` in index.html built by Unity: | 将下述代码放到index.html的</head>前
+4  (Except Sample1) Click `PuerTS-TSLoader-Release TS to Resources` because [ts-loader](https://github.com/zombieyang/puerts-ts-loader) is used | （除了Sample1）因为使用了[ts-loader](https://github.com/zombieyang/puerts-ts-loader)，需要点击`PuerTS-TSLoader-Release TS to Resources`
+5. Click `puerts-webgl/build for browser` following the tips by step3 in console | 根据第3步出现的命令行提示，点击`puerts-webgl/build for browser`将JS拷贝到构建目录
+6. append these code before `</head>` in index.html built by Unity: | 将下述代码放到index.html的</head>前
 ```
   <script src="./puerts-runtime.js"></script>
   <script src="./puerts_browser_js_resources.js"></script>
 ```
-> 如果使用了[ts-loader](https://github.com/zombieyang/puerts-ts-loader)作为你的JS加载器，比如本demo中的Sample2/8/9，可能需要在第4步前点击`PuerTS-TSLoader-Release TS to Resources`
+> 如果使用了作为你的JS加载器，比如本demo中的Sample2/8/9，可能需要在第4步前点击
 
 #### install in your own project | 在你自己的项目中安装
 
