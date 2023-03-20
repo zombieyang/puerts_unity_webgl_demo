@@ -107,6 +107,9 @@ Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本�
 ##### 4. ILoader does not work | Loader在webGL下不工作
   * [wiki](https://github.com/zombieyang/puerts_unity_webgl_demo/wiki/%E6%95%99%E5%AD%A6%E6%AD%A5%E9%AA%A4%E4%B8%AD%EF%BC%8C%60%E6%9E%84%E5%BB%BA%60%E5%AE%9E%E9%99%85%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F)
   
+##### 5. brotli compression may not be supported
+  * set `Player Settings > Publishing Settings > Compression Format` to `Disabled`
+  
 ----------------------------------------------
 
 [Discord](https://discord.gg/RYRY7D833n)
