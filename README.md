@@ -31,10 +31,10 @@
 * So. the guidance below is assumed that you already know something about puerts. Or you can learn about it in [Tencent/puerts](https://github.com/Tencent/puerts)
 * 下列指引都是假设你已经有对PuerTS本身足够的了解。您可以先在 [Tencent/puerts](https://github.com/Tencent/puerts) 获得一些知识再往下进行。
 
-#### have a try | 体验一下效果
+#### have a try in your browser | 在浏览器体验一下效果
 
-* start a http server in `build` directory. you can quickly try these 4 demo which is built by Unity2019.
-* 在build目录启动一个httpserver，通过网页访问即可看到4个demo的效果，它们是Unity2021.3.19编译产生的。
+* start a http server (such as by [serve](https://www.npmjs.com/package/serve)) in `build` directory. you can quickly try these 4 demo which is built by Unity2021.
+* 在build目录启动一个httpserver（比如使用[serve](https://www.npmjs.com/package/serve)），通过网页访问即可看到4个demo的效果，它们是Unity2021.3.19编译产生的。
 
 1. Simple Rotate Demo | 简单旋转demo
 2. Basketball Game Demo | 篮球小游戏demo
