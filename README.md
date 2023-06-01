@@ -52,7 +52,7 @@
   <script src="./puerts-runtime.js"></script>
   <script src="./puerts_browser_js_resources.js"></script>
 ```
-> 如果使用了作为你的JS加载器，比如本demo中的Sample2/8/9，可能需要在第4步前点击
+> 如果使用了`puerts-ts-loader`作为你的JS加载器，比如本demo中的Sample2/8/9，可能需要在第4步前点击
 
 #### install in your own project | 在你自己的项目中安装
 
