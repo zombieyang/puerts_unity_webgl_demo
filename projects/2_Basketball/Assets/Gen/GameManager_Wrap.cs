@@ -8,7 +8,7 @@ namespace PuertsStaticWrap
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_BallSpawnPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_BallSpawnPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_BallSpawnPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_BallSpawnPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_BallPrefab(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_BallPrefab(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_BallPrefab(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_BallPrefab(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_PrescoreTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_PrescoreTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_PrescoreTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_PrescoreTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -125,7 +125,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_ScoredTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_ScoredTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -139,7 +139,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_ScoredTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_ScoredTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -164,31 +164,6 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"BallSpawnPoint", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_BallSpawnPoint, Setter = S_BallSpawnPoint} },
-
-                    {"BallPrefab", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_BallPrefab, Setter = S_BallPrefab} },
-
-                    {"PrescoreTrigger", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_PrescoreTrigger, Setter = S_PrescoreTrigger} },
-
-                    {"ScoredTrigger", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_ScoredTrigger, Setter = S_ScoredTrigger} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                }
-            };
-        }
     
     }
 }

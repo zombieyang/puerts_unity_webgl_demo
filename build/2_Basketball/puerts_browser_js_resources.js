@@ -336,6 +336,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = resetAllFunctionWhenDisposed;
+/*
+* Tencent is pleased to support the open source community by making Puerts available.
+* Copyright (C) 2020 THL A29 Limited, a Tencent company.  All rights reserved.
+* Puerts is licensed under the BSD 3-Clause License, except for the third-party components listed in the file 'LICENSE' which may be subject to their corresponding license terms. 
+* This file is subject to the terms and conditions defined in file 'LICENSE', which is part of this source code package.
+*/
 var global = global || globalThis || function () {
   return this;
 }();
@@ -722,7 +728,20 @@ var global = global || globalThis || function () {
   return this;
 }();
 let UnityEngine_Debug = puer.loadType('UnityEngine.Debug');
-if (UnityEngine_Debug) {
+if (!UnityEngine_Debug) {
+  // in quickjs, global.console is undefined
+  // so we decide polyfill the unityengine.debug.log in non-unity env
+  const CSConsole = puer.loadType('System.Console');
+  if (CSConsole) {
+    UnityEngine_Debug = {
+      Log: (...args) => CSConsole.WriteLine(["[Log]", ...args].join(' ')),
+      LogWarn: (...args) => CSConsole.WriteLine(["[LogWarn]", ...args].join(' ')),
+      LogError: (...args) => CSConsole.WriteLine(["[LogError]", ...args].join(' ')),
+      Assert: () => {}
+    };
+  }
+}
+if (UnityEngine_Debug || !global.console) {
   const console_org = global.console;
   var console = {};
   function toString(args) {
@@ -732,7 +751,7 @@ if (UnityEngine_Debug) {
       } catch (err) {
         return err;
       }
-    }).join(',');
+    }).join(' ');
   }
   function getStack(error) {
     let stack = error.stack; // get js stack

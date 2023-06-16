@@ -8,7 +8,7 @@ namespace PuertsStaticWrap
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace PuertsStaticWrap
 
     // ==================== methods start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_SetParent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_SetParent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_SetPositionAndRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_SetPositionAndRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_SetLocalPositionAndRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_SetLocalPositionAndRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetPositionAndRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetPositionAndRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetLocalPositionAndRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetLocalPositionAndRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -192,7 +192,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_Translate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_Translate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -310,7 +310,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_Rotate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_Rotate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -427,7 +427,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_RotateAround(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_RotateAround(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -460,7 +460,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_LookAt(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_LookAt(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -525,7 +525,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_TransformDirection(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_TransformDirection(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -579,7 +579,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_InverseTransformDirection(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_InverseTransformDirection(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -633,7 +633,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_TransformVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_TransformVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -687,7 +687,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_InverseTransformVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_InverseTransformVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -741,7 +741,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_TransformPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_TransformPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -795,7 +795,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_InverseTransformPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_InverseTransformPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -849,7 +849,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_DetachChildren(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_DetachChildren(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -870,7 +870,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_SetAsFirstSibling(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_SetAsFirstSibling(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -891,7 +891,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_SetAsLastSibling(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_SetAsLastSibling(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -912,7 +912,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_SetSiblingIndex(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_SetSiblingIndex(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -937,7 +937,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetSiblingIndex(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetSiblingIndex(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -959,7 +959,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_Find(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_Find(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -985,7 +985,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_IsChildOf(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_IsChildOf(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1011,7 +1011,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetEnumerator(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetEnumerator(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1033,7 +1033,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetChild(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetChild(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1062,7 +1062,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_position(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_position(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1076,7 +1076,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_position(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_position(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1092,7 +1092,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_localPosition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_localPosition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1106,7 +1106,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_localPosition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_localPosition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1122,7 +1122,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_eulerAngles(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_eulerAngles(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1136,7 +1136,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_eulerAngles(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_eulerAngles(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1152,7 +1152,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_localEulerAngles(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_localEulerAngles(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1166,7 +1166,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_localEulerAngles(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_localEulerAngles(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1182,7 +1182,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_right(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_right(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1196,7 +1196,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_right(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_right(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1212,7 +1212,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_up(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_up(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1226,7 +1226,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_up(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_up(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1242,7 +1242,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_forward(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_forward(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1256,7 +1256,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_forward(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_forward(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1272,7 +1272,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_rotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_rotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1286,7 +1286,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_rotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_rotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1302,7 +1302,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_localRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_localRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1316,7 +1316,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_localRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_localRotation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1332,7 +1332,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_localScale(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_localScale(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1346,7 +1346,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_localScale(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_localScale(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1362,7 +1362,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_parent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_parent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1376,7 +1376,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_parent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_parent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1392,7 +1392,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_worldToLocalMatrix(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_worldToLocalMatrix(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1406,7 +1406,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_localToWorldMatrix(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_localToWorldMatrix(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1420,7 +1420,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_root(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_root(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1434,7 +1434,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_childCount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_childCount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1448,7 +1448,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_lossyScale(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_lossyScale(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1462,7 +1462,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_hasChanged(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_hasChanged(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1476,7 +1476,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_hasChanged(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_hasChanged(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1492,7 +1492,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_hierarchyCapacity(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_hierarchyCapacity(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1506,7 +1506,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_hierarchyCapacity(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_hierarchyCapacity(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1522,7 +1522,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_hierarchyCount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_hierarchyCount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1545,85 +1545,6 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                    { new Puerts.MethodKey { Name = "SetParent", IsStatic = false}, M_SetParent },
-                    { new Puerts.MethodKey { Name = "SetPositionAndRotation", IsStatic = false}, M_SetPositionAndRotation },
-                    { new Puerts.MethodKey { Name = "SetLocalPositionAndRotation", IsStatic = false}, M_SetLocalPositionAndRotation },
-                    { new Puerts.MethodKey { Name = "GetPositionAndRotation", IsStatic = false}, M_GetPositionAndRotation },
-                    { new Puerts.MethodKey { Name = "GetLocalPositionAndRotation", IsStatic = false}, M_GetLocalPositionAndRotation },
-                    { new Puerts.MethodKey { Name = "Translate", IsStatic = false}, M_Translate },
-                    { new Puerts.MethodKey { Name = "Rotate", IsStatic = false}, M_Rotate },
-                    { new Puerts.MethodKey { Name = "RotateAround", IsStatic = false}, M_RotateAround },
-                    { new Puerts.MethodKey { Name = "LookAt", IsStatic = false}, M_LookAt },
-                    { new Puerts.MethodKey { Name = "TransformDirection", IsStatic = false}, M_TransformDirection },
-                    { new Puerts.MethodKey { Name = "InverseTransformDirection", IsStatic = false}, M_InverseTransformDirection },
-                    { new Puerts.MethodKey { Name = "TransformVector", IsStatic = false}, M_TransformVector },
-                    { new Puerts.MethodKey { Name = "InverseTransformVector", IsStatic = false}, M_InverseTransformVector },
-                    { new Puerts.MethodKey { Name = "TransformPoint", IsStatic = false}, M_TransformPoint },
-                    { new Puerts.MethodKey { Name = "InverseTransformPoint", IsStatic = false}, M_InverseTransformPoint },
-                    { new Puerts.MethodKey { Name = "DetachChildren", IsStatic = false}, M_DetachChildren },
-                    { new Puerts.MethodKey { Name = "SetAsFirstSibling", IsStatic = false}, M_SetAsFirstSibling },
-                    { new Puerts.MethodKey { Name = "SetAsLastSibling", IsStatic = false}, M_SetAsLastSibling },
-                    { new Puerts.MethodKey { Name = "SetSiblingIndex", IsStatic = false}, M_SetSiblingIndex },
-                    { new Puerts.MethodKey { Name = "GetSiblingIndex", IsStatic = false}, M_GetSiblingIndex },
-                    { new Puerts.MethodKey { Name = "Find", IsStatic = false}, M_Find },
-                    { new Puerts.MethodKey { Name = "IsChildOf", IsStatic = false}, M_IsChildOf },
-                    { new Puerts.MethodKey { Name = "GetEnumerator", IsStatic = false}, M_GetEnumerator },
-                    { new Puerts.MethodKey { Name = "GetChild", IsStatic = false}, M_GetChild }
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"position", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_position, Setter = S_position} },
-
-                    {"localPosition", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_localPosition, Setter = S_localPosition} },
-
-                    {"eulerAngles", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_eulerAngles, Setter = S_eulerAngles} },
-
-                    {"localEulerAngles", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_localEulerAngles, Setter = S_localEulerAngles} },
-
-                    {"right", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_right, Setter = S_right} },
-
-                    {"up", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_up, Setter = S_up} },
-
-                    {"forward", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_forward, Setter = S_forward} },
-
-                    {"rotation", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_rotation, Setter = S_rotation} },
-
-                    {"localRotation", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_localRotation, Setter = S_localRotation} },
-
-                    {"localScale", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_localScale, Setter = S_localScale} },
-
-                    {"parent", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_parent, Setter = S_parent} },
-
-                    {"worldToLocalMatrix", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_worldToLocalMatrix, Setter = null} },
-
-                    {"localToWorldMatrix", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_localToWorldMatrix, Setter = null} },
-
-                    {"root", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_root, Setter = null} },
-
-                    {"childCount", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_childCount, Setter = null} },
-
-                    {"lossyScale", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_lossyScale, Setter = null} },
-
-                    {"hasChanged", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_hasChanged, Setter = S_hasChanged} },
-
-                    {"hierarchyCapacity", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_hierarchyCapacity, Setter = S_hierarchyCapacity} },
-
-                    {"hierarchyCount", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_hierarchyCount, Setter = null} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                }
-            };
-        }
     
     }
 }

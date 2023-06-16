@@ -8,7 +8,7 @@ namespace PuertsStaticWrap
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace PuertsStaticWrap
 
     // ==================== methods start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetAxis(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetAxis(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetAxisRaw(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetAxisRaw(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetButton(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetButton(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetButtonDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetButtonDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -132,7 +132,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetButtonUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetButtonUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -157,7 +157,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetMouseButton(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetMouseButton(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -182,7 +182,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetMouseButtonDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetMouseButtonDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -207,7 +207,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetMouseButtonUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetMouseButtonUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -232,7 +232,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_ResetInputAxes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_ResetInputAxes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -252,7 +252,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetJoystickNames(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetJoystickNames(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -273,7 +273,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetTouch(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetTouch(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -298,7 +298,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetAccelerationEvent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetAccelerationEvent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -323,7 +323,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetKey(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetKey(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -361,7 +361,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetKeyUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetKeyUp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -399,7 +399,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetKeyDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetKeyDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -440,7 +440,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_simulateMouseWithTouches(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_simulateMouseWithTouches(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -453,7 +453,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_simulateMouseWithTouches(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_simulateMouseWithTouches(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -468,7 +468,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_anyKey(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_anyKey(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -481,7 +481,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_anyKeyDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_anyKeyDown(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -494,7 +494,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_inputString(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_inputString(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -507,7 +507,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_mousePosition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_mousePosition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -520,7 +520,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_mouseScrollDelta(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_mouseScrollDelta(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -533,7 +533,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_imeCompositionMode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_imeCompositionMode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -546,7 +546,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_imeCompositionMode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_imeCompositionMode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -561,7 +561,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_compositionString(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_compositionString(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -574,7 +574,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_imeIsSelected(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_imeIsSelected(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -587,7 +587,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_compositionCursorPos(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_compositionCursorPos(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -600,7 +600,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_compositionCursorPos(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_compositionCursorPos(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -615,7 +615,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_mousePresent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_mousePresent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -628,7 +628,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_touchCount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_touchCount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -641,7 +641,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_touchPressureSupported(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_touchPressureSupported(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -654,7 +654,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_stylusTouchSupported(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_stylusTouchSupported(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -667,7 +667,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_touchSupported(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_touchSupported(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -680,7 +680,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_multiTouchEnabled(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_multiTouchEnabled(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -693,7 +693,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_multiTouchEnabled(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_multiTouchEnabled(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -708,7 +708,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_deviceOrientation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_deviceOrientation(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -721,7 +721,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_acceleration(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_acceleration(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -734,7 +734,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_compensateSensors(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_compensateSensors(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -747,7 +747,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_compensateSensors(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_compensateSensors(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -762,7 +762,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_accelerationEventCount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_accelerationEventCount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -775,7 +775,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_backButtonLeavesApp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_backButtonLeavesApp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -788,7 +788,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_backButtonLeavesApp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_backButtonLeavesApp(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -803,7 +803,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_location(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_location(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -816,7 +816,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_compass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_compass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -829,7 +829,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_gyro(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_gyro(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -842,7 +842,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_touches(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_touches(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -855,7 +855,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_accelerationEvents(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_accelerationEvents(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -877,91 +877,6 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                    { new Puerts.MethodKey { Name = "GetAxis", IsStatic = true}, F_GetAxis },
-                    { new Puerts.MethodKey { Name = "GetAxisRaw", IsStatic = true}, F_GetAxisRaw },
-                    { new Puerts.MethodKey { Name = "GetButton", IsStatic = true}, F_GetButton },
-                    { new Puerts.MethodKey { Name = "GetButtonDown", IsStatic = true}, F_GetButtonDown },
-                    { new Puerts.MethodKey { Name = "GetButtonUp", IsStatic = true}, F_GetButtonUp },
-                    { new Puerts.MethodKey { Name = "GetMouseButton", IsStatic = true}, F_GetMouseButton },
-                    { new Puerts.MethodKey { Name = "GetMouseButtonDown", IsStatic = true}, F_GetMouseButtonDown },
-                    { new Puerts.MethodKey { Name = "GetMouseButtonUp", IsStatic = true}, F_GetMouseButtonUp },
-                    { new Puerts.MethodKey { Name = "ResetInputAxes", IsStatic = true}, F_ResetInputAxes },
-                    { new Puerts.MethodKey { Name = "GetJoystickNames", IsStatic = true}, F_GetJoystickNames },
-                    { new Puerts.MethodKey { Name = "GetTouch", IsStatic = true}, F_GetTouch },
-                    { new Puerts.MethodKey { Name = "GetAccelerationEvent", IsStatic = true}, F_GetAccelerationEvent },
-                    { new Puerts.MethodKey { Name = "GetKey", IsStatic = true}, F_GetKey },
-                    { new Puerts.MethodKey { Name = "GetKeyUp", IsStatic = true}, F_GetKeyUp },
-                    { new Puerts.MethodKey { Name = "GetKeyDown", IsStatic = true}, F_GetKeyDown }
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"simulateMouseWithTouches", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_simulateMouseWithTouches, Setter = S_simulateMouseWithTouches} },
-
-                    {"anyKey", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_anyKey, Setter = null} },
-
-                    {"anyKeyDown", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_anyKeyDown, Setter = null} },
-
-                    {"inputString", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_inputString, Setter = null} },
-
-                    {"mousePosition", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_mousePosition, Setter = null} },
-
-                    {"mouseScrollDelta", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_mouseScrollDelta, Setter = null} },
-
-                    {"imeCompositionMode", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_imeCompositionMode, Setter = S_imeCompositionMode} },
-
-                    {"compositionString", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_compositionString, Setter = null} },
-
-                    {"imeIsSelected", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_imeIsSelected, Setter = null} },
-
-                    {"compositionCursorPos", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_compositionCursorPos, Setter = S_compositionCursorPos} },
-
-                    {"mousePresent", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_mousePresent, Setter = null} },
-
-                    {"touchCount", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_touchCount, Setter = null} },
-
-                    {"touchPressureSupported", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_touchPressureSupported, Setter = null} },
-
-                    {"stylusTouchSupported", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_stylusTouchSupported, Setter = null} },
-
-                    {"touchSupported", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_touchSupported, Setter = null} },
-
-                    {"multiTouchEnabled", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_multiTouchEnabled, Setter = S_multiTouchEnabled} },
-
-                    {"deviceOrientation", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_deviceOrientation, Setter = null} },
-
-                    {"acceleration", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_acceleration, Setter = null} },
-
-                    {"compensateSensors", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_compensateSensors, Setter = S_compensateSensors} },
-
-                    {"accelerationEventCount", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_accelerationEventCount, Setter = null} },
-
-                    {"backButtonLeavesApp", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_backButtonLeavesApp, Setter = S_backButtonLeavesApp} },
-
-                    {"location", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_location, Setter = null} },
-
-                    {"compass", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_compass, Setter = null} },
-
-                    {"gyro", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_gyro, Setter = null} },
-
-                    {"touches", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_touches, Setter = null} },
-
-                    {"accelerationEvents", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_accelerationEvents, Setter = null} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                    new Puerts.LazyMemberRegisterInfo() { Name = "IsJoystickPreconfigured", IsStatic = true, Type = (Puerts.LazyMemberType)2, HasGetter = false, HasSetter = false }
-                }
-            };
-        }
     
     }
 }

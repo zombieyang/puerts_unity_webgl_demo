@@ -321,135 +321,138 @@
             */
             public get hideFlags(): UnityEngine.HideFlags;
             public set hideFlags(value: UnityEngine.HideFlags);
+            /** Gets  the instance ID of the object.
+            * @returns Returns the instance ID of the object. When used to call the origin object, this method returns a positive value. When used to call the instance object, this method returns a negative value. 
+            */
             public GetInstanceID () : number
             public static op_Implicit ($exists: UnityEngine.Object) : boolean
             /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @param $original An existing object that you want to make a copy of.
+            * @param $position Position for the new object.
+            * @param $rotation Orientation of the new object.
+            * @param $parent Parent that will be assigned to the new object.
+            * @param $instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
             * @returns The instantiated clone. 
             */
             public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : UnityEngine.Object
             /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @param $original An existing object that you want to make a copy of.
+            * @param $position Position for the new object.
+            * @param $rotation Orientation of the new object.
+            * @param $parent Parent that will be assigned to the new object.
+            * @param $instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
             * @returns The instantiated clone. 
             */
             public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform) : UnityEngine.Object
             /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @param $original An existing object that you want to make a copy of.
+            * @param $position Position for the new object.
+            * @param $rotation Orientation of the new object.
+            * @param $parent Parent that will be assigned to the new object.
+            * @param $instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
             * @returns The instantiated clone. 
             */
             public static Instantiate ($original: UnityEngine.Object) : UnityEngine.Object
             /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @param $original An existing object that you want to make a copy of.
+            * @param $position Position for the new object.
+            * @param $rotation Orientation of the new object.
+            * @param $parent Parent that will be assigned to the new object.
+            * @param $instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
             * @returns The instantiated clone. 
             */
             public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform) : UnityEngine.Object
             /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @param $original An existing object that you want to make a copy of.
+            * @param $position Position for the new object.
+            * @param $rotation Orientation of the new object.
+            * @param $parent Parent that will be assigned to the new object.
+            * @param $instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
             * @returns The instantiated clone. 
             */
             public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean) : UnityEngine.Object
             public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $worldPositionStays: boolean) : UnityEngine.Object
             /** Removes a GameObject, component or asset.
-            * @param obj The object to destroy.
-            * @param t The optional amount of time to delay before destroying the object.
+            * @param $obj The object to destroy.
+            * @param $t The optional amount of time to delay before destroying the object.
             */
             public static Destroy ($obj: UnityEngine.Object, $t: number) : void
             /** Removes a GameObject, component or asset.
-            * @param obj The object to destroy.
-            * @param t The optional amount of time to delay before destroying the object.
+            * @param $obj The object to destroy.
+            * @param $t The optional amount of time to delay before destroying the object.
             */
             public static Destroy ($obj: UnityEngine.Object) : void
             /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead.
-            * @param obj Object to be destroyed.
-            * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
+            * @param $obj Object to be destroyed.
+            * @param $allowDestroyingAssets Set to true to allow assets to be destroyed.
             */
             public static DestroyImmediate ($obj: UnityEngine.Object, $allowDestroyingAssets: boolean) : void
             /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead.
-            * @param obj Object to be destroyed.
-            * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
+            * @param $obj Object to be destroyed.
+            * @param $allowDestroyingAssets Set to true to allow assets to be destroyed.
             */
             public static DestroyImmediate ($obj: UnityEngine.Object) : void
             /** Gets a list of all loaded objects of Type type.
-            * @param type The type of object to find.
-            * @param includeInactive If true, components attached to inactive GameObjects are also included.
+            * @param $type The type of object to find.
+            * @param $includeInactive If true, components attached to inactive GameObjects are also included.
             * @returns The array of objects found matching the type specified. 
             */
             public static FindObjectsOfType ($type: System.Type) : System.Array$1<UnityEngine.Object>
             /** Gets a list of all loaded objects of Type type.
-            * @param type The type of object to find.
-            * @param includeInactive If true, components attached to inactive GameObjects are also included.
+            * @param $type The type of object to find.
+            * @param $includeInactive If true, components attached to inactive GameObjects are also included.
             * @returns The array of objects found matching the type specified. 
             */
             public static FindObjectsOfType ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Object>
             /** Retrieves a list of all loaded objects of Type type.
-            * @param type The type of object to find.
-            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
-            * @param sortMode Whether and how to sort the returned array. Not sorting the array makes this function run significantly faster.
+            * @param $type The type of object to find.
+            * @param $findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param $sortMode Whether and how to sort the returned array. Not sorting the array makes this function run significantly faster.
             * @returns The array of objects found matching the type specified. 
             */
             public static FindObjectsByType ($type: System.Type, $sortMode: UnityEngine.FindObjectsSortMode) : System.Array$1<UnityEngine.Object>
             /** Retrieves a list of all loaded objects of Type type.
-            * @param type The type of object to find.
-            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
-            * @param sortMode Whether and how to sort the returned array. Not sorting the array makes this function run significantly faster.
+            * @param $type The type of object to find.
+            * @param $findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param $sortMode Whether and how to sort the returned array. Not sorting the array makes this function run significantly faster.
             * @returns The array of objects found matching the type specified. 
             */
             public static FindObjectsByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive, $sortMode: UnityEngine.FindObjectsSortMode) : System.Array$1<UnityEngine.Object>
             /** Do not destroy the target Object when loading a new Scene.
-            * @param target An Object not destroyed on Scene change.
+            * @param $target An Object not destroyed on Scene change.
             */
             public static DontDestroyOnLoad ($target: UnityEngine.Object) : void
             /** Returns the first active loaded object of Type type.
-            * @param type The type of object to find.
+            * @param $type The type of object to find.
             * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
             */
             public static FindObjectOfType ($type: System.Type) : UnityEngine.Object
             /** Retrieves the first active loaded object of Type type.
-            * @param type The type of object to find.
-            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param $type The type of object to find.
+            * @param $findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
             * @returns Returns the first active loaded object that matches the specified type. If no object matches the specified type, returns null. 
             */
             public static FindFirstObjectByType ($type: System.Type) : UnityEngine.Object
             /** Retrieves any active loaded object of Type type.
-            * @param type The type of object to find.
-            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param $type The type of object to find.
+            * @param $findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
             * @returns Returns an arbitrary active loaded object that matches the specified type. If no object matches the specified type, returns null. 
             */
             public static FindAnyObjectByType ($type: System.Type) : UnityEngine.Object
             /** Returns the first active loaded object of Type type.
-            * @param type The type of object to find.
+            * @param $type The type of object to find.
             * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
             */
             public static FindObjectOfType ($type: System.Type, $includeInactive: boolean) : UnityEngine.Object
             /** Retrieves the first active loaded object of Type type.
-            * @param type The type of object to find.
-            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param $type The type of object to find.
+            * @param $findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
             * @returns Returns the first active loaded object that matches the specified type. If no object matches the specified type, returns null. 
             */
             public static FindFirstObjectByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive) : UnityEngine.Object
             /** Retrieves any active loaded object of Type type.
-            * @param type The type of object to find.
-            * @param findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
+            * @param $type The type of object to find.
+            * @param $findObjectsInactive Whether to include components attached to inactive GameObjects. If you don't specify this parameter, this function doesn't include inactive objects in the results.
             * @returns Returns an arbitrary active loaded object that matches the specified type. If no object matches the specified type, returns null. 
             */
             public static FindAnyObjectByType ($type: System.Type, $findObjectsInactive: UnityEngine.FindObjectsInactive) : UnityEngine.Object
@@ -514,14 +517,14 @@
             public get material(): UnityEngine.PhysicMaterial;
             public set material(value: UnityEngine.PhysicMaterial);
             /** Returns a point on the collider that is closest to a given location.
-            * @param position Location you want to find the closest point to.
+            * @param $position Location you want to find the closest point to.
             * @returns The point on the collider that is closest to the specified location. 
             */
             public ClosestPoint ($position: UnityEngine.Vector3) : UnityEngine.Vector3
             /** Casts a Ray that ignores all Colliders except this one.
-            * @param ray The starting point and direction of the ray.
-            * @param hitInfo If true is returned, hitInfo will contain more information about where the collider was hit.
-            * @param maxDistance The max length of the ray.
+            * @param $ray The starting point and direction of the ray.
+            * @param $hitInfo If true is returned, hitInfo will contain more information about where the collider was hit.
+            * @param $maxDistance The max length of the ray.
             * @returns True when the ray intersects the collider, otherwise false. 
             */
             public Raycast ($ray: UnityEngine.Ray, $hitInfo: $Ref<UnityEngine.RaycastHit>, $maxDistance: number) : boolean
@@ -627,7 +630,7 @@
             */
             public static GetAxisRaw ($axisName: string) : number
             /** Returns true while the virtual button identified by buttonName is held down.
-            * @param buttonName The name of the button such as Jump.
+            * @param $buttonName The name of the button such as Jump.
             * @returns True when an axis has been pressed and not released. 
             */
             public static GetButton ($buttonName: string) : boolean
@@ -646,15 +649,20 @@
             /** Returns true during the frame the user releases the given mouse button.
             */
             public static GetMouseButtonUp ($button: number) : boolean
+            /** Resets all input. After ResetInputAxes all axes return to 0 and all buttons return to 0 for one frame.
+            */
             public static ResetInputAxes () : void
             /** Determine whether a particular joystick model has been preconfigured by Unity. (Linux-only).
-            * @param joystickName The name of the joystick to check (returned by Input.GetJoystickNames).
+            * @param $joystickName The name of the joystick to check (returned by Input.GetJoystickNames).
             * @returns True if the joystick layout has been preconfigured; false otherwise. 
             */
             public static IsJoystickPreconfigured ($joystickName: string) : boolean
+            /** Retrieves a list of input device names corresponding to the index of an Axis configured within Input Manager.
+            * @returns Returns an array of joystick and gamepad device names. 
+            */
             public static GetJoystickNames () : System.Array$1<string>
             /** Call Input.GetTouch to obtain a Touch struct.
-            * @param index The touch input on the device screen.
+            * @param $index The touch input on the device screen.
             * @returns Touch details in the struct. 
             */
             public static GetTouch ($index: number) : UnityEngine.Touch
@@ -765,17 +773,17 @@
             */
             public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>, $binormal: $Ref<UnityEngine.Vector3>) : void
             /** Rotates a vector current towards target.
-            * @param current The vector being managed.
-            * @param target The vector.
-            * @param maxRadiansDelta The maximum angle in radians allowed for this rotation.
-            * @param maxMagnitudeDelta The maximum allowed change in vector magnitude for this rotation.
+            * @param $current The vector being managed.
+            * @param $target The vector.
+            * @param $maxRadiansDelta The maximum angle in radians allowed for this rotation.
+            * @param $maxMagnitudeDelta The maximum allowed change in vector magnitude for this rotation.
             * @returns The location that RotateTowards generates. 
             */
             public static RotateTowards ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $maxRadiansDelta: number, $maxMagnitudeDelta: number) : UnityEngine.Vector3
             /** Linearly interpolates between two points.
-            * @param a Start value, returned when t = 0.
-            * @param b End value, returned when t = 1.
-            * @param t Value used to interpolate between a and b.
+            * @param $a Start value, returned when t = 0.
+            * @param $b End value, returned when t = 1.
+            * @param $t Value used to interpolate between a and b.
             * @returns Interpolated value, equals to a + (b - a) * t. 
             */
             public static Lerp ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
@@ -783,37 +791,37 @@
             */
             public static LerpUnclamped ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
             /** Calculate a position between the points specified by current and target, moving no farther than the distance specified by maxDistanceDelta.
-            * @param current The position to move from.
-            * @param target The position to move towards.
-            * @param maxDistanceDelta Distance to move current per call.
+            * @param $current The position to move from.
+            * @param $target The position to move towards.
+            * @param $maxDistanceDelta Distance to move current per call.
             * @returns The new position. 
             */
             public static MoveTowards ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $maxDistanceDelta: number) : UnityEngine.Vector3
             /** Gradually changes a vector towards a desired goal over time.
-            * @param current The current position.
-            * @param target The position we are trying to reach.
-            * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-            * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-            * @param maxSpeed Optionally allows you to clamp the maximum speed.
-            * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+            * @param $current The current position.
+            * @param $target The position we are trying to reach.
+            * @param $currentVelocity The current velocity, this value is modified by the function every time you call it.
+            * @param $smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+            * @param $maxSpeed Optionally allows you to clamp the maximum speed.
+            * @param $deltaTime The time since the last call to this function. By default Time.deltaTime.
             */
             public static SmoothDamp ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $currentVelocity: $Ref<UnityEngine.Vector3>, $smoothTime: number, $maxSpeed: number) : UnityEngine.Vector3
             /** Gradually changes a vector towards a desired goal over time.
-            * @param current The current position.
-            * @param target The position we are trying to reach.
-            * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-            * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-            * @param maxSpeed Optionally allows you to clamp the maximum speed.
-            * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+            * @param $current The current position.
+            * @param $target The position we are trying to reach.
+            * @param $currentVelocity The current velocity, this value is modified by the function every time you call it.
+            * @param $smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+            * @param $maxSpeed Optionally allows you to clamp the maximum speed.
+            * @param $deltaTime The time since the last call to this function. By default Time.deltaTime.
             */
             public static SmoothDamp ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $currentVelocity: $Ref<UnityEngine.Vector3>, $smoothTime: number) : UnityEngine.Vector3
             /** Gradually changes a vector towards a desired goal over time.
-            * @param current The current position.
-            * @param target The position we are trying to reach.
-            * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-            * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-            * @param maxSpeed Optionally allows you to clamp the maximum speed.
-            * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+            * @param $current The current position.
+            * @param $target The position we are trying to reach.
+            * @param $currentVelocity The current velocity, this value is modified by the function every time you call it.
+            * @param $smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+            * @param $maxSpeed Optionally allows you to clamp the maximum speed.
+            * @param $deltaTime The time since the last call to this function. By default Time.deltaTime.
             */
             public static SmoothDamp ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $currentVelocity: $Ref<UnityEngine.Vector3>, $smoothTime: number, $maxSpeed: number, $deltaTime: number) : UnityEngine.Vector3
             public get_Item ($index: number) : number
@@ -848,21 +856,21 @@
             */
             public static Project ($vector: UnityEngine.Vector3, $onNormal: UnityEngine.Vector3) : UnityEngine.Vector3
             /** Projects a vector onto a plane defined by a normal orthogonal to the plane.
-            * @param planeNormal The direction from the vector towards the plane.
-            * @param vector The location of the vector above the plane.
+            * @param $planeNormal The direction from the vector towards the plane.
+            * @param $vector The location of the vector above the plane.
             * @returns The location of the vector on the plane. 
             */
             public static ProjectOnPlane ($vector: UnityEngine.Vector3, $planeNormal: UnityEngine.Vector3) : UnityEngine.Vector3
             /** Calculates the angle between vectors from and.
-            * @param from The vector from which the angular difference is measured.
-            * @param to The vector to which the angular difference is measured.
+            * @param $from The vector from which the angular difference is measured.
+            * @param $to The vector to which the angular difference is measured.
             * @returns The angle in degrees between the two vectors. 
             */
             public static Angle ($from: UnityEngine.Vector3, $to: UnityEngine.Vector3) : number
             /** Calculates the signed angle between vectors from and to in relation to axis.
-            * @param from The vector from which the angular difference is measured.
-            * @param to The vector to which the angular difference is measured.
-            * @param axis A vector around which the other vectors are rotated.
+            * @param $from The vector from which the angular difference is measured.
+            * @param $to The vector to which the angular difference is measured.
+            * @param $axis A vector around which the other vectors are rotated.
             * @returns Returns the signed angle between from and to in degrees. 
             */
             public static SignedAngle ($from: UnityEngine.Vector3, $to: UnityEngine.Vector3, $axis: UnityEngine.Vector3) : number
@@ -888,15 +896,19 @@
             public static op_Division ($a: UnityEngine.Vector3, $d: number) : UnityEngine.Vector3
             public static op_Equality ($lhs: UnityEngine.Vector3, $rhs: UnityEngine.Vector3) : boolean
             public static op_Inequality ($lhs: UnityEngine.Vector3, $rhs: UnityEngine.Vector3) : boolean
+            /** Returns a formatted string for this vector.
+            * @param $format A numeric format string.
+            * @param $formatProvider An object that specifies culture-specific formatting.
+            */
             public ToString () : string
             /** Returns a formatted string for this vector.
-            * @param format A numeric format string.
-            * @param formatProvider An object that specifies culture-specific formatting.
+            * @param $format A numeric format string.
+            * @param $formatProvider An object that specifies culture-specific formatting.
             */
             public ToString ($format: string) : string
             /** Returns a formatted string for this vector.
-            * @param format A numeric format string.
-            * @param formatProvider An object that specifies culture-specific formatting.
+            * @param $format A numeric format string.
+            * @param $formatProvider An object that specifies culture-specific formatting.
             */
             public ToString ($format: string, $formatProvider: System.IFormatProvider) : string
             public constructor ($x: number, $y: number, $z: number)
@@ -1016,13 +1028,13 @@
             */
             public get hierarchyCount(): number;
             /** Set the parent of the transform.
-            * @param parent The parent Transform to use.
-            * @param worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
+            * @param $parent The parent Transform to use.
+            * @param $worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
             */
             public SetParent ($p: UnityEngine.Transform) : void
             /** Set the parent of the transform.
-            * @param parent The parent Transform to use.
-            * @param worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
+            * @param $parent The parent Transform to use.
+            * @param $worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
             */
             public SetParent ($parent: UnityEngine.Transform, $worldPositionStays: boolean) : void
             /** Sets the world space position and rotation of the Transform component.
@@ -1056,59 +1068,59 @@
             */
             public Translate ($x: number, $y: number, $z: number, $relativeTo: UnityEngine.Transform) : void
             /** Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that order).
-            * @param eulers The rotation to apply in euler angles.
-            * @param relativeTo Determines whether to rotate the GameObject either locally to  the GameObject or relative to the Scene in world space.
+            * @param $eulers The rotation to apply in euler angles.
+            * @param $relativeTo Determines whether to rotate the GameObject either locally to  the GameObject or relative to the Scene in world space.
             */
             public Rotate ($eulers: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
             /** Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that order).
-            * @param eulers The rotation to apply in euler angles.
+            * @param $eulers The rotation to apply in euler angles.
             */
             public Rotate ($eulers: UnityEngine.Vector3) : void
             /** The implementation of this method applies a rotation of zAngle degrees around the z axis, xAngle degrees around the x axis, and yAngle degrees around the y axis (in that order).
-            * @param relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
-            * @param xAngle Degrees to rotate the GameObject around the X axis.
-            * @param yAngle Degrees to rotate the GameObject around the Y axis.
-            * @param zAngle Degrees to rotate the GameObject around the Z axis.
+            * @param $relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
+            * @param $xAngle Degrees to rotate the GameObject around the X axis.
+            * @param $yAngle Degrees to rotate the GameObject around the Y axis.
+            * @param $zAngle Degrees to rotate the GameObject around the Z axis.
             */
             public Rotate ($xAngle: number, $yAngle: number, $zAngle: number, $relativeTo: UnityEngine.Space) : void
             /** The implementation of this method applies a rotation of zAngle degrees around the z axis, xAngle degrees around the x axis, and yAngle degrees around the y axis (in that order).
-            * @param xAngle Degrees to rotate the GameObject around the X axis.
-            * @param yAngle Degrees to rotate the GameObject around the Y axis.
-            * @param zAngle Degrees to rotate the GameObject around the Z axis.
+            * @param $xAngle Degrees to rotate the GameObject around the X axis.
+            * @param $yAngle Degrees to rotate the GameObject around the Y axis.
+            * @param $zAngle Degrees to rotate the GameObject around the Z axis.
             */
             public Rotate ($xAngle: number, $yAngle: number, $zAngle: number) : void
             /** Rotates the object around the given axis by the number of degrees defined by the given angle.
-            * @param angle The degrees of rotation to apply.
-            * @param axis The axis to apply rotation to.
-            * @param relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
+            * @param $angle The degrees of rotation to apply.
+            * @param $axis The axis to apply rotation to.
+            * @param $relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
             */
             public Rotate ($axis: UnityEngine.Vector3, $angle: number, $relativeTo: UnityEngine.Space) : void
             /** Rotates the object around the given axis by the number of degrees defined by the given angle.
-            * @param axis The axis to apply rotation to.
-            * @param angle The degrees of rotation to apply.
+            * @param $axis The axis to apply rotation to.
+            * @param $angle The degrees of rotation to apply.
             */
             public Rotate ($axis: UnityEngine.Vector3, $angle: number) : void
             /** Rotates the transform about axis passing through point in world coordinates by angle degrees.
             */
             public RotateAround ($point: UnityEngine.Vector3, $axis: UnityEngine.Vector3, $angle: number) : void
             /** Rotates the transform so the forward vector points at target's current position.
-            * @param target Object to point towards.
-            * @param worldUp Vector specifying the upward direction.
+            * @param $target Object to point towards.
+            * @param $worldUp Vector specifying the upward direction.
             */
             public LookAt ($target: UnityEngine.Transform, $worldUp: UnityEngine.Vector3) : void
             /** Rotates the transform so the forward vector points at target's current position.
-            * @param target Object to point towards.
-            * @param worldUp Vector specifying the upward direction.
+            * @param $target Object to point towards.
+            * @param $worldUp Vector specifying the upward direction.
             */
             public LookAt ($target: UnityEngine.Transform) : void
             /** Rotates the transform so the forward vector points at worldPosition.
-            * @param worldPosition Point to look at.
-            * @param worldUp Vector specifying the upward direction.
+            * @param $worldPosition Point to look at.
+            * @param $worldUp Vector specifying the upward direction.
             */
             public LookAt ($worldPosition: UnityEngine.Vector3, $worldUp: UnityEngine.Vector3) : void
             /** Rotates the transform so the forward vector points at worldPosition.
-            * @param worldPosition Point to look at.
-            * @param worldUp Vector specifying the upward direction.
+            * @param $worldPosition Point to look at.
+            * @param $worldUp Vector specifying the upward direction.
             */
             public LookAt ($worldPosition: UnityEngine.Vector3) : void
             /** Transforms direction from local space to world space.
@@ -1147,16 +1159,24 @@
             /** Transforms the position x, y, z from world space to local space. The opposite of Transform.TransformPoint.
             */
             public InverseTransformPoint ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            /** Unparents all children.
+            */
             public DetachChildren () : void
+            /** Move the transform to the start of the local transform list.
+            */
             public SetAsFirstSibling () : void
+            /** Move the transform to the end of the local transform list.
+            */
             public SetAsLastSibling () : void
             /** Sets the sibling index.
-            * @param index Index to set.
+            * @param $index Index to set.
             */
             public SetSiblingIndex ($index: number) : void
+            /** Gets the sibling index.
+            */
             public GetSiblingIndex () : number
             /** Finds a child by name n and returns it.
-            * @param n Name of child to be found.
+            * @param $n Name of child to be found.
             * @returns The found child transform. Null if child with matching name isn't found. 
             */
             public Find ($n: string) : UnityEngine.Transform
@@ -1165,7 +1185,7 @@
             public IsChildOf ($parent: UnityEngine.Transform) : boolean
             public GetEnumerator () : System.Collections.IEnumerator
             /** Returns a transform child by index.
-            * @param index Index of the child transform to return. Must be smaller than Transform.childCount.
+            * @param $index Index of the child transform to return. Must be smaller than Transform.childCount.
             * @returns Transform child by index. 
             */
             public GetChild ($index: number) : UnityEngine.Transform
@@ -1216,66 +1236,66 @@
             public get sceneCullingMask(): bigint;
             public get gameObject(): UnityEngine.GameObject;
             /** Creates a game object with a primitive mesh renderer and appropriate collider.
-            * @param type The type of primitive object to create.
+            * @param $type The type of primitive object to create.
             */
             public static CreatePrimitive ($type: UnityEngine.PrimitiveType) : UnityEngine.GameObject
             /** Returns the component of Type type if the game object has one attached, null if it doesn't.
-            * @param type The type of Component to retrieve.
+            * @param $type The type of Component to retrieve.
             */
             public GetComponent ($type: System.Type) : UnityEngine.Component
             /** Returns the component with name type if the GameObject has one attached, null if it doesn't.
-            * @param type The type of Component to retrieve.
+            * @param $type The type of Component to retrieve.
             */
             public GetComponent ($type: string) : UnityEngine.Component
             /** Returns the component of Type type in the GameObject or any of its children using depth first search.
-            * @param type The type of Component to retrieve.
+            * @param $type The type of Component to retrieve.
             * @returns A component of the matching type, if found. 
             */
             public GetComponentInChildren ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
             /** Returns the component of Type type in the GameObject or any of its children using depth first search.
-            * @param type The type of Component to retrieve.
+            * @param $type The type of Component to retrieve.
             * @returns A component of the matching type, if found. 
             */
             public GetComponentInChildren ($type: System.Type) : UnityEngine.Component
             /** Retrieves the component of Type type in the GameObject or any of its parents.
-            * @param type Type of component to find.
+            * @param $type Type of component to find.
             * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
             */
             public GetComponentInParent ($type: System.Type, $includeInactive: boolean) : UnityEngine.Component
             /** Retrieves the component of Type type in the GameObject or any of its parents.
-            * @param type Type of component to find.
+            * @param $type Type of component to find.
             * @returns Returns a component if a component matching the type is found. Returns null otherwise. 
             */
             public GetComponentInParent ($type: System.Type) : UnityEngine.Component
             /** Returns all components of Type type in the GameObject.
-            * @param type The type of component to retrieve.
+            * @param $type The type of component to retrieve.
             */
             public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
             public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
             /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @param $type The type of Component to retrieve.
+            * @param $includeInactive Should Components on inactive GameObjects be included in the found set?
             */
             public GetComponentsInChildren ($type: System.Type) : System.Array$1<UnityEngine.Component>
             /** Returns all components of Type type in the GameObject or any of its children children using depth first search. Works recursively.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @param $type The type of Component to retrieve.
+            * @param $includeInactive Should Components on inactive GameObjects be included in the found set?
             */
             public GetComponentsInChildren ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
             public GetComponentsInParent ($type: System.Type) : System.Array$1<UnityEngine.Component>
             /** Returns all components of Type type in the GameObject or any of its parents.
-            * @param type The type of Component to retrieve.
-            * @param includeInactive Should inactive Components be included in the found set?
+            * @param $type The type of Component to retrieve.
+            * @param $includeInactive Should inactive Components be included in the found set?
             */
             public GetComponentsInParent ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
             /** Gets the component of the specified type, if it exists.
-            * @param type The type of component to retrieve.
-            * @param component The output argument that will contain the component or null.
+            * @param $type The type of component to retrieve.
+            * @param $component The output argument that will contain the component or null.
             * @returns Returns true if the component is found, false otherwise. 
             */
             public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
             /** Returns one active GameObject tagged tag. Returns null if no GameObject was found.
-            * @param tag The tag to search for.
+            * @param $tag The tag to search for.
             */
             public static FindWithTag ($tag: string) : UnityEngine.GameObject
             public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
@@ -1285,52 +1305,52 @@
             */
             public AddComponent ($componentType: System.Type) : UnityEngine.Component
             /** ActivatesDeactivates the GameObject, depending on the given true or false/ value.
-            * @param value Activate or deactivate the object, where true activates the GameObject and false deactivates the GameObject.
+            * @param $value Activate or deactivate the object, where true activates the GameObject and false deactivates the GameObject.
             */
             public SetActive ($value: boolean) : void
             /** Is this game object tagged with tag ?
-            * @param tag The tag to compare.
+            * @param $tag The tag to compare.
             */
             public CompareTag ($tag: string) : boolean
             public static FindGameObjectWithTag ($tag: string) : UnityEngine.GameObject
             /** Returns an array of active GameObjects tagged tag. Returns empty array if no GameObject was found.
-            * @param tag The name of the tag to search GameObjects for.
+            * @param $tag The name of the tag to search GameObjects for.
             */
             public static FindGameObjectsWithTag ($tag: string) : System.Array$1<UnityEngine.GameObject>
             /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
+            * @param $methodName The name of the method to call.
+            * @param $value An optional parameter value to pass to the called method.
+            * @param $options Should an error be raised if the method doesn't exist on the target object?
             */
             public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
+            * @param $methodName The name of the method to call.
+            * @param $value An optional parameter value to pass to the called method.
+            * @param $options Should an error be raised if the method doesn't exist on the target object?
             */
             public SendMessageUpwards ($methodName: string, $value: any) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
+            * @param $methodName The name of the method to call.
+            * @param $value An optional parameter value to pass to the called method.
+            * @param $options Should an error be raised if the method doesn't exist on the target object?
             */
             public SendMessageUpwards ($methodName: string) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
+            * @param $methodName The name of the method to call.
+            * @param $value An optional parameter value to pass to the called method.
+            * @param $options Should an error be raised if the method doesn't exist on the target object?
             */
             public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
+            * @param $methodName The name of the method to call.
+            * @param $value An optional parameter value to pass to the called method.
+            * @param $options Should an error be raised if the method doesn't exist on the target object?
             */
             public SendMessage ($methodName: string, $value: any) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName The name of the method to call.
-            * @param value An optional parameter value to pass to the called method.
-            * @param options Should an error be raised if the method doesn't exist on the target object?
+            * @param $methodName The name of the method to call.
+            * @param $value An optional parameter value to pass to the called method.
+            * @param $options Should an error be raised if the method doesn't exist on the target object?
             */
             public SendMessage ($methodName: string) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
@@ -1467,17 +1487,27 @@
             */
             public SetDensity ($density: number) : void
             /** Moves the kinematic Rigidbody towards position.
-            * @param position Provides the new position for the Rigidbody object.
+            * @param $position Provides the new position for the Rigidbody object.
             */
             public MovePosition ($position: UnityEngine.Vector3) : void
             /** Rotates the rigidbody to rotation.
-            * @param rot The new rotation for the Rigidbody.
+            * @param $rot The new rotation for the Rigidbody.
             */
             public MoveRotation ($rot: UnityEngine.Quaternion) : void
+            /** Forces a rigidbody to sleep at least one frame.
+            */
             public Sleep () : void
+            /** Is the rigidbody sleeping?
+            */
             public IsSleeping () : boolean
+            /** Forces a rigidbody to wake up.
+            */
             public WakeUp () : void
+            /** Reset the center of mass of the rigidbody.
+            */
             public ResetCenterOfMass () : void
+            /** Reset the inertia tensor value and rotation.
+            */
             public ResetInertiaTensor () : void
             /** The velocity relative to the rigidbody at the point relativePoint.
             */
@@ -1486,154 +1516,154 @@
             */
             public GetPointVelocity ($worldPoint: UnityEngine.Vector3) : UnityEngine.Vector3
             /** Adds a force to the Rigidbody.
-            * @param force Force vector in world coordinates.
-            * @param mode Type of force to apply.
+            * @param $force Force vector in world coordinates.
+            * @param $mode Type of force to apply.
             */
             public AddForce ($force: UnityEngine.Vector3, $mode: UnityEngine.ForceMode) : void
             /** Adds a force to the Rigidbody.
-            * @param force Force vector in world coordinates.
-            * @param mode Type of force to apply.
+            * @param $force Force vector in world coordinates.
+            * @param $mode Type of force to apply.
             */
             public AddForce ($force: UnityEngine.Vector3) : void
             /** Adds a force to the Rigidbody.
-            * @param x Size of force along the world x-axis.
-            * @param y Size of force along the world y-axis.
-            * @param z Size of force along the world z-axis.
-            * @param mode Type of force to apply.
+            * @param $x Size of force along the world x-axis.
+            * @param $y Size of force along the world y-axis.
+            * @param $z Size of force along the world z-axis.
+            * @param $mode Type of force to apply.
             */
             public AddForce ($x: number, $y: number, $z: number, $mode: UnityEngine.ForceMode) : void
             /** Adds a force to the Rigidbody.
-            * @param x Size of force along the world x-axis.
-            * @param y Size of force along the world y-axis.
-            * @param z Size of force along the world z-axis.
-            * @param mode Type of force to apply.
+            * @param $x Size of force along the world x-axis.
+            * @param $y Size of force along the world y-axis.
+            * @param $z Size of force along the world z-axis.
+            * @param $mode Type of force to apply.
             */
             public AddForce ($x: number, $y: number, $z: number) : void
             /** Adds a force to the rigidbody relative to its coordinate system.
-            * @param force Force vector in local coordinates.
-            * @param mode Type of force to apply.
+            * @param $force Force vector in local coordinates.
+            * @param $mode Type of force to apply.
             */
             public AddRelativeForce ($force: UnityEngine.Vector3, $mode: UnityEngine.ForceMode) : void
             /** Adds a force to the rigidbody relative to its coordinate system.
-            * @param force Force vector in local coordinates.
-            * @param mode Type of force to apply.
+            * @param $force Force vector in local coordinates.
+            * @param $mode Type of force to apply.
             */
             public AddRelativeForce ($force: UnityEngine.Vector3) : void
             /** Adds a force to the rigidbody relative to its coordinate system.
-            * @param x Size of force along the local x-axis.
-            * @param y Size of force along the local y-axis.
-            * @param z Size of force along the local z-axis.
-            * @param mode Type of force to apply.
+            * @param $x Size of force along the local x-axis.
+            * @param $y Size of force along the local y-axis.
+            * @param $z Size of force along the local z-axis.
+            * @param $mode Type of force to apply.
             */
             public AddRelativeForce ($x: number, $y: number, $z: number, $mode: UnityEngine.ForceMode) : void
             /** Adds a force to the rigidbody relative to its coordinate system.
-            * @param x Size of force along the local x-axis.
-            * @param y Size of force along the local y-axis.
-            * @param z Size of force along the local z-axis.
-            * @param mode Type of force to apply.
+            * @param $x Size of force along the local x-axis.
+            * @param $y Size of force along the local y-axis.
+            * @param $z Size of force along the local z-axis.
+            * @param $mode Type of force to apply.
             */
             public AddRelativeForce ($x: number, $y: number, $z: number) : void
             /** Adds a torque to the rigidbody.
-            * @param torque Torque vector in world coordinates.
-            * @param mode The type of torque to apply.
+            * @param $torque Torque vector in world coordinates.
+            * @param $mode The type of torque to apply.
             */
             public AddTorque ($torque: UnityEngine.Vector3, $mode: UnityEngine.ForceMode) : void
             /** Adds a torque to the rigidbody.
-            * @param torque Torque vector in world coordinates.
-            * @param mode The type of torque to apply.
+            * @param $torque Torque vector in world coordinates.
+            * @param $mode The type of torque to apply.
             */
             public AddTorque ($torque: UnityEngine.Vector3) : void
             /** Adds a torque to the rigidbody.
-            * @param x Size of torque along the world x-axis.
-            * @param y Size of torque along the world y-axis.
-            * @param z Size of torque along the world z-axis.
-            * @param mode The type of torque to apply.
+            * @param $x Size of torque along the world x-axis.
+            * @param $y Size of torque along the world y-axis.
+            * @param $z Size of torque along the world z-axis.
+            * @param $mode The type of torque to apply.
             */
             public AddTorque ($x: number, $y: number, $z: number, $mode: UnityEngine.ForceMode) : void
             /** Adds a torque to the rigidbody.
-            * @param x Size of torque along the world x-axis.
-            * @param y Size of torque along the world y-axis.
-            * @param z Size of torque along the world z-axis.
-            * @param mode The type of torque to apply.
+            * @param $x Size of torque along the world x-axis.
+            * @param $y Size of torque along the world y-axis.
+            * @param $z Size of torque along the world z-axis.
+            * @param $mode The type of torque to apply.
             */
             public AddTorque ($x: number, $y: number, $z: number) : void
             /** Adds a torque to the rigidbody relative to its coordinate system.
-            * @param torque Torque vector in local coordinates.
-            * @param mode Type of force to apply.
+            * @param $torque Torque vector in local coordinates.
+            * @param $mode Type of force to apply.
             */
             public AddRelativeTorque ($torque: UnityEngine.Vector3, $mode: UnityEngine.ForceMode) : void
             /** Adds a torque to the rigidbody relative to its coordinate system.
-            * @param torque Torque vector in local coordinates.
-            * @param mode Type of force to apply.
+            * @param $torque Torque vector in local coordinates.
+            * @param $mode Type of force to apply.
             */
             public AddRelativeTorque ($torque: UnityEngine.Vector3) : void
             /** Adds a torque to the rigidbody relative to its coordinate system.
-            * @param x Size of torque along the local x-axis.
-            * @param y Size of torque along the local y-axis.
-            * @param z Size of torque along the local z-axis.
-            * @param mode Type of force to apply.
+            * @param $x Size of torque along the local x-axis.
+            * @param $y Size of torque along the local y-axis.
+            * @param $z Size of torque along the local z-axis.
+            * @param $mode Type of force to apply.
             */
             public AddRelativeTorque ($x: number, $y: number, $z: number, $mode: UnityEngine.ForceMode) : void
             /** Adds a torque to the rigidbody relative to its coordinate system.
-            * @param x Size of torque along the local x-axis.
-            * @param y Size of torque along the local y-axis.
-            * @param z Size of torque along the local z-axis.
-            * @param mode Type of force to apply.
+            * @param $x Size of torque along the local x-axis.
+            * @param $y Size of torque along the local y-axis.
+            * @param $z Size of torque along the local z-axis.
+            * @param $mode Type of force to apply.
             */
             public AddRelativeTorque ($x: number, $y: number, $z: number) : void
             /** Applies force at position. As a result this will apply a torque and force on the object.
-            * @param force Force vector in world coordinates.
-            * @param position Position in world coordinates.
-            * @param mode Type of force to apply.
+            * @param $force Force vector in world coordinates.
+            * @param $position Position in world coordinates.
+            * @param $mode Type of force to apply.
             */
             public AddForceAtPosition ($force: UnityEngine.Vector3, $position: UnityEngine.Vector3, $mode: UnityEngine.ForceMode) : void
             /** Applies force at position. As a result this will apply a torque and force on the object.
-            * @param force Force vector in world coordinates.
-            * @param position Position in world coordinates.
-            * @param mode Type of force to apply.
+            * @param $force Force vector in world coordinates.
+            * @param $position Position in world coordinates.
+            * @param $mode Type of force to apply.
             */
             public AddForceAtPosition ($force: UnityEngine.Vector3, $position: UnityEngine.Vector3) : void
             /** Applies a force to a rigidbody that simulates explosion effects.
-            * @param explosionForce The force of the explosion (which may be modified by distance).
-            * @param explosionPosition The centre of the sphere within which the explosion has its effect.
-            * @param explosionRadius The radius of the sphere within which the explosion has its effect.
-            * @param upwardsModifier Adjustment to the apparent position of the explosion to make it seem to lift objects.
-            * @param mode The method used to apply the force to its targets.
+            * @param $explosionForce The force of the explosion (which may be modified by distance).
+            * @param $explosionPosition The centre of the sphere within which the explosion has its effect.
+            * @param $explosionRadius The radius of the sphere within which the explosion has its effect.
+            * @param $upwardsModifier Adjustment to the apparent position of the explosion to make it seem to lift objects.
+            * @param $mode The method used to apply the force to its targets.
             */
             public AddExplosionForce ($explosionForce: number, $explosionPosition: UnityEngine.Vector3, $explosionRadius: number, $upwardsModifier: number, $mode: UnityEngine.ForceMode) : void
             /** Applies a force to a rigidbody that simulates explosion effects.
-            * @param explosionForce The force of the explosion (which may be modified by distance).
-            * @param explosionPosition The centre of the sphere within which the explosion has its effect.
-            * @param explosionRadius The radius of the sphere within which the explosion has its effect.
-            * @param upwardsModifier Adjustment to the apparent position of the explosion to make it seem to lift objects.
-            * @param mode The method used to apply the force to its targets.
+            * @param $explosionForce The force of the explosion (which may be modified by distance).
+            * @param $explosionPosition The centre of the sphere within which the explosion has its effect.
+            * @param $explosionRadius The radius of the sphere within which the explosion has its effect.
+            * @param $upwardsModifier Adjustment to the apparent position of the explosion to make it seem to lift objects.
+            * @param $mode The method used to apply the force to its targets.
             */
             public AddExplosionForce ($explosionForce: number, $explosionPosition: UnityEngine.Vector3, $explosionRadius: number, $upwardsModifier: number) : void
             /** Applies a force to a rigidbody that simulates explosion effects.
-            * @param explosionForce The force of the explosion (which may be modified by distance).
-            * @param explosionPosition The centre of the sphere within which the explosion has its effect.
-            * @param explosionRadius The radius of the sphere within which the explosion has its effect.
-            * @param upwardsModifier Adjustment to the apparent position of the explosion to make it seem to lift objects.
-            * @param mode The method used to apply the force to its targets.
+            * @param $explosionForce The force of the explosion (which may be modified by distance).
+            * @param $explosionPosition The centre of the sphere within which the explosion has its effect.
+            * @param $explosionRadius The radius of the sphere within which the explosion has its effect.
+            * @param $upwardsModifier Adjustment to the apparent position of the explosion to make it seem to lift objects.
+            * @param $mode The method used to apply the force to its targets.
             */
             public AddExplosionForce ($explosionForce: number, $explosionPosition: UnityEngine.Vector3, $explosionRadius: number) : void
             /** The closest point to the bounding box of the attached colliders.
             */
             public ClosestPointOnBounds ($position: UnityEngine.Vector3) : UnityEngine.Vector3
             /** Tests if a rigidbody would collide with anything, if it was moved through the Scene.
-            * @param direction The direction into which to sweep the rigidbody.
-            * @param hitInfo If true is returned, hitInfo will contain more information about where the collider was hit (See Also: RaycastHit).
-            * @param maxDistance The length of the sweep.
-            * @param queryTriggerInteraction Specifies whether this query should hit Triggers.
+            * @param $direction The direction into which to sweep the rigidbody.
+            * @param $hitInfo If true is returned, hitInfo will contain more information about where the collider was hit (See Also: RaycastHit).
+            * @param $maxDistance The length of the sweep.
+            * @param $queryTriggerInteraction Specifies whether this query should hit Triggers.
             * @returns True when the rigidbody sweep intersects any collider, otherwise false. 
             */
             public SweepTest ($direction: UnityEngine.Vector3, $hitInfo: $Ref<UnityEngine.RaycastHit>, $maxDistance: number, $queryTriggerInteraction: UnityEngine.QueryTriggerInteraction) : boolean
             public SweepTest ($direction: UnityEngine.Vector3, $hitInfo: $Ref<UnityEngine.RaycastHit>, $maxDistance: number) : boolean
             public SweepTest ($direction: UnityEngine.Vector3, $hitInfo: $Ref<UnityEngine.RaycastHit>) : boolean
             /** Like Rigidbody.SweepTest, but returns all hits.
-            * @param direction The direction into which to sweep the rigidbody.
-            * @param maxDistance The length of the sweep.
-            * @param queryTriggerInteraction Specifies whether this query should hit Triggers.
+            * @param $direction The direction into which to sweep the rigidbody.
+            * @param $maxDistance The length of the sweep.
+            * @param $queryTriggerInteraction Specifies whether this query should hit Triggers.
             * @returns An array of all colliders hit in the sweep. 
             */
             public SweepTestAll ($direction: UnityEngine.Vector3, $maxDistance: number, $queryTriggerInteraction: UnityEngine.QueryTriggerInteraction) : System.Array$1<UnityEngine.RaycastHit>
@@ -1722,220 +1752,224 @@
             */
             public static get isDebugBuild(): boolean;
             /** Draws a line between specified start and end points.
-            * @param start Point in world space where the line should start.
-            * @param end Point in world space where the line should end.
-            * @param color Color of the line.
-            * @param duration How long the line should be visible for.
-            * @param depthTest Should the line be obscured by objects closer to the camera?
+            * @param $start Point in world space where the line should start.
+            * @param $end Point in world space where the line should end.
+            * @param $color Color of the line.
+            * @param $duration How long the line should be visible for.
+            * @param $depthTest Should the line be obscured by objects closer to the camera?
             */
             public static DrawLine ($start: UnityEngine.Vector3, $end: UnityEngine.Vector3, $color: UnityEngine.Color, $duration: number) : void
             /** Draws a line between specified start and end points.
-            * @param start Point in world space where the line should start.
-            * @param end Point in world space where the line should end.
-            * @param color Color of the line.
-            * @param duration How long the line should be visible for.
-            * @param depthTest Should the line be obscured by objects closer to the camera?
+            * @param $start Point in world space where the line should start.
+            * @param $end Point in world space where the line should end.
+            * @param $color Color of the line.
+            * @param $duration How long the line should be visible for.
+            * @param $depthTest Should the line be obscured by objects closer to the camera?
             */
             public static DrawLine ($start: UnityEngine.Vector3, $end: UnityEngine.Vector3, $color: UnityEngine.Color) : void
             /** Draws a line between specified start and end points.
-            * @param start Point in world space where the line should start.
-            * @param end Point in world space where the line should end.
-            * @param color Color of the line.
-            * @param duration How long the line should be visible for.
-            * @param depthTest Should the line be obscured by objects closer to the camera?
+            * @param $start Point in world space where the line should start.
+            * @param $end Point in world space where the line should end.
+            * @param $color Color of the line.
+            * @param $duration How long the line should be visible for.
+            * @param $depthTest Should the line be obscured by objects closer to the camera?
             */
             public static DrawLine ($start: UnityEngine.Vector3, $end: UnityEngine.Vector3) : void
             /** Draws a line between specified start and end points.
-            * @param start Point in world space where the line should start.
-            * @param end Point in world space where the line should end.
-            * @param color Color of the line.
-            * @param duration How long the line should be visible for.
-            * @param depthTest Should the line be obscured by objects closer to the camera?
+            * @param $start Point in world space where the line should start.
+            * @param $end Point in world space where the line should end.
+            * @param $color Color of the line.
+            * @param $duration How long the line should be visible for.
+            * @param $depthTest Should the line be obscured by objects closer to the camera?
             */
             public static DrawLine ($start: UnityEngine.Vector3, $end: UnityEngine.Vector3, $color: UnityEngine.Color, $duration: number, $depthTest: boolean) : void
             /** Draws a line from start to start + dir in world coordinates.
-            * @param start Point in world space where the ray should start.
-            * @param dir Direction and length of the ray.
-            * @param color Color of the drawn line.
-            * @param duration How long the line will be visible for (in seconds).
-            * @param depthTest Should the line be obscured by other objects closer to the camera?
+            * @param $start Point in world space where the ray should start.
+            * @param $dir Direction and length of the ray.
+            * @param $color Color of the drawn line.
+            * @param $duration How long the line will be visible for (in seconds).
+            * @param $depthTest Should the line be obscured by other objects closer to the camera?
             */
             public static DrawRay ($start: UnityEngine.Vector3, $dir: UnityEngine.Vector3, $color: UnityEngine.Color, $duration: number) : void
             /** Draws a line from start to start + dir in world coordinates.
-            * @param start Point in world space where the ray should start.
-            * @param dir Direction and length of the ray.
-            * @param color Color of the drawn line.
-            * @param duration How long the line will be visible for (in seconds).
-            * @param depthTest Should the line be obscured by other objects closer to the camera?
+            * @param $start Point in world space where the ray should start.
+            * @param $dir Direction and length of the ray.
+            * @param $color Color of the drawn line.
+            * @param $duration How long the line will be visible for (in seconds).
+            * @param $depthTest Should the line be obscured by other objects closer to the camera?
             */
             public static DrawRay ($start: UnityEngine.Vector3, $dir: UnityEngine.Vector3, $color: UnityEngine.Color) : void
             /** Draws a line from start to start + dir in world coordinates.
-            * @param start Point in world space where the ray should start.
-            * @param dir Direction and length of the ray.
-            * @param color Color of the drawn line.
-            * @param duration How long the line will be visible for (in seconds).
-            * @param depthTest Should the line be obscured by other objects closer to the camera?
+            * @param $start Point in world space where the ray should start.
+            * @param $dir Direction and length of the ray.
+            * @param $color Color of the drawn line.
+            * @param $duration How long the line will be visible for (in seconds).
+            * @param $depthTest Should the line be obscured by other objects closer to the camera?
             */
             public static DrawRay ($start: UnityEngine.Vector3, $dir: UnityEngine.Vector3) : void
             /** Draws a line from start to start + dir in world coordinates.
-            * @param start Point in world space where the ray should start.
-            * @param dir Direction and length of the ray.
-            * @param color Color of the drawn line.
-            * @param duration How long the line will be visible for (in seconds).
-            * @param depthTest Should the line be obscured by other objects closer to the camera?
+            * @param $start Point in world space where the ray should start.
+            * @param $dir Direction and length of the ray.
+            * @param $color Color of the drawn line.
+            * @param $duration How long the line will be visible for (in seconds).
+            * @param $depthTest Should the line be obscured by other objects closer to the camera?
             */
             public static DrawRay ($start: UnityEngine.Vector3, $dir: UnityEngine.Vector3, $color: UnityEngine.Color, $duration: number, $depthTest: boolean) : void
+            /** Pauses the editor.
+            */
             public static Break () : void
             public static DebugBreak () : void
             /** Logs a message to the Unity Console.
-            * @param message String or object to be converted to string representation for display.
-            * @param context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
+            * @param $context Object to which the message applies.
             */
             public static Log ($message: any) : void
             /** Logs a message to the Unity Console.
-            * @param message String or object to be converted to string representation for display.
-            * @param context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
+            * @param $context Object to which the message applies.
             */
             public static Log ($message: any, $context: UnityEngine.Object) : void
             /** Logs a formatted message to the Unity Console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
-            * @param logType Type of message e.g. warn or error etc.
-            * @param logOptions Option flags to treat the log message special.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
+            * @param $logType Type of message e.g. warn or error etc.
+            * @param $logOptions Option flags to treat the log message special.
             */
             public static LogFormat ($format: string, ...args: any[]) : void
             /** Logs a formatted message to the Unity Console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
-            * @param logType Type of message e.g. warn or error etc.
-            * @param logOptions Option flags to treat the log message special.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
+            * @param $logType Type of message e.g. warn or error etc.
+            * @param $logOptions Option flags to treat the log message special.
             */
             public static LogFormat ($context: UnityEngine.Object, $format: string, ...args: any[]) : void
             /** Logs a formatted message to the Unity Console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
-            * @param logType Type of message e.g. warn or error etc.
-            * @param logOptions Option flags to treat the log message special.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
+            * @param $logType Type of message e.g. warn or error etc.
+            * @param $logOptions Option flags to treat the log message special.
             */
             public static LogFormat ($logType: UnityEngine.LogType, $logOptions: UnityEngine.LogOption, $context: UnityEngine.Object, $format: string, ...args: any[]) : void
             /** A variant of Debug.Log that logs an error message to the console.
-            * @param message String or object to be converted to string representation for display.
-            * @param context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
+            * @param $context Object to which the message applies.
             */
             public static LogError ($message: any) : void
             /** A variant of Debug.Log that logs an error message to the console.
-            * @param message String or object to be converted to string representation for display.
-            * @param context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
+            * @param $context Object to which the message applies.
             */
             public static LogError ($message: any, $context: UnityEngine.Object) : void
             /** Logs a formatted error message to the Unity console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
             */
             public static LogErrorFormat ($format: string, ...args: any[]) : void
             /** Logs a formatted error message to the Unity console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
             */
             public static LogErrorFormat ($context: UnityEngine.Object, $format: string, ...args: any[]) : void
+            /** Clears errors from the developer console.
+            */
             public static ClearDeveloperConsole () : void
             /** A variant of Debug.Log that logs an error message to the console.
-            * @param context Object to which the message applies.
-            * @param exception Runtime Exception.
+            * @param $context Object to which the message applies.
+            * @param $exception Runtime Exception.
             */
             public static LogException ($exception: System.Exception) : void
             /** A variant of Debug.Log that logs an error message to the console.
-            * @param context Object to which the message applies.
-            * @param exception Runtime Exception.
+            * @param $context Object to which the message applies.
+            * @param $exception Runtime Exception.
             */
             public static LogException ($exception: System.Exception, $context: UnityEngine.Object) : void
             /** A variant of Debug.Log that logs a warning message to the console.
-            * @param message String or object to be converted to string representation for display.
-            * @param context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
+            * @param $context Object to which the message applies.
             */
             public static LogWarning ($message: any) : void
             /** A variant of Debug.Log that logs a warning message to the console.
-            * @param message String or object to be converted to string representation for display.
-            * @param context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
+            * @param $context Object to which the message applies.
             */
             public static LogWarning ($message: any, $context: UnityEngine.Object) : void
             /** Logs a formatted warning message to the Unity Console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
             */
             public static LogWarningFormat ($format: string, ...args: any[]) : void
             /** Logs a formatted warning message to the Unity Console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
             */
             public static LogWarningFormat ($context: UnityEngine.Object, $format: string, ...args: any[]) : void
             /** Assert a condition and logs an error message to the Unity console on failure.
-            * @param condition Condition you expect to be true.
-            * @param context Object to which the message applies.
-            * @param message String or object to be converted to string representation for display.
+            * @param $condition Condition you expect to be true.
+            * @param $context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
             */
             public static Assert ($condition: boolean) : void
             /** Assert a condition and logs an error message to the Unity console on failure.
-            * @param condition Condition you expect to be true.
-            * @param context Object to which the message applies.
-            * @param message String or object to be converted to string representation for display.
+            * @param $condition Condition you expect to be true.
+            * @param $context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
             */
             public static Assert ($condition: boolean, $context: UnityEngine.Object) : void
             /** Assert a condition and logs an error message to the Unity console on failure.
-            * @param condition Condition you expect to be true.
-            * @param context Object to which the message applies.
-            * @param message String or object to be converted to string representation for display.
+            * @param $condition Condition you expect to be true.
+            * @param $context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
             */
             public static Assert ($condition: boolean, $message: any) : void
             public static Assert ($condition: boolean, $message: string) : void
             /** Assert a condition and logs an error message to the Unity console on failure.
-            * @param condition Condition you expect to be true.
-            * @param context Object to which the message applies.
-            * @param message String or object to be converted to string representation for display.
+            * @param $condition Condition you expect to be true.
+            * @param $context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
             */
             public static Assert ($condition: boolean, $message: any, $context: UnityEngine.Object) : void
             public static Assert ($condition: boolean, $message: string, $context: UnityEngine.Object) : void
             /** Assert a condition and logs a formatted error message to the Unity console on failure.
-            * @param condition Condition you expect to be true.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
+            * @param $condition Condition you expect to be true.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
             */
             public static AssertFormat ($condition: boolean, $format: string, ...args: any[]) : void
             /** Assert a condition and logs a formatted error message to the Unity console on failure.
-            * @param condition Condition you expect to be true.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
+            * @param $condition Condition you expect to be true.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
             */
             public static AssertFormat ($condition: boolean, $context: UnityEngine.Object, $format: string, ...args: any[]) : void
             /** A variant of Debug.Log that logs an assertion message to the console.
-            * @param message String or object to be converted to string representation for display.
-            * @param context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
+            * @param $context Object to which the message applies.
             */
             public static LogAssertion ($message: any) : void
             /** A variant of Debug.Log that logs an assertion message to the console.
-            * @param message String or object to be converted to string representation for display.
-            * @param context Object to which the message applies.
+            * @param $message String or object to be converted to string representation for display.
+            * @param $context Object to which the message applies.
             */
             public static LogAssertion ($message: any, $context: UnityEngine.Object) : void
             /** Logs a formatted assertion message to the Unity console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
             */
             public static LogAssertionFormat ($format: string, ...args: any[]) : void
             /** Logs a formatted assertion message to the Unity console.
-            * @param format A composite format string.
-            * @param args Format arguments.
-            * @param context Object to which the message applies.
+            * @param $format A composite format string.
+            * @param $args Format arguments.
+            * @param $context Object to which the message applies.
             */
             public static LogAssertionFormat ($context: UnityEngine.Object, $format: string, ...args: any[]) : void
             public constructor ()
@@ -1985,19 +2019,15 @@
         }
         interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
         {

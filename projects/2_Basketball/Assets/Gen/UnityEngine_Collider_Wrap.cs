@@ -8,7 +8,7 @@ namespace PuertsStaticWrap
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace PuertsStaticWrap
 
     // ==================== methods start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_ClosestPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_ClosestPoint(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_Raycast(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_Raycast(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_ClosestPointOnBounds(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_ClosestPointOnBounds(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_enabled(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_enabled(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_enabled(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_enabled(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -152,7 +152,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_attachedRigidbody(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_attachedRigidbody(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -166,7 +166,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_attachedArticulationBody(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_attachedArticulationBody(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -180,7 +180,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_isTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_isTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -194,7 +194,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_isTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_isTrigger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -210,7 +210,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_contactOffset(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_contactOffset(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -224,7 +224,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_contactOffset(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_contactOffset(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -240,7 +240,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_bounds(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_bounds(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -254,7 +254,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_hasModifiableContacts(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_hasModifiableContacts(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -268,7 +268,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_hasModifiableContacts(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_hasModifiableContacts(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -284,7 +284,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_sharedMaterial(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_sharedMaterial(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -298,7 +298,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_sharedMaterial(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_sharedMaterial(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -314,7 +314,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_material(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_material(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -328,7 +328,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_material(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_material(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -353,44 +353,6 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                    { new Puerts.MethodKey { Name = "ClosestPoint", IsStatic = false}, M_ClosestPoint },
-                    { new Puerts.MethodKey { Name = "Raycast", IsStatic = false}, M_Raycast },
-                    { new Puerts.MethodKey { Name = "ClosestPointOnBounds", IsStatic = false}, M_ClosestPointOnBounds }
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"enabled", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_enabled, Setter = S_enabled} },
-
-                    {"attachedRigidbody", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_attachedRigidbody, Setter = null} },
-
-                    {"attachedArticulationBody", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_attachedArticulationBody, Setter = null} },
-
-                    {"isTrigger", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_isTrigger, Setter = S_isTrigger} },
-
-                    {"contactOffset", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_contactOffset, Setter = S_contactOffset} },
-
-                    {"bounds", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_bounds, Setter = null} },
-
-                    {"hasModifiableContacts", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_hasModifiableContacts, Setter = S_hasModifiableContacts} },
-
-                    {"sharedMaterial", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_sharedMaterial, Setter = S_sharedMaterial} },
-
-                    {"material", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_material, Setter = S_material} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                }
-            };
-        }
     
     }
 }

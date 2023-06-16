@@ -4,11 +4,12 @@ using Puerts;
 
 namespace PuertsStaticWrap
 {
+#pragma warning disable 0219
     public static class UnityEngine_UI_Text_Wrap 
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -24,7 +25,7 @@ namespace PuertsStaticWrap
 
     // ==================== methods start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_FontTextureChanged(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_FontTextureChanged(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -45,7 +46,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetGenerationSettings(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetGenerationSettings(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -55,7 +56,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<UnityEngine.Vector2>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); UnityEngine.Vector2 arg0 = (UnityEngine.Vector2)argobj0;
 
@@ -71,7 +72,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetTextAnchorPivot(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetTextAnchorPivot(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -80,7 +81,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         UnityEngine.TextAnchor arg0 = (UnityEngine.TextAnchor)StaticTranslate<int>.Get((int)data, isolate, Puerts.NativeValueApi.GetValueFromArgument, v8Value0, false);
 
@@ -96,7 +97,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_CalculateLayoutInputHorizontal(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_CalculateLayoutInputHorizontal(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -117,7 +118,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_CalculateLayoutInputVertical(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_CalculateLayoutInputVertical(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -141,7 +142,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_cachedTextGenerator(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_cachedTextGenerator(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -155,7 +156,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_cachedTextGeneratorForLayout(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_cachedTextGeneratorForLayout(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -169,7 +170,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_mainTexture(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_mainTexture(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -183,7 +184,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_font(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_font(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -197,7 +198,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_font(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_font(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -213,7 +214,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_text(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_text(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -227,7 +228,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_text(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_text(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -243,7 +244,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_supportRichText(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_supportRichText(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -257,7 +258,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_supportRichText(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_supportRichText(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -273,7 +274,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_resizeTextForBestFit(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_resizeTextForBestFit(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -287,7 +288,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_resizeTextForBestFit(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_resizeTextForBestFit(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -303,7 +304,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_resizeTextMinSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_resizeTextMinSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -317,7 +318,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_resizeTextMinSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_resizeTextMinSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -333,7 +334,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_resizeTextMaxSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_resizeTextMaxSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -347,7 +348,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_resizeTextMaxSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_resizeTextMaxSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -363,7 +364,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_alignment(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_alignment(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -377,7 +378,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_alignment(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_alignment(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -393,7 +394,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_alignByGeometry(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_alignByGeometry(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -407,7 +408,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_alignByGeometry(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_alignByGeometry(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -423,7 +424,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_fontSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_fontSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -437,7 +438,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_fontSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_fontSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -453,7 +454,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_horizontalOverflow(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_horizontalOverflow(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -467,7 +468,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_horizontalOverflow(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_horizontalOverflow(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -483,7 +484,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_verticalOverflow(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_verticalOverflow(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -497,7 +498,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_verticalOverflow(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_verticalOverflow(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -513,7 +514,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_lineSpacing(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_lineSpacing(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -527,7 +528,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_lineSpacing(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_lineSpacing(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -543,7 +544,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_fontStyle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_fontStyle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -557,7 +558,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_fontStyle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_fontStyle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -573,7 +574,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_pixelsPerUnit(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_pixelsPerUnit(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -587,7 +588,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_minWidth(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_minWidth(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -601,7 +602,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_preferredWidth(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_preferredWidth(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -615,7 +616,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_flexibleWidth(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_flexibleWidth(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -629,7 +630,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_minHeight(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_minHeight(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -643,7 +644,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_preferredHeight(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_preferredHeight(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -657,7 +658,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_flexibleHeight(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_flexibleHeight(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -671,7 +672,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_layoutPriority(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_layoutPriority(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -694,78 +695,8 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                    { new Puerts.MethodKey { Name = "FontTextureChanged", IsStatic = false}, M_FontTextureChanged },
-                    { new Puerts.MethodKey { Name = "GetGenerationSettings", IsStatic = false}, M_GetGenerationSettings },
-                    { new Puerts.MethodKey { Name = "GetTextAnchorPivot", IsStatic = true}, F_GetTextAnchorPivot },
-                    { new Puerts.MethodKey { Name = "CalculateLayoutInputHorizontal", IsStatic = false}, M_CalculateLayoutInputHorizontal },
-                    { new Puerts.MethodKey { Name = "CalculateLayoutInputVertical", IsStatic = false}, M_CalculateLayoutInputVertical }
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"cachedTextGenerator", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_cachedTextGenerator, Setter = null} },
-
-                    {"cachedTextGeneratorForLayout", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_cachedTextGeneratorForLayout, Setter = null} },
-
-                    {"mainTexture", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_mainTexture, Setter = null} },
-
-                    {"font", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_font, Setter = S_font} },
-
-                    {"text", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_text, Setter = S_text} },
-
-                    {"supportRichText", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_supportRichText, Setter = S_supportRichText} },
-
-                    {"resizeTextForBestFit", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_resizeTextForBestFit, Setter = S_resizeTextForBestFit} },
-
-                    {"resizeTextMinSize", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_resizeTextMinSize, Setter = S_resizeTextMinSize} },
-
-                    {"resizeTextMaxSize", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_resizeTextMaxSize, Setter = S_resizeTextMaxSize} },
-
-                    {"alignment", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_alignment, Setter = S_alignment} },
-
-                    {"alignByGeometry", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_alignByGeometry, Setter = S_alignByGeometry} },
-
-                    {"fontSize", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_fontSize, Setter = S_fontSize} },
-
-                    {"horizontalOverflow", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_horizontalOverflow, Setter = S_horizontalOverflow} },
-
-                    {"verticalOverflow", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_verticalOverflow, Setter = S_verticalOverflow} },
-
-                    {"lineSpacing", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_lineSpacing, Setter = S_lineSpacing} },
-
-                    {"fontStyle", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_fontStyle, Setter = S_fontStyle} },
-
-                    {"pixelsPerUnit", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_pixelsPerUnit, Setter = null} },
-
-                    {"minWidth", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_minWidth, Setter = null} },
-
-                    {"preferredWidth", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_preferredWidth, Setter = null} },
-
-                    {"flexibleWidth", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_flexibleWidth, Setter = null} },
-
-                    {"minHeight", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_minHeight, Setter = null} },
-
-                    {"preferredHeight", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_preferredHeight, Setter = null} },
-
-                    {"flexibleHeight", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_flexibleHeight, Setter = null} },
-
-                    {"layoutPriority", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_layoutPriority, Setter = null} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                    new Puerts.LazyMemberRegisterInfo() { Name = "OnRebuildRequested", IsStatic = false, Type = (Puerts.LazyMemberType)2, HasGetter = false, HasSetter = false }
-                }
-            };
-        }
     
     }
+#pragma warning disable 0219
 }
 #endif

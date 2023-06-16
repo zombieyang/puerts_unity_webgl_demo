@@ -4,11 +4,12 @@ using Puerts;
 
 namespace PuertsStaticWrap
 {
+#pragma warning disable 0219
     public static class PerformanceHelper_Wrap 
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -32,7 +33,7 @@ namespace PuertsStaticWrap
 
     // ==================== methods start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_ReturnNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_ReturnNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -41,7 +42,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         int arg0 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value0, false);
 
@@ -57,7 +58,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_ReturnVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_ReturnVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -66,13 +67,13 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     IntPtr v8Value1 = PuertsDLL.GetArgumentValue(info, 1);
                     object argobj1 = null;
-                    JsValueType argType1 = JsValueType.Invalid;
+                    ;
                     IntPtr v8Value2 = PuertsDLL.GetArgumentValue(info, 2);
                     object argobj2 = null;
-                    JsValueType argType2 = JsValueType.Invalid;
+                    ;
                     {
                         int arg0 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value0, false);
                         int arg1 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value1, false);
@@ -93,7 +94,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_JSNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_JSNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -106,7 +107,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_JSNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_JSNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -121,7 +122,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_JSVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_JSVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -134,7 +135,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_JSVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_JSVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -149,7 +150,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_JSFibonacci(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_JSFibonacci(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -162,7 +163,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_JSFibonacci(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_JSFibonacci(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -177,7 +178,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_LuaNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_LuaNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -190,7 +191,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_LuaNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_LuaNumber(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -205,7 +206,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_LuaVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_LuaVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -218,7 +219,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_LuaVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_LuaVector(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -233,7 +234,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_LuaFibonacci(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_LuaFibonacci(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -246,7 +247,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_LuaFibonacci(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_LuaFibonacci(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -270,38 +271,8 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                    { new Puerts.MethodKey { Name = "ReturnNumber", IsStatic = true}, F_ReturnNumber },
-                    { new Puerts.MethodKey { Name = "ReturnVector", IsStatic = true}, F_ReturnVector }
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"JSNumber", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_JSNumber, Setter = S_JSNumber} },
-
-                    {"JSVector", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_JSVector, Setter = S_JSVector} },
-
-                    {"JSFibonacci", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_JSFibonacci, Setter = S_JSFibonacci} },
-
-                    {"LuaNumber", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_LuaNumber, Setter = S_LuaNumber} },
-
-                    {"LuaVector", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_LuaVector, Setter = S_LuaVector} },
-
-                    {"LuaFibonacci", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_LuaFibonacci, Setter = S_LuaFibonacci} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                }
-            };
-        }
     
     }
+#pragma warning disable 0219
 }
 #endif

@@ -614,19 +614,15 @@
         }
         interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
     }
     namespace System.Security {

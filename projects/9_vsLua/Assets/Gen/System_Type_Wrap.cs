@@ -4,11 +4,12 @@ using Puerts;
 
 namespace PuertsStaticWrap
 {
+#pragma warning disable 0219
     public static class System_Type_Wrap 
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -23,7 +24,7 @@ namespace PuertsStaticWrap
 
     // ==================== methods start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_IsEnumDefined(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_IsEnumDefined(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -33,7 +34,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Object>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Object arg0 = (System.Object)argobj0;
 
@@ -49,7 +50,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetEnumName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetEnumName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -59,7 +60,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Object>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Object arg0 = (System.Object)argobj0;
 
@@ -75,7 +76,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetEnumNames(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetEnumNames(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -97,7 +98,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_FindInterfaces(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_FindInterfaces(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -107,10 +108,10 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     IntPtr v8Value1 = PuertsDLL.GetArgumentValue(info, 1);
                     object argobj1 = null;
-                    JsValueType argType1 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Reflection.TypeFilter>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Reflection.TypeFilter arg0 = (System.Reflection.TypeFilter)argobj0;
                         argobj1 = argobj1 != null ? argobj1 : StaticTranslate<System.Object>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value1, false); System.Object arg1 = (System.Object)argobj1;
@@ -127,7 +128,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_FindMembers(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_FindMembers(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -137,16 +138,16 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     IntPtr v8Value1 = PuertsDLL.GetArgumentValue(info, 1);
                     object argobj1 = null;
-                    JsValueType argType1 = JsValueType.Invalid;
+                    ;
                     IntPtr v8Value2 = PuertsDLL.GetArgumentValue(info, 2);
                     object argobj2 = null;
-                    JsValueType argType2 = JsValueType.Invalid;
+                    ;
                     IntPtr v8Value3 = PuertsDLL.GetArgumentValue(info, 3);
                     object argobj3 = null;
-                    JsValueType argType3 = JsValueType.Invalid;
+                    ;
                     {
                         System.Reflection.MemberTypes arg0 = (System.Reflection.MemberTypes)StaticTranslate<int>.Get((int)data, isolate, Puerts.NativeValueApi.GetValueFromArgument, v8Value0, false);
                         System.Reflection.BindingFlags arg1 = (System.Reflection.BindingFlags)StaticTranslate<int>.Get((int)data, isolate, Puerts.NativeValueApi.GetValueFromArgument, v8Value1, false);
@@ -165,7 +166,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_IsSubclassOf(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_IsSubclassOf(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -175,7 +176,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Type>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Type arg0 = (System.Type)argobj0;
 
@@ -191,7 +192,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_IsAssignableFrom(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_IsAssignableFrom(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -201,7 +202,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Type>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Type arg0 = (System.Type)argobj0;
 
@@ -217,7 +218,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -239,7 +240,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetElementType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetElementType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -261,7 +262,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetArrayRank(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetArrayRank(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -283,7 +284,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetGenericTypeDefinition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetGenericTypeDefinition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -305,7 +306,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetGenericArguments(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetGenericArguments(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -327,7 +328,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetGenericParameterConstraints(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetGenericParameterConstraints(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -349,7 +350,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetConstructor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetConstructor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -439,7 +440,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetConstructors(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetConstructors(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -480,7 +481,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetEvent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetEvent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -530,7 +531,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetEvents(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetEvents(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -571,7 +572,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetField(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetField(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -621,7 +622,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetFields(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetFields(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -662,7 +663,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetMember(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetMember(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -736,7 +737,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetMembers(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetMembers(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -777,7 +778,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetMethod(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetMethod(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1022,7 +1023,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetMethods(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetMethods(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1063,7 +1064,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetNestedType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetNestedType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1113,7 +1114,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetNestedTypes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetNestedTypes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1154,7 +1155,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetProperty(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetProperty(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1312,7 +1313,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetProperties(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetProperties(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1353,7 +1354,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetDefaultMembers(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetDefaultMembers(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1375,7 +1376,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetTypeHandle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetTypeHandle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1384,7 +1385,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Object>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Object arg0 = (System.Object)argobj0;
 
@@ -1400,7 +1401,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetTypeArray(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetTypeArray(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1409,7 +1410,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Object[]>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Object[] arg0 = (System.Object[])argobj0;
 
@@ -1425,7 +1426,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetTypeCode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetTypeCode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1434,7 +1435,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Type>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Type arg0 = (System.Type)argobj0;
 
@@ -1450,7 +1451,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetTypeFromCLSID(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetTypeFromCLSID(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1533,7 +1534,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetTypeFromProgID(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetTypeFromProgID(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1616,7 +1617,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_InvokeMember(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_InvokeMember(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1742,7 +1743,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetInterface(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetInterface(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1792,7 +1793,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetInterfaces(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetInterfaces(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1814,7 +1815,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetInterfaceMap(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetInterfaceMap(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1824,7 +1825,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Type>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Type arg0 = (System.Type)argobj0;
 
@@ -1840,7 +1841,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_IsInstanceOfType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_IsInstanceOfType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1850,7 +1851,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Object>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Object arg0 = (System.Object)argobj0;
 
@@ -1866,7 +1867,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_IsEquivalentTo(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_IsEquivalentTo(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1876,7 +1877,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.Type>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.Type arg0 = (System.Type)argobj0;
 
@@ -1892,7 +1893,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetEnumUnderlyingType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetEnumUnderlyingType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1914,7 +1915,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetEnumValues(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetEnumValues(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1936,7 +1937,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_MakeArrayType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_MakeArrayType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1977,7 +1978,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_MakeByRefType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_MakeByRefType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1999,7 +2000,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_MakeGenericType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_MakeGenericType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2040,7 +2041,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_MakePointerType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_MakePointerType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2062,7 +2063,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_MakeGenericMethodParameter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_MakeGenericMethodParameter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2071,7 +2072,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         int arg0 = (int)PuertsDLL.GetNumberFromValue(isolate, v8Value0, false);
 
@@ -2087,7 +2088,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_ToString(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_ToString(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2109,7 +2110,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_Equals(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_Equals(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2148,7 +2149,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetHashCode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetHashCode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2173,7 +2174,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetTypeFromHandle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetTypeFromHandle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2182,7 +2183,7 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     {
                         argobj0 = argobj0 != null ? argobj0 : StaticTranslate<System.RuntimeTypeHandle>.Get((int)data, isolate, NativeValueApi.GetValueFromArgument, v8Value0, false); System.RuntimeTypeHandle arg0 = (System.RuntimeTypeHandle)argobj0;
 
@@ -2198,7 +2199,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_GetType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_GetType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2342,7 +2343,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_ReflectionOnlyGetType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_ReflectionOnlyGetType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2351,13 +2352,13 @@ namespace PuertsStaticWrap
             
                     IntPtr v8Value0 = PuertsDLL.GetArgumentValue(info, 0);
                     object argobj0 = null;
-                    JsValueType argType0 = JsValueType.Invalid;
+                    ;
                     IntPtr v8Value1 = PuertsDLL.GetArgumentValue(info, 1);
                     object argobj1 = null;
-                    JsValueType argType1 = JsValueType.Invalid;
+                    ;
                     IntPtr v8Value2 = PuertsDLL.GetArgumentValue(info, 2);
                     object argobj2 = null;
-                    JsValueType argType2 = JsValueType.Invalid;
+                    ;
                     {
                         string arg0 = (string)PuertsDLL.GetStringFromValue(isolate, v8Value0, false);
                         bool arg1 = (bool)PuertsDLL.GetBooleanFromValue(isolate, v8Value1, false);
@@ -2378,7 +2379,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsSerializable(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsSerializable(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2392,7 +2393,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_ContainsGenericParameters(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_ContainsGenericParameters(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2406,7 +2407,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsVisible(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsVisible(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2420,7 +2421,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_MemberType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_MemberType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2434,7 +2435,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_Namespace(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_Namespace(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2448,7 +2449,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_AssemblyQualifiedName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_AssemblyQualifiedName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2462,7 +2463,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_FullName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_FullName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2476,7 +2477,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_Assembly(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_Assembly(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2490,7 +2491,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_Module(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_Module(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2504,7 +2505,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsNested(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsNested(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2518,7 +2519,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_DeclaringType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_DeclaringType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2532,7 +2533,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_DeclaringMethod(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_DeclaringMethod(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2546,7 +2547,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_ReflectedType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_ReflectedType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2560,7 +2561,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_UnderlyingSystemType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_UnderlyingSystemType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2574,7 +2575,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsTypeDefinition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsTypeDefinition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2588,7 +2589,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsArray(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsArray(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2602,7 +2603,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsByRef(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsByRef(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2616,7 +2617,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsPointer(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsPointer(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2630,7 +2631,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsConstructedGenericType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsConstructedGenericType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2644,7 +2645,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsGenericParameter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsGenericParameter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2658,7 +2659,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsGenericTypeParameter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsGenericTypeParameter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2672,7 +2673,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsGenericMethodParameter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsGenericMethodParameter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2686,7 +2687,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsGenericType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsGenericType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2700,7 +2701,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsGenericTypeDefinition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsGenericTypeDefinition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2714,7 +2715,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsVariableBoundArray(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsVariableBoundArray(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2728,7 +2729,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsByRefLike(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsByRefLike(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2742,7 +2743,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_HasElementType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_HasElementType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2756,7 +2757,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_GenericTypeArguments(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_GenericTypeArguments(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2770,7 +2771,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_GenericParameterPosition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_GenericParameterPosition(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2784,7 +2785,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_GenericParameterAttributes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_GenericParameterAttributes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2798,7 +2799,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_Attributes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_Attributes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2812,7 +2813,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsAbstract(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsAbstract(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2826,7 +2827,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsImport(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsImport(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2840,7 +2841,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsSealed(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsSealed(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2854,7 +2855,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsSpecialName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsSpecialName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2868,7 +2869,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsClass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsClass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2882,7 +2883,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsNestedAssembly(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsNestedAssembly(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2896,7 +2897,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsNestedFamANDAssem(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsNestedFamANDAssem(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2910,7 +2911,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsNestedFamily(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsNestedFamily(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2924,7 +2925,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsNestedFamORAssem(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsNestedFamORAssem(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2938,7 +2939,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsNestedPrivate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsNestedPrivate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2952,7 +2953,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsNestedPublic(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsNestedPublic(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2966,7 +2967,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsNotPublic(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsNotPublic(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2980,7 +2981,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsPublic(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsPublic(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -2994,7 +2995,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsAutoLayout(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsAutoLayout(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3008,7 +3009,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsExplicitLayout(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsExplicitLayout(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3022,7 +3023,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsLayoutSequential(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsLayoutSequential(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3036,7 +3037,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsAnsiClass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsAnsiClass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3050,7 +3051,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsAutoClass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsAutoClass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3064,7 +3065,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsUnicodeClass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsUnicodeClass(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3078,7 +3079,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsCOMObject(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsCOMObject(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3092,7 +3093,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsContextful(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsContextful(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3106,7 +3107,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsEnum(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsEnum(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3120,7 +3121,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsMarshalByRef(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsMarshalByRef(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3134,7 +3135,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsPrimitive(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsPrimitive(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3148,7 +3149,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsValueType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsValueType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3162,7 +3163,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsSignatureType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsSignatureType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3176,7 +3177,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsSecurityCritical(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsSecurityCritical(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3190,7 +3191,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsSecuritySafeCritical(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsSecuritySafeCritical(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3204,7 +3205,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsSecurityTransparent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsSecurityTransparent(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3218,7 +3219,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_StructLayoutAttribute(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_StructLayoutAttribute(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3232,7 +3233,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_TypeInitializer(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_TypeInitializer(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3246,7 +3247,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_TypeHandle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_TypeHandle(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3260,7 +3261,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_GUID(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_GUID(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3274,7 +3275,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_BaseType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_BaseType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3288,7 +3289,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_DefaultBinder(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_DefaultBinder(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3301,7 +3302,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_IsInterface(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_IsInterface(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3315,7 +3316,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_Delimiter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_Delimiter(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3328,7 +3329,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_EmptyTypes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_EmptyTypes(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3341,7 +3342,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_Missing(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_Missing(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3354,7 +3355,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_FilterAttribute(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_FilterAttribute(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3367,7 +3368,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_FilterName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_FilterName(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3380,7 +3381,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_FilterNameIgnoreCase(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_FilterNameIgnoreCase(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3399,7 +3400,7 @@ namespace PuertsStaticWrap
     // ==================== array item get/set end ====================
     // ==================== operator start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void O_op_Equality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void O_op_Equality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3425,7 +3426,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void O_op_Inequality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void O_op_Inequality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -3454,228 +3455,8 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                    { new Puerts.MethodKey { Name = "IsEnumDefined", IsStatic = false}, M_IsEnumDefined },
-                    { new Puerts.MethodKey { Name = "GetEnumName", IsStatic = false}, M_GetEnumName },
-                    { new Puerts.MethodKey { Name = "GetEnumNames", IsStatic = false}, M_GetEnumNames },
-                    { new Puerts.MethodKey { Name = "FindInterfaces", IsStatic = false}, M_FindInterfaces },
-                    { new Puerts.MethodKey { Name = "FindMembers", IsStatic = false}, M_FindMembers },
-                    { new Puerts.MethodKey { Name = "IsSubclassOf", IsStatic = false}, M_IsSubclassOf },
-                    { new Puerts.MethodKey { Name = "IsAssignableFrom", IsStatic = false}, M_IsAssignableFrom },
-                    { new Puerts.MethodKey { Name = "GetType", IsStatic = false}, M_GetType },
-                    { new Puerts.MethodKey { Name = "GetElementType", IsStatic = false}, M_GetElementType },
-                    { new Puerts.MethodKey { Name = "GetArrayRank", IsStatic = false}, M_GetArrayRank },
-                    { new Puerts.MethodKey { Name = "GetGenericTypeDefinition", IsStatic = false}, M_GetGenericTypeDefinition },
-                    { new Puerts.MethodKey { Name = "GetGenericArguments", IsStatic = false}, M_GetGenericArguments },
-                    { new Puerts.MethodKey { Name = "GetGenericParameterConstraints", IsStatic = false}, M_GetGenericParameterConstraints },
-                    { new Puerts.MethodKey { Name = "GetConstructor", IsStatic = false}, M_GetConstructor },
-                    { new Puerts.MethodKey { Name = "GetConstructors", IsStatic = false}, M_GetConstructors },
-                    { new Puerts.MethodKey { Name = "GetEvent", IsStatic = false}, M_GetEvent },
-                    { new Puerts.MethodKey { Name = "GetEvents", IsStatic = false}, M_GetEvents },
-                    { new Puerts.MethodKey { Name = "GetField", IsStatic = false}, M_GetField },
-                    { new Puerts.MethodKey { Name = "GetFields", IsStatic = false}, M_GetFields },
-                    { new Puerts.MethodKey { Name = "GetMember", IsStatic = false}, M_GetMember },
-                    { new Puerts.MethodKey { Name = "GetMembers", IsStatic = false}, M_GetMembers },
-                    { new Puerts.MethodKey { Name = "GetMethod", IsStatic = false}, M_GetMethod },
-                    { new Puerts.MethodKey { Name = "GetMethods", IsStatic = false}, M_GetMethods },
-                    { new Puerts.MethodKey { Name = "GetNestedType", IsStatic = false}, M_GetNestedType },
-                    { new Puerts.MethodKey { Name = "GetNestedTypes", IsStatic = false}, M_GetNestedTypes },
-                    { new Puerts.MethodKey { Name = "GetProperty", IsStatic = false}, M_GetProperty },
-                    { new Puerts.MethodKey { Name = "GetProperties", IsStatic = false}, M_GetProperties },
-                    { new Puerts.MethodKey { Name = "GetDefaultMembers", IsStatic = false}, M_GetDefaultMembers },
-                    { new Puerts.MethodKey { Name = "GetTypeHandle", IsStatic = true}, F_GetTypeHandle },
-                    { new Puerts.MethodKey { Name = "GetTypeArray", IsStatic = true}, F_GetTypeArray },
-                    { new Puerts.MethodKey { Name = "GetTypeCode", IsStatic = true}, F_GetTypeCode },
-                    { new Puerts.MethodKey { Name = "GetTypeFromCLSID", IsStatic = true}, F_GetTypeFromCLSID },
-                    { new Puerts.MethodKey { Name = "GetTypeFromProgID", IsStatic = true}, F_GetTypeFromProgID },
-                    { new Puerts.MethodKey { Name = "InvokeMember", IsStatic = false}, M_InvokeMember },
-                    { new Puerts.MethodKey { Name = "GetInterface", IsStatic = false}, M_GetInterface },
-                    { new Puerts.MethodKey { Name = "GetInterfaces", IsStatic = false}, M_GetInterfaces },
-                    { new Puerts.MethodKey { Name = "GetInterfaceMap", IsStatic = false}, M_GetInterfaceMap },
-                    { new Puerts.MethodKey { Name = "IsInstanceOfType", IsStatic = false}, M_IsInstanceOfType },
-                    { new Puerts.MethodKey { Name = "IsEquivalentTo", IsStatic = false}, M_IsEquivalentTo },
-                    { new Puerts.MethodKey { Name = "GetEnumUnderlyingType", IsStatic = false}, M_GetEnumUnderlyingType },
-                    { new Puerts.MethodKey { Name = "GetEnumValues", IsStatic = false}, M_GetEnumValues },
-                    { new Puerts.MethodKey { Name = "MakeArrayType", IsStatic = false}, M_MakeArrayType },
-                    { new Puerts.MethodKey { Name = "MakeByRefType", IsStatic = false}, M_MakeByRefType },
-                    { new Puerts.MethodKey { Name = "MakeGenericType", IsStatic = false}, M_MakeGenericType },
-                    { new Puerts.MethodKey { Name = "MakePointerType", IsStatic = false}, M_MakePointerType },
-                    { new Puerts.MethodKey { Name = "MakeGenericMethodParameter", IsStatic = true}, F_MakeGenericMethodParameter },
-                    { new Puerts.MethodKey { Name = "ToString", IsStatic = false}, M_ToString },
-                    { new Puerts.MethodKey { Name = "Equals", IsStatic = false}, M_Equals },
-                    { new Puerts.MethodKey { Name = "GetHashCode", IsStatic = false}, M_GetHashCode },
-                    { new Puerts.MethodKey { Name = "GetTypeFromHandle", IsStatic = true}, F_GetTypeFromHandle },
-                    { new Puerts.MethodKey { Name = "GetType", IsStatic = true}, F_GetType },
-                    { new Puerts.MethodKey { Name = "ReflectionOnlyGetType", IsStatic = true}, F_ReflectionOnlyGetType },
-
-                    { new Puerts.MethodKey { Name = "op_Equality", IsStatic = true}, O_op_Equality },
-
-                    { new Puerts.MethodKey { Name = "op_Inequality", IsStatic = true}, O_op_Inequality }
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"IsSerializable", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsSerializable, Setter = null} },
-
-                    {"ContainsGenericParameters", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_ContainsGenericParameters, Setter = null} },
-
-                    {"IsVisible", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsVisible, Setter = null} },
-
-                    {"MemberType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_MemberType, Setter = null} },
-
-                    {"Namespace", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_Namespace, Setter = null} },
-
-                    {"AssemblyQualifiedName", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_AssemblyQualifiedName, Setter = null} },
-
-                    {"FullName", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_FullName, Setter = null} },
-
-                    {"Assembly", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_Assembly, Setter = null} },
-
-                    {"Module", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_Module, Setter = null} },
-
-                    {"IsNested", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsNested, Setter = null} },
-
-                    {"DeclaringType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_DeclaringType, Setter = null} },
-
-                    {"DeclaringMethod", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_DeclaringMethod, Setter = null} },
-
-                    {"ReflectedType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_ReflectedType, Setter = null} },
-
-                    {"UnderlyingSystemType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_UnderlyingSystemType, Setter = null} },
-
-                    {"IsTypeDefinition", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsTypeDefinition, Setter = null} },
-
-                    {"IsArray", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsArray, Setter = null} },
-
-                    {"IsByRef", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsByRef, Setter = null} },
-
-                    {"IsPointer", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsPointer, Setter = null} },
-
-                    {"IsConstructedGenericType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsConstructedGenericType, Setter = null} },
-
-                    {"IsGenericParameter", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsGenericParameter, Setter = null} },
-
-                    {"IsGenericTypeParameter", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsGenericTypeParameter, Setter = null} },
-
-                    {"IsGenericMethodParameter", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsGenericMethodParameter, Setter = null} },
-
-                    {"IsGenericType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsGenericType, Setter = null} },
-
-                    {"IsGenericTypeDefinition", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsGenericTypeDefinition, Setter = null} },
-
-                    {"IsVariableBoundArray", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsVariableBoundArray, Setter = null} },
-
-                    {"IsByRefLike", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsByRefLike, Setter = null} },
-
-                    {"HasElementType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_HasElementType, Setter = null} },
-
-                    {"GenericTypeArguments", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_GenericTypeArguments, Setter = null} },
-
-                    {"GenericParameterPosition", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_GenericParameterPosition, Setter = null} },
-
-                    {"GenericParameterAttributes", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_GenericParameterAttributes, Setter = null} },
-
-                    {"Attributes", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_Attributes, Setter = null} },
-
-                    {"IsAbstract", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsAbstract, Setter = null} },
-
-                    {"IsImport", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsImport, Setter = null} },
-
-                    {"IsSealed", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsSealed, Setter = null} },
-
-                    {"IsSpecialName", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsSpecialName, Setter = null} },
-
-                    {"IsClass", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsClass, Setter = null} },
-
-                    {"IsNestedAssembly", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsNestedAssembly, Setter = null} },
-
-                    {"IsNestedFamANDAssem", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsNestedFamANDAssem, Setter = null} },
-
-                    {"IsNestedFamily", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsNestedFamily, Setter = null} },
-
-                    {"IsNestedFamORAssem", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsNestedFamORAssem, Setter = null} },
-
-                    {"IsNestedPrivate", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsNestedPrivate, Setter = null} },
-
-                    {"IsNestedPublic", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsNestedPublic, Setter = null} },
-
-                    {"IsNotPublic", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsNotPublic, Setter = null} },
-
-                    {"IsPublic", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsPublic, Setter = null} },
-
-                    {"IsAutoLayout", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsAutoLayout, Setter = null} },
-
-                    {"IsExplicitLayout", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsExplicitLayout, Setter = null} },
-
-                    {"IsLayoutSequential", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsLayoutSequential, Setter = null} },
-
-                    {"IsAnsiClass", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsAnsiClass, Setter = null} },
-
-                    {"IsAutoClass", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsAutoClass, Setter = null} },
-
-                    {"IsUnicodeClass", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsUnicodeClass, Setter = null} },
-
-                    {"IsCOMObject", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsCOMObject, Setter = null} },
-
-                    {"IsContextful", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsContextful, Setter = null} },
-
-                    {"IsEnum", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsEnum, Setter = null} },
-
-                    {"IsMarshalByRef", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsMarshalByRef, Setter = null} },
-
-                    {"IsPrimitive", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsPrimitive, Setter = null} },
-
-                    {"IsValueType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsValueType, Setter = null} },
-
-                    {"IsSignatureType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsSignatureType, Setter = null} },
-
-                    {"IsSecurityCritical", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsSecurityCritical, Setter = null} },
-
-                    {"IsSecuritySafeCritical", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsSecuritySafeCritical, Setter = null} },
-
-                    {"IsSecurityTransparent", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsSecurityTransparent, Setter = null} },
-
-                    {"StructLayoutAttribute", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_StructLayoutAttribute, Setter = null} },
-
-                    {"TypeInitializer", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_TypeInitializer, Setter = null} },
-
-                    {"TypeHandle", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_TypeHandle, Setter = null} },
-
-                    {"GUID", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_GUID, Setter = null} },
-
-                    {"BaseType", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_BaseType, Setter = null} },
-
-                    {"DefaultBinder", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_DefaultBinder, Setter = null} },
-
-                    {"IsInterface", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_IsInterface, Setter = null} },
-
-                    {"Delimiter", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_Delimiter, Setter = null} },
-
-                    {"EmptyTypes", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_EmptyTypes, Setter = null} },
-
-                    {"Missing", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_Missing, Setter = null} },
-
-                    {"FilterAttribute", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_FilterAttribute, Setter = null} },
-
-                    {"FilterName", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_FilterName, Setter = null} },
-
-                    {"FilterNameIgnoreCase", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_FilterNameIgnoreCase, Setter = null} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                    new Puerts.LazyMemberRegisterInfo() { Name = "MakeGenericSignatureType", IsStatic = true, Type = (Puerts.LazyMemberType)2, HasGetter = false, HasSetter = false },
-                    new Puerts.LazyMemberRegisterInfo() { Name = "IsCollectible", IsStatic = false, Type = (Puerts.LazyMemberType)3, HasGetter = true, HasSetter = false }
-                }
-            };
-        }
     
     }
+#pragma warning disable 0219
 }
 #endif

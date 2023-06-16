@@ -8,7 +8,7 @@ namespace PuertsStaticWrap
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace PuertsStaticWrap
 
     // ==================== methods start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetInstanceID(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetInstanceID(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_GetHashCode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_GetHashCode(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_Equals(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_Equals(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_Instantiate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_Instantiate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -214,7 +214,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_Destroy(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_Destroy(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -261,7 +261,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_DestroyImmediate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_DestroyImmediate(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -308,7 +308,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_FindObjectsOfType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_FindObjectsOfType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -357,7 +357,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_FindObjectsByType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_FindObjectsByType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -414,7 +414,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_DontDestroyOnLoad(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_DontDestroyOnLoad(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -438,7 +438,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_FindObjectOfType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_FindObjectOfType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -487,7 +487,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_FindFirstObjectByType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_FindFirstObjectByType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -536,7 +536,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_FindAnyObjectByType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_FindAnyObjectByType(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -585,7 +585,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void M_ToString(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void M_ToString(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -610,7 +610,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_name(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_name(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -624,7 +624,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_name(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_name(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -640,7 +640,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_hideFlags(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_hideFlags(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -654,7 +654,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_hideFlags(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_hideFlags(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -676,7 +676,7 @@ namespace PuertsStaticWrap
     // ==================== array item get/set end ====================
     // ==================== operator start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void O_op_Equality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void O_op_Equality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -702,7 +702,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void O_op_Inequality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void O_op_Inequality(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -731,45 +731,6 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                    { new Puerts.MethodKey { Name = "GetInstanceID", IsStatic = false}, M_GetInstanceID },
-                    { new Puerts.MethodKey { Name = "GetHashCode", IsStatic = false}, M_GetHashCode },
-                    { new Puerts.MethodKey { Name = "Equals", IsStatic = false}, M_Equals },
-                    { new Puerts.MethodKey { Name = "Instantiate", IsStatic = true}, F_Instantiate },
-                    { new Puerts.MethodKey { Name = "Destroy", IsStatic = true}, F_Destroy },
-                    { new Puerts.MethodKey { Name = "DestroyImmediate", IsStatic = true}, F_DestroyImmediate },
-                    { new Puerts.MethodKey { Name = "FindObjectsOfType", IsStatic = true}, F_FindObjectsOfType },
-                    { new Puerts.MethodKey { Name = "FindObjectsByType", IsStatic = true}, F_FindObjectsByType },
-                    { new Puerts.MethodKey { Name = "DontDestroyOnLoad", IsStatic = true}, F_DontDestroyOnLoad },
-                    { new Puerts.MethodKey { Name = "FindObjectOfType", IsStatic = true}, F_FindObjectOfType },
-                    { new Puerts.MethodKey { Name = "FindFirstObjectByType", IsStatic = true}, F_FindFirstObjectByType },
-                    { new Puerts.MethodKey { Name = "FindAnyObjectByType", IsStatic = true}, F_FindAnyObjectByType },
-                    { new Puerts.MethodKey { Name = "ToString", IsStatic = false}, M_ToString },
-
-                    { new Puerts.MethodKey { Name = "op_Equality", IsStatic = true}, O_op_Equality },
-
-                    { new Puerts.MethodKey { Name = "op_Inequality", IsStatic = true}, O_op_Inequality }
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"name", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_name, Setter = S_name} },
-
-                    {"hideFlags", new Puerts.PropertyRegisterInfo(){ IsStatic = false, Getter = G_hideFlags, Setter = S_hideFlags} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                    new Puerts.LazyMemberRegisterInfo() { Name = "op_Implicit", IsStatic = true, Type = (Puerts.LazyMemberType)2, HasGetter = false, HasSetter = false }
-                }
-            };
-        }
     
     }
 }

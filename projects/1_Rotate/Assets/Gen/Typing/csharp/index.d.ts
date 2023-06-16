@@ -17,23 +17,12 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        class String extends System.Object implements System.IEquatable$1<string>, System.ICloneable, System.Collections.Generic.IEnumerable$1<number>, System.IComparable, System.IComparable$1<string>, System.Collections.IEnumerable, System.IConvertible
+        class String extends System.Object implements System.ICloneable, System.IComparable, System.IComparable$1<string>, System.IConvertible, System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable, System.IEquatable$1<string>
         {
             protected [__keep_incompatibility]: never;
-        }
-        interface IEquatable$1<T>
-        {
         }
         interface ICloneable
         {
-        }
-        class ValueType extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Char extends System.ValueType implements System.IEquatable$1<number>, System.IComparable, System.IComparable$1<number>, System.IConvertible
-        {
-            protected [__keep_incompatibility]: never;
         }
         interface IComparable
         {
@@ -44,7 +33,18 @@
         interface IConvertible
         {
         }
-        class Delegate extends System.Object implements System.ICloneable, System.Runtime.Serialization.ISerializable
+        class ValueType extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Char extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IEquatable$1<T>
+        {
+        }
+        class Delegate extends System.Object implements System.Runtime.Serialization.ISerializable, System.ICloneable
         {
             protected [__keep_incompatibility]: never;
         }
@@ -64,15 +64,15 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        class Type extends System.Reflection.MemberInfo implements System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect, System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type
+        class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
         {
             protected [__keep_incompatibility]: never;
         }
-        class Boolean extends System.ValueType implements System.IEquatable$1<boolean>, System.IComparable, System.IComparable$1<boolean>, System.IConvertible
+        class Boolean extends System.ValueType implements System.IComparable, System.IComparable$1<boolean>, System.IConvertible, System.IEquatable$1<boolean>
         {
             protected [__keep_incompatibility]: never;
         }
-        class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.Collections.ICollection, System.ICloneable, System.Collections.IEnumerable, System.Collections.IList
+        class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.ICloneable, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
         {
             protected [__keep_incompatibility]: never;
         }
@@ -83,14 +83,14 @@
         interface IFormattable
         {
         }
-        class Single extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
+        class Single extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
         interface ISpanFormattable
         {
         }
-        class Int32 extends System.ValueType implements System.IEquatable$1<number>, System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible
+        class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -105,7 +105,7 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        /** Base class for everything attached to GameObjects.
+        /** Base class for everything attached to a GameObject.
         */
         class Component extends UnityEngine.Object
         {
@@ -121,137 +121,137 @@
             public get tag(): string;
             public set tag(value: string);
             /** Returns the component of type if the GameObject has one attached.
-            * @param type The type of Component to retrieve.
+            * @param $type The type of Component to retrieve.
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponent ($type: System.Type) : UnityEngine.Component
             /** Gets the component of the specified type, if it exists.
-            * @param type The type of the component to retrieve.
-            * @param component The output argument that will contain the component or null.
+            * @param $type The type of the component to retrieve.
+            * @param $component The output argument that will contain the component or null.
             * @returns Returns true if the component is found, false otherwise. 
             */
             public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
             /** To improve the performance of your code, consider using GetComponent with a type instead of a string.
-            * @param type The name of the type of Component to get.
+            * @param $type The name of the type of Component to get.
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponent ($type: string) : UnityEngine.Component
             /** Returns the Component of type in the GameObject or any of its children using depth first search.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @param $t The type of Component to retrieve.
+            * @param $includeInactive Should Components on inactive GameObjects be included in the found set?
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInChildren ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
             /** Returns the Component of type in the GameObject or any of its children using depth first search.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @param $t The type of Component to retrieve.
+            * @param $includeInactive Should Components on inactive GameObjects be included in the found set?
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInChildren ($t: System.Type) : UnityEngine.Component
             /** Returns all components of Type type in the GameObject or any of its children using depth first search. Works recursively.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set. includeInactive decides which children of the GameObject will be searched.  The GameObject that you call GetComponentsInChildren on is always searched regardless. Default is false.
+            * @param $t The type of Component to retrieve.
+            * @param $includeInactive Should Components on inactive GameObjects be included in the found set. includeInactive decides which children of the GameObject will be searched.  The GameObject that you call GetComponentsInChildren on is always searched regardless. Default is false.
             */
             public GetComponentsInChildren ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
             public GetComponentsInChildren ($t: System.Type) : System.Array$1<UnityEngine.Component>
             /** Returns the Component of type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @param $t The type of Component to retrieve.
+            * @param $includeInactive Should Components on inactive GameObjects be included in the found set?
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInParent ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
             /** Returns the Component of type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @param $t The type of Component to retrieve.
+            * @param $includeInactive Should Components on inactive GameObjects be included in the found set?
             * @returns A Component of the matching type, otherwise null if no Component is found. 
             */
             public GetComponentInParent ($t: System.Type) : UnityEngine.Component
             /** Returns all components of Type type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should inactive Components be included in the found set?
+            * @param $t The type of Component to retrieve.
+            * @param $includeInactive Should inactive Components be included in the found set?
             */
             public GetComponentsInParent ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
             public GetComponentsInParent ($t: System.Type) : System.Array$1<UnityEngine.Component>
             /** Returns all components of Type type in the GameObject.
-            * @param type The type of Component to retrieve.
+            * @param $type The type of Component to retrieve.
             */
             public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
             public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
             /** Checks the GameObject's tag against the defined tag.
-            * @param tag The tag to compare.
+            * @param $tag The tag to compare.
             * @returns Returns true if GameObject has same tag. Returns false otherwise. 
             */
             public CompareTag ($tag: string) : boolean
             /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
+            * @param $methodName Name of method to call.
+            * @param $value Optional parameter value for the method.
+            * @param $options Should an error be raised if the method does not exist on the target object?
             */
             public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
+            * @param $methodName Name of method to call.
+            * @param $value Optional parameter value for the method.
+            * @param $options Should an error be raised if the method does not exist on the target object?
             */
             public SendMessageUpwards ($methodName: string, $value: any) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
+            * @param $methodName Name of method to call.
+            * @param $value Optional parameter value for the method.
+            * @param $options Should an error be raised if the method does not exist on the target object?
             */
             public SendMessageUpwards ($methodName: string) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
+            * @param $methodName Name of method to call.
+            * @param $value Optional parameter value for the method.
+            * @param $options Should an error be raised if the method does not exist on the target object?
             */
             public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            * @param $methodName Name of the method to call.
+            * @param $value Optional parameter for the method.
+            * @param $options Should an error be raised if the target object doesn't implement the method for the message?
             */
             public SendMessage ($methodName: string, $value: any) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            * @param $methodName Name of the method to call.
+            * @param $value Optional parameter for the method.
+            * @param $options Should an error be raised if the target object doesn't implement the method for the message?
             */
             public SendMessage ($methodName: string) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            * @param $methodName Name of the method to call.
+            * @param $value Optional parameter for the method.
+            * @param $options Should an error be raised if the target object doesn't implement the method for the message?
             */
             public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            * @param $methodName Name of the method to call.
+            * @param $value Optional parameter for the method.
+            * @param $options Should an error be raised if the target object doesn't implement the method for the message?
             */
             public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
+            * @param $methodName Name of the method to call.
+            * @param $parameter Optional parameter to pass to the method (can be any value).
+            * @param $options Should an error be raised if the method does not exist for a given target object?
             */
             public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
+            * @param $methodName Name of the method to call.
+            * @param $parameter Optional parameter to pass to the method (can be any value).
+            * @param $options Should an error be raised if the method does not exist for a given target object?
             */
             public BroadcastMessage ($methodName: string, $parameter: any) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
+            * @param $methodName Name of the method to call.
+            * @param $parameter Optional parameter to pass to the method (can be any value).
+            * @param $options Should an error be raised if the method does not exist for a given target object?
             */
             public BroadcastMessage ($methodName: string) : void
             /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
+            * @param $methodName Name of the method to call.
+            * @param $parameter Optional parameter to pass to the method (can be any value).
+            * @param $options Should an error be raised if the method does not exist for a given target object?
             */
             public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
             public constructor ()
@@ -283,7 +283,11 @@
             */
             public get runInEditMode(): boolean;
             public set runInEditMode(value: boolean);
+            /** Is any invoke pending on this MonoBehaviour?
+            */
             public IsInvoking () : boolean
+            /** Cancels all Invoke calls on this MonoBehaviour.
+            */
             public CancelInvoke () : void
             /** Invokes the method methodName in time seconds.
             */
@@ -307,20 +311,22 @@
             */
             public StartCoroutine ($routine: System.Collections.IEnumerator) : UnityEngine.Coroutine
             /** Stops the first coroutine named methodName, or the coroutine stored in routine running on this behaviour.
-            * @param methodName Name of coroutine.
-            * @param routine Name of the function in code, including coroutines.
+            * @param $methodName Name of coroutine.
+            * @param $routine Name of the function in code, including coroutines.
             */
             public StopCoroutine ($routine: System.Collections.IEnumerator) : void
             /** Stops the first coroutine named methodName, or the coroutine stored in routine running on this behaviour.
-            * @param methodName Name of coroutine.
-            * @param routine Name of the function in code, including coroutines.
+            * @param $methodName Name of coroutine.
+            * @param $routine Name of the function in code, including coroutines.
             */
             public StopCoroutine ($routine: UnityEngine.Coroutine) : void
             /** Stops the first coroutine named methodName, or the coroutine stored in routine running on this behaviour.
-            * @param methodName Name of coroutine.
-            * @param routine Name of the function in code, including coroutines.
+            * @param $methodName Name of coroutine.
+            * @param $routine Name of the function in code, including coroutines.
             */
             public StopCoroutine ($methodName: string) : void
+            /** Stops all coroutines running on this behaviour.
+            */
             public StopAllCoroutines () : void
             /** Logs message to the Unity Console (identical to Debug.Log).
             */
@@ -403,13 +409,13 @@
             */
             public get hierarchyCount(): number;
             /** Set the parent of the transform.
-            * @param parent The parent Transform to use.
-            * @param worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
+            * @param $parent The parent Transform to use.
+            * @param $worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
             */
             public SetParent ($p: UnityEngine.Transform) : void
             /** Set the parent of the transform.
-            * @param parent The parent Transform to use.
-            * @param worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
+            * @param $parent The parent Transform to use.
+            * @param $worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
             */
             public SetParent ($parent: UnityEngine.Transform, $worldPositionStays: boolean) : void
             /** Sets the world space position and rotation of the Transform component.
@@ -418,6 +424,12 @@
             /** Sets the position and rotation of the Transform component in local space (i.e. relative to its parent transform).
             */
             public SetLocalPositionAndRotation ($localPosition: UnityEngine.Vector3, $localRotation: UnityEngine.Quaternion) : void
+            /** Gets the position and rotation of the Transform component in world space.
+            */
+            public GetPositionAndRotation ($position: $Ref<UnityEngine.Vector3>, $rotation: $Ref<UnityEngine.Quaternion>) : void
+            /** Gets the position and rotation of the Transform component in local space (that is, relative to its parent transform).
+            */
+            public GetLocalPositionAndRotation ($localPosition: $Ref<UnityEngine.Vector3>, $localRotation: $Ref<UnityEngine.Quaternion>) : void
             /** Moves the transform in the direction and distance of translation.
             */
             public Translate ($translation: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
@@ -437,59 +449,59 @@
             */
             public Translate ($x: number, $y: number, $z: number, $relativeTo: UnityEngine.Transform) : void
             /** Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that order).
-            * @param eulers The rotation to apply in euler angles.
-            * @param relativeTo Determines whether to rotate the GameObject either locally to  the GameObject or relative to the Scene in world space.
+            * @param $eulers The rotation to apply in euler angles.
+            * @param $relativeTo Determines whether to rotate the GameObject either locally to  the GameObject or relative to the Scene in world space.
             */
             public Rotate ($eulers: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
             /** Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that order).
-            * @param eulers The rotation to apply in euler angles.
+            * @param $eulers The rotation to apply in euler angles.
             */
             public Rotate ($eulers: UnityEngine.Vector3) : void
             /** The implementation of this method applies a rotation of zAngle degrees around the z axis, xAngle degrees around the x axis, and yAngle degrees around the y axis (in that order).
-            * @param relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
-            * @param xAngle Degrees to rotate the GameObject around the X axis.
-            * @param yAngle Degrees to rotate the GameObject around the Y axis.
-            * @param zAngle Degrees to rotate the GameObject around the Z axis.
+            * @param $relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
+            * @param $xAngle Degrees to rotate the GameObject around the X axis.
+            * @param $yAngle Degrees to rotate the GameObject around the Y axis.
+            * @param $zAngle Degrees to rotate the GameObject around the Z axis.
             */
             public Rotate ($xAngle: number, $yAngle: number, $zAngle: number, $relativeTo: UnityEngine.Space) : void
             /** The implementation of this method applies a rotation of zAngle degrees around the z axis, xAngle degrees around the x axis, and yAngle degrees around the y axis (in that order).
-            * @param xAngle Degrees to rotate the GameObject around the X axis.
-            * @param yAngle Degrees to rotate the GameObject around the Y axis.
-            * @param zAngle Degrees to rotate the GameObject around the Z axis.
+            * @param $xAngle Degrees to rotate the GameObject around the X axis.
+            * @param $yAngle Degrees to rotate the GameObject around the Y axis.
+            * @param $zAngle Degrees to rotate the GameObject around the Z axis.
             */
             public Rotate ($xAngle: number, $yAngle: number, $zAngle: number) : void
             /** Rotates the object around the given axis by the number of degrees defined by the given angle.
-            * @param angle The degrees of rotation to apply.
-            * @param axis The axis to apply rotation to.
-            * @param relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
+            * @param $angle The degrees of rotation to apply.
+            * @param $axis The axis to apply rotation to.
+            * @param $relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
             */
             public Rotate ($axis: UnityEngine.Vector3, $angle: number, $relativeTo: UnityEngine.Space) : void
             /** Rotates the object around the given axis by the number of degrees defined by the given angle.
-            * @param axis The axis to apply rotation to.
-            * @param angle The degrees of rotation to apply.
+            * @param $axis The axis to apply rotation to.
+            * @param $angle The degrees of rotation to apply.
             */
             public Rotate ($axis: UnityEngine.Vector3, $angle: number) : void
             /** Rotates the transform about axis passing through point in world coordinates by angle degrees.
             */
             public RotateAround ($point: UnityEngine.Vector3, $axis: UnityEngine.Vector3, $angle: number) : void
             /** Rotates the transform so the forward vector points at target's current position.
-            * @param target Object to point towards.
-            * @param worldUp Vector specifying the upward direction.
+            * @param $target Object to point towards.
+            * @param $worldUp Vector specifying the upward direction.
             */
             public LookAt ($target: UnityEngine.Transform, $worldUp: UnityEngine.Vector3) : void
             /** Rotates the transform so the forward vector points at target's current position.
-            * @param target Object to point towards.
-            * @param worldUp Vector specifying the upward direction.
+            * @param $target Object to point towards.
+            * @param $worldUp Vector specifying the upward direction.
             */
             public LookAt ($target: UnityEngine.Transform) : void
             /** Rotates the transform so the forward vector points at worldPosition.
-            * @param worldPosition Point to look at.
-            * @param worldUp Vector specifying the upward direction.
+            * @param $worldPosition Point to look at.
+            * @param $worldUp Vector specifying the upward direction.
             */
             public LookAt ($worldPosition: UnityEngine.Vector3, $worldUp: UnityEngine.Vector3) : void
             /** Rotates the transform so the forward vector points at worldPosition.
-            * @param worldPosition Point to look at.
-            * @param worldUp Vector specifying the upward direction.
+            * @param $worldPosition Point to look at.
+            * @param $worldUp Vector specifying the upward direction.
             */
             public LookAt ($worldPosition: UnityEngine.Vector3) : void
             /** Transforms direction from local space to world space.
@@ -528,16 +540,24 @@
             /** Transforms the position x, y, z from world space to local space. The opposite of Transform.TransformPoint.
             */
             public InverseTransformPoint ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            /** Unparents all children.
+            */
             public DetachChildren () : void
+            /** Move the transform to the start of the local transform list.
+            */
             public SetAsFirstSibling () : void
+            /** Move the transform to the end of the local transform list.
+            */
             public SetAsLastSibling () : void
             /** Sets the sibling index.
-            * @param index Index to set.
+            * @param $index Index to set.
             */
             public SetSiblingIndex ($index: number) : void
+            /** Gets the sibling index.
+            */
             public GetSiblingIndex () : number
             /** Finds a child by name n and returns it.
-            * @param n Name of child to be found.
+            * @param $n Name of child to be found.
             * @returns The found child transform. Null if child with matching name isn't found. 
             */
             public Find ($n: string) : UnityEngine.Transform
@@ -546,7 +566,7 @@
             public IsChildOf ($parent: UnityEngine.Transform) : boolean
             public GetEnumerator () : System.Collections.IEnumerator
             /** Returns a transform child by index.
-            * @param index Index of the child transform to return. Must be smaller than Transform.childCount.
+            * @param $index Index of the child transform to return. Must be smaller than Transform.childCount.
             * @returns Transform child by index. 
             */
             public GetChild ($index: number) : UnityEngine.Transform
@@ -575,7 +595,7 @@
         }
         /** Representation of 3D vectors and points.
         */
-        class Vector3 extends System.ValueType implements System.IEquatable$1<UnityEngine.Vector3>, System.IFormattable
+        class Vector3 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector3>
         {
             protected [__keep_incompatibility]: never;
             public static kEpsilon : number
@@ -628,10 +648,30 @@
             /** Shorthand for writing Vector3(float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity).
             */
             public static get negativeInfinity(): UnityEngine.Vector3;
+            /** Spherically interpolates between two vectors.
+            */
+            public static Slerp ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
+            /** Spherically interpolates between two vectors.
+            */
+            public static SlerpUnclamped ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
+            /** Makes vectors normalized and orthogonal to each other.
+            */
+            public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>) : void
+            /** Makes vectors normalized and orthogonal to each other.
+            */
+            public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>, $binormal: $Ref<UnityEngine.Vector3>) : void
+            /** Rotates a vector current towards target.
+            * @param $current The vector being managed.
+            * @param $target The vector.
+            * @param $maxRadiansDelta The maximum angle in radians allowed for this rotation.
+            * @param $maxMagnitudeDelta The maximum allowed change in vector magnitude for this rotation.
+            * @returns The location that RotateTowards generates. 
+            */
+            public static RotateTowards ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $maxRadiansDelta: number, $maxMagnitudeDelta: number) : UnityEngine.Vector3
             /** Linearly interpolates between two points.
-            * @param a Start value, returned when t = 0.
-            * @param b End value, returned when t = 1.
-            * @param t Value used to interpolate between a and b.
+            * @param $a Start value, returned when t = 0.
+            * @param $b End value, returned when t = 1.
+            * @param $t Value used to interpolate between a and b.
             * @returns Interpolated value, equals to a + (b - a) * t. 
             */
             public static Lerp ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
@@ -639,37 +679,37 @@
             */
             public static LerpUnclamped ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
             /** Calculate a position between the points specified by current and target, moving no farther than the distance specified by maxDistanceDelta.
-            * @param current The position to move from.
-            * @param target The position to move towards.
-            * @param maxDistanceDelta Distance to move current per call.
+            * @param $current The position to move from.
+            * @param $target The position to move towards.
+            * @param $maxDistanceDelta Distance to move current per call.
             * @returns The new position. 
             */
             public static MoveTowards ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $maxDistanceDelta: number) : UnityEngine.Vector3
             /** Gradually changes a vector towards a desired goal over time.
-            * @param current The current position.
-            * @param target The position we are trying to reach.
-            * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-            * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-            * @param maxSpeed Optionally allows you to clamp the maximum speed.
-            * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+            * @param $current The current position.
+            * @param $target The position we are trying to reach.
+            * @param $currentVelocity The current velocity, this value is modified by the function every time you call it.
+            * @param $smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+            * @param $maxSpeed Optionally allows you to clamp the maximum speed.
+            * @param $deltaTime The time since the last call to this function. By default Time.deltaTime.
             */
             public static SmoothDamp ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $currentVelocity: $Ref<UnityEngine.Vector3>, $smoothTime: number, $maxSpeed: number) : UnityEngine.Vector3
             /** Gradually changes a vector towards a desired goal over time.
-            * @param current The current position.
-            * @param target The position we are trying to reach.
-            * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-            * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-            * @param maxSpeed Optionally allows you to clamp the maximum speed.
-            * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+            * @param $current The current position.
+            * @param $target The position we are trying to reach.
+            * @param $currentVelocity The current velocity, this value is modified by the function every time you call it.
+            * @param $smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+            * @param $maxSpeed Optionally allows you to clamp the maximum speed.
+            * @param $deltaTime The time since the last call to this function. By default Time.deltaTime.
             */
             public static SmoothDamp ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $currentVelocity: $Ref<UnityEngine.Vector3>, $smoothTime: number) : UnityEngine.Vector3
             /** Gradually changes a vector towards a desired goal over time.
-            * @param current The current position.
-            * @param target The position we are trying to reach.
-            * @param currentVelocity The current velocity, this value is modified by the function every time you call it.
-            * @param smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
-            * @param maxSpeed Optionally allows you to clamp the maximum speed.
-            * @param deltaTime The time since the last call to this function. By default Time.deltaTime.
+            * @param $current The current position.
+            * @param $target The position we are trying to reach.
+            * @param $currentVelocity The current velocity, this value is modified by the function every time you call it.
+            * @param $smoothTime Approximately the time it will take to reach the target. A smaller value will reach the target faster.
+            * @param $maxSpeed Optionally allows you to clamp the maximum speed.
+            * @param $deltaTime The time since the last call to this function. By default Time.deltaTime.
             */
             public static SmoothDamp ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $currentVelocity: $Ref<UnityEngine.Vector3>, $smoothTime: number, $maxSpeed: number, $deltaTime: number) : UnityEngine.Vector3
             public get_Item ($index: number) : number
@@ -704,21 +744,21 @@
             */
             public static Project ($vector: UnityEngine.Vector3, $onNormal: UnityEngine.Vector3) : UnityEngine.Vector3
             /** Projects a vector onto a plane defined by a normal orthogonal to the plane.
-            * @param planeNormal The direction from the vector towards the plane.
-            * @param vector The location of the vector above the plane.
+            * @param $planeNormal The direction from the vector towards the plane.
+            * @param $vector The location of the vector above the plane.
             * @returns The location of the vector on the plane. 
             */
             public static ProjectOnPlane ($vector: UnityEngine.Vector3, $planeNormal: UnityEngine.Vector3) : UnityEngine.Vector3
             /** Calculates the angle between vectors from and.
-            * @param from The vector from which the angular difference is measured.
-            * @param to The vector to which the angular difference is measured.
+            * @param $from The vector from which the angular difference is measured.
+            * @param $to The vector to which the angular difference is measured.
             * @returns The angle in degrees between the two vectors. 
             */
             public static Angle ($from: UnityEngine.Vector3, $to: UnityEngine.Vector3) : number
             /** Calculates the signed angle between vectors from and to in relation to axis.
-            * @param from The vector from which the angular difference is measured.
-            * @param to The vector to which the angular difference is measured.
-            * @param axis A vector around which the other vectors are rotated.
+            * @param $from The vector from which the angular difference is measured.
+            * @param $to The vector to which the angular difference is measured.
+            * @param $axis A vector around which the other vectors are rotated.
             * @returns Returns the signed angle between from and to in degrees. 
             */
             public static SignedAngle ($from: UnityEngine.Vector3, $to: UnityEngine.Vector3, $axis: UnityEngine.Vector3) : number
@@ -744,49 +784,33 @@
             public static op_Division ($a: UnityEngine.Vector3, $d: number) : UnityEngine.Vector3
             public static op_Equality ($lhs: UnityEngine.Vector3, $rhs: UnityEngine.Vector3) : boolean
             public static op_Inequality ($lhs: UnityEngine.Vector3, $rhs: UnityEngine.Vector3) : boolean
+            /** Returns a formatted string for this vector.
+            * @param $format A numeric format string.
+            * @param $formatProvider An object that specifies culture-specific formatting.
+            */
             public ToString () : string
             /** Returns a formatted string for this vector.
-            * @param format A numeric format string.
-            * @param formatProvider An object that specifies culture-specific formatting.
+            * @param $format A numeric format string.
+            * @param $formatProvider An object that specifies culture-specific formatting.
             */
             public ToString ($format: string) : string
             /** Returns a formatted string for this vector.
-            * @param format A numeric format string.
-            * @param formatProvider An object that specifies culture-specific formatting.
+            * @param $format A numeric format string.
+            * @param $formatProvider An object that specifies culture-specific formatting.
             */
             public ToString ($format: string, $formatProvider: System.IFormatProvider) : string
-            /** Spherically interpolates between two vectors.
-            */
-            public static Slerp ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
-            /** Spherically interpolates between two vectors.
-            */
-            public static SlerpUnclamped ($a: UnityEngine.Vector3, $b: UnityEngine.Vector3, $t: number) : UnityEngine.Vector3
-            /** Makes vectors normalized and orthogonal to each other.
-            */
-            public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>) : void
-            /** Makes vectors normalized and orthogonal to each other.
-            */
-            public static OrthoNormalize ($normal: $Ref<UnityEngine.Vector3>, $tangent: $Ref<UnityEngine.Vector3>, $binormal: $Ref<UnityEngine.Vector3>) : void
-            /** Rotates a vector current towards target.
-            * @param current The vector being managed.
-            * @param target The vector.
-            * @param maxRadiansDelta The maximum angle in radians allowed for this rotation.
-            * @param maxMagnitudeDelta The maximum allowed change in vector magnitude for this rotation.
-            * @returns The location that RotateTowards generates. 
-            */
-            public static RotateTowards ($current: UnityEngine.Vector3, $target: UnityEngine.Vector3, $maxRadiansDelta: number, $maxMagnitudeDelta: number) : UnityEngine.Vector3
             public constructor ($x: number, $y: number, $z: number)
             public constructor ($x: number, $y: number)
         }
         /** Quaternions are used to represent rotations.
         */
-        class Quaternion extends System.ValueType implements System.IEquatable$1<UnityEngine.Quaternion>, System.IFormattable
+        class Quaternion extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Quaternion>
         {
             protected [__keep_incompatibility]: never;
         }
         /** A standard 4x4 transformation matrix.
         */
-        class Matrix4x4 extends System.ValueType implements System.IEquatable$1<UnityEngine.Matrix4x4>, System.IFormattable
+        class Matrix4x4 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Matrix4x4>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -812,19 +836,15 @@
         }
         interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
         {
@@ -858,7 +878,7 @@
         }
     }
     namespace System.Reflection {
-        class MemberInfo extends System.Object implements System.Reflection.ICustomAttributeProvider, System.Runtime.InteropServices._MemberInfo
+        class MemberInfo extends System.Object implements System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider
         {
             protected [__keep_incompatibility]: never;
         }

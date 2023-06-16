@@ -8,7 +8,7 @@ namespace PuertsStaticWrap
     {
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
-        private static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
+        internal static IntPtr Constructor(IntPtr isolate, IntPtr info, int paramLen, long data)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace PuertsStaticWrap
 
     // ==================== methods start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_DrawLine(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_DrawLine(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -145,7 +145,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_DrawRay(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_DrawRay(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -258,7 +258,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_Break(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_Break(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -278,7 +278,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_DebugBreak(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_DebugBreak(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -298,7 +298,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_Log(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_Log(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -345,7 +345,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_LogFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_LogFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -492,7 +492,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_LogError(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_LogError(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -539,7 +539,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_LogErrorFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_LogErrorFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -628,7 +628,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_ClearDeveloperConsole(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_ClearDeveloperConsole(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -648,7 +648,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_LogException(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_LogException(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -695,7 +695,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_LogWarning(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_LogWarning(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -742,7 +742,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_LogWarningFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_LogWarningFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -831,7 +831,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_Assert(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_Assert(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -929,7 +929,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_AssertFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_AssertFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1034,7 +1034,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_LogAssertion(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_LogAssertion(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1081,7 +1081,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void F_LogAssertionFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void F_LogAssertionFormat(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1173,7 +1173,7 @@ namespace PuertsStaticWrap
 
     // ==================== properties start ====================
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_unityLogger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_unityLogger(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1186,7 +1186,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_developerConsoleVisible(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_developerConsoleVisible(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1199,7 +1199,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void S_developerConsoleVisible(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void S_developerConsoleVisible(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1214,7 +1214,7 @@ namespace PuertsStaticWrap
             }
         }
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
-        private static void G_isDebugBuild(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        internal static void G_isDebugBuild(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
             {
@@ -1236,45 +1236,6 @@ namespace PuertsStaticWrap
     // ==================== events start ====================
     // ==================== events end ====================
 
-        public static Puerts.TypeRegisterInfo GetRegisterInfo()
-        {
-            return new Puerts.TypeRegisterInfo()
-            {
-                BlittableCopy = false,
-                Constructor = Constructor,
-                Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
-                {   
-                    { new Puerts.MethodKey { Name = "DrawLine", IsStatic = true}, F_DrawLine },
-                    { new Puerts.MethodKey { Name = "DrawRay", IsStatic = true}, F_DrawRay },
-                    { new Puerts.MethodKey { Name = "Break", IsStatic = true}, F_Break },
-                    { new Puerts.MethodKey { Name = "DebugBreak", IsStatic = true}, F_DebugBreak },
-                    { new Puerts.MethodKey { Name = "Log", IsStatic = true}, F_Log },
-                    { new Puerts.MethodKey { Name = "LogFormat", IsStatic = true}, F_LogFormat },
-                    { new Puerts.MethodKey { Name = "LogError", IsStatic = true}, F_LogError },
-                    { new Puerts.MethodKey { Name = "LogErrorFormat", IsStatic = true}, F_LogErrorFormat },
-                    { new Puerts.MethodKey { Name = "ClearDeveloperConsole", IsStatic = true}, F_ClearDeveloperConsole },
-                    { new Puerts.MethodKey { Name = "LogException", IsStatic = true}, F_LogException },
-                    { new Puerts.MethodKey { Name = "LogWarning", IsStatic = true}, F_LogWarning },
-                    { new Puerts.MethodKey { Name = "LogWarningFormat", IsStatic = true}, F_LogWarningFormat },
-                    { new Puerts.MethodKey { Name = "Assert", IsStatic = true}, F_Assert },
-                    { new Puerts.MethodKey { Name = "AssertFormat", IsStatic = true}, F_AssertFormat },
-                    { new Puerts.MethodKey { Name = "LogAssertion", IsStatic = true}, F_LogAssertion },
-                    { new Puerts.MethodKey { Name = "LogAssertionFormat", IsStatic = true}, F_LogAssertionFormat }
-                },
-                Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
-                {
-                    
-                    {"unityLogger", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_unityLogger, Setter = null} },
-
-                    {"developerConsoleVisible", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_developerConsoleVisible, Setter = S_developerConsoleVisible} },
-
-                    {"isDebugBuild", new Puerts.PropertyRegisterInfo(){ IsStatic = true, Getter = G_isDebugBuild, Setter = null} }
-                },
-                LazyMembers = new System.Collections.Generic.List<Puerts.LazyMemberRegisterInfo>()
-                {   
-                }
-            };
-        }
     
     }
 }

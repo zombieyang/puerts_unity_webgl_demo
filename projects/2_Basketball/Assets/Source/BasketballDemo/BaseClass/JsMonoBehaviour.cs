@@ -16,7 +16,7 @@ public class JsMonoBehaviour : MonoBehaviour
     void Start()
     {
         if (env == null) {
-            env = Puerts.WebGL.MainEnv.Get(new TSLoader(Application.dataPath + "/../Puer-Project/"));
+            env = Puerts.WebGL.MainEnv.Get(new TSLoader());
         }
         
         Action<JsMonoBehaviour> init = env.ExecuteModule<Action<JsMonoBehaviour>>("entry.mjs", JSClassName);
