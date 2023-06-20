@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 you can get the english version change log at [Github Release](https://github.com/Tencent/puerts/releases)
 
+## [1.4.2] - 2023-06-20
+1. depend on puerts@1.4.2
+
 ## [1.0.0-rc.1] - 2022-11-24
 1. depend on puerts@1.4.0
 
