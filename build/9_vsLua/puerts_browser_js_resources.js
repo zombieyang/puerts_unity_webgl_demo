@@ -2,27 +2,25 @@
         window.PUERTS_JS_RESOURCES = {"performance.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
-const cs = require('csharp');
-
-cs.PerformanceHelper.ReturnNumber(3);
+CS.PerformanceHelper.ReturnNumber(3);
 const start = Date.now();
 
 for (let i = 0; i < 1000000; i++) {
-  cs.PerformanceHelper.ReturnNumber(3);
-} // cs.UnityEngine.Debug.Log('Puerts Number:');
+  CS.PerformanceHelper.ReturnNumber(3);
+} // CS.UnityEngine.Debug.Log('Puerts Number:');
 
 
-cs.PerformanceHelper.JSNumber.text = 'Puerts Number:' + (Date.now() - start) + 'ms';
-cs.PerformanceHelper.ReturnVector(1, 2, 3);
+CS.PerformanceHelper.JSNumber.text = 'Puerts Number:' + (Date.now() - start) + 'ms';
+CS.PerformanceHelper.ReturnVector(1, 2, 3);
 const start2 = Date.now();
 
 for (let i = 0; i < 1000000; i++) {
-  cs.PerformanceHelper.ReturnVector(1, 2, 3);
-} // cs.UnityEngine.Debug.Log('Puerts Vector:');
-// cs.UnityEngine.Debug.Log((Date.now() - start2));
+  CS.PerformanceHelper.ReturnVector(1, 2, 3);
+} // CS.UnityEngine.Debug.Log('Puerts Vector:');
+// CS.UnityEngine.Debug.Log((Date.now() - start2));
 
 
-cs.PerformanceHelper.JSVector.text = 'Puerts Vector:' + (Date.now() - start2) + 'ms'; // const fibcache = [0, 1]
+CS.PerformanceHelper.JSVector.text = 'Puerts Vector:' + (Date.now() - start2) + 'ms'; // const fibcache = [0, 1]
 
 function fibonacci(level) {
   if (level == 0) return 0;
@@ -34,11 +32,11 @@ const start3 = Date.now();
 
 for (let i = 0; i < 100000; i++) {
   fibonacci(12);
-} // cs.UnityEngine.Debug.Log('Puerts fibonacci:');
-// cs.UnityEngine.Debug.Log((Date.now() - start3));
+} // CS.UnityEngine.Debug.Log('Puerts fibonacci:');
+// CS.UnityEngine.Debug.Log((Date.now() - start3));
 
 
-cs.PerformanceHelper.JSFibonacci.text = 'Puerts fibonacci:' + (Date.now() - start3) + 'ms';
+CS.PerformanceHelper.JSFibonacci.text = 'Puerts fibonacci:' + (Date.now() - start3) + 'ms';
         }),"puerts/cjsload.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -96,7 +94,7 @@ function getFileExtension(filepath) {
 
 function searchModuleInDir(dir, requiredModule) {
   if (getFileExtension(requiredModule)) {
-    return searchModuleInDirWithExt(dir, requiredModule);
+    return searchModuleInDirWithExt(dir, requiredModule) || searchModuleInDirWithExt(dir, requiredModule + "/index.js") || searchModuleInDirWithExt(dir, requiredModule + "/package.json");
   } else {
     return searchModuleInDirWithExt(dir, requiredModule + ".js") || searchModuleInDirWithExt(dir, requiredModule + ".cjs") || searchModuleInDirWithExt(dir, requiredModule + "/index.js") || searchModuleInDirWithExt(dir, requiredModule + "/package.json");
   }
@@ -636,6 +634,25 @@ if (UnityEngine_Debug) {
     if (console_org) console_org.assert.apply(null, Array.prototype.slice.call(arguments));
     if (condition) return;
     if (arguments.length > 1) UnityEngine_Debug.Assert(false, "Assertion failed: " + toString(Array.prototype.slice.call(arguments, 1)) + "\n" + getStack(new Error()) + "\n");else UnityEngine_Debug.Assert(false, "Assertion failed: console.assert\n" + getStack(new Error()) + "\n");
+  };
+
+  const timeRecorder = new Map();
+
+  console.time = function (name) {
+    timeRecorder.set(name, +new Date());
+  };
+
+  console.timeEnd = function (name) {
+    const startTime = timeRecorder.get(name);
+
+    if (startTime) {
+      console.log(String(name) + ": " + (+new Date() - startTime) + " ms");
+      timeRecorder.delete(name);
+    } else {
+      console.warn("Timer '" + String(name) + "' does not exist");
+    }
+
+    ;
   };
 
   global.console = console;

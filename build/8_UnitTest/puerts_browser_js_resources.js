@@ -7,12 +7,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.init = void 0;
 
-const cs = require('csharp');
+var _importee = _interopRequireDefault(require("./importee.mjs"));
 
-const assertAndPrint = cs.PuertsTest.TestHelper.AssertAndPrint.bind(cs.PuertsTest.TestHelper);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const assertAndPrint = CS.PuertsTest.TestHelper.AssertAndPrint.bind(CS.PuertsTest.TestHelper);
 
 var init = function (testHelper) {
   debugger;
+  assertAndPrint("Import mjs from mjs", _importee.default == 'just for test');
   const outRef = puerts.$ref(null); // JSFunction
 
   const oFunc = () => 3;
@@ -70,7 +73,7 @@ var init = function (testHelper) {
   assertAndPrint("JSGetArrayBufferOutArgFromCS", new Uint8Array(puerts.$unref(outRef)) == 4);
   assertAndPrint("JSGetArrayBufferReturnFromCS", new Uint8Array(rAB) == 5); // NativeObjectStruct
 
-  const oNativeObjectStruct = new cs.PuertsTest.TestStruct(1);
+  const oNativeObjectStruct = new CS.PuertsTest.TestStruct(1);
   const rNativeObjectStruct = testHelper.NativeObjectStructTestPipeLine(oNativeObjectStruct, outRef, function (obj) {
     assertAndPrint("JSGetNativeObjectStructArgFromCS", obj.value == oNativeObjectStruct.value);
     return oNativeObjectStruct;
@@ -78,7 +81,7 @@ var init = function (testHelper) {
   assertAndPrint("JSGetNativeObjectStructOutArgFromCS", puerts.$unref(outRef).value == oNativeObjectStruct.value);
   assertAndPrint("JSGetNativeObjectStructReturnFromCS", rNativeObjectStruct.value == oNativeObjectStruct.value); // NativeObject
 
-  const oNativeObject = new cs.PuertsTest.TestObject(1);
+  const oNativeObject = new CS.PuertsTest.TestObject(1);
   const rNativeObject = testHelper.NativeObjectTestPipeLine(oNativeObject, outRef, function (obj) {
     assertAndPrint("JSGetNativeObjectArgFromCS", obj == oNativeObject);
     return oNativeObject;
@@ -97,14 +100,23 @@ var init = function (testHelper) {
   assertAndPrint("JSGetJSObjectReturnFromCS", rJSObject == oJSObject);
 
   testHelper.ReturnAnyTestFunc = () => {
-    return new cs.PuertsTest.TestStruct(2);
+    return new CS.PuertsTest.TestStruct(2);
   };
 
-  testHelper.InvokeReturnAnyTestFunc(new cs.PuertsTest.TestStruct(2));
+  testHelper.InvokeReturnAnyTestFunc(new CS.PuertsTest.TestStruct(2));
   debugger;
 };
 
 exports.init = init;
+        }),"importee.mjs": (function(exports, require, module, __filename, __dirname) {
+            "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = 'just for test';
+exports.default = _default;
         }),"puerts/cjsload.mjs": (function(exports, require, module, __filename, __dirname) {
             "use strict";
 
@@ -162,7 +174,7 @@ function getFileExtension(filepath) {
 
 function searchModuleInDir(dir, requiredModule) {
   if (getFileExtension(requiredModule)) {
-    return searchModuleInDirWithExt(dir, requiredModule);
+    return searchModuleInDirWithExt(dir, requiredModule) || searchModuleInDirWithExt(dir, requiredModule + "/index.js") || searchModuleInDirWithExt(dir, requiredModule + "/package.json");
   } else {
     return searchModuleInDirWithExt(dir, requiredModule + ".js") || searchModuleInDirWithExt(dir, requiredModule + ".cjs") || searchModuleInDirWithExt(dir, requiredModule + "/index.js") || searchModuleInDirWithExt(dir, requiredModule + "/package.json");
   }
@@ -702,6 +714,25 @@ if (UnityEngine_Debug) {
     if (console_org) console_org.assert.apply(null, Array.prototype.slice.call(arguments));
     if (condition) return;
     if (arguments.length > 1) UnityEngine_Debug.Assert(false, "Assertion failed: " + toString(Array.prototype.slice.call(arguments, 1)) + "\n" + getStack(new Error()) + "\n");else UnityEngine_Debug.Assert(false, "Assertion failed: console.assert\n" + getStack(new Error()) + "\n");
+  };
+
+  const timeRecorder = new Map();
+
+  console.time = function (name) {
+    timeRecorder.set(name, +new Date());
+  };
+
+  console.timeEnd = function (name) {
+    const startTime = timeRecorder.get(name);
+
+    if (startTime) {
+      console.log(String(name) + ": " + (+new Date() - startTime) + " ms");
+      timeRecorder.delete(name);
+    } else {
+      console.warn("Timer '" + String(name) + "' does not exist");
+    }
+
+    ;
   };
 
   global.console = console;
