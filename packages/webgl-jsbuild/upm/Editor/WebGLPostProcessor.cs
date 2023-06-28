@@ -86,13 +86,13 @@ public class WebGLPuertsPostProcessor {
     }
 
     [MenuItem("puerts-webgl/build puerts-js for minigame", false, 11)]
-    static void minigame() 
+    public static void minigame() 
     {
         run("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null);
     }
 
     [MenuItem("puerts-webgl/build puerts-js for browser", false, 11)]
-    static void browser() 
+    public static void browser() 
     {
         run("buildForBrowser", GetLastBuildPath());
     } 
@@ -102,12 +102,19 @@ public class WebGLPuertsPostProcessor {
     {
         JsEnv jsenv = new Puerts.JsEnv();
         jsenv.UsingAction<string>();
-        Action<string> npmInstaller = jsenv.Eval<Action<string>>(@"
-            (function(cwd) {
-                require('child_process').execSync('npm i', { cwd })
-            });
-        ");
-        npmInstaller(Path.GetFullPath("Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~"));
+        try 
+        {
+            Action<string> npmInstaller = jsenv.Eval<Action<string>>(@"
+                (function(cwd) {
+                    require('child_process').execSync('npm i', { cwd })
+                });
+            ");
+            npmInstaller(Path.GetFullPath("Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~"));
+        }
+        catch(Exception e)
+        {
+            UnityEngine.Debug.LogError("Npm install failed. you can cd into 'Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~' to run 'npm install' by yourself");
+        }
     }
 
 
