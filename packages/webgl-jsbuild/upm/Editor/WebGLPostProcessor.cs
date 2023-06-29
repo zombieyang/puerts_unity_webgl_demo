@@ -28,7 +28,7 @@ public class WebGLPuertsPostProcessor {
     {
         Application.dataPath + "/**/Resources/**/*.mjs",
         Application.dataPath + "/**/Resources/**/*.cjs",
-        Path.GetFullPath("Packages/com.tencent.puerts.core/") + "/**/Resources/**/*.mjs",
+        Path.GetFullPath("Packages/com.tencent.puerts.core/") + "/**/Resources/**/*.mjs"
     };
 
     private static void run(string runEntry, string lastBuiltPath) 
@@ -80,7 +80,8 @@ public class WebGLPuertsPostProcessor {
         } 
         catch(Exception e) 
         {
-            UnityEngine.Debug.LogError(e);
+            jsenv.Dispose();
+            throw;
         }
         jsenv.Dispose();
     }
