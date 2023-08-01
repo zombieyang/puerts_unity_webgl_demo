@@ -47,17 +47,17 @@
 3. Do Unity WebGL Build | 执行Unity的WebGL Build
 4. (Except Sample1) Click `PuerTS/TSLoader/Release TS to Resources` because [ts-loader](https://github.com/zombieyang/puerts-ts-loader) is used | （除了Sample1）因为使用了[ts-loader](https://github.com/zombieyang/puerts-ts-loader)，需要点击`PuerTS/TSLoader/Release TS to Resources`
 5. Click `puerts-webgl/build for browser` following the tips by step3 in console | 根据第3步出现的命令行提示，点击`puerts-webgl/build for browser`将JS拷贝到构建目录
-6. append these code before `</head>` in index.html built by Unity: | 将下述代码放到index.html的</head>前
+6。 append these code before `</head>` in index.html built by Unity: | 将下述代码放到index.html的</head>前
 ```
   <script src="./puerts-runtime.js"></script>
   <script src="./puerts_browser_js_resources.js"></script>
 ```
-> 如果使用了`puerts-ts-loader`作为你的JS加载器，比如本demo中的Sample2/8/9，可能需要在第4步前点击
 
 #### install in your own project | 在你自己的项目中安装
 
-* [Install puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) first (by upm). then: | 首先[安装puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) (注意要用upm的方式)。随后：
+* [Install puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) first (by upm). then: | 首先[安装puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) (注意要用upm的方式)。：
 
+* Install puerts-webgl | 安装PuerTS-WebGL支持：
     <details>
     <summary>Add from OpenUPM | available in 2018+</summary>
 
@@ -66,17 +66,37 @@
     </details>
 
     <details>
-    <summary>Add from GitHub | available in 2019.4+</summary>
+    <summary>Add from Git</summary>
 
-    You can add it directly from GitHub on Unity 2019.4+. Note that you won't be able to receive updates through Package Manager this way, you'll have to update manually.
-
+    带有upm的unity版本，可以使用这种方式安装
+    
+    - git clone `[https://github.com/chexiongsheng/puerts_unity_demo.git](https://github.com/zombieyang/puerts_unity_webgl_demo.git)`
     - open Package Manager
-    - click <kbd>+</kbd>
-    - select <kbd>Add from Git URL</kbd>
-    - paste `https://github.com/zombieyang/puerts_unity_webgl_demo.git?path=/package`
-    - click <kbd>Add</kbd>
+    - click `+`
+    - select `Add from File`
+    - select [your cloned path]/packages/webgl/upm/package.json 
+    - click `Add`
+    </details>
+    
+* Install puerts-webgl-jsbuild（in first time） | 安装jsbuild组件（首次运行需要）：
+    <details>
+    <summary>Add from Git</summary>
+
+    带有upm的unity版本，可以使用这种方式安装
+    
+    - git clone `[https://github.com/chexiongsheng/puerts_unity_demo.git](https://github.com/zombieyang/puerts_unity_webgl_demo.git)`
+    - open Package Manager
+    - click `+`
+    - select `Add from File`
+    - select [your cloned path]/packages/webgl/upm/package.json 
+    - click `Add`
     </details>
 
+> You can also copy all the code into your Assets directory. But I don't recommend it.
+> Jsbuild is only for example, in most case you will need to customize it by yourself
+>
+> 你也可以将所有代码都复制到你的Assets目录，但我不建议这么做
+> Jsbuild包基本只用于示例，大部份情况下最终你都需要自己定制jsbuild代码
 
 #### About WeChat minigame | 关于微信小游戏？
 [点我](./minigame.md)
