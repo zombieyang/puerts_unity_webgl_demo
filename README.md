@@ -93,9 +93,11 @@
     </details>
 
 > You can also copy all the code into your Assets directory. But I don't recommend it.
+> 
 > Jsbuild is only for example, in most case you will need to customize it by yourself
 >
 > 你也可以将所有代码都复制到你的Assets目录，但我不建议这么做
+> 
 > Jsbuild包基本只用于示例，大部份情况下最终你都需要自己定制jsbuild代码
 
 #### About WeChat minigame | 关于微信小游戏？
