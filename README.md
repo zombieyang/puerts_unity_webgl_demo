@@ -55,9 +55,9 @@
 
 #### install in your own project | 在你自己的项目中安装
 
-* [Install puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) first (by upm). then: | 首先[安装puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) (注意要用upm的方式)。：
+1. [Install puerts](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) first | 首先[安装puerts本体](https://github.com/Tencent/puerts/blob/master/doc/unity/install.md) ：
 
-* Install puerts-webgl | 安装PuerTS-WebGL支持：
+2. Install puerts-webgl | 安装PuerTS-WebGL支持：
     <details>
     <summary>Add from OpenUPM | available in 2018+</summary>
 
@@ -78,7 +78,7 @@
     - click `Add`
     </details>
     
-* Install puerts-webgl-jsbuild（in first time） | 安装jsbuild组件（首次运行需要）：
+3. Install puerts-webgl-jsbuild（in first time） | 安装jsbuild组件（首次运行需要）：
     <details>
     <summary>Add from Git</summary>
 
