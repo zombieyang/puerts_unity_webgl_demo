@@ -86,7 +86,8 @@ global.PuertsWebGL = {
                 SetModuleResolver: function() {
 
                 },
-                ExecuteModule: function (isolate: IntPtr, pathString: CSString, exportee: CSString) {
+                ExecuteModule: function (isolate: IntPtr, pathString: CSString, exporteeCS: CSString) {
+                    const exportee = UTF8ToString(exporteeCS)
                     try {
                         let fileName = UTF8ToString(pathString);
                         if (fileName.indexOf('log.mjs') != -1) {
@@ -95,7 +96,7 @@ global.PuertsWebGL = {
                         if (typeof wx != 'undefined') {
                             const result = wxRequire('puerts_minigame_js_resources/' + (fileName.endsWith('.js') ? fileName : fileName + ".js"));
                             if (exportee) {
-                                engine.lastReturnCSResult = result[UTF8ToString(exportee)];
+                                engine.lastReturnCSResult = result[exportee];
                             } else {
                                 engine.lastReturnCSResult = result;
                             }
@@ -158,7 +159,7 @@ global.PuertsWebGL = {
                             const requireRet = mockRequire(fileName)
 
                             if (exportee) {
-                                engine.lastReturnCSResult = requireRet[UTF8ToString(exportee)];
+                                engine.lastReturnCSResult = requireRet[exportee];
                             } else {
                                 engine.lastReturnCSResult = requireRet;
                             }
