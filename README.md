@@ -88,7 +88,7 @@
     - open Package Manager
     - click `+`
     - select `Add from File`
-    - select [your cloned path]/packages/webgl/upm/package.json 
+    - select [your cloned path]/packages/webgl-jsbuild/upm/package.json 
     - click `Add`
     </details>
 
