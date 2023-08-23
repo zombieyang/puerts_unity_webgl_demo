@@ -8,7 +8,7 @@
 4. iOS下请跟随[该指引](https://github.com/wechat-miniprogram/minigame-unity-webgl-transform/blob/main/Design/iOSOptimization.md)申请高性能模式，即wkwebview模式。开了该模式才有JIT以及WeakRef
 
 
-## 已上线微信小游戏
+## 示例微信小游戏（后来的就不公布了）
 | 作者 | 码 |
 | --- | --- |
 | [zgz682000](https://github.com/zgz682000) | <img src="./doc/pic/game1.jpg" alt="Game1" width="100" height="100"/> |
