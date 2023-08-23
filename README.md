@@ -70,7 +70,7 @@
 
     带有upm的unity版本，可以使用这种方式安装
     
-    - git clone `[https://github.com/chexiongsheng/puerts_unity_demo.git](https://github.com/zombieyang/puerts_unity_webgl_demo.git)`
+    - git clone `https://github.com/zombieyang/puerts_unity_webgl_demo.git`
     - open Package Manager
     - click `+`
     - select `Add from File`
@@ -84,7 +84,7 @@
 
     带有upm的unity版本，可以使用这种方式安装
     
-    - git clone `[https://github.com/chexiongsheng/puerts_unity_demo.git](https://github.com/zombieyang/puerts_unity_webgl_demo.git)`
+    - git clone `https://github.com/zombieyang/puerts_unity_webgl_demo.git`
     - open Package Manager
     - click `+`
     - select `Add from File`
