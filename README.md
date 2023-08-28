@@ -22,6 +22,8 @@
       |xLua WebGL   |    6200ms    |
       |Puerts WebGL |   165ms     |
 
+> 更深入的优化请参见: [这篇知乎文章](https://zhuanlan.zhihu.com/p/646932579)
+
 ## QuickStart | 开始
 
 #### learn puerts | 建议先了解PuerTS本体
