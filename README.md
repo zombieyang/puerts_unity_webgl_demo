@@ -138,5 +138,4 @@ Puerts的WebGL版本是利用Unity官方提供的[Unity代码与浏览器脚本�
 
 QQ群：942696334
 
-[微信/企业微信](https://github.com/zombieyang/puerts_unity_webgl_demo/assets/5595819/4f22f1c9-d063-4379-85f6-a6866fdd9ff8)
-
+<img src="https://github.com/zombieyang/puerts_unity_webgl_demo/assets/5595819/8840a3e4-f228-4d43-aec6-417308bf78ce" width="320" />
