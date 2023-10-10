@@ -4,3 +4,15 @@ VisualElement {}
     height: 100px;
     font-size: 18px;
 }
+.label-preview-status {
+    display: flex; 
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: 5px;
+}
+.label-preview-status-label.on {
+    color: lightgreen;
+}
+.label-preview-status-label.off {
+    color: salmon;
+}

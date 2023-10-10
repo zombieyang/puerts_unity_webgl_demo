@@ -36,79 +36,72 @@ namespace Puerts
                 }
                 
                 int procId = 0;
-                if ((procId = EditorPrefs.GetInt("PUER_WEBGL_PREVIEW_PROCESS")) != 0)
-                {
-                    try
-                    {
-                        var proc = Process.GetProcessById(procId);
-                        if (proc.HasExited)
-                            LaunchPreviewServer();
-                    }
-                    catch (Exception e)
-                    {
-                        LaunchPreviewServer();
-                    }
-
-                }
-                else
+                if (!IsPreviewServerAlive)
                 {
                     LaunchPreviewServer();
                 }
-
-
+                
                 EditorApplication.quitting += KillPreviewServer;
 
                 return devtoolEnv;
             }
 
+            [MenuItem("PuerTS/WebGL/Devtool Window")]
+            public static void OpenDevtoolWindow() 
+            {
+                DevtoolWindow window = GetWindow<DevtoolWindow>();
+                window.titleContent = new GUIContent("PuerTS WebGL devtool");
+            }
+
+            private static Process PreviewServerProc;
+
+            private static bool IsPreviewServerAlive
+            {
+                get
+                {
+                    var res = PreviewServerProc != null && !PreviewServerProc.HasExited;
+                    if (!res && EditorPrefs.GetInt("PUER_WEBGL_PREVIEW_PROCESS") == 0)
+                    {
+                        EditorPrefs.SetInt("PUER_WEBGL_PREVIEW_PROCESS", 0);
+                    }
+
+                    return res;
+                }
+            }
+            
             private static void LaunchPreviewServer()
             {
-                var proc = Process.Start(new ProcessStartInfo()
+                if (IsPreviewServerAlive) return;
+                if (!Directory.Exists(Path.GetFullPath("puer-build")))
+                    Directory.CreateDirectory(Path.GetFullPath("puer-build"));
+                
+                PreviewServerProc = Process.Start(new ProcessStartInfo()
                 {
-                    WorkingDirectory = Path.GetFullPath("puer-build"),
-                    FileName = "serve",
-                    Arguments = "-p 8080",
+                    WorkingDirectory = Path.Combine(Path.GetFullPath("Packages/com.tencent.puerts.webgl.devtool"), ".."),
+                    FileName = "npx",
+                    Arguments = "serve -p 8080 " + Path.GetFullPath("puer-build"),
                     WindowStyle = ProcessWindowStyle.Hidden
                     
                 });
-                EditorPrefs.SetInt("PUER_WEBGL_PREVIEW_PROCESS", proc.Id);
-                UnityEngine.Debug.Log("preview server launched, process id:" + proc.Id);
+                EditorPrefs.SetInt("PUER_WEBGL_PREVIEW_PROCESS", PreviewServerProc.Id);
+                UnityEngine.Debug.Log("launch preview server success");
             }
 
             private static void KillPreviewServer()
             {
-                int procId = 0;
-                if ((procId = EditorPrefs.GetInt("PUER_WEBGL_PREVIEW_PROCESS")) != 0)
+                if (IsPreviewServerAlive)
                 {
-                    UnityEngine.Debug.Log("shutting down the preview server: " + procId);
-
-                    Process proc;
-                    try
-                    {
-                        proc = Process.GetProcessById(procId);
-                        if (proc.HasExited)
-                        {
-                            EditorPrefs.SetInt("PUER_WEBGL_PREVIEW_PROCESS", 0);
-                            return;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        EditorPrefs.SetInt("PUER_WEBGL_PREVIEW_PROCESS", 0);
-                        return;
-                    }
-                    
                     string killCmd = "";
                     string killArgs = "";
                     if (Application.platform == RuntimePlatform.WindowsEditor)
                     {
                         killCmd = "taskkill";
-                        killArgs = "/T /F /pid " + procId;
+                        killArgs = "/T /F /pid " + PreviewServerProc.Id;
                     }
                     else
                     {
                         killCmd = "kill";
-                        killArgs = "" + procId;
+                        killArgs = "" + PreviewServerProc.Id;
                     }
 
                     var killProc = Process.Start(new ProcessStartInfo
@@ -119,9 +112,9 @@ namespace Puerts
                         CreateNoWindow = true
                     });
                     if (killProc != null) killProc.WaitForExit();
-                    if (proc.HasExited)
+                    if (!IsPreviewServerAlive)
                     {
-                        EditorPrefs.SetInt("PUER_WEBGL_PREVIEW_PROCESS", 0);
+                        UnityEngine.Debug.LogError("kill the preview server success");
                     }
                     else
                     {
@@ -130,24 +123,64 @@ namespace Puerts
                 }
             }
 
-            [MenuItem("PuerTS/WebGL/Devtool Window")]
-            public static void OpenDevtoolWindow() 
+            private static void SwitchServer()
             {
-                DevtoolWindow window = GetWindow<DevtoolWindow>();
-                window.titleContent = new GUIContent("PuerTS WebGL devtool");
+                if (IsPreviewServerAlive)
+                {
+                    KillPreviewServer();
+                }
+                else
+                {
+                    LaunchPreviewServer();
+                }
             }
 
+            private static VisualElement rootElement;
             public void OnEnable()
             {
+                int procId = 0;
+                if ((procId = EditorPrefs.GetInt("PUER_WEBGL_PREVIEW_PROCESS")) != 0)
+                {
+                    try
+                    {
+                        PreviewServerProc = Process.GetProcessById(procId);
+                    }
+                    catch (Exception e)
+                    {
+                        PreviewServerProc = null;
+                    }
+                    if (!IsPreviewServerAlive)
+                        EditorPrefs.SetInt("PUER_WEBGL_PREVIEW_PROCESS", 0);
+                }
+                
                 VisualTreeAsset uxmlAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Packages/com.tencent.puerts.webgl.devtool/Editor/Devtool-Main.uxml");
-                VisualElement rootElement = uxmlAsset.CloneTree();
+                rootElement = uxmlAsset.CloneTree();
 
                 StyleSheet uss = AssetDatabase.LoadAssetAtPath<StyleSheet>("Packages/com.tencent.puerts.webgl.devtool/Editor/Devtool-Main.uss");
                 rootElement.styleSheets.Add(uss);
 
                 rootVisualElement.Add(rootElement);
                 rootElement.Q<Button>("build-preview").clickable.clicked += PreviewCurrentScene;
+                rootElement.Q<Button>("server-switch").clickable.clicked += SwitchServer;
             }
+
+            public void OnInspectorUpdate()
+            {
+                var label = rootElement.Q<Label>("server-status");
+                if (IsPreviewServerAlive)
+                {
+                    label.text = "preview server on";
+                    label.RemoveFromClassList("off");
+                    label.AddToClassList("on");
+                }
+                else
+                {
+                    label.text = "preview server off";
+                    label.RemoveFromClassList("on");
+                    label.AddToClassList("off");
+                }
+            }
+
 #if UNITY_WEBGL
             [PostProcessBuild(1)]
             private static void OnBuildFinished(BuildTarget target, string pathToBuiltProject)

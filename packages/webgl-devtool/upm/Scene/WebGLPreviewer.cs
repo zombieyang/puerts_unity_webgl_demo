@@ -14,7 +14,7 @@ public class WebGLPreviewer : MonoBehaviour
     {
         // 下载AssetBundle
         UnityEngine.Debug.Log("loading preview asset bundle");
-        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle("http://127.0.0.1:8080/assetsbundle/preview_asset_bundle");
+        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle("../assetsbundle/preview_asset_bundle");
         await request.SendWebRequest();
         
         if (request.result != UnityWebRequest.Result.Success)

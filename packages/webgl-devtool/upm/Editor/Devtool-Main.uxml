@@ -5,4 +5,8 @@
     xmlns:editor="UnityEditor.UIElements"
 >
     <engine:Button class="build-preview" name="build-preview" text="Preview current Scene"></engine:Button>
+    <engine:VisualElement class="label-preview-status">
+        <engine:Label name="server-status" class="label-preview-status-label off" text="preview server off"></engine:Label>
+        <engine:Button name="server-switch" class="label-preview-status-button" text="turn on/off"></engine:Button>
+    </engine:VisualElement>
 </engine:UXML>
