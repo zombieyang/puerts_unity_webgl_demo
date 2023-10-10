@@ -1,0 +1,20 @@
+{
+    "name": "com.tencent.puerts.ts-loader.Editor",
+    "rootNamespace": "",
+    "references": [
+        "com.tencent.puerts.core",
+        "com.tencent.puerts.core.Editor",
+        "com.tencent.puerts.ts-loader"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

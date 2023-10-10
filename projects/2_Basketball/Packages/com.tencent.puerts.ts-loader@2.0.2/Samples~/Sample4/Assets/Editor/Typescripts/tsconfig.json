@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "ES2015",
+        "jsx": "react",
+        "inlineSourceMap": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "noImplicitAny": true,
+        "typeRoots": [
+            "../../Puer-Project/node_modules",
+            "../../Puer-Project/node_modules/@types",
+        ],
+        "paths": {
+            "*": [
+                "../../Puer-Project/node_modules/*"
+            ]
+        }
+    }
+}

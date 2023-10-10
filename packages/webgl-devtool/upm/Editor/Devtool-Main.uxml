@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+>
+    <engine:Button class="build-preview" name="build-preview" text="Preview current Scene"></engine:Button>
+</engine:UXML>

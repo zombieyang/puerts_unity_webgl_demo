@@ -1,0 +1,23 @@
+{
+    "name": "@puerts/webgl-devtool",
+    "displayName": "Puerts WebGL Devtool",
+    "version": "2.0.2",
+    "description": "",
+    "keywords": [
+        "Script"
+    ],
+    "author": {
+        "name": "Tencent Puerts Group",
+        "email": "zombieyang@tencent.com",
+        "url": "https://github.com/puerts"
+    },
+    "dependencies": {
+        "@babel/core": "^7.23.0",
+        "@puerts/shell-util": "^2.0.1",
+        "@types/node": "^20.8.3",
+        "cheerio": "^1.0.0-rc.12",
+        "glob": "^10.3.10",
+        "is-port-reachable": "^4.0.0",
+        "serve-handler": "^6.1.5"
+    }
+}

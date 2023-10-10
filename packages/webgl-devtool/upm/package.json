@@ -1,0 +1,15 @@
+{
+    "name": "com.tencent.puerts.webgl.devtool",
+    "displayName": "Puerts WebGL Devtool",
+    "version": "2.0.2",
+    "description": "JS Builder for Puerts WebGL Support.",
+    "keywords": [
+        "Script"
+    ],
+    "author": {
+        "name": "Tencent Puerts Group",
+        "email": "zombieyang@tencent.com",
+        "url": "https://github.com/puerts"
+    },
+    "dependencies": {}
+}

@@ -1,0 +1,11 @@
+﻿{
+  "compilerOptions": {
+    "module": "None",
+    "target": "es2020",
+    "moduleResolution": "Node",
+    "sourceMap": false
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

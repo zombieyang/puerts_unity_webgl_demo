@@ -1,0 +1,18 @@
+
+{
+    "compilerOptions": { 
+        "target": "esnext",
+        "jsx": "react",
+        "inlineSourceMap": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "typeRoots": [
+        ],
+        "allowJs": true,
+
+        "module": "None",
+        "composite": true,
+        "outDir": "."
+    }
+}

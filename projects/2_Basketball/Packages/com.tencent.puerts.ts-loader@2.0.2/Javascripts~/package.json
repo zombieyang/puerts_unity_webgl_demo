@@ -1,0 +1,9 @@
+{
+  "main": "./dist/tsc.js",
+  "dependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/node": "^18.11.13",
+    "glob": "^8.0.3",
+    "typescript": "^4.9.3"
+  }
+}

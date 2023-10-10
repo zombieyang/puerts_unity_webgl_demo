@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "jsx": "react",
+        "inlineSourceMap": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+        "typeRoots": [],
+        "module": "ES2015",
+        "composite": true,
+        "outDir": ".",
+        "paths": {
+            "*": [
+                "../../../../Editor/ConsoleRedirect/Typescripts/*"
+            ]
+        }
+    },
+    "references": [
+        {
+            "path": "../../../../Editor/ConsoleRedirect/Typescripts"
+        }
+    ]
+}

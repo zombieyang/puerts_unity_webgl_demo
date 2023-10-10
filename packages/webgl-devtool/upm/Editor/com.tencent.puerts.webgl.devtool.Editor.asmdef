@@ -1,0 +1,22 @@
+{
+    "name": "com.tencent.puerts.webgl.devtool.Editor",
+    "rootNamespace": "",
+    "references": [
+        "com.tencent.puerts.webgl",
+        "com.tencent.puerts.core.Editor",
+        "com.tencent.puerts.core",
+        "com.tencent.puerts.ts-loader.Editor",
+        "com.tencent.puerts.ts-loader"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
