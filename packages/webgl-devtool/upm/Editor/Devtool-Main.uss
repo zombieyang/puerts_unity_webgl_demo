@@ -4,11 +4,16 @@ VisualElement {}
     height: 100px;
     font-size: 18px;
 }
-.label-preview-status {
+.window-row {
     display: flex; 
-    justify-content: space-around;
     flex-direction: row;
     margin-top: 5px;
+}
+.around {
+    justify-content: space-around;
+}
+.between {
+    justify-content: space-between;
 }
 .label-preview-status-label.on {
     color: lightgreen;

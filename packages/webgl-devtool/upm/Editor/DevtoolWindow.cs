@@ -162,6 +162,7 @@ namespace Puerts
                 rootVisualElement.Add(rootElement);
                 rootElement.Q<Button>("build-preview").clickable.clicked += PreviewCurrentScene;
                 rootElement.Q<Button>("server-switch").clickable.clicked += SwitchServer;
+                rootElement.Q<Button>("rebuild-preview-project").clickable.clicked += BuildPreviewProject;
             }
 
             public void OnInspectorUpdate()
