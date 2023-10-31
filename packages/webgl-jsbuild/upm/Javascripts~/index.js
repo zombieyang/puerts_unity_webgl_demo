@@ -40,7 +40,7 @@ function buildForMinigame(allJSFile, outputpath) {
         mkdir('-p', path.dirname(resourceFilePath));
         fs.writeFileSync(
             !resourceFilePath.endsWith('.js') ? resourceFilePath + ".js" : resourceFilePath,
-            fs.readFileSync(jsfile, 'utf-8')
+            "const require = window.puer.require;\n" + fs.readFileSync(jsfile, 'utf-8')
         );
     })
 }

@@ -8,18 +8,14 @@
  * 业务JS <-> WASM <-> unity jslib <-> 本js
  * 但整条链路其实都在一个v8(jscore)虚拟机里
  */
-import { JSFunction, global, PuertsJSEngine, jsFunctionOrObjectFactory, setOutValue32 } from "./library";
+import { JSFunction, global, PuertsJSEngine, jsFunctionOrObjectFactory } from "./library";
 import WebGLBackendGetFromJSArgumentAPI from "./mixins/getFromJSArgument";
 import WebGLBackendGetFromJSReturnAPI from "./mixins/getFromJSReturn";
 import WebGLBackendRegisterAPI from "./mixins/register";
 import WebGLBackendSetToInvokeJSArgumentApi from "./mixins/setToInvokeJSArgument";
 import WebGLBackendSetToJSInvokeReturnApi from "./mixins/setToJSInvokeReturn";
 import WebGLBackendSetToJSOutArgumentAPI from "./mixins/setToJSOutArgument";
-
-declare const PUERTS_JS_RESOURCES: any;
-declare const wxRequire: any;
-declare const CS: any;
-declare const __tgjsGetLoader: any;
+import initRequire, { addSyntheticModule } from "./require";
 
 global.wxRequire = global.require;
 
@@ -88,95 +84,27 @@ global.PuertsWebGL = {
                 SetGeneralDestructor: function (isolate: IntPtr, _generalDestructor: IntPtr) {
                     engine.generalDestructor = _generalDestructor
                 },
-                GetModuleExecutor: function () {
-                    loader = typeof __tgjsGetLoader != 'undefined' ? __tgjsGetLoader() : null;
-                    const loaderResolve = loader.Resolve ? (function(fileName: string, to: string = "") {
-                        const resolvedName = loader.Resolve(fileName, to);
-                        if (!resolvedName) {
-                            throw new Error('module not found: ' + fileName);
-                        }
-                        return resolvedName;
-                    }) : null;
-
-                    var jsfunc = jsFunctionOrObjectFactory.getOrCreateJSFunction(function (fileName: string) {
-                        if (['puerts/log.mjs', 'puerts/timer.mjs'].indexOf(fileName) != -1) {
-                            return {};
-                        }
-                        if (loaderResolve) {
-                            fileName = loaderResolve(fileName, "");
-                        }
-                        if (typeof wx != 'undefined') {
-                            const result = wxRequire('puerts_minigame_js_resources/' + (fileName.endsWith('.js') ? fileName : fileName + ".js"));
-                            return result
-
-                        } else {
-                            function normalize(name: string, to: string) {
-                                if (typeof CS != void 0) {
-                                    if (CS.Puerts.PathHelper.IsRelative(to)) {
-                                        const ret = CS.Puerts.PathHelper.normalize(CS.Puerts.PathHelper.Dirname(name) + "/" + to);
-                                        return ret;
-                                    }
-                                }
-                                return to;
-                            }
-                            function mockRequire(specifier: string) {
-                                const result: any = { exports: {} };
-                                const foundCacheSpecifier = tryFindAndGetFindedSpecifier(specifier, executeModuleCache);
-                                if (foundCacheSpecifier) {
-                                    result.exports = executeModuleCache[foundCacheSpecifier];
-
-                                } else {
-                                    const foundSpecifier = tryFindAndGetFindedSpecifier(specifier, PUERTS_JS_RESOURCES);
-                                    if (!foundSpecifier) {
-                                        throw new Error('module not found: ' + specifier);
-                                    }
-                                    specifier = foundSpecifier;
-
-                                    executeModuleCache[specifier] = -1;
-                                    try {
-                                        PUERTS_JS_RESOURCES[specifier](result.exports, function mRequire(specifierTo: string) {
-                                            return mockRequire(loaderResolve ? loaderResolve(specifierTo, specifier) : normalize(specifier, specifierTo));
-                                        }, result);
-                                    } catch (e) {
-                                        delete executeModuleCache[specifier];
-                                        throw e
-                                    }
-                                    executeModuleCache[specifier] = result.exports;
-                                }
-
-                                return result.exports;
-                                function tryFindAndGetFindedSpecifier(specifier: string, obj: any) {
-                                    let tryFindName = [specifier];
-                                    if (specifier.indexOf('.') == -1)
-                                        tryFindName = tryFindName.concat([specifier + '.js', specifier + '.ts', specifier + '.mjs', specifier + '.mts']);
-
-                                    let finded: number | false = tryFindName.reduce((ret, name, index) => {
-                                        if (ret !== false) return ret;
-                                        if (name in obj) {
-                                            if (obj[name] == -1) throw new Error(`circular dependency is detected when requiring "${name}"`);
-                                            return index;
-                                        }
-                                        return false;
-                                    }, false)
-                                    if (finded === false) {
-                                        return null;
-                                    }
-                                    else {
-                                        return tryFindName[finded];
-                                    }
-                                }
-                            }
-
-                            const requireRet = mockRequire(fileName)
-                            return requireRet
-                        }
-                    });
-                    return jsfunc.id;
-                },
-                GetJSObjectValueGetter: function () {
-                    var jsfunc = jsFunctionOrObjectFactory.getOrCreateJSFunction(function (obj: any, key: string) {
+                GetInternalJSFunctionLib: function () {
+                    function jsValueGetter(obj: any, key: string) {
                         return obj[key]
-                    });
+                    }
+
+                    var jsfunc = jsFunctionOrObjectFactory.getOrCreateJSFunction(Object.assign(jsValueGetter, {
+                        addSyntheticModule: function(moduleName: string, jso: any) {
+                            addSyntheticModule(moduleName, jso);
+                        },
+
+                        getModuleExecutor: function () {
+                            const puerRequire = initRequire();
+        
+                            return function (fileName: string) {
+                                if (['puerts/log.mjs', 'puerts/timer.mjs'].indexOf(fileName) != -1) {
+                                    return {};
+                                }
+                                return puerRequire(fileName);
+                            };
+                        }
+                    }));
                     return jsfunc.id;
                 },
                 Eval: function (isolate: IntPtr, codeString: CSString, path: string) {
@@ -223,7 +151,7 @@ global.PuertsWebGL = {
                     const func = jsFunctionOrObjectFactory.getJSFunctionById(_function);
                     if (func instanceof JSFunction) {
                         return engine.JSStringToCSString(func.lastException.stack || func.lastException.message || '', length);
-                        
+
                     } else {
                         throw new Error('ptr is not a jsfunc');
                     }
