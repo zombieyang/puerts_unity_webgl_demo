@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.tencent.puerts.core": "2.0.0-pre.5",
-    "com.tencent.puerts.ts-loader": "2.0.0-pre.5",
+    "com.tencent.puerts.core": "2.0.3",
+    "com.tencent.puerts.ts-loader": "2.0.3",
     "com.tencent.puerts.webgl.jsbuild": "file:../../../packages/webgl-jsbuild/upm",
     "com.tencent.puerts.webgl": "file:../../../packages/webgl/upm",
     "com.unity.2d.sprite": "1.0.0",
