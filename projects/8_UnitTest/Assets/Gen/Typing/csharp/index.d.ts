@@ -82,7 +82,7 @@
         (arg: T) : TResult; 
         Invoke?: (arg: T) => TResult;
         }
-        class DateTime extends System.ValueType implements System.IFormattable, System.Runtime.Serialization.ISerializable, System.ISpanFormattable, System.IComparable, System.IComparable$1<Date>, System.IConvertible, System.IEquatable$1<Date>
+        class DateTime extends System.ValueType implements System.IFormattable, System.Runtime.Serialization.ISerializable, System.ISpanFormattable, System.IComparable, System.IComparable$1<System.DateTime>, System.IConvertible, System.IEquatable$1<System.DateTime>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -320,7 +320,7 @@
             public static AssertAndPrint ($name: string, $passed: boolean) : void
             public JSFunctionTestPipeLine ($initialValue: System.Func$1<number>, $JSValueHandler: System.Func$2<System.Func$1<number>, System.Func$1<number>>) : System.Func$1<number>
             public NumberTestPipeLine ($initialValue: number, $outArg: $Ref<number>, $JSValueHandler: System.Func$2<number, number>) : number
-            public DateTestPipeLine ($initialValue: Date, $outArg: $Ref<Date>, $JSValueHandler: System.Func$2<Date, Date>) : Date
+            public DateTestPipeLine ($initialValue: System.DateTime, $outArg: $Ref<System.DateTime>, $JSValueHandler: System.Func$2<System.DateTime, System.DateTime>) : System.DateTime
             public StringTestPipeLine ($initialValue: string, $outArg: $Ref<string>, $JSValueHandler: System.Func$2<string, string>) : string
             public BoolTestPipeLine ($initialValue: boolean, $outArg: $Ref<boolean>, $JSValueHandler: System.Func$2<boolean, boolean>) : boolean
             public BigIntTestPipeLine ($initialValue: bigint, $outArg: $Ref<bigint>, $JSValueHandler: System.Func$2<bigint, bigint>) : bigint
@@ -328,6 +328,7 @@
             public NativeObjectTestPipeLine ($initialValue: PuertsTest.TestObject, $outArg: $Ref<PuertsTest.TestObject>, $JSValueHandler: System.Func$2<PuertsTest.TestObject, PuertsTest.TestObject>) : PuertsTest.TestObject
             public NativeObjectStructTestPipeLine ($initialValue: PuertsTest.TestStruct, $outArg: $Ref<PuertsTest.TestStruct>, $JSValueHandler: System.Func$2<PuertsTest.TestStruct, PuertsTest.TestStruct>) : PuertsTest.TestStruct
             public JSObjectTestPipeLine ($initialValue: Puerts.JSObject, $JSValueHandler: System.Func$2<Puerts.JSObject, Puerts.JSObject>) : Puerts.JSObject
+            public RefTestPipeLine ($refArg: $Ref<PuertsTest.TestObject>, $JSValueHandler: System.Func$2<PuertsTest.TestObject, number>) : void
             public InvokeReturnAnyTestFunc ($srcValue: PuertsTest.TestStruct) : void
             public constructor ($env: Puerts.JsEnv)
         }
@@ -346,19 +347,15 @@
         }
         interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
         interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
         {
-        [Symbol.iterator]() : IterableIterator<T>
         }
     }
     namespace System.Collections {

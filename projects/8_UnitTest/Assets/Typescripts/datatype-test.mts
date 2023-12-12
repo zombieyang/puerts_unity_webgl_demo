@@ -12,7 +12,7 @@ var init = function (testHelper: CS.PuertsTest.TestHelper) {
     testHelper.JSFunctionTestPipeLine(oFunc, function(func: Function) {
         return oFunc
     });
-    
+
     // Number
     const oNum = 1;
     const rNum = testHelper.NumberTestPipeLine(oNum, outRef, function(num) {
@@ -75,6 +75,26 @@ var init = function (testHelper: CS.PuertsTest.TestHelper) {
     });
     // assertAndPrint("JSGetJSObjectOutArgFromCS", puerts.$unref(outRef) == oJSObject);
     assertAndPrint("JSGetJSObjectReturnFromCS", rJSObject == oJSObject);
+
+    // ref
+    const refNativeObject = puerts.$ref(null);
+    testHelper.RefTestPipeLine(refNativeObject, function (obj) {
+        assertAndPrint("JSGetRefArgFromCS1", obj.value === 3);
+        return obj.value;
+    });
+    testHelper.RefTestPipeLine(refNativeObject, function (obj) {
+        assertAndPrint("JSGetRefArgFromCS2", obj.value === 4);
+        return obj.value;
+    });
+    assertAndPrint("JSGetRefOutArgFromCS", puerts.$unref(refNativeObject).value === 4);
+
+    // bigint
+    const oBigInt = BigInt(Number.MAX_SAFE_INTEGER + 1);
+    const rBigInt = testHelper.BigIntTestPipeLine(oBigInt, outRef, function (num) {
+        assertAndPrint("JSGetBigIntArgFromCS", num === oBigInt + 1n);
+        return num + 1n;
+    });
+    assertAndPrint("JSGetBigIntOutArgFromCS", puerts.$unref(outRef) + 1n === rBigInt);
 
     testHelper.ReturnAnyTestFunc = ()=>{
         return new CS.PuertsTest.TestStruct(2);
