@@ -88,6 +88,14 @@ var init = function (testHelper: CS.PuertsTest.TestHelper) {
     });
     assertAndPrint("JSGetRefOutArgFromCS", puerts.$unref(refNativeObject).value === 4);
 
+    // bigint
+    const oBigInt = BigInt(Number.MAX_SAFE_INTEGER + 1);
+    const rBigInt = testHelper.BigIntTestPipeLine(oBigInt, outRef, function (num) {
+        assertAndPrint("JSGetBigIntArgFromCS", num === oBigInt + 1n);
+        return num + 1n;
+    });
+    assertAndPrint("JSGetBigIntOutArgFromCS", puerts.$unref(outRef) + 1n === rBigInt);
+
     testHelper.ReturnAnyTestFunc = ()=>{
         return new CS.PuertsTest.TestStruct(2);
     }
