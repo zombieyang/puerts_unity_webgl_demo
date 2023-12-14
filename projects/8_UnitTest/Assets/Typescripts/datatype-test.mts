@@ -41,13 +41,24 @@ var init = function (testHelper: CS.PuertsTest.TestHelper) {
     assertAndPrint("JSGetBoolReturnFromCS", rBool == false);
 
     // AB
-    const oAB = new Uint8Array([1]).buffer;
+    const oAB = new Uint8Array([1]);
     const rAB = testHelper.ArrayBufferTestPipeLine(oAB, outRef, function(bi) {
         assertAndPrint("JSGetArrayBufferArgFromCS", new Uint8Array(bi)[0] == 2);
-        return new Uint8Array([3]).buffer
+        return new Uint8Array([3]);
     });
     assertAndPrint("JSGetArrayBufferOutArgFromCS", new Uint8Array(puerts.$unref(outRef))[0] == 4);
     assertAndPrint("JSGetArrayBufferReturnFromCS", new Uint8Array(rAB)[0] == 5);
+
+    // AB with offset
+    const buffer = new ArrayBuffer(2); // [0, 0]
+    new Uint8Array(buffer)[1] = 1; // [0, 1]
+    const oAB1 = new Uint8Array(buffer, 1, 1); // [1]
+    const rAB1 = testHelper.ArrayBufferTestPipeLine(oAB1, outRef, function (bi) {
+        assertAndPrint("JSGetArrayBufferArgFromCS1", new Uint8Array(bi)[0] == 2);
+        return new Uint8Array([3]);
+    });
+    assertAndPrint("JSGetArrayBufferOutArgFromCS1", new Uint8Array(puerts.$unref(outRef))[0] == 4);
+    assertAndPrint("JSGetArrayBufferReturnFromCS1", new Uint8Array(rAB1)[0] == 5);
 
     // NativeObjectStruct
     const oNativeObjectStruct = new CS.PuertsTest.TestStruct(1);
@@ -91,10 +102,10 @@ var init = function (testHelper: CS.PuertsTest.TestHelper) {
     // bigint
     const oBigInt = BigInt(Number.MAX_SAFE_INTEGER + 1);
     const rBigInt = testHelper.BigIntTestPipeLine(oBigInt, outRef, function (num) {
-        assertAndPrint("JSGetBigIntArgFromCS", num === oBigInt + 1n);
-        return num + 1n;
+        assertAndPrint("JSGetBigIntArgFromCS", num === oBigInt + BigInt(1));
+        return num + BigInt(1);
     });
-    assertAndPrint("JSGetBigIntOutArgFromCS", puerts.$unref(outRef) + 1n === rBigInt);
+    assertAndPrint("JSGetBigIntOutArgFromCS", puerts.$unref(outRef) + BigInt(1) === rBigInt);
 
     testHelper.ReturnAnyTestFunc = ()=>{
         return new CS.PuertsTest.TestStruct(2);
