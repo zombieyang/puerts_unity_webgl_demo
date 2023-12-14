@@ -91,10 +91,10 @@ var init = function (testHelper: CS.PuertsTest.TestHelper) {
     // bigint
     const oBigInt = BigInt(Number.MAX_SAFE_INTEGER + 1);
     const rBigInt = testHelper.BigIntTestPipeLine(oBigInt, outRef, function (num) {
-        assertAndPrint("JSGetBigIntArgFromCS", num === oBigInt + 1n);
-        return num + 1n;
+        assertAndPrint("JSGetBigIntArgFromCS", num === oBigInt + BigInt(1));
+        return num + BigInt(1);
     });
-    assertAndPrint("JSGetBigIntOutArgFromCS", puerts.$unref(outRef) + 1n === rBigInt);
+    assertAndPrint("JSGetBigIntOutArgFromCS", puerts.$unref(outRef) + BigInt(1) === rBigInt);
 
     testHelper.ReturnAnyTestFunc = ()=>{
         return new CS.PuertsTest.TestStruct(2);
