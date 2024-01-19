@@ -43,13 +43,23 @@ var init = function (testHelper) {
   assertAndPrint("JSGetBoolOutArgFromCS", puerts.$unref(outRef) == false);
   assertAndPrint("JSGetBoolReturnFromCS", rBool == false);
   // AB
-  const oAB = new Uint8Array([1]).buffer;
+  const oAB = new Uint8Array([1]);
   const rAB = testHelper.ArrayBufferTestPipeLine(oAB, outRef, function (bi) {
     assertAndPrint("JSGetArrayBufferArgFromCS", new Uint8Array(bi)[0] == 2);
-    return new Uint8Array([3]).buffer;
+    return new Uint8Array([3]);
   });
   assertAndPrint("JSGetArrayBufferOutArgFromCS", new Uint8Array(puerts.$unref(outRef))[0] == 4);
   assertAndPrint("JSGetArrayBufferReturnFromCS", new Uint8Array(rAB)[0] == 5);
+  // AB with offset
+  const buffer = new ArrayBuffer(2); // [0, 0]
+  new Uint8Array(buffer)[1] = 1; // [0, 1]
+  const oAB1 = new Uint8Array(buffer, 1, 1); // [1]
+  const rAB1 = testHelper.ArrayBufferTestPipeLine(oAB1, outRef, function (bi) {
+    assertAndPrint("JSGetArrayBufferArgFromCS1", new Uint8Array(bi)[0] == 2);
+    return new Uint8Array([3]);
+  });
+  assertAndPrint("JSGetArrayBufferOutArgFromCS1", new Uint8Array(puerts.$unref(outRef))[0] == 4);
+  assertAndPrint("JSGetArrayBufferReturnFromCS1", new Uint8Array(rAB1)[0] == 5);
   // NativeObjectStruct
   const oNativeObjectStruct = new CS.PuertsTest.TestStruct(1);
   const rNativeObjectStruct = testHelper.NativeObjectStructTestPipeLine(oNativeObjectStruct, outRef, function (obj) {
@@ -76,6 +86,25 @@ var init = function (testHelper) {
   });
   // assertAndPrint("JSGetJSObjectOutArgFromCS", puerts.$unref(outRef) == oJSObject);
   assertAndPrint("JSGetJSObjectReturnFromCS", rJSObject == oJSObject);
+  // ref
+  const refNativeObject = puerts.$ref(null);
+  testHelper.RefTestPipeLine(refNativeObject, function (obj) {
+    assertAndPrint("JSGetRefArgFromCS1", obj.value === 3);
+    return obj.value;
+  });
+  testHelper.RefTestPipeLine(refNativeObject, function (obj) {
+    assertAndPrint("JSGetRefArgFromCS2", obj.value === 4);
+    return obj.value;
+  });
+  assertAndPrint("JSGetRefOutArgFromCS", puerts.$unref(refNativeObject).value === 4);
+  // bigint
+  const refBigInt = puerts.$ref(null);
+  const oBigInt = BigInt(Number.MAX_SAFE_INTEGER + 1);
+  const rBigInt = testHelper.BigIntTestPipeLine(oBigInt, refBigInt, function (num) {
+    assertAndPrint("JSGetBigIntArgFromCS", num === oBigInt + BigInt(1));
+    return num + BigInt(1);
+  });
+  assertAndPrint("JSGetBigIntOutArgFromCS", puerts.$unref(refBigInt) + BigInt(1) === rBigInt);
   testHelper.ReturnAnyTestFunc = () => {
     return new CS.PuertsTest.TestStruct(2);
   };
@@ -168,6 +197,7 @@ puer.__$NamespaceType = Namespace;
 function createTypeProxy(namespace) {
   return new Proxy(new Namespace(), {
     get: function (cache, name) {
+      if (name == '__p_innerType') return void 0;
       if (!(name in cache)) {
         let fullName = namespace ? namespace + '.' + name : name;
         if (/\$\d+$/.test(name)) {
@@ -515,10 +545,10 @@ let GENERIC_INVOKE_ERR_ARG_CHECK_FAILED = {};
 let ARG_FLAG_OUT = 0x01;
 let ARG_FLAG_REF = 0x02;
 puer.getGenericMethod = function (csType, methodName, ...genericArgs) {
-  if (typeof csType.GetMember != 'function') {
+  if (!csType || typeof csType.GetMember != 'function') {
     throw new Error('the class must be a constructor');
   }
-  let members = csType.GetMember(methodName, MemberTypes_Method, GET_MEMBER_FLAGS);
+  let members = CS.Puerts.Utils.GetMethodAndOverrideMethodByName(csType, methodName);
   let overloadFunctions = [];
   for (let i = 0; i < members.Length; i++) {
     let method = members.GetValue(i);
