@@ -103,14 +103,14 @@ public class WebGLPuertsPostProcessor
     }
     public static void BuildMinigame(string outputRootPath, string extensioName = null)
     {
-        RunBuild("buildForMinigame", GetLastBuildPath(), GetCustomScripts(outputRootPath, extensioName));
+        RunBuild("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null, GetCustomScripts(outputRootPath, extensioName));
     }
     public static void BuildMinigame(Dictionary<string, string> customScripts)
     {
         CustomScriptData[] _customScripts = customScripts != null ? customScripts.Keys
             .Select(resourceName => new CustomScriptData(resourceName, customScripts[resourceName]))
             .ToArray() : null;
-        RunBuild("buildForMinigame", GetLastBuildPath(), _customScripts);
+        RunBuild("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null, _customScripts);
     }
 
 
