@@ -52,7 +52,7 @@ public class WebGLPuertsPostProcessor
 
         jsenv.UsingAction<string>();
         jsenv.UsingAction<string, string>();
-        jsenv.UsingAction<string[], string>();
+        jsenv.UsingAction<string[], CustomScriptData[], string>();
 
         jsenv.Eval<Action<string>>(@"(function (requirePath) { 
             global.require = require('node:module').createRequire(requirePath)
