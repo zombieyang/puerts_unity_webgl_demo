@@ -11,8 +11,7 @@ const { mkdir } = require('@puerts/shell-util');
 
 function buildForBrowser(allJSFile, outputpath) {
     const puerts_js_file = {};
-    allJSFile.forEach(({ resourceName, jsfile }) => {
-        const code = fs.readFileSync(jsfile, 'utf-8');
+    allJSFile.forEach(({ resourceName, code }) => {
         puerts_js_file[resourceName] = `(function(exports, require, module, __filename, __dirname) {
             ${babel.transformSync(code, {
             cwd: __dirname,
@@ -35,12 +34,12 @@ function buildForMinigame(allJSFile, outputpath) {
     const outputdir = path.join(outputpath, 'puerts_minigame_js_resources');
     mkdir('-p', outputdir);
 
-    allJSFile.forEach(({ resourceName, jsfile }) => {
+    allJSFile.forEach(({ resourceName, code }) => {
         const resourceFilePath = path.join(outputdir, resourceName);
         mkdir('-p', path.dirname(resourceFilePath));
         fs.writeFileSync(
             !resourceFilePath.endsWith('.js') ? resourceFilePath + ".js" : resourceFilePath,
-            fs.readFileSync(jsfile, 'utf-8')
+            code
         );
     })
 }
@@ -95,23 +94,24 @@ function globAllJSFile (fileGlobbers) {
             return jsfile.indexOf('Editor') == -1 && jsfile.indexOf('node_modules') == -1
         })
         .map(jsfile => {
+            let code = fs.readFileSync(jsfile, 'utf-8');
             let resourceNameMatcher = jsfile.split('Resources/');
             let resourceName = resourceNameMatcher[resourceNameMatcher.length - 1];
             resourceName = resourceName.replace(/\.txt$/, '');
 
             return {
                 resourceName,
-                jsfile
+                code,
             }
         })
 
     return allJSFile;
 }
 
-exports.buildForMinigame = function (fileGlobbers, outputpath) {
+exports.buildForMinigame = function (fileGlobbers, customScripts, outputpath) {
 
-    buildForMinigame(globAllJSFile(fileGlobbers), outputpath);
+    buildForMinigame(globAllJSFile(fileGlobbers).concat(customScripts ?? []), outputpath);
 }
-exports.buildForBrowser = function (fileGlobbers, outputpath) {
-    buildForBrowser(globAllJSFile(fileGlobbers), outputpath);
+exports.buildForBrowser = function (fileGlobbers, customScripts, outputpath) {
+    buildForBrowser(globAllJSFile(fileGlobbers).concat(customScripts ?? []), outputpath);
 }
