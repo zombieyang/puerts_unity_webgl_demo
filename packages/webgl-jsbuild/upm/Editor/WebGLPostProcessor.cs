@@ -102,8 +102,6 @@ public class WebGLPuertsPostProcessor
 
         try
         {
-            Debug.Log(WebGLUtils.GetBuildinScriptsFromConfigure() != null);
-            Debug.Log(string.Join("\n", WebGLUtils.GetBuildinScriptsFromConfigure().Keys));
             cpRuntimeJS(Path.GetFullPath("Packages/com.tencent.puerts.webgl/Javascripts~/PuertsDLLMock/dist/puerts-runtime.js"), lastBuiltPath);
             globjs(new BuildParameters()
             {
