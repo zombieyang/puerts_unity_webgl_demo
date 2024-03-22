@@ -96,7 +96,7 @@ public class WebGLPuertsPostProcessor
         jsenv.Dispose();
     }
 
-    [MenuItem("puerts-webgl/build puerts-js for minigame", false, 11)]
+    [MenuItem("Tools/PuerTS/WebGL/build puerts-js for minigame", false, 11)]
     public static void BuildMinigame()
     {
         RunBuild("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null, null);
@@ -114,7 +114,7 @@ public class WebGLPuertsPostProcessor
     }
 
 
-    [MenuItem("puerts-webgl/build puerts-js for browser", false, 11)]
+    [MenuItem("Tools/PuerTS/WebGL/build puerts-js for browser", false, 11)]
     public static void BuildBrowser()
     {
         RunBuild("buildForBrowser", GetLastBuildPath(), null);
@@ -132,8 +132,8 @@ public class WebGLPuertsPostProcessor
     }
 
 
-
-    [MenuItem("puerts-webgl/install", false, 0)]
+  
+    [MenuItem("Tools/PuerTS/WebGL/install", false, 0)]
     static void NodeModulesInstall()
     {
         JsEnv jsenv = new Puerts.JsEnv();
@@ -154,13 +154,13 @@ public class WebGLPuertsPostProcessor
     }
 
 
-    [MenuItem("PuerTS/WebGL/build puerts-js for minigame", true)]
-    [MenuItem("PuerTS/WebGL/build puerts-js for browser", true)]
+    [MenuItem("Tools/PuerTS/WebGL/build puerts-js for minigame", true)]
+    [MenuItem("Tools/PuerTS/WebGL/build puerts-js for browser", true)]
     static bool NodeModulesInstalled()
     {
         return Directory.Exists(Path.GetFullPath("Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~/node_modules"));
     }
-    [MenuItem("PuerTS/WebGL/install", true)]
+    [MenuItem("Tools/PuerTS/WebGL/install", true)]
     static bool NodeModulesInstallValidate()
     {
         return !NodeModulesInstalled();
