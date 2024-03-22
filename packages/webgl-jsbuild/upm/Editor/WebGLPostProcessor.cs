@@ -33,7 +33,7 @@ public class WebGLPuertsPostProcessor
         Path.GetFullPath("Packages/com.tencent.puerts.core/") + "/**/Resources/**/*.mjs"
     };
 
-    private static void RunBuild(string runEntry, string lastBuiltPath, CustomScriptData[] customScripts)
+    private static void RunBuild(string runEntry, string lastBuiltPath)
     {
         string PuertsWebglJSRoot = Path.GetFullPath("Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~/");
         if (lastBuiltPath != null)
@@ -47,12 +47,10 @@ public class WebGLPuertsPostProcessor
             UnityEngine.Debug.Log("上一次构建路径为空，生成至：" + lastBuiltPath);
         }
 
-
         JsEnv jsenv = new JsEnv();
-
         jsenv.UsingAction<string>();
         jsenv.UsingAction<string, string>();
-        jsenv.UsingAction<string[], CustomScriptData[], string>();
+        jsenv.UsingAction<BuildParameters>();
 
         jsenv.Eval<Action<string>>(@"(function (requirePath) { 
             global.require = require('node:module').createRequire(requirePath)
@@ -66,27 +64,55 @@ public class WebGLPuertsPostProcessor
             });
         ");
 
-        Action<string[], CustomScriptData[], string> globjs = jsenv.Eval<Action<string[], CustomScriptData[], string>>(@"
-            (function(csFileGlobbers, customScripts, targetPath) {
+        Action<BuildParameters> globjs = jsenv.Eval<Action<BuildParameters>>(@"
+            (function(buildParameters) {
                 function toJsArray(csArray) {
+                    if (!csArray)
+                        return null;
                     let results = [];
                     for (let i = 0; i < csArray.Length; i++) {
                         results.push(csArray.get_Item(i));
                     }
                     return results;
                 }
+                function toJsFunction(csDelegate) {
+                    if (!csDelegate)
+                        return null;
+                    if (typeof (csDelegate) === 'function')
+                        return csDelegate;
+                    if (typeof (csDelegate.Invoke) === 'function') {
+                        return function () {
+                            return csDelegate.Invoke(...arguments);
+                        }
+                    }
+                    return null;
+                }
+                let _buildParameters = {
+                    outputpath: buildParameters.outputpath,
+                    fileGlobbers: toJsArray(buildParameters.fileGlobbers),
+                    customScripts: toJsArray(buildParameters.customScripts),
+                    filterPath: toJsFunction(buildParameters.filterPath),
+                    resolvePath: toJsFunction(buildParameters.resolvePath),
+                };
 
                 const globAllJS = require('.');
-
-                globAllJS." + runEntry + @"(toJsArray(csFileGlobbers), customScripts ? toJsArray(customScripts) : null, targetPath);
-                
+                globAllJS." + runEntry + @"(_buildParameters); 
             });
         ");
 
         try
         {
+            Debug.Log(WebGLUtils.GetBuildinScriptsFromConfigure() != null);
+            Debug.Log(string.Join("\n", WebGLUtils.GetBuildinScriptsFromConfigure().Keys));
             cpRuntimeJS(Path.GetFullPath("Packages/com.tencent.puerts.webgl/Javascripts~/PuertsDLLMock/dist/puerts-runtime.js"), lastBuiltPath);
-            globjs(fileGlobbers.ToArray(), customScripts, lastBuiltPath);
+            globjs(new BuildParameters()
+            {
+                outputpath = lastBuiltPath,
+                fileGlobbers = fileGlobbers.ToArray(),
+                customScripts = CustomScript.From(WebGLUtils.GetBuildinScriptsFromConfigure()),
+                filterPath = WebGLUtils.GetBuildinFilterFunction(),
+                resolvePath = WebGLUtils.GetBuildinResolvePathFunction(),
+            });
         }
         catch (Exception e)
         {
@@ -99,40 +125,15 @@ public class WebGLPuertsPostProcessor
     [MenuItem("Tools/PuerTS/WebGL/build puerts-js for minigame", false, 11)]
     public static void BuildMinigame()
     {
-        RunBuild("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null, null);
+        RunBuild("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null);
     }
-    public static void BuildMinigame(string outputRootPath, string extensioName = null)
-    {
-        RunBuild("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null, GetCustomScripts(outputRootPath, extensioName));
-    }
-    public static void BuildMinigame(Dictionary<string, string> customScripts)
-    {
-        CustomScriptData[] _customScripts = customScripts != null ? customScripts.Keys
-            .Select(resourceName => new CustomScriptData(resourceName, customScripts[resourceName]))
-            .ToArray() : null;
-        RunBuild("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null, _customScripts);
-    }
-
-
     [MenuItem("Tools/PuerTS/WebGL/build puerts-js for browser", false, 11)]
     public static void BuildBrowser()
     {
-        RunBuild("buildForBrowser", GetLastBuildPath(), null);
-    }
-    public static void BuildBrowser(string outputRootPath, string extensioName = null)
-    {
-        RunBuild("buildForBrowser", GetLastBuildPath(), GetCustomScripts(outputRootPath, extensioName));
-    }
-    public static void BuildBrowser(Dictionary<string, string> scripts)
-    {
-        CustomScriptData[] _customScripts = scripts != null ? scripts.Keys
-            .Select(resourceName => new CustomScriptData(resourceName, scripts[resourceName]))
-            .ToArray() : null;
-        RunBuild("buildForBrowser", GetLastBuildPath(), _customScripts);
+        RunBuild("buildForBrowser", GetLastBuildPath());
     }
 
 
-  
     [MenuItem("Tools/PuerTS/WebGL/install", false, 0)]
     static void NodeModulesInstall()
     {
@@ -183,67 +184,30 @@ public class WebGLPuertsPostProcessor
     }
 
 
-
-    static CustomScriptData[] GetCustomScripts(string outputRootPath, string extensioName)
-    {
-        if (string.IsNullOrEmpty(outputRootPath) || !Directory.Exists(outputRootPath))
-            return null;
-        List<CustomScriptData> results = new List<CustomScriptData>();
-
-        Func<string, bool> filter = (string file) =>
-        {
-            return file != null && (file.EndsWith(".js") || file.EndsWith(".cjs") || file.EndsWith(".mjs"));
-        };
-
-        outputRootPath = outputRootPath.Replace("\\", "/");
-        if (!outputRootPath.EndsWith("/"))
-        {
-            outputRootPath += "/";
-        }
-
-        foreach (string file in ScanFiles(outputRootPath, filter))
-        {
-            string resourceName = file.Replace("\\", "/").Replace(outputRootPath, "");
-            if (!string.IsNullOrEmpty(extensioName) && Path.GetExtension(resourceName) != extensioName)
-            {
-                resourceName = resourceName.Substring(0, resourceName.Length - Path.GetExtension(resourceName).Length) + extensioName;
-            }
-            results.Add(new CustomScriptData(
-                resourceName,
-                System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(file))
-            ));
-        }
-        return results.ToArray();
-    }
-    static List<string> ScanFiles(string dirPath, Func<string, bool> filter)
-    {
-        List<string> files = new List<string>();
-
-        DirectoryInfo directoryInfo = new DirectoryInfo(dirPath);
-
-        foreach (FileInfo fileInfo in directoryInfo.GetFiles())
-        {
-            if (filter != null && !filter(fileInfo.FullName))
-                continue;
-            files.Add(fileInfo.FullName);
-        }
-        foreach (DirectoryInfo dirInfo in directoryInfo.GetDirectories())
-        {
-            List<string> subFiles = ScanFiles(dirInfo.FullName, filter);
-            if (subFiles != null) files.AddRange(subFiles);
-        }
-
-        return files;
-    }
-
-    class CustomScriptData
+    class CustomScript
     {
         public string resourceName;
         public string code;
-        public CustomScriptData(string resourceName, string code)
+        public CustomScript(string resourceName, string code)
         {
             this.resourceName = resourceName;
             this.code = code;
         }
+        public static CustomScript[] From(Dictionary<string, string> dict)
+        {
+            if (dict == null)
+                return null;
+            return dict.Keys
+                .Select(resourceName => new CustomScript(resourceName, dict[resourceName]))
+                .ToArray();
+        }
+    }
+    class BuildParameters
+    {
+        public string outputpath;
+        public string[] fileGlobbers;
+        public CustomScript[] customScripts;
+        public Func<string, bool> filterPath;
+        public Func<string, string> resolvePath;
     }
 }

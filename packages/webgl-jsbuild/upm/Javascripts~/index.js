@@ -83,14 +83,17 @@ function buildHTML(outputpath) {
     `)
 }
 
-function globAllJSFile (fileGlobbers) {
-    const allJSFile = fileGlobbers
-        .reduce((retArr, globber)=> {
+function globAllJSFile(buildParameters) {
+    const allJSFile = buildParameters.fileGlobbers
+        .reduce((retArr, globber) => {
             return retArr.concat(
                 glob.sync(path.normalize(globber).replace(/\\/g, '/'))
             )
         }, [])
         .filter(jsfile => {
+            if (buildParameters.filterPath) {
+                return buildParameters.filterPath(jsfile);
+            }
             return jsfile.indexOf('Editor') == -1 && jsfile.indexOf('node_modules') == -1
         })
         .map(jsfile => {
@@ -99,19 +102,26 @@ function globAllJSFile (fileGlobbers) {
             let resourceName = resourceNameMatcher[resourceNameMatcher.length - 1];
             resourceName = resourceName.replace(/\.txt$/, '');
 
+            if (typeof (buildParameters.resolvePath) === "function") {
+                resourceName = buildParameters.resolvePath(resourceName);
+            }
+            else if (buildParameters.resolvePath && typeof (buildParameters.resolvePath.Invoke) === "function") {
+                resourceName = buildParameters.resolvePath.Invoke(resourceName);
+            }
             return {
                 resourceName,
                 code,
             }
         })
+        .concat(buildParameters.customScripts ?? [])
 
     return allJSFile;
 }
 
-exports.buildForMinigame = function (fileGlobbers, customScripts, outputpath) {
+exports.buildForMinigame = function (buildParameters) {
 
-    buildForMinigame(globAllJSFile(fileGlobbers).concat(customScripts ?? []), outputpath);
+    buildForMinigame(globAllJSFile(buildParameters), buildParameters.outputpath);
 }
-exports.buildForBrowser = function (fileGlobbers, customScripts, outputpath) {
-    buildForBrowser(globAllJSFile(fileGlobbers).concat(customScripts ?? []), outputpath);
+exports.buildForBrowser = function (buildParameters) {
+    buildForBrowser(globAllJSFile(buildParameters), buildParameters.outputpath);
 }
