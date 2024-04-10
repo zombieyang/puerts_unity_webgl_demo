@@ -7,6 +7,7 @@
 3. 在构建出来的小游戏`game.js`中，添加require('puerts-runtime.js')
 4. iOS下请跟随[该指引](https://github.com/wechat-miniprogram/minigame-unity-webgl-transform/blob/main/Design/iOSOptimization.md)申请高性能模式，即wkwebview模式。开了该模式才有JIT以及WeakRef
 
+> puerts-webgl不支持 ios14.0~14.4 的小游戏环境，接入时请做一下这几个版本的屏蔽。
 
 ## 示例微信小游戏（后来的就不公布了）
 | 作者 | 码 |
