@@ -8,7 +8,7 @@
         "experimentalDecorators": true,
         "noImplicitAny": true,
         "typeRoots": [
-            "../../Library/PackageCache/com.tencent.puerts.core@2.0.0-pre.2/Typing",
+            "../../Library/PackageCache/com.tencent.puerts.core@2.0.5/Typing",
             "../Gen/Typing"
         ],
 

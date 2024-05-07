@@ -9,7 +9,7 @@
         "noImplicitAny": true,
         "typeRoots": [
             "../Gen/Typing",
-            "../../Library/PackageCache/com.tencent.puerts.core@2.0.3/Typing",
+            "../../Library/PackageCache/com.tencent.puerts.core@2.0.5/Typing",
         ],
 
         "module": "ES2015",

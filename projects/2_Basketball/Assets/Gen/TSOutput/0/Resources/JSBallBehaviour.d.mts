@@ -5,3 +5,4 @@ declare class JSBallBehaviour extends JsBehaviour<CS.JsMonoBehaviour> {
     OnTriggerEnter(trigger: CS.UnityEngine.Collider): void;
 }
 export { JSBallBehaviour };
+ur };

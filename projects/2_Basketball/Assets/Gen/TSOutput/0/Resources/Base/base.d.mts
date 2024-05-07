@@ -7,3 +7,4 @@ declare class JsBehaviour<T extends CS.JsMonoBehaviour> {
     constructor(mb: T);
 }
 export { JsBehaviour };
+iour };

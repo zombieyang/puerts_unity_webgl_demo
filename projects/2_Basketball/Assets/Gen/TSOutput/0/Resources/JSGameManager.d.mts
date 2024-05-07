@@ -11,3 +11,4 @@ declare class JSGameManager extends JsBehaviour<CS.GameManager> {
     spawnBall(): void;
 }
 export { JSGameManager };
+eManager };
