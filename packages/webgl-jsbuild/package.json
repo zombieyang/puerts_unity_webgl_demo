@@ -1,1 +1,15 @@
-{"name": "@puerts/webgl-jsbuild", "displayName": "PuerTS WebGL JS Builder Example", "version": "2.0.4", "description": "JS Builder for Puerts WebGL Support using Puerts.DefaultLoader.", "keywords": ["Script"], "author": {"name": "Tencent Puerts Group", "email": "zombieyang@tencent.com", "url": "https://github.com/puerts"}, "dependencies": {}}
+{
+    "name": "@puerts/webgl-jsbuild",
+    "displayName": "PuerTS WebGL JS Builder Example",
+    "version": "2.0.5",
+    "description": "JS Builder for Puerts WebGL Support using Puerts.DefaultLoader.",
+    "keywords": [
+        "Script"
+    ],
+    "author": {
+        "name": "Tencent Puerts Group",
+        "email": "zombieyang@tencent.com",
+        "url": "https://github.com/puerts"
+    },
+    "dependencies": {}
+}
