@@ -1,0 +1,61 @@
+{
+  "description": "项目配置文件",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": false,
+    "disableUseStrict": false,
+    "babelSetting": {
+      "ignore": [
+        "webgl.wasm.framework.unityweb.js"
+      ],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "game",
+  "libVersion": "3.2.5",
+  "appid": "填入你自己的appid",
+  "projectname": "puerts-webgl-basketball",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [
+      {
+        "value": ".plugincache",
+        "type": "folder"
+      },
+      {
+        "value": ".symbols.unityweb",
+        "type": "suffix"
+      }
+    ],
+    "include": []
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

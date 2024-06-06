@@ -9,7 +9,10 @@
 
 > puerts-webgl不支持 ios14.0~14.4 的小游戏环境，接入时请做一下这几个版本的屏蔽。
 
-## 示例微信小游戏（后来的就不公布了）
+## 示例项目
+微信开发者工具打开仓库目录下的`build-minigame/2_Basketball/minigame`即可。（需要在project.config.json填入你自己的appid）
+
+## 已上线微信小游戏（后来的就不公布了）
 | 作者 | 码 |
 | --- | --- |
 | [zgz682000](https://github.com/zgz682000) | <img src="./doc/pic/game1.jpg" alt="Game1" width="100" height="100"/> |
@@ -23,3 +26,6 @@
 #### * 为什么Loader不工作？
 
 在WebGL下，尤其是微信小游戏下，受限于平台策略，普洱无法使用Loader的形式加载代码文本并执行。参见 [wiki](https://github.com/zombieyang/puerts_unity_webgl_demo/wiki/%E6%95%99%E5%AD%A6%E6%AD%A5%E9%AA%A4%E4%B8%AD%EF%BC%8C%60%E6%9E%84%E5%BB%BA%60%E5%AE%9E%E9%99%85%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F)
+
+
+
