@@ -206,7 +206,7 @@ namespace PuertsTest
 
         void Start()
         {
-            var jsEnv = Puerts.WebGL.MainEnv.Get(new TSLoader());
+            var jsEnv = new JsEnv(new TSLoader());
 
             // var jsEnv = new Puerts.JsEnv(new DefaultLoader(), 8080);
             // jsEnv.WaitDebugger();
