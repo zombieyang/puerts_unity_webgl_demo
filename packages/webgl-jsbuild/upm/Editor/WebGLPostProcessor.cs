@@ -5,6 +5,7 @@ using Puerts;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 /**
  * ！！！！！！！！！！必读！！！！！！！
@@ -22,37 +23,39 @@ using System.Collections.Generic;
  * 如果你的游戏里使用了自定义的Loader，那么我建议您自己重新实现一个PostProcessor，以和你的Loader配套。
  */
 
-public class WebGLPuertsPostProcessor {
+public class WebGLPuertsPostProcessor
+{
 
-    public static List<string> fileGlobbers = new List<string> 
+    public static List<string> fileGlobbers = new List<string>
     {
         Application.dataPath + "/**/Resources/**/*.mjs",
         Application.dataPath + "/**/Resources/**/*.cjs",
         Path.GetFullPath("Packages/com.tencent.puerts.core/") + "/**/Resources/**/*.mjs"
     };
 
-    private static void run(string runEntry, string lastBuiltPath) 
+    private static void RunBuild(string runEntry, string lastBuiltPath)
     {
         string PuertsWebglJSRoot = Path.GetFullPath("Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~/");
-        if (lastBuiltPath != null) {
+        if (lastBuiltPath != null)
+        {
             UnityEngine.Debug.Log("上一次构建路径：" + lastBuiltPath);
 
-        } else {
+        }
+        else
+        {
             lastBuiltPath = PuertsWebglJSRoot + "dist/";
             UnityEngine.Debug.Log("上一次构建路径为空，生成至：" + lastBuiltPath);
         }
 
-
         JsEnv jsenv = new JsEnv();
-
         jsenv.UsingAction<string>();
         jsenv.UsingAction<string, string>();
-        jsenv.UsingAction<string[], string>();
+        jsenv.UsingAction<BuildParameters>();
 
         jsenv.Eval<Action<string>>(@"(function (requirePath) { 
             global.require = require('node:module').createRequire(requirePath)
         })")(PuertsWebglJSRoot);
-        
+
         Action<string, string> cpRuntimeJS = jsenv.Eval<Action<string, string>>(@"
             (function(puerRuntimeFilePath, targetPath) {
                 const { cp } = require('@puerts/shell-util');
@@ -61,24 +64,55 @@ public class WebGLPuertsPostProcessor {
             });
         ");
 
-        Action<string[], string> globjs = jsenv.Eval<Action<string[], string>>(@"
-            (function(csFileGlobbers, targetPath) {
-                const fileGlobbers = [];
-                for (let i = 0; i < csFileGlobbers.Length; i++) {
-                    fileGlobbers.push(csFileGlobbers.get_Item(i));
+        Action<BuildParameters> globjs = jsenv.Eval<Action<BuildParameters>>(@"
+            (function(buildParameters) {
+                function toJsArray(csArray) {
+                    if (!csArray)
+                        return null;
+                    let results = [];
+                    for (let i = 0; i < csArray.Length; i++) {
+                        results.push(csArray.get_Item(i));
+                    }
+                    return results;
                 }
-                const globAllJS = require('.');
+                function toJsFunction(csDelegate) {
+                    if (!csDelegate)
+                        return null;
+                    if (typeof (csDelegate) === 'function')
+                        return csDelegate;
+                    if (typeof (csDelegate.Invoke) === 'function') {
+                        return function () {
+                            return csDelegate.Invoke(...arguments);
+                        }
+                    }
+                    return null;
+                }
+                let _buildParameters = {
+                    outputpath: buildParameters.outputpath,
+                    fileGlobbers: toJsArray(buildParameters.fileGlobbers),
+                    customScripts: toJsArray(buildParameters.customScripts),
+                    filterPath: toJsFunction(buildParameters.filterPath),
+                    resolvePath: toJsFunction(buildParameters.resolvePath),
+                };
 
-                globAllJS." + runEntry + @"(fileGlobbers, targetPath);
-                
+                const globAllJS = require('.');
+                globAllJS." + runEntry + @"(_buildParameters); 
             });
         ");
-        
-        try {
+
+        try
+        {
             cpRuntimeJS(Path.GetFullPath("Packages/com.tencent.puerts.webgl/Javascripts~/PuertsDLLMock/dist/puerts-runtime.js"), lastBuiltPath);
-            globjs(fileGlobbers.ToArray(), lastBuiltPath);
-        } 
-        catch(Exception e) 
+            globjs(new BuildParameters()
+            {
+                outputpath = lastBuiltPath,
+                fileGlobbers = fileGlobbers.ToArray(),
+                customScripts = CustomScript.From(WebGLUtils.GetBuildinScriptsFromConfigure()),
+                filterPath = WebGLUtils.GetBuildinFilterFunction(),
+                resolvePath = WebGLUtils.GetBuildinResolvePathFunction(),
+            });
+        }
+        catch (Exception e)
         {
             jsenv.Dispose();
             throw;
@@ -87,23 +121,23 @@ public class WebGLPuertsPostProcessor {
     }
 
     [MenuItem("Tools/PuerTS/WebGL/build puerts-js for minigame", false, 11)]
-    public static void minigame() 
+    public static void BuildMinigame()
     {
-        run("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null);
+        RunBuild("buildForMinigame", GetLastBuildPath() != null ? GetLastBuildPath() + "/../minigame" : null);
+    }
+    [MenuItem("Tools/PuerTS/WebGL/build puerts-js for browser", false, 11)]
+    public static void BuildBrowser()
+    {
+        RunBuild("buildForBrowser", GetLastBuildPath());
     }
 
-    [MenuItem("Tools/PuerTS/WebGL/build puerts-js for browser", false, 11)]
-    public static void browser() 
-    {
-        run("buildForBrowser", GetLastBuildPath());
-    } 
 
     [MenuItem("Tools/PuerTS/WebGL/install", false, 0)]
-    static void npmInstall() 
+    static void NodeModulesInstall()
     {
         JsEnv jsenv = new Puerts.JsEnv();
         jsenv.UsingAction<string>();
-        try 
+        try
         {
             Action<string> npmInstaller = jsenv.Eval<Action<string>>(@"
                 (function(cwd) {
@@ -112,39 +146,66 @@ public class WebGLPuertsPostProcessor {
             ");
             npmInstaller(Path.GetFullPath("Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~"));
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             UnityEngine.Debug.LogError("Npm install failed. you can cd into 'Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~' to run 'npm install' by yourself");
         }
     }
 
 
-
     [MenuItem("Tools/PuerTS/WebGL/build puerts-js for minigame", true)]
     [MenuItem("Tools/PuerTS/WebGL/build puerts-js for browser", true)]
-    static bool NodeModulesInstalled() 
+    static bool NodeModulesInstalled()
     {
         return Directory.Exists(Path.GetFullPath("Packages/com.tencent.puerts.webgl.jsbuild/Javascripts~/node_modules"));
     }
     [MenuItem("Tools/PuerTS/WebGL/install", true)]
-    static bool NodeModulesNotInstalled() 
+    static bool NodeModulesInstallValidate()
     {
         return !NodeModulesInstalled();
     }
 
 
-    
-    protected static string GetLastBuildPath() {
+    protected static string GetLastBuildPath()
+    {
         return EditorPrefs.GetString("PUER_WEBGL_LAST_BUILDPATH");
     }
 
     [PostProcessBuildAttribute(1)]
-    public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject) 
+    public static void OnPostprocessBuild(BuildTarget target, string pathToBuiltProject)
     {
-        if (target == BuildTarget.WebGL) 
+        if (target == BuildTarget.WebGL)
         {
             EditorPrefs.SetString("PUER_WEBGL_LAST_BUILDPATH", pathToBuiltProject);
             UnityEngine.Debug.Log("构建成功，请用puerts-webgl/build js构建js资源");
         }
+    }
+
+
+    class CustomScript
+    {
+        public string resourceName;
+        public string code;
+        public CustomScript(string resourceName, string code)
+        {
+            this.resourceName = resourceName;
+            this.code = code;
+        }
+        public static CustomScript[] From(Dictionary<string, string> dict)
+        {
+            if (dict == null)
+                return null;
+            return dict.Keys
+                .Select(resourceName => new CustomScript(resourceName, dict[resourceName]))
+                .ToArray();
+        }
+    }
+    class BuildParameters
+    {
+        public string outputpath;
+        public string[] fileGlobbers;
+        public CustomScript[] customScripts;
+        public Func<string, bool> filterPath;
+        public Func<string, string> resolvePath;
     }
 }

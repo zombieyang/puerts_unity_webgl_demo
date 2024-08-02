@@ -11,8 +11,7 @@ const { mkdir } = require('@puerts/shell-util');
 
 function buildForBrowser(allJSFile, outputpath) {
     const puerts_js_file = {};
-    allJSFile.forEach(({ resourceName, jsfile }) => {
-        const code = fs.readFileSync(jsfile, 'utf-8');
+    allJSFile.forEach(({ resourceName, code }) => {
         puerts_js_file[resourceName] = `(function(exports, require, module, __filename, __dirname) {
             ${babel.transformSync(code, {
             cwd: __dirname,
@@ -35,12 +34,12 @@ function buildForMinigame(allJSFile, outputpath) {
     const outputdir = path.join(outputpath, 'puerts_minigame_js_resources');
     mkdir('-p', outputdir);
 
-    allJSFile.forEach(({ resourceName, jsfile }) => {
+    allJSFile.forEach(({ resourceName, code }) => {
         const resourceFilePath = path.join(outputdir, resourceName);
         mkdir('-p', path.dirname(resourceFilePath));
         fs.writeFileSync(
             !resourceFilePath.endsWith('.js') ? resourceFilePath + ".js" : resourceFilePath,
-            fs.readFileSync(jsfile, 'utf-8')
+            code
         );
     })
 }
@@ -84,34 +83,45 @@ function buildHTML(outputpath) {
     `)
 }
 
-function globAllJSFile (fileGlobbers) {
-    const allJSFile = fileGlobbers
-        .reduce((retArr, globber)=> {
+function globAllJSFile(buildParameters) {
+    const allJSFile = buildParameters.fileGlobbers
+        .reduce((retArr, globber) => {
             return retArr.concat(
                 glob.sync(path.normalize(globber).replace(/\\/g, '/'))
             )
         }, [])
         .filter(jsfile => {
+            if (buildParameters.filterPath) {
+                return buildParameters.filterPath(jsfile);
+            }
             return jsfile.indexOf('Editor') == -1 && jsfile.indexOf('node_modules') == -1
         })
         .map(jsfile => {
+            let code = fs.readFileSync(jsfile, 'utf-8');
             let resourceNameMatcher = jsfile.split('Resources/');
             let resourceName = resourceNameMatcher[resourceNameMatcher.length - 1];
             resourceName = resourceName.replace(/\.txt$/, '');
 
+            if (typeof (buildParameters.resolvePath) === "function") {
+                resourceName = buildParameters.resolvePath(resourceName);
+            }
+            else if (buildParameters.resolvePath && typeof (buildParameters.resolvePath.Invoke) === "function") {
+                resourceName = buildParameters.resolvePath.Invoke(resourceName);
+            }
             return {
                 resourceName,
-                jsfile
+                code,
             }
         })
+        .concat(buildParameters.customScripts ?? [])
 
     return allJSFile;
 }
 
-exports.buildForMinigame = function (fileGlobbers, outputpath) {
+exports.buildForMinigame = function (buildParameters) {
 
-    buildForMinigame(globAllJSFile(fileGlobbers), outputpath);
+    buildForMinigame(globAllJSFile(buildParameters), buildParameters.outputpath);
 }
-exports.buildForBrowser = function (fileGlobbers, outputpath) {
-    buildForBrowser(globAllJSFile(fileGlobbers), outputpath);
+exports.buildForBrowser = function (buildParameters) {
+    buildForBrowser(globAllJSFile(buildParameters), buildParameters.outputpath);
 }
