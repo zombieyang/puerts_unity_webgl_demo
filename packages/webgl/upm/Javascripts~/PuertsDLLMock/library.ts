@@ -66,22 +66,44 @@ export class FunctionCallbackInfoPtrManager {
             this.freeRefMemory.push(bufferPtr);
         }
     }
+
+    private recycleJsArgument(bufferPtrInt32: number, object : any) {
+        const jsValueType = this.engine.unityApi.HEAP32[bufferPtrInt32]
+        const ptr = this.engine.unityApi.HEAP32[bufferPtrInt32 + 1]
+        if ( jsValueType == 2 ) {
+            //big int
+        }else if ( jsValueType == 4 ) {
+            //number
+        } else if ( jsValueType == 8 ) {
+            //string
+        } else if ( jsValueType == 16 ) {
+            //boolean
+            //nothing todo
+        }else if (jsValueType == 64 && object instanceof Array && object.length == 1) {
+            const refPtrIn8 = this.engine.unityApi.HEAP32[bufferPtrInt32 + 2]
+            const refPtr = refPtrIn8 >> 2
+            this.recycleJsArgument(this.engine.unityApi.HEAP32[refPtr + 1], object[0])
+            this.recycleRefMemory(refPtrIn8);
+        }else if ( jsValueType == 32 || jsValueType == 64 || jsValueType == 128 || jsValueType == 256 ) {
+
+        }else if ( jsValueType == 512 ) {
+        }else if ( jsValueType == 1024 ) {
+            this.engine.unityApi._free(ptr);
+        }
+    }
     private recycleCallbackInfoMemory(bufferPtr: number, args: any[]) {
         const argsLength = args.length;
         if (!this.freeCallbackInfoMemoryByLength[argsLength] && argsLength < 5) {
             this.freeCallbackInfoMemoryByLength[argsLength] = [];
         }
         const cacheArray = this.freeCallbackInfoMemoryByLength[argsLength];
-        if (!cacheArray) return;
 
-        const bufferPtrIn32 = bufferPtr << 2;
+        const bufferPtrIn32 = bufferPtr >> 2;
         for (let i = 0; i < argsLength; ++i) {
-            if (args[i] instanceof Array && args[i].length == 1) {
-                this.recycleRefMemory(this.engine.unityApi.HEAP32[bufferPtrIn32 + i * ArgumentValueLengthIn32 + 1])
-            }
+            this.recycleJsArgument(bufferPtrIn32 + 1 + i * ArgumentValueLengthIn32, args[i])
         }
         // 拍脑袋定的最大缓存个数大小。 50 - 参数个数 * 10
-        if (cacheArray.length > (50 - argsLength * 10)) {
+        if (!cacheArray || cacheArray.length > (50 - argsLength * 10)) {
             this.engine.unityApi._free(bufferPtr);
 
         } else {
