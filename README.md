@@ -1,6 +1,26 @@
 # Puerts WebGL Unity
-![puerts_webgl](https://img.shields.io/badge/release-v1.0.0-blue.svg)
+![puerts_webgl](https://img.shields.io/badge/release-v2.1.0-blue.svg)
 ![minigame](https://img.shields.io/badge/-minigame-grey.svg?logo=wechat)
+
+
+------
+------
+------
+
+
+* The runtime part of this project now become a part of PuerTS's main repository，[>>link](https://github.com/Tencent/puerts/tree/master/unity/Assets/webgl/upm)
+* if you want to issue or PR please submit to Tencent/puerts
+* this project will keep for sample project showing.
+* 
+* 本项目runtime部分现已进入PuerTS主仓维护，[>>跳转](https://github.com/Tencent/puerts/tree/master/unity/Assets/webgl/upm)
+* 如有issue、PR请提至主仓Tencent/puerts。
+* 本项目仅留作Demo示例项目用
+
+
+
+------
+------
+------
 
 ## introduction | 简介
 
