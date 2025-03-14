@@ -5,6 +5,7 @@ using Puerts;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 /**
  * ！！！！！！！！！！必读！！！！！！！
@@ -73,10 +74,21 @@ public class WebGLPuertsPostProcessor {
                 
             });
         ");
-        
+
+        var unittestPath = Path.GetFullPath("Packages/com.tencent.puerts.unittest/");
+        var unittestGlobbers = new string[0] { };
+        if (!string.IsNullOrEmpty(unittestPath))
+        {
+            unittestGlobbers = new string[3]{
+                unittestPath + "/**/Resources/**/*.mjs",
+                unittestPath + "/**/Resources/**/*.cjs",
+                unittestPath + "/**/Resources/**/*.js.txt",
+            };
+        }
+
         try {
             cpRuntimeJS(Path.GetFullPath("Packages/com.tencent.puerts.webgl/Javascripts~/PuertsDLLMock/dist/puerts-runtime.js"), lastBuiltPath);
-            globjs(fileGlobbers.ToArray(), lastBuiltPath);
+            globjs(fileGlobbers.Concat(unittestGlobbers).ToArray(), lastBuiltPath);
         } 
         catch(Exception e) 
         {
